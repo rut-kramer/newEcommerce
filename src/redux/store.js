@@ -24,7 +24,7 @@ const store = createStore(
             //לכאן נביא את כל הפונקציות מהקרד של ריאקט
             //לאחר שנייבא אותם באימפורט
             //crud - פונקציות מ 
-            userIdByEmail,
+            // userIdByEmail,
             uploadImage,
             //crudCategory - פונקציות מ 
             getAllCategories,
@@ -32,9 +32,9 @@ const store = createStore(
             deleteCategory,
             editCategory,
             // crudLogin - פונקציות מ
-            checkPermission,
-            onAuthStateChanged,
-            setUserId,
+            // checkPermission,
+            // onAuthStateChanged,
+            // setUserId,
             //crudOrder - פונקציות מ 
             newOrder,
             //crudProduct - פונקציות מ 
