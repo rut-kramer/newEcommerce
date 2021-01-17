@@ -4,6 +4,7 @@
 
 
 // //9
+//כנראה לא צריך את הפונקציה הזו לחנות-לפרויקט העדכני
 // export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
 //     if (action.type === 'USER_ID_BY_EMAIL') {

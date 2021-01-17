@@ -24,28 +24,28 @@ const store = createStore(
             //לכאן נביא את כל הפונקציות מהקרד של ריאקט
             //לאחר שנייבא אותם באימפורט
             //crud - פונקציות מ 
-            userIdByEmail,
-            uploadImage,
-            //crudCategory - פונקציות מ 
-            getAllCategories,
-            createNewCategory,
-            deleteCategory,
-            editCategory,
-            // crudLogin - פונקציות מ
-            checkPermission,
-            onAuthStateChanged,
-            setUserId,
-            //crudOrder - פונקציות מ 
-            newOrder,
-            //crudProduct - פונקציות מ 
-            getAllProducts,
-            newProduct,
-            addNewImageToProduct,
-            deleteProduct,
-            editproduct,
-            //crudStore - פונקציות מ 
-            newStore,
-            createNewStore,
+            // userIdByEmail,
+            // uploadImage,
+            // //crudCategory - פונקציות מ 
+            // getAllCategories,
+            // createNewCategory,
+            // deleteCategory,
+            // editCategory,
+            // // crudLogin - פונקציות מ
+            // checkPermission,
+            // onAuthStateChanged,
+            // setUserId,
+            // //crudOrder - פונקציות מ 
+            // newOrder,
+            // //crudProduct - פונקציות מ 
+            // getAllProducts,
+            // newProduct,
+            // addNewImageToProduct,
+            // deleteProduct,
+            // editproduct,
+            // //crudStore - פונקציות מ 
+            // newStore,
+            // createNewStore,
         ))
 )
 window.store = store;

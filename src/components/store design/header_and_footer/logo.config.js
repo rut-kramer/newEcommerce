@@ -1,536 +1,536 @@
-import React, { Component } from 'react'
-import '../../App.css';
-import { connect } from 'react-redux';
-import { makeStyles } from '../store_page/node_modules/@material-ui/core/styles';
-import Grid from '../store_page/node_modules/@material-ui/core/Grid';
-import Switch from '../store_page/node_modules/@material-ui/core/Switch';
-import SettingsIcon from '../store_page/node_modules/@material-ui/icons/Settings';
-import KeyboardArrowDownIcon from '../store_page/node_modules/@material-ui/icons/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '../store_page/node_modules/@material-ui/icons/KeyboardArrowUp';
-import { withStyles } from '../store_page/node_modules/@material-ui/core/styles';
-import IconButton from '../store_page/node_modules/@material-ui/core/IconButton';
-import Typography from '../store_page/node_modules/@material-ui/core/Typography';
-import FormLabel from '../store_page/node_modules/@material-ui/core/FormLabel';
-import FormControl from '../store_page/node_modules/@material-ui/core/FormControl';
-import FormGroup from '../store_page/node_modules/@material-ui/core/FormGroup';
-import Slider from '../store_page/node_modules/@material-ui/core/Slider';
-import Box from '../store_page/node_modules/@material-ui/core/Box';
-import { actions } from '../../redux/action';
-import tempLogo from '../../assets/logo.svg';
+// import React, { Component } from 'react'
+// import '../../App.css';
+// import { connect } from 'react-redux';
+// import { makeStyles } from '../store_page/node_modules/@material-ui/core/styles';
+// import Grid from '../store_page/node_modules/@material-ui/core/Grid';
+// import Switch from '../store_page/node_modules/@material-ui/core/Switch';
+// import SettingsIcon from '../store_page/node_modules/@material-ui/icons/Settings';
+// import KeyboardArrowDownIcon from '../store_page/node_modules/@material-ui/icons/KeyboardArrowDown';
+// import KeyboardArrowUpIcon from '../store_page/node_modules/@material-ui/icons/KeyboardArrowUp';
+// import { withStyles } from '../store_page/node_modules/@material-ui/core/styles';
+// import IconButton from '../store_page/node_modules/@material-ui/core/IconButton';
+// import Typography from '../store_page/node_modules/@material-ui/core/Typography';
+// import FormLabel from '../store_page/node_modules/@material-ui/core/FormLabel';
+// import FormControl from '../store_page/node_modules/@material-ui/core/FormControl';
+// import FormGroup from '../store_page/node_modules/@material-ui/core/FormGroup';
+// import Slider from '../store_page/node_modules/@material-ui/core/Slider';
+// import Box from '../store_page/node_modules/@material-ui/core/Box';
+// import { actions } from '../../redux/action';
+// import tempLogo from '../../assets/logo.svg';
 
-import clsx from '../store_page/node_modules/clsx';
-const AntSwitch = withStyles((theme) => ({
-    root: {
-        width: 28,
-        height: 16,
-        padding: 0,
-        display: 'flex',
-    },
-    switchBase: {
-        padding: 2,
-        color: theme.palette.grey[500],
-        '&$checked': {
-            transform: 'translateX(12px)',
-            color: theme.palette.common.white,
-            '& + $track': {
-                opacity: 1,
-                backgroundColor: theme.palette.primary.main,
-                borderColor: theme.palette.primary.main,
-            },
-        },
-    },
-    thumb: {
-        width: 12,
-        height: 12,
-        boxShadow: 'none',
-    },
-    track: {
-        border: `1px solid ${theme.palette.grey[500]}`,
-        borderRadius: 16 / 2,
-        opacity: 1,
-        backgroundColor: theme.palette.common.white,
-    },
-    checked: {},
-}))(Switch);
-
-
-
-const useStyles = (theme) => ({
-    root: {
-        overflowX: 'hidden !important',
-
-        flexGrow: 1,
-        '& .PrivateValueLabel-circle': {
-
-            display: 'none'
-
-        },
-        "& input::-webkit-clear-button, & input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
-            display: "none"
-        }
-    },
-
-    Logo_root_37: {
-        background_color: '#4d5358'
-    },
-    MuiSlider_root: {
-        color: '#fafafa',
-        width: '92%',
-        cursor: 'pointer',
-        height: '2px',
-        display: 'inline_block',
-        padding: '13px 0',
-        position: 'relative',
-        box_sizing: 'content_box',
-        touch_action: 'none',
-        _webkit_tap_highlight_color: 'transparent'
-    },
-    textField: {
-        width: 200,
-        textAlign: 'left',
-        color: '#787880',
-        opacity: 1,
-    },
-
-    checkbox: {
-        borderColor: '#5E81F4'
-    },
-    p_Publiceveryonecansee: {
-        top: 0,
-        left: -70,
-        height: 10,
-        font: 'Bold 14px/19px Roboto',
-        color: '#1C1D21',
-        opacity: 1,
-    },
-    p_editby: {
-        top: 60,
-        left: -100,
-        textAlign: 'left',
-        font: 'Regular 14px/21px Roboto',
-        letterSpacing: ' 0.2px',
-        color: ' #787880',
-        opacity: 1
-    },
-    i_text_description: {
-        top: 252,
-        left: 1276,
-        width: 292,
-        height: 94,
-        textAlign: 'left',
-        letterSpacing: 0,
-        opacity: 1
-    },
-    icon_upload: {
-        fontSize: 100,
-        textAlign: 'left',
-    },
-    icon_clander: {
-        textAlign: 'left'
-    },
-    list1: {
-        fontSize: 'smaller',
-        paddingTop: 1
-    },
-    drawer: {
-        backgroundColor: '#3A405E'
-    },
-
-    RoundedUp: {
-
-        borderRadius: ' 50px 0px 0px 0px '
-    },
-    fieldTextStyle: {
-        textAlign: 'left',
-        font: 'Light 40px/40px Roboto',
-        letterSpacing: '.1px',
-        color: '#cfd1d9!important',
-        textTransform: 'capitalize',
-        backgroundColor: 'transparent',
-        border: 0,
-        outline: 0,
-        borderBottom: '1px solid #75798e',
-        opacity: 1,
-    },
-
-    textcontect: {
-        color: 'white',
-        margin: '1%'
-    },
-    toolbar: {
-        paddingRight: '0px',
-
-    },
-    multilineColor: {
-        color: 'white'
-    },
-    form: {
-        margin: 'auto'
-    },
-    button: {
-        color: 'white',
-        margintTop: '60%',
-        borderRadius: '290px'
-    },
-    textarea: {
-        backgroundColor: '#3A405E'
-    },
-
-    div: {
-        textAlign: 'center',
-        backgroundColor: 'lightslategrey',
-        width: 124,
-        height: 104
-    },
-    iconVideUp:
-    {
-        fontSize: 50,
-        textAlign: 'center',
-    },
-    hue_horizontal:
-    {
-        padding: '0px 2px',
-        position: 'relative',
-        height: '100%',
-        border_radius: ' 2px',
-        width: '60%'
-    },
-    iconVideUp1:
-    {
-        fontSize: 50,
-        textAlign: 'center',
-    },
-
-    inputNumber:
-    {
-        width: '30px',
-        display: 'inline_block',
-        textAlign: 'left',
-        font: 'Light 50px/50px Roboto',
-        letterSpacing: '.1px',
-        color: '#cfd1d9!important',
-        textTransform: 'capitalize',
-        backgroundColor: 'transparent',
-        border: 0,
-        outline: 0,
-        borderBottom: '1px solid #75798e',
-        opacity: 1,
-    },
-    inputNumberSlider:
-    {
-        width: '30px',
-        display: 'inline_block',
-        textAlign: 'center',
-        font: 'Light 50px/50px Roboto',
-        letterSpacing: '.1px',
-        color: '#cfd1d9!important',
-        textTransform: 'capitalize',
-        backgroundColor: 'transparent',
-        border: 0,
-        outline: 0,
-        borderBottom: '1px solid #75798e',
-        opacity: 1,
-    },
-    row: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: 200,
-    },
-    row1: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        width: 200
-    },
-    createNewPage: {
-        paddingRight: '5%',
-        paddingLeft: '5%',
-        position: 'sticky',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: 6 + 'vh',
-        top: 0
-    },
-    logoDetails: {
-        color: '#b6b6c9',
-        fontSize: '13px',
-        paddingLeft: '8%',
-        marginTop: '10px'
-    }
-});
+// import clsx from '../store_page/node_modules/clsx';
+// const AntSwitch = withStyles((theme) => ({
+//     root: {
+//         width: 28,
+//         height: 16,
+//         padding: 0,
+//         display: 'flex',
+//     },
+//     switchBase: {
+//         padding: 2,
+//         color: theme.palette.grey[500],
+//         '&$checked': {
+//             transform: 'translateX(12px)',
+//             color: theme.palette.common.white,
+//             '& + $track': {
+//                 opacity: 1,
+//                 backgroundColor: theme.palette.primary.main,
+//                 borderColor: theme.palette.primary.main,
+//             },
+//         },
+//     },
+//     thumb: {
+//         width: 12,
+//         height: 12,
+//         boxShadow: 'none',
+//     },
+//     track: {
+//         border: `1px solid ${theme.palette.grey[500]}`,
+//         borderRadius: 16 / 2,
+//         opacity: 1,
+//         backgroundColor: theme.palette.common.white,
+//     },
+//     checked: {},
+// }))(Switch);
 
 
-class Logo extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            bgcolrPNG: '#fffff',
-            // rivki 16.09.20
-            checkedSwitch: false,
-            IsCollapse: false,
-            logoYN: true,
 
-        }
-    }
-    handleChangeSwitch = () => {
-        this.setState({ logoYN: !this.state.logoYN })
-            // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
-            ;
-        this.props.changeLogoYOrN()
-    }
-    IsOpenCollapse = () => {
-        this.setState({
-            IsCollapse: !this.state.IsCollapse
-        })
-    }
+// const useStyles = (theme) => ({
+//     root: {
+//         overflowX: 'hidden !important',
 
-    useStyle = makeStyles((theme) => ({
-        root: {
-            '& .MuiTextField-root': {
-                margin: theme.spacing(1),
-                width: '25ch'
-            },
-        },
-    }));
-    handleChangeComplete = (color) => {
-        this.setState({ bgcolrPNG: color.hex });
-    };
-    changeLogoselectRdiuseView = (e) => {
-        ;
-        this.props.changeLogoselectRdiuseView(e)
-    }
-    onChangeHandlerLogo(event) {
-        if (event) {
-            let reader = new FileReader();
-            reader.onloadend = () => {
+//         flexGrow: 1,
+//         '& .PrivateValueLabel-circle': {
 
-                this.props.changeLogo(reader.result)
-            }
+//             display: 'none'
 
-            reader.readAsDataURL(event)
-        }
+//         },
+//         "& input::-webkit-clear-button, & input::-webkit-outer-spin-button, & input::-webkit-inner-spin-button": {
+//             display: "none"
+//         }
+//     },
 
-    }
-    render() {
-        const { classes } = this.props
+//     Logo_root_37: {
+//         background_color: '#4d5358'
+//     },
+//     MuiSlider_root: {
+//         color: '#fafafa',
+//         width: '92%',
+//         cursor: 'pointer',
+//         height: '2px',
+//         display: 'inline_block',
+//         padding: '13px 0',
+//         position: 'relative',
+//         box_sizing: 'content_box',
+//         touch_action: 'none',
+//         _webkit_tap_highlight_color: 'transparent'
+//     },
+//     textField: {
+//         width: 200,
+//         textAlign: 'left',
+//         color: '#787880',
+//         opacity: 1,
+//     },
 
-        const defaultProps3 = {
-            // width: 300,
-            color: 'white'
+//     checkbox: {
+//         borderColor: '#5E81F4'
+//     },
+//     p_Publiceveryonecansee: {
+//         top: 0,
+//         left: -70,
+//         height: 10,
+//         font: 'Bold 14px/19px Roboto',
+//         color: '#1C1D21',
+//         opacity: 1,
+//     },
+//     p_editby: {
+//         top: 60,
+//         left: -100,
+//         textAlign: 'left',
+//         font: 'Regular 14px/21px Roboto',
+//         letterSpacing: ' 0.2px',
+//         color: ' #787880',
+//         opacity: 1
+//     },
+//     i_text_description: {
+//         top: 252,
+//         left: 1276,
+//         width: 292,
+//         height: 94,
+//         textAlign: 'left',
+//         letterSpacing: 0,
+//         opacity: 1
+//     },
+//     icon_upload: {
+//         fontSize: 100,
+//         textAlign: 'left',
+//     },
+//     icon_clander: {
+//         textAlign: 'left'
+//     },
+//     list1: {
+//         fontSize: 'smaller',
+//         paddingTop: 1
+//     },
+//     drawer: {
+//         backgroundColor: '#3A405E'
+//     },
 
-        }
+//     RoundedUp: {
 
+//         borderRadius: ' 50px 0px 0px 0px '
+//     },
+//     fieldTextStyle: {
+//         textAlign: 'left',
+//         font: 'Light 40px/40px Roboto',
+//         letterSpacing: '.1px',
+//         color: '#cfd1d9!important',
+//         textTransform: 'capitalize',
+//         backgroundColor: 'transparent',
+//         border: 0,
+//         outline: 0,
+//         borderBottom: '1px solid #75798e',
+//         opacity: 1,
+//     },
 
-        return (
-            <>
-                <div className={classes.root} >
-                    <FormControl component="fieldset" className={clsx(classes.textField, 'con', 'vertical-center')} style={{ height: 73 + "vh", width: 100 + "%" }} >
-                        <FormGroup className={classes.textField} >
-                            {this.state.IsCollapse ?
-                                <div className={classes.row1}  >
-                                    <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
-                                    <div edge="start" >
-                                        <label for="ColapseLogo">
-                                            <KeyboardArrowUpIcon />
-                                        </label>
-                                        <input
-                                            type={"button"}
-                                            id="ColapseLogo"
-                                            htmlFor="myInput"
-                                            style={{ display: 'none' }}
-                                            onClick={this.IsOpenCollapse}
-                                        />
-                                    </div>
-                                </div>
-                                :
-                                <div className={classes.row} >
-                                    <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
-                                    <div edge="start">
-                                        <label for="ColapseLogo">
-                                            <KeyboardArrowDownIcon />
-                                        </label>
-                                        <input
-                                            type={"button"}
-                                            id="ColapseLogo"
-                                            htmlFor="myInput"
-                                            style={{ display: 'none' }}
-                                            onClick={this.IsOpenCollapse}
-                                        />
-                                    </div>
-                                </div>
-                            }
-                            <div hidden={this.state.IsCollapse} style={{ width: 94 + "%", marginRight: 3 + "%", marginLeft: 7 + "%", margintTop: 20 + "vh" }} >
-                                <Grid
-                                    container
-                                    direction="column"
-                                    justify="space-between"
+//     textcontect: {
+//         color: 'white',
+//         margin: '1%'
+//     },
+//     toolbar: {
+//         paddingRight: '0px',
 
-                                >
-                                    <Box flexDirection="row"
-                                        display="flex"
-                                        justifyContent="space-between"
-                                    >
-                                        <Box
-                                            width={'80%'}
-                                        >
-                                            <FormLabel className={classes.textcontect}>Logo</FormLabel>
+//     },
+//     multilineColor: {
+//         color: 'white'
+//     },
+//     form: {
+//         margin: 'auto'
+//     },
+//     button: {
+//         color: 'white',
+//         margintTop: '60%',
+//         borderRadius: '290px'
+//     },
+//     textarea: {
+//         backgroundColor: '#3A405E'
+//     },
 
-                                        </Box>
-                                        <Box justifyContent="flex-end">
-                                            <AntSwitch checked={this.state.logoYN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
-                                        </Box>
+//     div: {
+//         textAlign: 'center',
+//         backgroundColor: 'lightslategrey',
+//         width: 124,
+//         height: 104
+//     },
+//     iconVideUp:
+//     {
+//         fontSize: 50,
+//         textAlign: 'center',
+//     },
+//     hue_horizontal:
+//     {
+//         padding: '0px 2px',
+//         position: 'relative',
+//         height: '100%',
+//         border_radius: ' 2px',
+//         width: '60%'
+//     },
+//     iconVideUp1:
+//     {
+//         fontSize: 50,
+//         textAlign: 'center',
+//     },
 
-                                    </Box>
-                                    <Box
-                                        alignSelf="center">
-                                        <div className={classes.div} >
-                                            <div className="image-upload">
-                                                <label for="logouug">
-                                                    <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
-                                                </label>
-                                                <input
-                                                    type={"file"}
-                                                    id="logouug"
-                                                    htmlFor="myInput"
-                                                    accept="image/*"
-                                                    style={{
-                                                        display: 'none',
-                                                        cursor: 'pointer',
-                                                        width: this.props.logoDesign.logoWidth,
-                                                    }}
-                                                    onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
-                                                />
-
-                                            </div>
-                                            <div id='lbError' className='warning'
-                                                style={{
-                                                    position: 'relative',
-                                                    color: 'red',
-                                                    top: '-43px',
-                                                    right: '7x',
-                                                    left: '109px'
-                                                }}
-                                            >
-
-                                            </div>
-                                        </div>
-
-                                    </Box>
-                                    <br></br>
-                                    <br></br>
-                                    <br></br>
-                                    <FormLabel className={classes.textcontect}>Border Radius Logo</FormLabel>
-                                    <br></br>
-                                    <Box flexDirection="row"
-                                        display="flex"
-                                        justifyContent="space-between"
-                                    >
-                                        <Box
-                                            width={'100%'}
-                                            alignSelf="center"
-                                        >
-                                            <Slider
-                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
-                                                step={1}
-                                                marks
-                                                min={0}
-                                                max={100}
-                                                getAriaValueText={this.props.changeLogoselectRdiuseView}
-                                                valueLabelDisplay="auto"
-                                                className={classes.MuiSlider_root}
-                                            />
-                                        </Box>
-                                        {/* /////לא ברור לי מה מבצע הבוקס הזה */}
-                                        {/* <Box justifyContent="flex-end">
-                                            <input
-                                                textAlign="center"
-                                                id="standard-number"
-                                                type="number"
-                                                value={this.props.logoDesign.logoBorderRadiusLogo ? this.props.logoDesign.logoBorderRadiusLogo : '0'}
-                                                defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
-                                                onChange={(e) => this.props.changeLogoselectRdiuseView(e.target.value)}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                                className={classes.inputNumberSlider}
-                                            />
-                                        </Box> */}
-                                    </Box>
-
-                                    <br></br>
-                                    <FormLabel className={classes.textcontect}>Logo Width</FormLabel>
-
-                                    <Box flexDirection="row"
-                                        display="flex"
-                                        justifyContent="space-between"
-                                    >
-
-                                        <Box
-                                            width={'100%'}
-                                            alignSelf="center"
-                                        >
+//     inputNumber:
+//     {
+//         width: '30px',
+//         display: 'inline_block',
+//         textAlign: 'left',
+//         font: 'Light 50px/50px Roboto',
+//         letterSpacing: '.1px',
+//         color: '#cfd1d9!important',
+//         textTransform: 'capitalize',
+//         backgroundColor: 'transparent',
+//         border: 0,
+//         outline: 0,
+//         borderBottom: '1px solid #75798e',
+//         opacity: 1,
+//     },
+//     inputNumberSlider:
+//     {
+//         width: '30px',
+//         display: 'inline_block',
+//         textAlign: 'center',
+//         font: 'Light 50px/50px Roboto',
+//         letterSpacing: '.1px',
+//         color: '#cfd1d9!important',
+//         textTransform: 'capitalize',
+//         backgroundColor: 'transparent',
+//         border: 0,
+//         outline: 0,
+//         borderBottom: '1px solid #75798e',
+//         opacity: 1,
+//     },
+//     row: {
+//         display: 'flex',
+//         alignItems: 'center',
+//         justifyContent: 'space-between',
+//         width: 200,
+//     },
+//     row1: {
+//         display: 'flex',
+//         alignItems: 'center',
+//         justifyContent: 'space-between',
+//         width: 200
+//     },
+//     createNewPage: {
+//         paddingRight: '5%',
+//         paddingLeft: '5%',
+//         position: 'sticky',
+//         display: 'flex',
+//         alignItems: 'center',
+//         justifyContent: 'space-between',
+//         height: 6 + 'vh',
+//         top: 0
+//     },
+//     logoDetails: {
+//         color: '#b6b6c9',
+//         fontSize: '13px',
+//         paddingLeft: '8%',
+//         marginTop: '10px'
+//     }
+// });
 
 
-                                            <Slider {...defaultProps3}
-                                                defaultValue={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
-                                                step={1}
-                                                marks
-                                                min={100}
-                                                max={200}
-                                                getAriaValueText={this.props.changeLogoWidth}
-                                                valueLabelDisplay="auto"
-                                                className={classes.MuiSlider_root}
-                                            />
+// class Logo extends Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {
+//             bgcolrPNG: '#fffff',
+//             // rivki 16.09.20
+//             checkedSwitch: false,
+//             IsCollapse: false,
+//             logoYN: true,
 
-                                        </Box>
-                                        <Box justifyContent="flex-end">
-                                            <input
-                                                textAlign="center"
-                                                id="standard-number"
-                                                type="number"
-                                                value={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
-                                                onChange={(e) => this.props.changeLogoWidth(e.target.value)}
-                                                InputLabelProps={{
-                                                    shrink: true,
-                                                }}
-                                                className={classes.inputNumberSlider}
-                                            />
+//         }
+//     }
+//     handleChangeSwitch = () => {
+//         this.setState({ logoYN: !this.state.logoYN })
+//             // this.props.logoDesign.logoYOrN = !this.props.logoDesign.logoYOrN
+//             ;
+//         this.props.changeLogoYOrN()
+//     }
+//     IsOpenCollapse = () => {
+//         this.setState({
+//             IsCollapse: !this.state.IsCollapse
+//         })
+//     }
 
-                                        </Box>
+//     useStyle = makeStyles((theme) => ({
+//         root: {
+//             '& .MuiTextField-root': {
+//                 margin: theme.spacing(1),
+//                 width: '25ch'
+//             },
+//         },
+//     }));
+//     handleChangeComplete = (color) => {
+//         this.setState({ bgcolrPNG: color.hex });
+//     };
+//     changeLogoselectRdiuseView = (e) => {
+//         ;
+//         this.props.changeLogoselectRdiuseView(e)
+//     }
+//     onChangeHandlerLogo(event) {
+//         if (event) {
+//             let reader = new FileReader();
+//             reader.onloadend = () => {
 
-                                    </Box>
+//                 this.props.changeLogo(reader.result)
+//             }
+
+//             reader.readAsDataURL(event)
+//         }
+
+//     }
+//     render() {
+//         const { classes } = this.props
+
+//         const defaultProps3 = {
+//             // width: 300,
+//             color: 'white'
+
+//         }
 
 
-                                </Grid>
-                            </div>
-                        </FormGroup>
-                    </FormControl>
+//         return (
+//             <>
+//                 <div className={classes.root} >
+//                     <FormControl component="fieldset" className={clsx(classes.textField, 'con', 'vertical-center')} style={{ height: 73 + "vh", width: 100 + "%" }} >
+//                         <FormGroup className={classes.textField} >
+//                             {this.state.IsCollapse ?
+//                                 <div className={classes.row1}  >
+//                                     <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
+//                                     <div edge="start" >
+//                                         <label for="ColapseLogo">
+//                                             <KeyboardArrowUpIcon />
+//                                         </label>
+//                                         <input
+//                                             type={"button"}
+//                                             id="ColapseLogo"
+//                                             htmlFor="myInput"
+//                                             style={{ display: 'none' }}
+//                                             onClick={this.IsOpenCollapse}
+//                                         />
+//                                     </div>
+//                                 </div>
+//                                 :
+//                                 <div className={classes.row} >
+//                                     <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
+//                                     <div edge="start">
+//                                         <label for="ColapseLogo">
+//                                             <KeyboardArrowDownIcon />
+//                                         </label>
+//                                         <input
+//                                             type={"button"}
+//                                             id="ColapseLogo"
+//                                             htmlFor="myInput"
+//                                             style={{ display: 'none' }}
+//                                             onClick={this.IsOpenCollapse}
+//                                         />
+//                                     </div>
+//                                 </div>
+//                             }
+//                             <div hidden={this.state.IsCollapse} style={{ width: 94 + "%", marginRight: 3 + "%", marginLeft: 7 + "%", margintTop: 20 + "vh" }} >
+//                                 <Grid
+//                                     container
+//                                     direction="column"
+//                                     justify="space-between"
 
-                </div></>
-        )
-    }
+//                                 >
+//                                     <Box flexDirection="row"
+//                                         display="flex"
+//                                         justifyContent="space-between"
+//                                     >
+//                                         <Box
+//                                             width={'80%'}
+//                                         >
+//                                             <FormLabel className={classes.textcontect}>Logo</FormLabel>
 
-}
+//                                         </Box>
+//                                         <Box justifyContent="flex-end">
+//                                             <AntSwitch checked={this.state.logoYN} onClick={this.handleChangeSwitch} name="checkedSwitch" />
+//                                         </Box>
 
-const mapStateToProps = (state) => {
-    return {
-        // contactDetails: state.contactDetails.contactDetails,
-        logoDesign: state.logoReducer.logoDesign
-    };
-}
-const mapDispatchToProps = (dispatch) => ({
-    changeLogo: (image) => dispatch(actions.setLogo(image)),
-    changeLogoYOrN: (image) => dispatch(actions.setLogoYOrN(image)),
-    // changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),
-    changeLogoWidth: (image) => dispatch(actions.setLogoWidth(image)),
-    changeLogoHeight: (image) => dispatch(actions.setLogoHeight(image)),
-    changeLogoBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
-    changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo(image)),
+//                                     </Box>
+//                                     <Box
+//                                         alignSelf="center">
+//                                         <div className={classes.div} >
+//                                             <div className="image-upload">
+//                                                 <label for="logouug">
+//                                                     <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
+//                                                 </label>
+//                                                 <input
+//                                                     type={"file"}
+//                                                     id="logouug"
+//                                                     htmlFor="myInput"
+//                                                     accept="image/*"
+//                                                     style={{
+//                                                         display: 'none',
+//                                                         cursor: 'pointer',
+//                                                         width: this.props.logoDesign.logoWidth,
+//                                                     }}
+//                                                     onChange={(e) => this.onChangeHandlerLogo(e.target.files[0])}
+//                                                 />
 
-    // changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
-})
+//                                             </div>
+//                                             <div id='lbError' className='warning'
+//                                                 style={{
+//                                                     position: 'relative',
+//                                                     color: 'red',
+//                                                     top: '-43px',
+//                                                     right: '7x',
+//                                                     left: '109px'
+//                                                 }}
+//                                             >
+
+//                                             </div>
+//                                         </div>
+
+//                                     </Box>
+//                                     <br></br>
+//                                     <br></br>
+//                                     <br></br>
+//                                     <FormLabel className={classes.textcontect}>Border Radius Logo</FormLabel>
+//                                     <br></br>
+//                                     <Box flexDirection="row"
+//                                         display="flex"
+//                                         justifyContent="space-between"
+//                                     >
+//                                         <Box
+//                                             width={'100%'}
+//                                             alignSelf="center"
+//                                         >
+//                                             <Slider
+//                                                 defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
+//                                                 step={1}
+//                                                 marks
+//                                                 min={0}
+//                                                 max={100}
+//                                                 getAriaValueText={this.props.changeLogoselectRdiuseView}
+//                                                 valueLabelDisplay="auto"
+//                                                 className={classes.MuiSlider_root}
+//                                             />
+//                                         </Box>
+//                                         {/* /////לא ברור לי מה מבצע הבוקס הזה */}
+//                                         {/* <Box justifyContent="flex-end">
+//                                             <input
+//                                                 textAlign="center"
+//                                                 id="standard-number"
+//                                                 type="number"
+//                                                 value={this.props.logoDesign.logoBorderRadiusLogo ? this.props.logoDesign.logoBorderRadiusLogo : '0'}
+//                                                 defaultValue={this.props.logoDesign.logoBorderRadiusLogo}
+//                                                 onChange={(e) => this.props.changeLogoselectRdiuseView(e.target.value)}
+//                                                 InputLabelProps={{
+//                                                     shrink: true,
+//                                                 }}
+//                                                 className={classes.inputNumberSlider}
+//                                             />
+//                                         </Box> */}
+//                                     </Box>
+
+//                                     <br></br>
+//                                     <FormLabel className={classes.textcontect}>Logo Width</FormLabel>
+
+//                                     <Box flexDirection="row"
+//                                         display="flex"
+//                                         justifyContent="space-between"
+//                                     >
+
+//                                         <Box
+//                                             width={'100%'}
+//                                             alignSelf="center"
+//                                         >
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Logo));
+//                                             <Slider {...defaultProps3}
+//                                                 defaultValue={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
+//                                                 step={1}
+//                                                 marks
+//                                                 min={100}
+//                                                 max={200}
+//                                                 getAriaValueText={this.props.changeLogoWidth}
+//                                                 valueLabelDisplay="auto"
+//                                                 className={classes.MuiSlider_root}
+//                                             />
+
+//                                         </Box>
+//                                         <Box justifyContent="flex-end">
+//                                             <input
+//                                                 textAlign="center"
+//                                                 id="standard-number"
+//                                                 type="number"
+//                                                 value={this.props.logoDesign.logoWidth ? this.props.logoDesign.logoWidth : '100'}
+//                                                 onChange={(e) => this.props.changeLogoWidth(e.target.value)}
+//                                                 InputLabelProps={{
+//                                                     shrink: true,
+//                                                 }}
+//                                                 className={classes.inputNumberSlider}
+//                                             />
+
+//                                         </Box>
+
+//                                     </Box>
+
+
+//                                 </Grid>
+//                             </div>
+//                         </FormGroup>
+//                     </FormControl>
+
+//                 </div></>
+//         )
+//     }
+
+// }
+
+// const mapStateToProps = (state) => {
+//     return {
+//         // contactDetails: state.contactDetails.contactDetails,
+//         logoDesign: state.logoReducer.logoDesign
+//     };
+// }
+// const mapDispatchToProps = (dispatch) => ({
+//     changeLogo: (image) => dispatch(actions.setLogo(image)),
+//     changeLogoYOrN: (image) => dispatch(actions.setLogoYOrN(image)),
+//     // changeCompanyName: (image) => dispatch(actions.setLogoCompanyName(image)),
+//     changeLogoWidth: (image) => dispatch(actions.setLogoWidth(image)),
+//     changeLogoHeight: (image) => dispatch(actions.setLogoHeight(image)),
+//     changeLogoBackgroundOnlyPng: (image) => dispatch(actions.setLogoBackgroundOnlyPng(image)),
+//     changeLogoselectRdiuseView: (image) => dispatch(actions.setLogoBorderRadiusLogo(image)),
+
+//     // changeLogoCNYOrN: (image) => dispatch(actions.setLogoBorderRadiusLogo1(image)),
+// })
+
+
+// export default connect(mapStateToProps, mapDispatchToProps)(withStyles(useStyles)(Logo));
