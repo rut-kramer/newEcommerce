@@ -1,0 +1,20 @@
+.footer {
+    padding-bottom: 72px;
+  }
+.footer__center {
+    max-width: 1244px;
+  }
+  /* .center {
+    padding: 0 32px;
+} */
+.center {
+    max-width: 1344px;
+    margin: 0 auto;
+    padding: 0 48px;
+  }
+  .footer__row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    padding-right: 15px;
+  }
