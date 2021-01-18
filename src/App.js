@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store'
 // import $ from 'jquery';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Login from "./components/login"
 
 
 
@@ -11,6 +12,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
+        <Login />
 
         <h2>hhhghghhghg</h2>
       </div>

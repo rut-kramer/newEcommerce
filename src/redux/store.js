@@ -7,12 +7,21 @@ import { newOrder } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import { newStore, createNewStore } from './middleware/crudStore'
 import { userIdByEmail, uploadImage } from './middleware/crud'
-
-
+import productReducer from './reducers/data_reducer/productReducer';
+import categoriesReducer from './reducers/data_reducer/categoryReducer';
+import cartReduser from './reducers/cartReduser';
+import ordersReduser from './reducers/data_reducer/ordersReducer';
+import logoReducer from './reducers/edit_reducer/logoReducer';
+import storeHomeReducer from "./reducers/edit_reducer/storeHomePageReducer";
+import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
+import openStoreReducer from "./reducers/openStoreReducer";
+import userReducer from "./reducers/userReducer";
 
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
+        ordersReduser, cartReduser, categoriesReducer, productReducer
+        , logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer
     })
 
 const store = createStore(
