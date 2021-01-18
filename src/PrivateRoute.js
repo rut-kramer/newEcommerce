@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
 // import { AuthContext } from "./Auth";
 import { connect } from 'react-redux';
@@ -9,7 +9,6 @@ const PrivateRoute = ({ component: RouteComponent, rest, user }) => {
         !!currentUser.email ? (
             <Route
                 {...rest}
-                {...console.log(currentUser.email, "email privateRoute")}
                 render={routeProps =>
                     <RouteComponent {...routeProps} />
                 }

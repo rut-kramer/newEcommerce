@@ -1,6 +1,4 @@
 import { actions } from '../action';
-// import axios from 'axios';
-import $ from 'jquery';
 
 //6
 export const newStore = ({ dispatch, getState }) => next => action => {
@@ -20,7 +18,7 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 
         fetch("http://localhost:3000/register/addStore", requestOptions)
             .then(response => response.json())
-            .then(result => { console.log(result); dispatch(actions.setStore(result)) })
+            .then(result => { dispatch(actions.setStore(result)) })
             .catch(error => console.log('error', error));
     }
 
@@ -36,7 +34,6 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
         // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        console.log("user from redux", getState().userReducer.user);
         //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
         var raw = JSON.stringify({
             "storeName": action.payload.nameStore,
@@ -58,7 +55,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
         };
         fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
             .then(response => { console.log(response); response.json() })
-            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+            //.then(result => { dispatch(actions.setStore(result))})
             .catch(error => console.log('error', error));
     }
 

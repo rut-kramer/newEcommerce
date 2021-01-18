@@ -9,7 +9,6 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
 
-                console.log("crddddddd", res.data);
                 dispatch(actions.setCategories({ categories: res.data }))
             })
             .catch(err => console.log("errrrrrrr", err));
@@ -35,7 +34,7 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
         fetch("https://community.leader.codes/api/categories/newCategoty", requestOptions)
             .then(response => response.json())
-            //.then(result => {console.log(result); dispatch(actions.setStore(result))})
+            //.then(result => {dispatch(actions.setStore(result))})
             .catch(error => console.log('error', error));
     }
 
@@ -47,7 +46,6 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
             .then(res => {
-                console.log("get ", res.data);
                 alert(`The product ${res.data.name} deleted!!`)
                 dispatch(actions.getCommunity({ community: res.data }))
             });

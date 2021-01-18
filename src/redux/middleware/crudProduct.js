@@ -7,10 +7,7 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
-
-                console.log("gjhjet ", res.data);
                 dispatch({ type: "SET_PRODUCTS", payload: res.data })
-
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
             })
@@ -57,7 +54,7 @@ export const addNewImageToProduct = ({ dispatch, getState }) => next => action =
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_PRODUCT') {
         axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
-            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
+            .then(res => { dispatch(actions.getCommunity({ community: res.data })) });
     }
 
     return next(action);

@@ -70,7 +70,7 @@
 //                         <Tabs
 //                                 id="controlled-tab-example"
 //                                 activeKey={key}
-//                                 onSelect={(key) => { console.log("from tabs", key); aaa(key) }}
+//                                 onSelect={(key) => {  aaa(key) }}
 //                         // defaultActiveKey={props.currentTable ? props.currentTable.name : ""}
 //                         >
 //                                 <Tab

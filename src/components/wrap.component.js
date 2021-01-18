@@ -261,10 +261,8 @@
 //         }
 //         const logOutHandler = () => {
 //             logOut.then(() => {
-//                 console.log('logged out')
 //                 this.props.history.push("/login");
 //             }).catch((error) => {
-//                 console.log(error.message)
 //             })
 //         }
 
@@ -332,7 +330,7 @@
 
 //                         <Link to='/0/admin'>
 //                             {/* this.props.history.push("/0/admin"); */}
-//                             <IconButton onClick={() => { console.log(this.props.history); this.props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
+//                             <IconButton onClick={() => {  this.props.setcomponnet("") }} edge="end" color="inherit" aria-label="setting" >
 //                                 <SettingsIcon style={{ color: this.state.color }} />
 //                             </IconButton>
 //                         </Link>

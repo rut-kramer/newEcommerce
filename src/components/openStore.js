@@ -1,17 +1,14 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { actions } from "../redux/action";
-import $ from 'jquery';
-//ספריה ששומרת את הדברים שמשתנים ומקשרת לדף הבא עם שמירת הנתונים
 import { useHistory } from "react-router-dom";
-//בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
+
+import { actions } from "../redux/action";
+
 function OpenStore(props) {
 
-    //שימוש בספריה 
     const history = useHistory();
 
-    //פונקציה שטוענת את הלוגו
-    const handlerLogo = (event) => {
+    function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
@@ -30,7 +27,6 @@ function OpenStore(props) {
             str = str.replace(/\s/g, '_')
             //הצבת המחרוזת במשתנה ברידקס
             props.setUrlRoute(str)
-            console.log(props.objectFields.urlRoute);
         }
         else
             props.setUrlRoute(str)
@@ -39,7 +35,7 @@ function OpenStore(props) {
 
     //פונ שיוצרת את החנות ומכניסה לרידקס את הנתונים
     //  ועוברת לחנות דמו עם הפרטים שהזין
-    const submitToStore = async (event) => {
+    async function submitToStore(event) {
         //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
         await props.createNewStore(props.objectFields)
@@ -48,7 +44,6 @@ function OpenStore(props) {
 
     return (
         <div>
-            {/* בדיקות תקינות ושדות חובה */}
             <h1>welcome to open shop!!!!!</h1><br></br>
             <form onSubmit={submitToStore}>
                 <input placeholder="הכנס שם חנות" type="text" id="fname"
@@ -57,12 +52,8 @@ function OpenStore(props) {
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore} required></input><br></br>
                 <input placeholder="הכנס טלפון" onChange={props.setPhoneStore} required></input><br></br>
                 <input type="email" placeholder="הכנס אימיל" onChange={props.setEmailStore} required></input><br></br>
-                {/* //לבקש מאוהב את הבלוק של הצבעים שהראה לי */}
-                {/*לבינתיים עשיתי עם אינפוט*/}
                 <input placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore} required></input><br></br>
-                {/*  למטבעות drop down  צריך שיהיה  */}
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
-                {/* <input placeholder="בחר מטבע" onChange={props.setCurrencyStore}></input><br></br> */}
                 <label>בחר מטבע</label>
                 <select>
                     <option>"AED": "United Arab Emirates Dirham"</option>
@@ -150,18 +141,14 @@ function OpenStore(props) {
                         required
                         type={"file"}
                         id="logoS"
-                        // htmlFor="myInput"
                         accept="image/*"
-                        // style={{
-                        // display: "none"
-                        // }}
+                        style={{
+                            display: "none"
+                        }}
                         onChange={(e) => handlerLogo(e.target.files[0])}
                     />
                 </div><br></br>
-                {console.log(props.objectFields)}
-                {/* <Link to="/nameStore" > */}
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
-                {/* </Link> */}
             </form>
         </div>
     )

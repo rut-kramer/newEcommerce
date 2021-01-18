@@ -1,12 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { actions } from './action';
 import { getAllCategories, createNewCategory, deleteCategory, editCategory } from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
 import { newOrder } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import { newStore, createNewStore } from './middleware/crudStore'
-import { userIdByEmail, uploadImage } from './middleware/crud'
+import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
 import cartReducer from './reducers/cartReducer';
@@ -40,9 +39,9 @@ const store = createStore(
             deleteCategory,
             editCategory,
             // crudLogin - פונקציות מ
-            // checkPermission,
-            // onAuthStateChanged,
-            // setUserId,
+            checkPermission,
+            onAuthStateChanged,
+            setUserId,
             //crudOrder - פונקציות מ 
             newOrder,
             //crudProduct - פונקציות מ 

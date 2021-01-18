@@ -1,6 +1,3 @@
-import { actions } from "../action";
-import axios from 'axios';
-import $ from 'jquery';
 //15
 // sari experience
 export const newOrder = ({ dispatch, getState }) => next => action => {

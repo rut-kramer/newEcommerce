@@ -8,7 +8,7 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'USER_ID_BY_EMAIL') {
         axios.get('http://localhost:3000/register/userByEmail' + action.payload)
-            .then(res => { console.log("get ", res.data); dispatch(actions.getCommunity({ community: res.data })) });
+            .then(res => { dispatch(actions.getCommunity({ community: res.data })) });
     }
 
     return next(action);
@@ -32,8 +32,6 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "data": myFile,
             "async": false,
             success: function (data1) {
-                console.log("success")
-                console.log("data1", data1);
                 dispatch(actions.setProfilePicture(/*action.payload,*/ data1))
                 //שמירה בuser שנמצא בreducer))
             },
