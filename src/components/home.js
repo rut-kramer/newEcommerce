@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router } from 'react-router-dom';
 import homeImg from '../assets/50344.jpg';
 function Home() {
 
@@ -9,9 +9,9 @@ function Home() {
             <div style={{ float: "left" }}>
                 <h1>Wellcome!!</h1>
                 <h2>Do you want to create your shop?</h2>
-                {/* <Link to='/login'>
+                <Link to='/login'>
                     <button>create virtual shop</button>
-                </Link> */}
+                </Link>
                 {/* <a href="/addUser">create user</a> */}
             </div>
         </div>
