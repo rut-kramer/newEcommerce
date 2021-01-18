@@ -21,7 +21,7 @@ const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReduser, categoriesReducer, productReducer
-        , logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer
+        , userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer
     })
 
 const store = createStore(
