@@ -9,12 +9,12 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (
-    // <Provider store={store}>
-    <div className="App">
+    <Provider store={store}>
+      <div className="App">
 
-      <h2>hhhghghhghg</h2>
-    </div>
-    // </Provider>
+        <h2>hhhghghhghg</h2>
+      </div>
+    </Provider>
 
   );
 }
