@@ -10,7 +10,7 @@ function Login(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
-    const [ , setCookie] = useCookies(["jwt"]);
+    const [, setCookie] = useCookies(["jwt"]);
 
     function onChangeEmail(e) {
         setEmail(e.target.value)

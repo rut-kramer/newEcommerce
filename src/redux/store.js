@@ -15,12 +15,13 @@ import storeHomeReducer from "./reducers/edit_reducer/storeHomePageReducer";
 import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
 import openStoreReducer from "./reducers/openStoreReducer";
 import userReducer from "./reducers/userReducer";
+import coinsReducer from "./reducers/coinsReducer";
 
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer
+        userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer, coinsReducer
     })
 
 const store = createStore(
