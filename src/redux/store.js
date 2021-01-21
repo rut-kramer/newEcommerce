@@ -16,6 +16,7 @@ import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
 import openStoreReducer from "./reducers/openStoreReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
+import { actions } from './action';
 
 const reducers =
     combineReducers({
@@ -57,5 +58,10 @@ const store = createStore(
         ))
 )
 window.store = store;
+
+store.dispatch(actions.onAuthStateChanged());
+store.dispatch(actions.getAllProducts());
+store.dispatch(actions.getAllCategories());
+store.dispatch(actions.getAllOrders());
 
 export default store;
