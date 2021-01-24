@@ -41,7 +41,7 @@ function OpenStore(props) {
         <>
             <h1>Please, Fill your store details...</h1><br></br>
             <form onSubmit={onSubmitStoreDetails}>
-                <input placeholder="הכנס שם חנות" type="text" id="fname"
+                <input required placeholder="הכנס שם חנות" type="text" id="fname"
                     onBlur={convertSpacesToUnderlines} onChange={props.setNameStore}></input><br></br>
                 <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
@@ -56,13 +56,11 @@ function OpenStore(props) {
                         <option key={index} value={item.name}>{item.name}:{item.country}</option>
                     ))}
                 </select>
-
                 <div>
                     <label for="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
                     </label>
                     <input
-                        required
                         type={"file"}
                         id="logoS"
                         // htmlFor="myInput"
