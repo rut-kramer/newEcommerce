@@ -13,7 +13,6 @@ function TopFooter(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        //אפשר לקרוא שם אחר לאוביקט
     }
 }
 const mapDispatchToProps = (dispatch) => ({
@@ -22,6 +21,5 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(TopFooter);
 
 
-/////////////////////////////
 
 

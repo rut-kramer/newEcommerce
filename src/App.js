@@ -8,7 +8,6 @@ import Home from "./components/home";
 import OpenStore from "./components/openStore"
 import TopFooter from './components/topFooter'
 import PrivateRoute from './PrivateRoute.js';
-import StoreSettingsManagement from "./components/store setting/storeSettingsManagement"
 
 
 
@@ -26,12 +25,8 @@ function App() {
               <Login />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
-            <Route path="/StoreSettingsManagement">
-              <StoreSettingsManagement />
-            </Route>
           </Switch>
           <TopFooter></TopFooter>
-
         </div>
       </Router>
     </Provider>
