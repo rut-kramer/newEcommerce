@@ -30,7 +30,6 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        debugger;
         // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
