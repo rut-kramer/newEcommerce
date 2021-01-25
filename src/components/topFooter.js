@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from "react-redux";
-import { actions } from "../redux/action";
 
 
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס

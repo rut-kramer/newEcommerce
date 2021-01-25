@@ -7,7 +7,6 @@ let username = "";
 //1
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
-        debugger;
         $.ajax({
             url: `https://community.leader.codes/api/userByUid/${action.payload}`,
             method: "get",
@@ -53,15 +52,13 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
                 let noQuotesJwtData = jsonWebToken.split('"').join("");
                 let now = new Date();
                 now.setMonth(now.getMonth() + 1);
-                debugger;
                 // document.cookie = "jwt=" + noQuotesJwtData + ";domain=.leader.codes" + "; path=/; Expires=" + now.toUTCString() + ";"
-               // const queryString = window.location.search;
+                // const queryString = window.location.search;
 
                 // const urlParams = new URLSearchParams(queryString);
                 // const des = urlParams.get('des')
                 // const routes = urlParams.get('routes')
                 // const username = data.username
-                debugger;
                 dispatch(actions.setId(data.uid));
                 dispatch(actions.setUser({ "uid": data.uid, "username": data.username, "email": data.email, "tokenFromCookies": noQuotesJwtData }))
                 // let redirectUrl = ''
