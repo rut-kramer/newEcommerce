@@ -8,6 +8,7 @@ import Home from "./components/home";
 import OpenStore from "./components/openStore"
 import TopFooter from './components/topFooter'
 import PrivateRoute from './PrivateRoute.js';
+import Wrap from './components/wrap/wrap';
 
 
 
@@ -25,6 +26,7 @@ function App() {
               <Login />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
           <TopFooter></TopFooter>
         </div>
