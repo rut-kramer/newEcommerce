@@ -33,7 +33,6 @@ function LoginPage(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
-    const [cookies, setCookie] = useCookies(["jwt"]);
 
     const [firstFocus, setFirstFocus] = React.useState(false);
     const [lastFocus, setLastFocus] = React.useState(false);
@@ -67,8 +66,8 @@ function LoginPage(props) {
         signInWithEmailAndPassword(email, password);
     }
 
-    function Ahh() {
-
+    function AfterLogin() {
+        const [, setCookie] = useCookies(["jwt"]);
         setCookie("jwt", props.user.tokenFromCookies, {
             path: "/"
         })
@@ -76,7 +75,7 @@ function LoginPage(props) {
     }
 
     return (
-        !!props.user._id ? (<Ahh></Ahh>) :
+        !!props.user._id ? (<AfterLogin></AfterLogin>) :
             (
                 <>
                     <div className="page-header header-filter" filter-color="blue">
@@ -182,7 +181,7 @@ function LoginPage(props) {
                                                                 size="lg"
                                                                 onClick={signInWithGoogle}
                                                             >
-                                                                {/* <img src={googleIcon} style={{ width: 20 + "px", height: 20 + "px" }} /> */}
+                                                                <img src={googleIcon} style={{ width: 20 + "px", height: 20 + "px" }} alt="Google Icon" />
 
             Sign In With Google
             </Button>
@@ -191,22 +190,22 @@ function LoginPage(props) {
                                                 </CardFooter>
                                                 <div className="pull-left">
                                                     <h6>
-                                                        <a
+                                                        <p
                                                             className="link footer-link"
                                                             onClick={(e) => e.preventDefault()}
                                                         >
                                                             Create Account
-            </a>
+            </p>
                                                     </h6>
                                                 </div>
                                                 <div className="pull-right">
                                                     <h6>
-                                                        <a
+                                                        <p
                                                             className="link footer-link"
                                                             onClick={(e) => e.preventDefault()}
                                                         >
                                                             Need Help?
-            </a>
+            </p>
                                                     </h6>
                                                 </div>
                                             </Form>

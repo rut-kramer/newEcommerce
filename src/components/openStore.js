@@ -30,10 +30,10 @@ function OpenStore(props) {
         props.setUrlRoute(str);
     }
 
-    const onSubmitStoreDetails = async (event) => {
+    const onSubmitStoreDetails = (event) => {
 
         event.preventDefault()
-        await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
+        props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
         history.push("/" + props.objectFields.urlRoute)
     }
 

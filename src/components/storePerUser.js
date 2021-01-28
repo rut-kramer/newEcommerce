@@ -25,7 +25,7 @@ function StorePerUser(props) {
 
                         <div className="data__body">
                                 {props.stores.map((itemy, index) => (
-                                        <Link to="/0" onClick={() => { funcReset(itemy) }}>
+                                        <Link to="/0" onClick={() => { funcReset(itemy) }} key={index}>
                                                 <div className="data__item">
                                                         <div className="data__row" >
                                                                 <div className="data__cell data__cell_xl">
