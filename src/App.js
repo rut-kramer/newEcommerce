@@ -16,6 +16,7 @@ import EditProduct from './components/store setting/product_management/editProdu
 import EditCategory from './components/store setting/category_managment/editCategory';
 import CrudOrder from './components/store setting/crudOrder';
 
+import Wrap from './components/wrap/wrap';
 
 
 
@@ -55,6 +56,7 @@ function App() {
               <Login />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
           <TopFooter></TopFooter>
         </div>
