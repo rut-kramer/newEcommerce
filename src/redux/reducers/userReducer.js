@@ -13,6 +13,10 @@ const initialState = {
         tokenFromCookies: "",
         profilePicture: ""
     },
+    storesOfUser: [],
+    currentStore: {},
+    lastUpdatedUserStore: [],
+    hasStores: true
 }
 
 const user = {
@@ -33,6 +37,21 @@ const user = {
 
     setProfilePicture(state, action) {
         state.user.profilePicture = action.payload;
+    },
+    setStorePerUser(state, action) {
+        state.storesOfUser = action.payload;
+    },
+    setCurrentStore(state, action) {
+        state.currentStore = action.payload;
+    },
+    setHasStores(state, action) {
+        state.hasStores = action.payload
+    },
+    setLastUpdatedUserStore(state, action) {
+        debugger
+        if (action.payload === null || action.payload === [] || action.payload.length === 0)
+            state.hasStores = false;
+        state.lastUpdatedUserStore = action.payload;
     }
 
 }

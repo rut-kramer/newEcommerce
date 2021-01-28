@@ -7,9 +7,14 @@ import Login from "./components/login"
 import Home from "./components/home";
 import OpenStore from "./components/openStore"
 import PrivateRoute from './PrivateRoute.js';
+import Index from './components/index';
 
-
-
+//styles 
+import "./assets/css/bootstrap.min.css";
+import "./assets/scss/now-ui-kit.scss";
+import "./assets/demo/demo.css";
+import "./assets/demo/react-demo.css";
+import "./assets/demo/nucleo-icons-page-styles.css";
 
 function App() {
   return (
@@ -24,6 +29,7 @@ function App() {
               <Login />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/home" component={Index} />
           </Switch>
         </div>
       </Router>

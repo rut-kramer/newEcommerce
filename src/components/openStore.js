@@ -41,7 +41,7 @@ function OpenStore(props) {
         <>
             <h1>Please, Fill your store details...</h1><br></br>
             <form onSubmit={onSubmitStoreDetails}>
-                <input placeholder="הכנס שם חנות" type="text" id="fname"
+                <input required placeholder="הכנס שם חנות" type="text" id="fname"
                     onBlur={convertSpacesToUnderlines} onChange={props.setNameStore}></input><br></br>
                 <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
                 <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
@@ -50,7 +50,7 @@ function OpenStore(props) {
                 <label>בחר צבע ראשי לחנות</label><br></br>
                 <input type={"color"} placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
                 <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
-                <lable>בחר מטבע</lable>
+                <label>בחר מטבע</label>
                 <select onChange={(e) => props.setCurrencyStore(e.target.value)}>
                     {props.coins.map((item, index) => (
                         <option key={index} value={item.name}>{item.name}:{item.country}</option>
@@ -58,7 +58,7 @@ function OpenStore(props) {
                 </select>
 
                 <div>
-                    <label for="logoS">הכנס לוגו של החנות
+                    <label htmlFor="logoS">הכנס לוגו של החנות
                 <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
                     </label>
                     <input
