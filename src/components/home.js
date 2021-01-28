@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import homeImg from '../assets/50344.jpg';
 
+
 function Home() {
 
     return (
@@ -15,6 +16,7 @@ function Home() {
                     <button>create virtual shop</button>
                 </Link>
             </div>
+
         </div>
     )
 

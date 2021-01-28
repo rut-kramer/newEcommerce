@@ -34,7 +34,7 @@ function OpenStore(props) {
 
         event.preventDefault()
         await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
-        history.push("/0/" + props.objectFields.urlRoute)
+        history.push("/" + props.objectFields.urlRoute)
     }
 
     return (
@@ -56,20 +56,18 @@ function OpenStore(props) {
                         <option key={index} value={item.name}>{item.name}:{item.country}</option>
                     ))}
                 </select>
-
                 <div>
-                    <label htmlFor="logoS">הכנס לוגו של החנות
-                <img className="logoC" alt="" src={props.objectFields.logoStore}></img>
+                    <label htmlFor="logoS">
+                        <img className="logoC" alt="הכנס לוגו של החנות" src={props.objectFields.logoStore}></img>
                     </label>
                     <input
-                        required
                         type={"file"}
                         id="logoS"
                         // htmlFor="myInput"
                         accept="image/*"
-                        // style={{
-                        // display: "none"
-                        // }}
+                        style={{
+                            display: "none"
+                        }}
                         onChange={(e) => handlerLogo(e.target.files[0])}
                     />
                 </div><br></br>

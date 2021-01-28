@@ -64,8 +64,5 @@ const store = createStore(
 window.store = store;
 
 store.dispatch(actions.onAuthStateChanged());
-store.dispatch(actions.getAllProducts());
-store.dispatch(actions.getAllCategories());
-store.dispatch(actions.getAllOrders());
 
 export default store;
