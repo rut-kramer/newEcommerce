@@ -30,10 +30,10 @@ function OpenStore(props) {
         props.setUrlRoute(str);
     }
 
-    const onSubmitStoreDetails = async (event) => {
+    const onSubmitStoreDetails = (event) => {
 
         event.preventDefault()
-        await props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
+        props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
         history.push("/" + props.objectFields.urlRoute)
     }
 
@@ -58,7 +58,7 @@ function OpenStore(props) {
                 </select>
                 <div>
                     <label htmlFor="logoS">
-                <img className="logoC" alt="הכנס לוגו של החנות" src={props.objectFields.logoStore}></img>
+                        <img className="logoC" alt="הכנס לוגו של החנות" src={props.objectFields.logoStore}></img>
                     </label>
                     <input
                         type={"file"}
@@ -66,7 +66,7 @@ function OpenStore(props) {
                         // htmlFor="myInput"
                         accept="image/*"
                         style={{
-                        display: "none"
+                            display: "none"
                         }}
                         onChange={(e) => handlerLogo(e.target.files[0])}
                     />

@@ -5,6 +5,7 @@ import { checkPermission, onAuthStateChanged, setUserId } from './middleware/cru
 import { newOrder } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import { newStore, createNewStore } from './middleware/crudStore'
+import { getTheLastUpdatedStorePerUser, getStoreByUser } from './middleware/crudUser'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
@@ -55,6 +56,9 @@ const store = createStore(
             //crudStore - פונקציות מ 
             newStore,
             createNewStore,
+            //crudUser - פונקציות מ
+            getTheLastUpdatedStorePerUser,
+            getStoreByUser
         ))
 )
 window.store = store;
