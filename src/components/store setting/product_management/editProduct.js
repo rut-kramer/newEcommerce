@@ -83,7 +83,7 @@ import { actions } from '../../../redux/action'
           <div className="field form__field">
             <div className="field__label">קטגוריה</div>
             <div className="field__wrap">
-              <select value={props.currentProduct.category} onChange={updateCategory} name="category" className="field__select" required='true' >
+              <select value={props.currentProduct.category} onChange={updateCategory} name="category" className="field__select" >
                 {props.categoryList.map((item, index) => (
                   <option>{item.categoryName}</option>
                 ))}

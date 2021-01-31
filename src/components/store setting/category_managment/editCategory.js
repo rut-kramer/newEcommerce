@@ -92,7 +92,7 @@ setMaster_category(list)
 <div className="form__col">
                     <div className="field form__field">
                       <div className="field__label">קטגוריה אב</div>
-                        <select onChange={updateCategory} name="categoryName"  className="field__select" required='true' >
+                        <select onChange={updateCategory} name="categoryName"  className="field__select"  >
                       {Master_category.map((item, index) => (
                         <option>{item.categoryName}</option>           
                         ))}
