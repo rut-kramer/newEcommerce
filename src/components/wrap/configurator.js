@@ -14,13 +14,13 @@ function Configurator(props) {
                 <h3>למקם פה קונפיגורטור</h3>
 
                 {
-                    props.logoDesign.currentComponent ? (() => {
-                        switch (props.logoDesign.currentComponent) {
+                    props.currentComponent ? (() => {
+                        switch (props.currentComponent) {
                             case "Home": return <Home />;
                             case "OpenStore": return <OpenStore />;
                         }
                     })() :
-                        <h3>didnt check</h3>
+                        <h3>No component was selected!</h3>
                 }
 
 
@@ -36,8 +36,7 @@ function Configurator(props) {
 
 const mapStateToProps = (state) => {
     return {
-        logoDesign: state.logoReducer.logoDesign,
-
+        currentComponent: state.wrapReducer.currentComponent
     }
 }
 const mapDispatchToProps = (dispatch) => ({

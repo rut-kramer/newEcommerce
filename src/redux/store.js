@@ -5,6 +5,7 @@ import { checkPermission, onAuthStateChanged, setUserId } from './middleware/cru
 import { newOrder } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import { newStore, createNewStore } from './middleware/crudStore'
+import { getTheLastUpdatedStorePerUser, getStoreByUser } from './middleware/crudUser'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
@@ -16,13 +17,15 @@ import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
 import currentStoreReducer from "./reducers/currentStoreReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
+import wrapReducer from "./reducers/wrapReducer"
 import { actions } from './action';
 
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer, currentStoreReducer, viewOrEditReducer, storeHomeReducer, coinsReducer
+        userReducer, logoReducer, currentStoreReducer, viewOrEditReducer,
+        storeHomeReducer, coinsReducer, wrapReducer
     })
 
 const store = createStore(
@@ -55,6 +58,9 @@ const store = createStore(
             //crudStore - פונקציות מ 
             newStore,
             createNewStore,
+            //crudUser - פונקציות מ
+            getTheLastUpdatedStorePerUser,
+            getStoreByUser
         ))
 )
 window.store = store;

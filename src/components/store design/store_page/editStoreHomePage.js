@@ -223,7 +223,7 @@ const mapStateToProps = (state) => {
         objectFields: state.currentStoreReducer.objectFields,
         categories: state.categoriesReducer.categories,
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
-        viewModel: state.viewModeReducer.viewModel,
+        viewModel: state.wrapReducer.viewModel,
 
     }
 }

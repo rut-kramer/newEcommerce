@@ -332,7 +332,7 @@
 //                                 <div className={classes.row1}  >
 //                                     <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
 //                                     <div edge="start" >
-//                                         <label for="ColapseLogo">
+//                                         <label htmlFor="ColapseLogo">
 //                                             <KeyboardArrowUpIcon />
 //                                         </label>
 //                                         <input
@@ -348,7 +348,7 @@
 //                                 <div className={classes.row} >
 //                                     <h3 edge="end" className={classes.logoDetails}>  Logo Details   </h3>
 //                                     <div edge="start">
-//                                         <label for="ColapseLogo">
+//                                         <label htmlFor="ColapseLogo">
 //                                             <KeyboardArrowDownIcon />
 //                                         </label>
 //                                         <input
@@ -387,7 +387,7 @@
 //                                         alignSelf="center">
 //                                         <div className={classes.div} >
 //                                             <div className="image-upload">
-//                                                 <label for="logouug">
+//                                                 <label htmlFor="logouug">
 //                                                     <img className="logoC" alt="" src={this.props.logoDesign.logo ? this.props.logoDesign.logo : tempLogo} />
 //                                                 </label>
 //                                                 <input
