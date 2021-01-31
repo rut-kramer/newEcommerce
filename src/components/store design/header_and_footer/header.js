@@ -60,7 +60,7 @@ function Header(props) {
 const mapStateToProps = (state) => {
     return {
         logoDesign: state.logoReducer.logoDesign,
-        objectFields: state.openStoreReducer.objectFields,
+        objectFields: state.currentStoreReducer.objectFields,
         categories: state.categoriesReducer.categories,
     }
 }
