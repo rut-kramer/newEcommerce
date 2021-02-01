@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-import FormLabel from '@material-ui/core/FormLabel';
-import Box from '@material-ui/core/Box';
-import { HuePicker } from 'react-color';
 
 function AddCategory(props) {
   const [Master_category ,setMaster_category]= useState(props.categoryList)
@@ -15,24 +12,23 @@ setMaster_category(list)
   console.log(props);
   const [myValues, setMyValues] = useState({
     categoryName: '',
-    color: '',
+    color: "#000000",
     //  image:'',
-    //TODO
-   //   store:props.storeCurrent._id
-   store: '600d6765d2f87ce3d1a8a662'
+     store:props.storeCurrent._id
   });
 
-  const updateColor = (event) => {     
-    setMyValues({
-      ...myValues,
-    color:event.hex
- });
-  }
   const updateCategory = (event) => {
-   let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+    let k;
+if(event.target.value==="ללא קטגורית אב")
+k=null;
+else
+{
+   k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+   k=k[0]._id
+  }
     setMyValues({
       ...myValues,
-      masterCategory:k[0]._id
+      masterCategory:k
     });
   }
   const update = (event) => {
@@ -73,6 +69,8 @@ setMaster_category(list)
                     <div className="field form__field">
                       <div className="field__label">קטגוריה אב</div>
                         <select onChange={updateCategory} name="categoryName"  className="field__select">
+                      
+                      <option>ללא קטגורית אב</option>
                       {Master_category.map((item, index) => (
                         <option>{item.categoryName}</option>           
                         ))}
@@ -81,26 +79,10 @@ setMaster_category(list)
                       </div>
                     </div>
                   </div>
-      <FormLabel>Color text</FormLabel>
-      <Box flexDirection="row"
-        display="flex"
-        justifyContent="space-between">
-        <Box name="color"
-          width={'100%'}
-          alignSelf="center">
-          <HuePicker
-            color={myValues.color}
-            onChangeComplete={updateColor}
-            width={200}
-            height={6}
-          />
-        </Box>
-        <Box justifyContent="flex-end">
-        <div className="data__preview" style={{"backgroundColor":myValues.color}}>
-                </div>
-        </Box>
-      </Box>
-      <div className="form__foot">
+      <label>בחר צבע לקטגוריה</label><br></br>
+                <input type={"color"} name="color"  onChange={update}></input><br></br>
+                
+      <div className="form__foot"> 
         <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
       </div>
     </div>
@@ -110,7 +92,7 @@ export default connect(
   (state) => {
     return {
       categoryList: state.categoriesReducer.categories,
-      //storeCurrent:state.storeByUser.currentStore,
+      storeCurrent:state.storeByUserReducer.currentStore,
     }
   },
   (dispatch) => {

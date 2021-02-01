@@ -17,7 +17,7 @@ import { actions } from '../../../redux/action'
         //  images:'',
          featured:false,
          //TODO
-         store:'600d6765d2f87ce3d1a8a662'
+         store:props.storeCurrent._id
         });
 
         const updateCategory = (event) => {
@@ -138,7 +138,7 @@ import { actions } from '../../../redux/action'
 export default connect(    
   (state)=>{
           return { 
-                //  storeCurrent:state.storeByUser.currentStore,
+                  storeCurrent:state.storeByUserReducer.currentStore,
                   categoryList:state.categoriesReducer.categories
           }
   },
