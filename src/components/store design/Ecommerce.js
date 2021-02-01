@@ -13,12 +13,9 @@ import {
   Collapse,
   Label,
   FormGroup,
-  Form,
   Input,
-  InputGroupAddon,
-  InputGroupText,
-  InputGroup,
   Container,
+  InputGroupAddon,
   Row,
   Col,
   UncontrolledTooltip,
@@ -28,6 +25,8 @@ import {
 import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
 import Footer from "../footers/footer.js";
+import { actions } from '../../redux/action';
+import { connect } from 'react-redux';
 
 //images
 import polo from "../../assets/img/polo.jpg";
@@ -43,9 +42,8 @@ import saintLaurent1 from "../../assets/img/saint-laurent1.jpg";
 import saintLaurent from "../../assets/img/saint-laurent.jpg";
 import gucci from "../../assets/img/gucci.jpg";
 
-function Ecommerce() {
-  // focus for inputs
-  const [emailFocus, setEmailFocus] = React.useState(false);
+function Ecommerce(props) {
+
   // collapse states and functions
   const [collapses, setCollapses] = React.useState([1]);
   const changeCollapse = (collapse) => {
@@ -56,20 +54,35 @@ function Ecommerce() {
     }
   };
   // slider states and functions
-  const [sliderMin, setSliderMin] = React.useState(100);
-  const [sliderMax, setSliderMax] = React.useState(880);
+  // const [sliderMin, setSliderMin] = React.useState(100);
+  // const [sliderMax, setSliderMax] = React.useState(880);
   React.useEffect(() => {
+    debugger;
+    let min = props.products[0], max = props.products[0];
+    props.products.forEach(product => {
+      if (product.price > max)
+        max = product.price;
+      if (product.price < min)
+        min = product.price;
+    });
+    props.setSliderMin(min);
+    props.setSliderMax(max);
     if (
       !document.getElementById("sliderRefine").classList.contains("noUi-target")
     ) {
       Slider.create(document.getElementById("sliderRefine"), {
-        start: [sliderMin, sliderMax],
+        start: [props.slideMin, props.sliderMax],
         connect: [false, true, false],
         step: 1,
-        range: { min: 30, max: 900 },
+        range: { min: 0, max: 900 },
       }).on("update", function (values) {
-        setSliderMin(Math.round(values[0]));
-        setSliderMax(Math.round(values[1]));
+        debugger
+        var filterProductsByPrice = props.products.map((p) => {
+          return (p.price > values[0] && p.price < values[1]) ? p : {};
+        });
+        props.filteredProducts(filterProductsByPrice);
+        props.setSliderMin(Math.round(values[0]));
+        props.setSliderMax(Math.round(values[1]));
       });
     }
 
@@ -137,13 +150,13 @@ function Ecommerce() {
                               className="price-left pull-left"
                               id="price-left"
                             >
-                              €{sliderMin}
+                              €{props.sliderMin}
                             </span>
                             <span
                               className="price-right pull-right"
                               id="price-right"
                             >
-                              €{sliderMax}
+                              €{props.sliderMax}
                             </span>
                             <div className="clearfix"></div>
                             <div
@@ -862,7 +875,7 @@ function Ecommerce() {
               </Row>
             </Container>
           </div>
-          <div
+          {/* <div
             className="subscribe-line subscribe-line-image"
             style={{
               backgroundImage: "url(" + bg43 + ")",
@@ -911,7 +924,7 @@ function Ecommerce() {
                 </Col>
               </Row>
             </Container>
-          </div>
+          </div> */}
         </div>
         <Footer />
       </div>
@@ -919,4 +932,23 @@ function Ecommerce() {
   );
 }
 
-export default Ecommerce;
+export default connect(
+  (state) => {
+    return {
+      slideMin: state.filterReducer.minPrice,
+      slideMax: state.filterReducer.maxPrice,
+      products: state.productReducer.products
+    }
+  },
+  (dispatch) => {
+    return {
+      filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
+      setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
+      setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
+      setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
+    }
+  }
+)(Ecommerce);
+
+
+
