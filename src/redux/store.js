@@ -1,10 +1,10 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { getAllCategories, createNewCategory, deleteCategory, editCategory } from './middleware/crudCategory'
+import { getAllCategories, createNewCategory, deleteCategory, editCategory,getCategoriesByStore} from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
-import { newOrder } from './middleware/crudOrder'
+import { newOrder,getOrdersByStore } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
-import { newStore, createNewStore } from './middleware/crudStore'
+import { newStore, createNewStore,getStoreByUser } from './middleware/crudStore'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
@@ -17,12 +17,12 @@ import openStoreReducer from "./reducers/openStoreReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
 import { actions } from './action';
-
+import storeByUserReducer from './reducers/data_reducer/storeByUserReducer';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer, coinsReducer
+        userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer, coinsReducer,storeByUserReducer
     })
 
 const store = createStore(
@@ -55,6 +55,9 @@ const store = createStore(
             //crudStore - פונקציות מ 
             newStore,
             createNewStore,
+            getStoreByUser,
+            getCategoriesByStore,
+            getOrdersByStore
         ))
 )
 window.store = store;

@@ -59,3 +59,27 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
     };
     return next(action);
 };
+export const getCategoriesByStore = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_CATEGORIES_BY_STORE') {
+ 
+        axios.get('https://community.leader.codes/api/stores/storeCategories/'+action.payload)
+            .then(res => {
+                dispatch(actions.setCategories(res.data))
+
+                let  list=[];
+               res.data.forEach(c => {
+                    c.products.forEach(p => {
+                         list.push(p)
+                    });
+                });
+                dispatch(actions.setProducts(list))
+            dispatch(actions.setFilteredItems(list));
+          
+            
+
+                
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}

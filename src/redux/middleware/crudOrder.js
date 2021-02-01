@@ -31,3 +31,14 @@ export const getAllOrders = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
+export const getOrdersByStore = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_ORDERS_BY_STORE') {
+ 
+        axios.get('https://community.leader.codes/api/stores/storeOrders/'+action.payload)
+            .then(res => {
+                dispatch(actions.setAllOrders(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}

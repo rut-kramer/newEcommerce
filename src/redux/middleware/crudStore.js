@@ -1,5 +1,5 @@
 import { actions } from '../action';
-
+import axios from 'axios';
 //6
 export const newStore = ({ dispatch, getState }) => next => action => {
 
@@ -61,3 +61,16 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
+//19
+export const getStoreByUser = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_STORE_BY_USER') {
+ 
+        axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
+            .then(res => {
+                console.log("gjhjet ", res.data);
+                dispatch(actions.setStorePerUser(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}
