@@ -9,8 +9,15 @@ import OpenStore from "./components/openStore"
 import TopFooter from './components/topFooter'
 import PrivateRoute from './PrivateRoute.js';
 import Wrap from './components/wrap/wrap';
+import Ecommerce from './components/store design/Ecommerce';
+// import Index from './components/index'
 
-
+//styles
+import "./assets/css/bootstrap.min.css";
+import "./assets/scss/now-ui-kit.scss";
+import "./assets/demo/demo.css";
+import "./assets/demo/react-demo.css";
+import "./assets/demo/nucleo-icons-page-styles.css";
 
 function App() {
   return (
@@ -18,7 +25,14 @@ function App() {
       <Router>
         <div className="App">
 
+
           <Switch>
+            {/* <Route path="/home">
+              <Index></Index>
+            </Route> */}
+            <Route exact path="/ecommerce">
+              <Ecommerce />
+            </Route>
             <Route exact path="/">
               <Home />
             </Route>
