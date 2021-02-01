@@ -12,7 +12,6 @@ function Configurator(props) {
         <div className="Configurator-configurator-28 Configurator-configuratorOpen-29">
             <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50">
                 <h3>למקם פה קונפיגורטור</h3>
-
                 {
                     props.currentComponent ? (() => {
                         switch (props.currentComponent) {

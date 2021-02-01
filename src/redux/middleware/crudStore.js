@@ -31,17 +31,17 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
         var raw = JSON.stringify({
-            "storeName": action.payload.storeName,
+            "storeName": action.payload.store.storeName,
             "urlRoute": action.payload.store.urlRoute,
-            "storeDescription": action.payload.storeDescription,
-            "logo": action.payload.logo,
-            "address": action.payload.address,
-            "tel": action.payload.tel,
-            "email": action.payload.email,
-            "colorDominates": action.payload.colorDominates,
+            "storeDescription": action.payload.store.storeDescription,
+            "logo": action.payload.store.logo,
+            "address": action.payload.store.address,
+            "tel": action.payload.store.tel,
+            "email": action.payload.store.email,
+            "colorDominates": action.payload.store.colorDominates,
             "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.currency,
-            "policy": action.payload.policy,
+            "currency": action.payload.store.currency,
+            "policy": action.payload.store.policy,
             // "inventoryManagement": action.payload.inventoryManagement,//ניהול מלאי
             // "oneProductPurchase": action.payload.oneProductPurchase
         });
