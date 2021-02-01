@@ -11,7 +11,11 @@ import PrivateRoute from './PrivateRoute.js';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import ProductPage from "./components/store design/product_page/productPage"
-//styles import "./assets/css/bootstrap.min.css";import "./assets/scss/now-ui-kit.scss";import "./assets/demo/demo.css";import "./assets/demo/react-demo.css";import "./assets/demo/nucleo-icons-page-styles.css";
+//styles import "./assets/css/bootstrap.min.css";
+import "./assets/scss/now-ui-kit.scss";
+import "./assets/demo/demo.css";
+import "./assets/demo/react-demo.css";
+import "./assets/demo/nucleo-icons-page-styles.css";
 
 
 
