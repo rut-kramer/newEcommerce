@@ -30,13 +30,7 @@ function App() {
             <Route exact path="/"> 
               <Home />
             </Route>
-            <Route exact path="/admin/product">
-              <CrudProducts />
-            </Route>
-            
-            <Route exact path="/admin/category">
-            <CrudCategory />
-            </Route>
+        
             <Route exact path="/admin/category/add">
             <AddCategory />
             </Route>
@@ -49,9 +43,7 @@ function App() {
             <Route exact path="/admin/category/edit">
             <EditCategory />
             </Route>
-            <Route exact path="/admin/order">
-            <CrudOrder />
-            </Route>
+
             <Route path="/login">
               <Login />
             </Route>
