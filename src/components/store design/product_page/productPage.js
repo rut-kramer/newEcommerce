@@ -32,7 +32,6 @@ import wooyoungmi from "../../../assets/img/wooyoungmi.jpg"
 import saintLaurent from "../../../assets/img/saint-laurent.jpg"
 import saintLaurent1 from "../../../assets/img/saint-laurent1.jpg"
 import gucci from "../../../assets/img/gucci.jpg"
-// import FooterSocial from "components/Footers/FooterSocial.js";
 
 const items = [
     {
@@ -540,7 +539,6 @@ function ProductPage() {
                         </Row>
                     </Container>
                 </div>
-                {/* <FooterSocial /> */}
             </div>
 
 
