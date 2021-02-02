@@ -4,7 +4,6 @@ import $ from 'jquery';
 import { actions } from '../action';
 
 
-//4
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'GET_ALL_CATEGORIES') {
@@ -17,7 +16,6 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 };
-//8
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CREATE_NEW_CATEGORY') {
@@ -42,7 +40,6 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-//12
 export const deleteCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
@@ -55,7 +52,6 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-//14
 export const editCategory = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'EDIT_CATEGORY') {

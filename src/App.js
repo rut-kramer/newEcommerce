@@ -10,7 +10,6 @@ import TopFooter from './components/topFooter'
 import PrivateRoute from './PrivateRoute.js';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
-import ProductPage from "./components/store design/product_page/productPage"
 //styles import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
 import "./assets/demo/demo.css";
@@ -30,9 +29,6 @@ function App() {
             </Route>
             <Route path="/login">
               <Login />
-            </Route>
-            <Route path="/ProductPage">
-              <ProductPage />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />

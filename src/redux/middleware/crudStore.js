@@ -1,6 +1,5 @@
 import { actions } from '../action';
 
-//6
 export const newStore = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_NEW_STORE') {
@@ -25,7 +24,6 @@ export const newStore = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-//16
 export const createNewStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'CREATE_NEW_STORE') {
         var myHeaders = new Headers();

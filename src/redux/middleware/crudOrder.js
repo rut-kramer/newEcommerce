@@ -1,6 +1,4 @@
-import { actions } from '../action';
 
-//15
 export const newOrder = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_ORDER') {
 

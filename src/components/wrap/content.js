@@ -7,6 +7,7 @@ import './wrap-component.css'
 function Content() {
     function Temporary() {
         return <>
+            <ProductPage></ProductPage>
 
             <h3>לשים במקומי קומפוננטה</h3>
         </>
@@ -19,14 +20,14 @@ function Content() {
         return <>
             <ProductPage></ProductPage>
         </>
-
     }
     return (
         <div className="Content">
+            {/* <Link to="pasiflora/productPage/nameProduct"></Link> */}
             <Switch>
+                {/* <Route path="/:storeName/productPage/:name" component={ProductPage} /> */}
                 <Route path="/:storeName" component={Temporary} />
                 <Route path="/:storeName/admin" component={Admin} />
-                <Route path="/0/productPage" component={ProductPage} />
             </Switch>
         </div>
     )
