@@ -14,16 +14,18 @@ import ordersReduser from './reducers/data_reducer/ordersReducer';
 import logoReducer from './reducers/edit_reducer/logoReducer';
 import storeHomeReducer from "./reducers/edit_reducer/storeHomePageReducer";
 import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
-import openStoreReducer from "./reducers/openStoreReducer";
+import storeReducer from "./reducers/storeReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
+import wrapReducer from "./reducers/wrapReducer"
 import { actions } from './action';
 
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer, openStoreReducer, viewOrEditReducer, storeHomeReducer, coinsReducer
+        userReducer, logoReducer, storeReducer, viewOrEditReducer,
+        storeHomeReducer, coinsReducer, wrapReducer
     })
 
 const store = createStore(

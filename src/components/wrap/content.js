@@ -27,7 +27,6 @@ function Content() {
                 <Route path="/:storeName" component={Temporary} />
                 <Route path="/:storeName/admin" component={Admin} />
                 <Route path="/0/productPage" component={ProductPage} />
-
             </Switch>
         </div>
     )
