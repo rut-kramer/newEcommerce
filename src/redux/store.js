@@ -14,7 +14,7 @@ import ordersReduser from './reducers/data_reducer/ordersReducer';
 import logoReducer from './reducers/edit_reducer/logoReducer';
 import storeHomeReducer from "./reducers/edit_reducer/storeHomePageReducer";
 import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
-import currentStoreReducer from "./reducers/currentStoreReducer";
+import storeReducer from "./reducers/storeReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
 import wrapReducer from "./reducers/wrapReducer"
@@ -24,7 +24,7 @@ const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer, currentStoreReducer, viewOrEditReducer,
+        userReducer, logoReducer, storeReducer, viewOrEditReducer,
         storeHomeReducer, coinsReducer, wrapReducer
     })
 

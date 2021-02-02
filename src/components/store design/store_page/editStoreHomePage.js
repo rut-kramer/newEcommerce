@@ -220,7 +220,7 @@ function editStoreHomePage(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.currentStoreReducer.objectFields,
+        objectFields: state.storeReducer.objectFields,
         categories: state.categoriesReducer.categories,
         homeStoreDesign: state.editHomeStoreReducer.homeStoreDesign,
         viewModel: state.wrapReducer.viewModel,

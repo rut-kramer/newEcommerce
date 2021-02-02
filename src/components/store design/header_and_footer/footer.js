@@ -82,7 +82,7 @@ function Footer(props) {
 
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.currentStoreReducer.objectFields,
+        objectFields: state.storeReducer.objectFields,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

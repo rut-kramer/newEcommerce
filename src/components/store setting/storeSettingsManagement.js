@@ -170,7 +170,7 @@ function StoreSettingsManagement(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.currentStoreReducer.objectFields,
+        objectFields: state.storeReducer.objectFields,
         coins: state.coinsReducer.coins
 
     }
