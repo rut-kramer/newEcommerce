@@ -1,6 +1,8 @@
-import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
+
+import { actions } from '../action';
+
 
 //5
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
@@ -67,9 +69,6 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_PRODUCT') {
         ;
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
-
-
-
         $.ajax({
             url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
             method: "post",

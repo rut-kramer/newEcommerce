@@ -1,5 +1,6 @@
+import { actions } from '../action';
+
 //15
-// sari experience
 export const newOrder = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_ORDER') {
 
@@ -17,9 +18,6 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
         fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
             .then(createOrder => {
                 console.log("ok!", createOrder)
-                //שיהיה אפשרות מהרדוסר
-                //שליחה לרדוסר
-                // dispatch(actions.newOrder(createOrder))
             })
             .catch(error => console.log('error', error));
     }

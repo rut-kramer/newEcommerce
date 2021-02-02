@@ -13,12 +13,12 @@ function Content() {
     }
     return (
         <div className="Content">
-                <Switch>
-                    <Route path="/:storeName" component={Temporary} />
-                    <Route path="/:storeName/admin" component={Admin} />
-                </Switch>
-            </div>
-        )
+            <Switch>
+                <Route path="/:storeName" component={Temporary} />
+                <Route path="/:storeName/admin" component={Admin} />
+            </Switch>
+        </div>
+    )
 }
 
 export default Content;

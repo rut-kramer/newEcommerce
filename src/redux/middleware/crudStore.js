@@ -26,25 +26,24 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 };
 
 //16
-////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
-    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
         var raw = JSON.stringify({
-            "storeName": action.payload.nameStore,
-            "storeDescription": action.payload.descriptionStore,
-            "logo": action.payload.logoStore,
-            "address": action.payload.addressStore,
-            "tel": action.payload.phoneStore,
-            "email": action.payload.emailStore,
-            "colorDominates": action.payload.colorStore,
+            "storeName": action.payload.store.storeName,
+            "urlRoute": action.payload.store.urlRoute,
+            "storeDescription": action.payload.store.storeDescription,
+            "logo": action.payload.store.logo,
+            "address": action.payload.store.address,
+            "tel": action.payload.store.tel,
+            "email": action.payload.store.email,
+            "colorDominates": action.payload.store.colorDominates,
             "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.currency,
-            "policy": action.payload.policy
+            "currency": action.payload.store.currency,
+            "policy": action.payload.store.policy,
+            // "inventoryManagement": action.payload.inventoryManagement,//ניהול מלאי
+            // "oneProductPurchase": action.payload.oneProductPurchase
         });
         var requestOptions = {
             method: 'POST',
@@ -54,7 +53,6 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
         };
         fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
             .then(response => { console.log(response); response.json() })
-            //.then(result => { dispatch(actions.setStore(result))})
             .catch(error => console.log('error', error));
     }
 

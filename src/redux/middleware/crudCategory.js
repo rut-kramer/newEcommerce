@@ -1,6 +1,8 @@
-import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
+
+import { actions } from '../action';
+
 
 //4
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
@@ -34,7 +36,6 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
 
         fetch("https://community.leader.codes/api/categories/newCategoty", requestOptions)
             .then(response => response.json())
-            //.then(result => {dispatch(actions.setStore(result))})
             .catch(error => console.log('error', error));
     }
 
@@ -70,6 +71,7 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
                 console.log(data)
 
             },
+
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
 
