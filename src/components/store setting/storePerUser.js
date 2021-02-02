@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actions } from '../../redux/action'
 import categoryReducer from '../../redux/reducers/data_reducer/categoryReducer';
-import $ from 'jquery';
 
 function StorePerUser(props) {
 
