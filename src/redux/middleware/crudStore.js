@@ -67,7 +67,7 @@ export const getStoreByUser = ({ dispatch, getState }) => next => action => {
  
         axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
             .then(res => {
-                console.log("gjhjet ", res.data);
+             
                 dispatch(actions.setStorePerUser(res.data))
             })      
         .catch(err => console.log("errrrrrrr", err));

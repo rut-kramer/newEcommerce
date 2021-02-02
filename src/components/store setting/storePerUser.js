@@ -28,7 +28,7 @@ function StorePerUser(props) {
 
       <div className="data__body">
         {props.stores.map((itemy, index) => (
-          <div className="data__item">
+          <div className="data__item" key={index}>
             <div className="data__row" >
               <div className="data__cell data__cell_xl">
                 <div className="data__main">
