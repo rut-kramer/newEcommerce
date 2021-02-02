@@ -10,23 +10,19 @@ function Content(props) {
        
         return<div>
          <h3>לשים במקומי קומפוננטה</h3>
-         <AdminCurd></AdminCurd>
+        
     </div>
     
     
     }
-    function Admin() {
-        return<> <h3>לשים במקומי קומפוננטה אדמין</h3>
-        
-     
-    </>
-    }
+    
     return (
         <div className="Content">
           <Link to={"/"+props.objectFields.urlRoute+"/admin"}>admin</Link>
                 <Switch>
+                    <Route path="/:storeName/admin" component={AdminCurd} />
                     <Route path="/:storeName" component={Temporary} />
-                    <Route path="/:storeName/admin" component={Admin} />
+                    
                 </Switch>
             </div>
         )

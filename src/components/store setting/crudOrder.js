@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
-import { actions } from '../../redux/action'
+
 function CrudOrder(props) {
 
         return (
@@ -11,8 +11,8 @@ function CrudOrder(props) {
                                 </div>
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Order</div><signOut />
-                                                <div className="container__search search js-search">
+                                                <div className="container__title title title_md">Order</div>                                          \
+                                                      <div className="container__search search js-search">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search"  onClick={() => { props.setcomponnet("search") }}></i></button>
                                                         <div className="search__dropdown js-search-dropdown">
