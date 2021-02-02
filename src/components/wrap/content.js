@@ -7,20 +7,21 @@ import './wrap-component.css'
 function Content() {
     function Temporary() {
         return <>
-            <ProductPage></ProductPage>
 
             <h3>לשים במקומי קומפוננטה</h3>
+            <ProductPage></ProductPage>
+
         </>
     }
     function Admin() {
         return <h3>לשים במקומי קומפוננטה אדמין</h3>
 
     }
-    function ProductPage() {
-        return <>
-            <ProductPage></ProductPage>
-        </>
-    }
+    // function ProductPage() {
+    //     return <>
+    //         <ProductPage></ProductPage>
+    //     </>
+    // }
     return (
         <div className="Content">
             {/* <Link to="pasiflora/productPage/nameProduct"></Link> */}
