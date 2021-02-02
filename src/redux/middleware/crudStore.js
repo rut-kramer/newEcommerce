@@ -26,14 +26,10 @@ export const newStore = ({ dispatch, getState }) => next => action => {
 };
 
 //16
-////יצירת חנות שרי
 export const createNewStore = ({ dispatch, getState }) => next => action => {
-    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
     if (action.type === 'CREATE_NEW_STORE') {
-        // var storeManager = getState().userReducer.user._id;
         var myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
-        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
         var raw = JSON.stringify({
             "storeName": action.payload.nameStore,
             "storeDescription": action.payload.descriptionStore,
