@@ -20,6 +20,9 @@ function OpenStore(props) {
         policy: "",
         currency: "",
         logo: "",
+        checkInventoryManagement: false,
+        checkoneProductPurchase: false
+
 
     });
     function changeStoreDetails(event) {
@@ -107,6 +110,23 @@ function OpenStore(props) {
                     name="policy"
                     onChange={changeStoreDetails}
                 ></input><br></br>
+                <label for="myCheck">ניהול מלאי</label><br></br>
+                <input id="myCheck"
+                    name="checkInventoryManagement"
+                    type="checkbox"
+                    checked={detailsStore.checkInventoryManagement}
+                    onChange={(e) => setAllDetailsStore("checkInventoryManagement", e.target.checked)}
+                />
+                <br></br>
+                <label for="myCheck">קניה חד מוצרית</label><br></br>
+                <input id="myCheck"
+                    name="checkoneProductPurchase"
+                    type="checkbox"
+                    checked={detailsStore.checkoneProductPurchase}
+                    onChange={(e) => setAllDetailsStore("checkoneProductPurchase", e.target.checked)}
+                />
+                <br></br>
+                <br></br>
                 <label>בחר מטבע</label><br></br>
                 <select
                     onChange={e => setAllDetailsStore("currency", e.target.value)}>

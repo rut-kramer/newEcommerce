@@ -9,7 +9,6 @@ const initialState = {
 
 const FuncOpenStore = {
 
-
     setSaveAllDetailsStore(state, action) {
         state.objectFields = action.payload
     },

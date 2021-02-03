@@ -40,8 +40,8 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             "storeManager": getState().userReducer.user._id,
             "currency": action.payload.store.currency,
             "policy": action.payload.store.policy,
-            // "inventoryManagement": action.payload.inventoryManagement,//ניהול מלאי
-            // "oneProductPurchase": action.payload.oneProductPurchase
+            "checkInventoryManagement": action.payload.store.checkInventoryManagement,
+            "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
         });
         var requestOptions = {
             method: 'POST',
@@ -53,6 +53,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             .then(response => { console.log(response); response.json() })
             .catch(error => console.log('error', error));
     }
+
 
     return next(action);
 };

@@ -5,11 +5,15 @@ import './wrap-component.css'
 
 
 function Content() {
+    // function product() {
+    //     // <Link to="/ProductPage"></Link>
+    // }
     function Temporary() {
         return <>
 
             <h3>לשים במקומי קומפוננטה</h3>
-            <ProductPage></ProductPage>
+            {/* <button onClick={product}>מוצר לדוגמא</button> */}
+            {/* <ProductPage></ProductPage> */}
 
         </>
     }
@@ -17,6 +21,7 @@ function Content() {
         return <h3>לשים במקומי קומפוננטה אדמין</h3>
 
     }
+
     // function ProductPage() {
     //     return <>
     //         <ProductPage></ProductPage>
@@ -24,9 +29,10 @@ function Content() {
     // }
     return (
         <div className="Content">
-            {/* <Link to="pasiflora/productPage/nameProduct"></Link> */}
+            {/* <Link to="קידס_סטיל/productPage/nameProduct"></Link> */}
             <Switch>
                 {/* <Route path="/:storeName/productPage/:name" component={ProductPage} /> */}
+                <Route path="/ProductPage" component={ProductPage} />
                 <Route path="/:storeName" component={Temporary} />
                 <Route path="/:storeName/admin" component={Admin} />
             </Switch>
