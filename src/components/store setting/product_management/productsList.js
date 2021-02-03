@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-import './crudProducts.css';
+// import './crudProducts.css';
 import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
 import cloneDeep from 'lodash/cloneDeep';
@@ -22,7 +22,7 @@ function ProductsList(props) {
         // useEffect(() => {
 
         //         $(".data__preview input").on("change", function () {
-        //                 debugger
+        //                  
         //                 console.log("useeff", $(this));
         //         })
 
@@ -42,8 +42,7 @@ function ProductsList(props) {
 
                 if (event) {
 
-                        console.log("key", num);
-                        let reader = new FileReader();
+                         let reader = new FileReader();
                         reader.onloadend = () => {
 
                                 props.changeProductImage(num, reader.result)
@@ -102,7 +101,6 @@ function ProductsList(props) {
                         bb.reverse();
 
                 ;
-                console.log("sort", sortProducts);
                 props.setSearchReasult(bb);
         }
         // const onChangeHandlerImage2 = (e) => {

@@ -13,9 +13,6 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
             redirect: 'follow'
         };        fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
             .then(createOrder => {
-                //שיהיה אפשרות מהרדוסר
-                //שליחה לרדוסר
-                // dispatch(actions.newOrder(createOrder))
             })
             .catch(error => console.log('error', error));}
     return next(action);

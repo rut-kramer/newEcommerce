@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-import './crudProducts.css';
+// import './crudProducts.css';
 import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
 import cloneDeep from 'lodash/cloneDeep';
@@ -41,15 +41,13 @@ function ProductsGrid(props) {
         let i = 0;
 
         const onChangeHandlerImage = (event, thiss) => {
-                console.log("this", thiss.index());
-                 ;
+              
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
                                  ;
                                 props.changeProductImage(0, reader.result)
-                                console.log("img", props.products[0]);
-
+                               
                         }
                         reader.readAsDataURL(event)
                 }
@@ -78,8 +76,7 @@ function ProductsGrid(props) {
                         bb.reverse();
 
                  ;
-                console.log("sort", sortProducts);
-                props.setSearchReasult(bb);
+              props.setSearchReasult(bb);
 
         }
 
@@ -111,8 +108,7 @@ function ProductsGrid(props) {
                                                 <div className="data__head">
                                                 </div>
                                                 <div className="data__body">
-                                                        {console.log("filteredProducts", props.filteredProducts)}
-                                                        {/*TO DOs  filteredProducts */}
+                                                       {/*TO DOs  filteredProducts */}
                                                         {props.products.map((item, index) => (
                                                                 <div class="data__item">
                                                                         <div class="data__corner">

@@ -32,8 +32,7 @@ export const signInWithGoogle = () => {
 export const signInWithEmailAndPassword = (email, password) => {
     auth.createUserWithEmailAndPassword(email, password)
         .then((user) => {
-            console.log("e/p ", user.user);
-        })
+       })
         .catch((error) => {
             // var errorCode = error.code;
             var errorMessage = error.message;

@@ -1,6 +1,7 @@
-import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
+import { actions } from '../action';
+
 
 //5
 export const getAllProducts = ({ dispatch, getState }) => next => action => {

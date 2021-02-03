@@ -1,6 +1,8 @@
-import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
+import { actions } from '../action';
+
+
 //4
 export const getAllCategories = ({ dispatch, getState }) => next => action => {    if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
@@ -52,6 +54,7 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
             success: function (data) {
               dispatch(actions.editOldCategory(data))
             },
+
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
             }

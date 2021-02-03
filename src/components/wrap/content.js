@@ -33,7 +33,7 @@ function Content(props) {
 
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.openStoreReducer.objectFields,
+        objectFields: state.storeReducer.objectFields,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

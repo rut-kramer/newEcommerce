@@ -9,12 +9,12 @@ function AddCategory(props) {
 setMaster_category(list)
   },[])
 
-  console.log(props);
+
   const [myValues, setMyValues] = useState({
     categoryName: '',
     color: "#000000",
     //  image:'',
-     store:props.storeCurrent._id
+     store:props.storeCurrent
   });
 
   const updateCategory = (event) => {
@@ -92,7 +92,7 @@ export default connect(
   (state) => {
     return {
       categoryList: state.categoriesReducer.categories,
-      storeCurrent:state.storeByUserReducer.currentStore,
+      storeCurrent:state.storeReducer.objectFields._id,
     }
   },
   (dispatch) => {

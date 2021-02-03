@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-import './crudProducts.css';
+//  import './crudProducts.css';
+//בכדי לראות את הטבלה מסודרת צריך להוריד את ההערה
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';
 import ProductsGrid from './productsGrid'
@@ -14,14 +15,13 @@ function CrudProducts(props) {
         let i = 0;
 
         const onChangeHandlerImage = (event, thiss) => {
-                console.log("this", thiss.index());
-                 ;
+
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
                                  ;
                                 props.changeProductImage(0, reader.result)
-                                console.log("img", props.products[0]);
+                               
 
                         }
                         reader.readAsDataURL(event)

@@ -11,7 +11,7 @@ function CartPage(props) {
 
         useEffect(() => {
                 props.setUser(props.user._id);
-              props.setStore(props.storeCurrent._id)
+              props.setStore(props.storeCurrent)
              var t=cookies.order;
                if((y==1)&&(t!=null)){
              props.setCart(t)
