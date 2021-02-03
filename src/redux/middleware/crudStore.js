@@ -1,35 +1,37 @@
 import { actions } from '../action';
-
+import axios from 'axios';
+import $ from 'jquery';
 //6
-export const newStore = ({ dispatch, getState }) => next => action => {
+// export const newStore = ({ dispatch, getState }) => next => action => {
 
-    if (action.type === 'ADD_NEW_STORE') {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+//     if (action.type === 'ADD_NEW_STORE') {
+//         var myHeaders = new Headers();
+//         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({ "storeName": action.payload.storeName, "storeDescription": action.payload.storeDescription, "storeManager": action.payload.storeManager });
+//         var raw = JSON.stringify({ "storeName": action.payload.storeName, "storeDescription": action.payload.storeDescription, "storeManager": action.payload.storeManager });
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+//         var requestOptions = {
+//             method: 'POST',
+//             headers: myHeaders,
+//             body: raw,
+//             redirect: 'follow'
+//         };
 
-        fetch("http://localhost:3000/register/addStore", requestOptions)
-            .then(response => response.json())
-            .then(result => { dispatch(actions.setStore(result)) })
-            .catch(error => console.log('error', error));
-    }
+//         fetch("http://localhost:3000/register/addStore", requestOptions)
+//             .then(response => response.json())
+//             .then(result => { dispatch(actions.setStore(result)) })
+//             .catch(error => console.log('error', error));
+//     }
 
-    return next(action);
-};
+//     return next(action);
+// };
+
 
 //16
 export const createNewStore = ({ dispatch, getState }) => next => action => {
+ 
+    return new Promise((resolve, reject) => {
     if (action.type === 'CREATE_NEW_STORE') {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
         var raw = JSON.stringify({
             "storeName": action.payload.store.storeName,
             "urlRoute": action.payload.store.urlRoute,
@@ -42,20 +44,45 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             "storeManager": getState().userReducer.user._id,
             "currency": action.payload.store.currency,
             "policy": action.payload.store.policy,
-            // "inventoryManagement": action.payload.inventoryManagement,//ניהול מלאי
-            // "oneProductPurchase": action.payload.oneProductPurchase
         });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
-            .then(response => { console.log(response); response.json() })
-            .catch(error => console.log('error', error));
+
+        $.ajax({
+            url: "https://community.leader.codes/api/stores/newStore",
+            method: "post",
+            dataType: "json",
+            contentType: "application/json",
+            data: raw,
+            success: function (data) {
+                 dispatch(actions.setSaveAllDetailsStore(data));
+                resolve(data)
+            },
+            error: function (err) {
+                reject(err)
+            }}) }
+
+    return next(action);
+})};
+
+//19
+export const getStoreByUser = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_STORE_BY_USER') {
+ 
+        axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
+            .then(res => {
+             
+                dispatch(actions.setStorePerUser(res.data))
+            })      
+        .catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+}
+export const deleteStore = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'DELETE_STORE') {
+        axios.post('https://community.leader.codes/api/stores/deleteStore/' + action.payload)
+            .then(res => {
+                dispatch(actions.deleteOldStore(action.payload))
+            });
     }
 
     return next(action);
 };
-

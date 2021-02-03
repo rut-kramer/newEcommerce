@@ -14,7 +14,6 @@ const initialState = {
         profilePicture: ""
     },
     storesOfUser: [],
-    currentStore: {},
     lastUpdatedUserStore: [],
     hasStores: true
 }
@@ -41,18 +40,19 @@ const user = {
     setStorePerUser(state, action) {
         state.storesOfUser = action.payload;
     },
-    setCurrentStore(state, action) {
-        state.currentStore = action.payload;
-    },
     setHasStores(state, action) {
         state.hasStores = action.payload
     },
     setLastUpdatedUserStore(state, action) {
-        debugger
+         
         if (action.payload === null || action.payload === [] || action.payload.length === 0)
             state.hasStores = false;
         state.lastUpdatedUserStore = action.payload;
-    }
+    },
+    deleteOldStore(state, action) {
+         ;
+        state.storesOfUser = state.storesOfUser.filter(x => x._id != action.payload);    
+},
 
 }
 

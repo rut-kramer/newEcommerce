@@ -55,7 +55,7 @@ function OpenStore(props) {
 
     const onSubmitStoreDetails = async (event) => {
         event.preventDefault()
-        props.setSaveAllDetailsStore(detailsStore)
+        // props.setSaveAllDetailsStore(detailsStore)
         await props.createNewStore({ "store": detailsStore, "file": fileToUpload })
         history.push("/0/" + detailsStore.urlRoute);
     }

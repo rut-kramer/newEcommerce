@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import homeImg from '../assets/50344.jpg';
-import StorePerUser from './storePerUser';
+import StorePerUser from './store setting/storePerUser';
 import { connect } from 'react-redux';
 
 function Home(props) {

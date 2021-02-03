@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { getAllCategories, createNewCategory, deleteCategory, editCategory } from './middleware/crudCategory'
+import { getAllCategories, createNewCategory, deleteCategory, editCategory,getCategoriesByStore} from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
-import { newOrder } from './middleware/crudOrder'
+import { newOrder,getOrdersByStore } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
-import { newStore, createNewStore } from './middleware/crudStore'
-import { getTheLastUpdatedStorePerUser, getStoreByUser } from './middleware/crudUser'
+import {  createNewStore,getStoreByUser,deleteStore } from './middleware/crudStore'
+import { getTheLastUpdatedStorePerUser} from './middleware/crudUser'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
@@ -19,11 +19,11 @@ import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
 import wrapReducer from "./reducers/wrapReducer"
 import { actions } from './action';
-
 const reducers =
     combineReducers({
-        //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט
+        //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReduser, cartReducer, categoriesReducer, productReducer,
+        userReducer, logoReducer ,viewOrEditReducer, storeHomeReducer, coinsReducer,
         userReducer, logoReducer, storeReducer, viewOrEditReducer,
         storeHomeReducer, coinsReducer, wrapReducer
     })
@@ -56,11 +56,14 @@ const store = createStore(
             deleteProduct,
             editproduct,
             //crudStore - פונקציות מ 
-            newStore,
+          
             createNewStore,
+            getStoreByUser,
+            getCategoriesByStore,
+            getOrdersByStore,
             //crudUser - פונקציות מ
             getTheLastUpdatedStorePerUser,
-            getStoreByUser
+            getStoreByUser,deleteStore
         ))
 )
 window.store = store;
