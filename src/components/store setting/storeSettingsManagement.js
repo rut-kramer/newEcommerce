@@ -83,7 +83,6 @@ function StoreSettingsManagement(props) {
                         value={detailsStore.storeDescription ? detailsStore.storeDescription : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
-
                     <label for="c">עדכן כתובת החנות</label><br></br>
                     <input
                         id="c"
