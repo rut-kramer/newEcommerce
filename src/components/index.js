@@ -1,51 +1,47 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import homeImg from '../assets/50344.jpg';
-// import Login from './login';
-// import StorePerUser from './storePerUser';
-// import openStore from './openStore'
-// import { connect } from 'react-redux';
-// import { actions } from '../redux/action'
-// import { propTypes } from 'react-bootstrap/esm/Image';
-// // 
-// function Home(props) {
+import React from 'react';
+import { Link } from 'react-router-dom';
+import homeImg from '../assets/50344.jpg';
+import StorePerUser from './storePerUser';
+import { connect } from 'react-redux';
 
-//   return (
-//     <div>
+function Home(props) {
 
-//       <img id="home-img" src={homeImg} style={{ float: "left" }} />
-//       <div style={{ float: "left" }}>
-//         <h1>Wellcome!!{props.user.username}  </h1>
-//         <h2>Do you want to create your shop?</h2>
-//         <Link to='/openStore'>
-//           <button>create virtual shop</button>
-//         </Link>
+        return (
+                <div>
 
-//         {/* <a href="/addUser">create user</a> */}
-//       </div>
-//       <div style={{ float: "right" }}>
-//         <StorePerUser ></StorePerUser>
-//       </div>
-//     </div>
-//   )
+                        <img id="home-img" alt="..." src={homeImg} style={{ float: "left" }} />
+                        <div style={{ float: "left" }}>
+                                <h1>Wellcome!!{props.user.username}  </h1>
+                                <h2>Do you want to create your shop?</h2>
+                                <Link to='/openStore'>
+                                        <button>create virtual shop</button>
+                                </Link>
 
-// }
+                                {/* <a href="/addUser">create user</a> */}
+                        </div>
+                        <div style={{ float: "right" }}>
+                                <StorePerUser ></StorePerUser>
+                        </div>
+                </div>
+        )
 
-// export default connect(
+}
 
-//   (state) => {
+export default connect(
 
-//     return {
+        (state) => {
 
-//       user: state.userReducer.user,
-//     }
+                return {
 
-//   },
-//   (dispatch) => {
-//     return {
-//       // getCategories: () => dispatch(actions.getAllCategories()),
+                        user: state.userReducer.user,
+                }
 
-//     }
-//   }
-// )(Home);
+        },
+        (dispatch) => {
+                return {
+                        // getCategories: () => dispatch(actions.getAllCategories()),
+
+                }
+        }
+)(Home);
 

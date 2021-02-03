@@ -25,6 +25,8 @@ import {
 import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
 import Footer from "../footers/footer.js";
+import FilteredProducts from "./filteredProducts";
+
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 
@@ -37,54 +39,13 @@ import kingsman from "../../assets/img/kingsman.jpg";
 import boglioli from "../../assets/img/boglioli.jpg";
 import bg35 from "../../assets/img/bg35.jpg";
 import bg40 from "../../assets/img/bg40.jpg";
-import bg43 from "../../assets/img/bg43.jpg";
 import saintLaurent1 from "../../assets/img/saint-laurent1.jpg";
 import saintLaurent from "../../assets/img/saint-laurent.jpg";
 import gucci from "../../assets/img/gucci.jpg";
 
 function Ecommerce(props) {
 
-  // collapse states and functions
-  const [collapses, setCollapses] = React.useState([1]);
-  const changeCollapse = (collapse) => {
-    if (collapses.includes(collapse)) {
-      setCollapses(collapses.filter((prop) => prop !== collapse));
-    } else {
-      setCollapses([...collapses, collapse]);
-    }
-  };
-  // slider states and functions
-  // const [sliderMin, setSliderMin] = React.useState(100);
-  // const [sliderMax, setSliderMax] = React.useState(880);
   React.useEffect(() => {
-    debugger;
-    let min = props.products[0], max = props.products[0];
-    props.products.forEach(product => {
-      if (product.price > max)
-        max = product.price;
-      if (product.price < min)
-        min = product.price;
-    });
-    props.setSliderMin(min);
-    props.setSliderMax(max);
-    if (
-      !document.getElementById("sliderRefine").classList.contains("noUi-target")
-    ) {
-      Slider.create(document.getElementById("sliderRefine"), {
-        start: [props.slideMin, props.sliderMax],
-        connect: [false, true, false],
-        step: 1,
-        range: { min: 0, max: 900 },
-      }).on("update", function (values) {
-        debugger
-        var filterProductsByPrice = props.products.map((p) => {
-          return (p.price > values[0] && p.price < values[1]) ? p : {};
-        });
-        props.filteredProducts(filterProductsByPrice);
-        props.setSliderMin(Math.round(values[0]));
-        props.setSliderMax(Math.round(values[1]));
-      });
-    }
 
     document.body.classList.add("ecommerce-page");
     document.body.classList.add("sidebar-collapse");
@@ -98,7 +59,7 @@ function Ecommerce(props) {
   }, []);
   return (
     <>
-      {/* <ScrollTransparentNavbar /> */}
+      <ScrollTransparentNavbar />
       <div className="wrapper">
         <EcommerceHeader />
         <div className="main">
@@ -108,291 +69,8 @@ function Ecommerce(props) {
               <Row>
                 <Col md="3">
                   <div className="collapse-panel">
-                    <CardBody>
-                      <Card className="card-refine card-plain">
-                        <CardTitle tag="h4">
-                          Refine{" "}
-                          <Button
-                            className="btn-icon btn-neutral pull-right"
-                            color="default"
-                            id="tooltip633919451"
-                          >
-                            <i className="arrows-1_refresh-69 now-ui-icons"></i>
-                          </Button>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="tooltip633919451"
-                          >
-                            Reset Filter
-                          </UncontrolledTooltip>
-                        </CardTitle>
-                        <CardHeader id="headingOne" role="tab">
-                          <h6 className="mb-0">
-                            <a
-                              className="text-info"
-                              aria-expanded={collapses.includes(1)}
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#pablo"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                changeCollapse(1);
-                              }}
-                            >
-                              Price Range{" "}
-                              <i className="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                          </h6>
-                        </CardHeader>
-                        <Collapse isOpen={collapses.includes(1)}>
-                          <CardBody>
-                            <span
-                              className="price-left pull-left"
-                              id="price-left"
-                            >
-                              €{props.sliderMin}
-                            </span>
-                            <span
-                              className="price-right pull-right"
-                              id="price-right"
-                            >
-                              €{props.sliderMax}
-                            </span>
-                            <div className="clearfix"></div>
-                            <div
-                              className="slider slider-refine"
-                              id="sliderRefine"
-                            ></div>
-                          </CardBody>
-                        </Collapse>
-                      </Card>
-                      <Card className="card-refine card-plain">
-                        <CardHeader id="headingTwo" role="tab">
-                          <h6>
-                            <a
-                              className="text-info"
-                              aria-expanded={collapses.includes(2)}
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#pablo"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                changeCollapse(2);
-                              }}
-                            >
-                              Clothing{" "}
-                              <i className="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                          </h6>
-                        </CardHeader>
-                        <Collapse isOpen={collapses.includes(2)}>
-                          <CardBody>
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Casual Shirts
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Formal Shirts
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Jeans
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Polos
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input defaultChecked type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Pijamas
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Shorts
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Blazers
-                              </Label>
-                            </FormGroup>
-                          </CardBody>
-                        </Collapse>
-                      </Card>
-                      <Card className="card-refine card-plain">
-                        <CardHeader id="headingThree" role="tab">
-                          <h6>
-                            <a
-                              className="text-info"
-                              aria-expanded={collapses.includes(3)}
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#pablo"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                changeCollapse(3);
-                              }}
-                            >
-                              Designer{" "}
-                              <i className="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                          </h6>
-                        </CardHeader>
-                        <Collapse isOpen={collapses.includes(3)}>
-                          <CardBody>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                All
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Polo Ralph Lauren
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Wooyoungmi
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Alexander McQueen
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Tom Ford
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                AMI
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Berena
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Thom Sweeney
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Calvin Klein
-                              </Label>
-                            </FormGroup>
-                          </CardBody>
-                        </Collapse>
-                      </Card>
-                      <Card className="card-refine card-plain">
-                        <CardHeader id="headingfour" role="tab">
-                          <h6>
-                            <a
-                              className="text-info"
-                              aria-expanded={collapses.includes(4)}
-                              data-toggle="collapse"
-                              data-parent="#accordion"
-                              href="#pablo"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                changeCollapse(4);
-                              }}
-                            >
-                              Colour{" "}
-                              <i className="now-ui-icons arrows-1_minimal-down"></i>
-                            </a>
-                          </h6>
-                        </CardHeader>
-                        <Collapse isOpen={collapses.includes(4)}>
-                          <CardBody>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Black
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Blue
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Brown
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Gray
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Green
-                              </Label>
-                            </FormGroup>
-                            <FormGroup check>
-                              <Label check>
-                                <Input type="checkbox"></Input>
-                                <span className="form-check-sign"></span>
-                                Purple
-                              </Label>
-                            </FormGroup>
-                          </CardBody>
-                        </Collapse>
-                      </Card>
-                    </CardBody>
+                    {/*קומפוננטת סינון המוצרים*/}
+                    <FilteredProducts></FilteredProducts>
                   </div>
                 </Col>
                 <Col md="9">
@@ -875,56 +553,6 @@ function Ecommerce(props) {
               </Row>
             </Container>
           </div>
-          {/* <div
-            className="subscribe-line subscribe-line-image"
-            style={{
-              backgroundImage: "url(" + bg43 + ")",
-            }}
-          >
-            <Container>
-              <Row>
-                <Col className="ml-auto mr-auto" md="6">
-                  <div className="text-center">
-                    <h4 className="title">Subscribe to our Newsletter</h4>
-                    <p className="description">
-                      Join our newsletter and get news in your inbox every week!
-                      We hate spam too, so no worries about this.
-                    </p>
-                  </div>
-                  <Card className="card-raised card-form-horizontal">
-                    <CardBody>
-                      <Form action="" method="">
-                        <Row>
-                          <Col sm="8">
-                            <InputGroup
-                              className={emailFocus ? "input-group-focus" : ""}
-                            >
-                              <InputGroupAddon addonType="prepend">
-                                <InputGroupText>
-                                  <i className="now-ui-icons ui-1_email-85"></i>
-                                </InputGroupText>
-                              </InputGroupAddon>
-                              <Input
-                                placeholder="Email Here..."
-                                type="text"
-                                onFocus={() => setEmailFocus(true)}
-                                onBlur={() => setEmailFocus(false)}
-                              ></Input>
-                            </InputGroup>
-                          </Col>
-                          <Col sm="4">
-                            <Button block color="info" type="button">
-                              Subscribe
-                            </Button>
-                          </Col>
-                        </Row>
-                      </Form>
-                    </CardBody>
-                  </Card>
-                </Col>
-              </Row>
-            </Container>
-          </div> */}
         </div>
         <Footer />
       </div>
@@ -937,7 +565,8 @@ export default connect(
     return {
       slideMin: state.filterReducer.minPrice,
       slideMax: state.filterReducer.maxPrice,
-      products: state.productReducer.products
+      products: state.productReducer.products,
+      categories: state.categoriesReducer.categories
     }
   },
   (dispatch) => {

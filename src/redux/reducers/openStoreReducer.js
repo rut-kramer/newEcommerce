@@ -18,7 +18,9 @@ const initialState = {
         logoStore: "",
 
         //רותי אמרה שצריך להוסיף סוג חנות
-    }
+    },
+    stores: [],
+    currentStore: {}
 }
 
 const FuncOpenStore = {
@@ -58,6 +60,12 @@ const FuncOpenStore = {
     },
     setOneProductPurchase(state, action) {//קניה חד מוצרית
         state.objectFields.oneProductPurchase = action.payload
+    },
+    setStorePerUser(state, action) {
+        state.stores = action.payload;
+    },
+    setCurrentStore(state, action) {
+        state.currentStore = action.payload;
     },
 
 

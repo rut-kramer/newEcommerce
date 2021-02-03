@@ -8,7 +8,6 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
-
                 dispatch(actions.setCategories({ categories: res.data }))
             })
             .catch(err => console.log("errrrrrrr", err));

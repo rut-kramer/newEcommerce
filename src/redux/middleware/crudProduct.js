@@ -7,8 +7,6 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
-                debugger
-                dispatch({ type: "SET_PRODUCTS", payload: res.data })
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data));
             })
