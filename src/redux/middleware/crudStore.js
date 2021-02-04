@@ -29,50 +29,51 @@ import $ from 'jquery';
 
 //16
 export const createNewStore = ({ dispatch, getState }) => next => action => {
- 
+
     return new Promise((resolve, reject) => {
-    if (action.type === 'CREATE_NEW_STORE') {
-        var raw = JSON.stringify({
-            "storeName": action.payload.store.storeName,
-            "urlRoute": action.payload.store.urlRoute,
-            "storeDescription": action.payload.store.storeDescription,
-            "logo": action.payload.store.logo,
-            "address": action.payload.store.address,
-            "tel": action.payload.store.tel,
-            "email": action.payload.store.email,
-            "colorDominates": action.payload.store.colorDominates,
-            "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.store.currency,
-            "policy": action.payload.store.policy,
-        });
+        if (action.type === 'CREATE_NEW_STORE') {
+            var raw = JSON.stringify({
+                "storeName": action.payload.store.storeName,
+                "urlRoute": action.payload.store.urlRoute,
+                "storeDescription": action.payload.store.storeDescription,
+                "logo": action.payload.store.logo,
+                "address": action.payload.store.address,
+                "tel": action.payload.store.tel,
+                "email": action.payload.store.email,
+                "colorDominates": action.payload.store.colorDominates,
+                "storeManager": getState().userReducer.user._id,
+                "currency": action.payload.store.currency,
+                "policy": action.payload.store.policy,
+            });
 
-        $.ajax({
-            url: "https://community.leader.codes/api/stores/newStore",
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: raw,
-            success: function (data) {
-                 dispatch(actions.setSaveAllDetailsStore(data));
-                resolve(data)
-            },
-            error: function (err) {
-                reject(err)
-            }}) }
+            $.ajax({
+                url: "https://community.leader.codes/api/stores/newStore",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    dispatch(actions.setSaveAllDetailsStore(data));
+                    resolve(data)
+                },
+                error: function (err) {
+                    reject(err)
+                }
+            })
+        }
 
-    return next(action);
-})};
-
+        return next(action);
+    })
+};
 //19
 export const getStoreByUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_STORE_BY_USER') {
- 
-        axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
+
+        axios.get('https://community.leader.codes/api/users/getAllStores/' + action.payload)
             .then(res => {
-             
                 dispatch(actions.setStorePerUser(res.data))
-            })      
-        .catch(err => console.log("errrrrrrr", err));
+            })
+            .catch(err => console.log("errrrrrrr", err));
     }
     return next(action);
 }
@@ -86,3 +87,4 @@ export const deleteStore = ({ dispatch, getState }) => next => action => {
 
     return next(action);
 };
+

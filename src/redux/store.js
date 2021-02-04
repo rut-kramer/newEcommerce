@@ -1,11 +1,11 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { getAllCategories, createNewCategory, deleteCategory, editCategory,getCategoriesByStore} from './middleware/crudCategory'
+import { getAllCategories, createNewCategory, deleteCategory, editCategory, getCategoriesByStore } from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
-import { newOrder,getOrdersByStore } from './middleware/crudOrder'
+import { newOrder, getOrdersByStore } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
-import {  createNewStore,getStoreByUser,deleteStore } from './middleware/crudStore'
-import { getTheLastUpdatedStorePerUser} from './middleware/crudUser'
+import { createNewStore, getStoreByUser, deleteStore } from './middleware/crudStore'
+import { getTheLastUpdatedStorePerUser } from './middleware/crudUser'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
@@ -17,15 +17,14 @@ import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
 import storeReducer from "./reducers/storeReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
+import filterReducer from "./reducers/filterReducer";
 import wrapReducer from "./reducers/wrapReducer"
 import { actions } from './action';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReduser, cartReducer, categoriesReducer, productReducer,
-        userReducer, logoReducer ,viewOrEditReducer, storeHomeReducer, coinsReducer,
-        userReducer, logoReducer, storeReducer, viewOrEditReducer,
-        storeHomeReducer, coinsReducer, wrapReducer
+        userReducer, logoReducer, viewOrEditReducer, storeHomeReducer, coinsReducer, storeReducer, wrapReducer, filterReducer
     })
 
 const store = createStore(
@@ -56,18 +55,20 @@ const store = createStore(
             deleteProduct,
             editproduct,
             //crudStore - פונקציות מ 
-          
+
             createNewStore,
             getStoreByUser,
             getCategoriesByStore,
             getOrdersByStore,
             //crudUser - פונקציות מ
             getTheLastUpdatedStorePerUser,
-            getStoreByUser,deleteStore
+            getStoreByUser, deleteStore
         ))
 )
 window.store = store;
 
 store.dispatch(actions.onAuthStateChanged());
+store.dispatch(actions.getAllProducts());
+store.dispatch(actions.getAllCategories());
 
 export default store;

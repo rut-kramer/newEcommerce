@@ -1,31 +1,29 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
+import Ecommerce from '../store design/Ecommerce';
+import CategoryByFilter from '../store design/category_page/categoryByFilter'
+
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 import { connect } from 'react-redux';
 
 function Content(props) {
     function Temporary() {
-
-       
-        return<div>
-         <h3>לשים במקומי קומפוננטה</h3>
-        
-    </div>
-    
-    
+        return <Ecommerce></Ecommerce>
+        // <h3>לשים במקומי קומפוננטה</h3>
     }
-    
+
     return (
         <div className="Content">
-          <Link to={"/"+props.objectFields.urlRoute+"/admin"}>admin</Link>
-                <Switch>
-                    <Route path="/:storeName/admin" component={AdminCurd} />
-                    <Route path="/:storeName" component={Temporary} />
-                    
-                </Switch>
-            </div>
-        )
+            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>
+            <Switch>
+                <Route path="/filter-category" component={CategoryByFilter} />
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <Route path="/:storeName" component={Temporary} />
+
+            </Switch>
+        </div>
+    )
 }
 
 
@@ -39,5 +37,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 })
 export default connect(mapStateToProps, mapDispatchToProps)
-(Content);
+    (Content);
 
