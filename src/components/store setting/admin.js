@@ -10,54 +10,54 @@ import StorePerUser from './storePerUser'
 
 function Admin(props) {
 
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
-        return (
-                <Provider store={store}>
+  return (
+    <Provider store={store}>
 
-<div className="tab">
-  <button className="tablinks" onClick={()=>{openCity(event, 'Categories')}}>Categories</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'Orders')}}>Orders</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'Product')}}>Product</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'StoreSettingsManagement')}}>Store Settings</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'StorePerUser')}}>your Store</button>
-</div>
+      <div className="tab">
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Product</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>your Store</button>
+      </div>
 
-<div id="Categories" className="tabcontent">
-<CrudCategory></CrudCategory>
-</div>
+      <div id="Categories" className="tabcontent">
+        <CrudCategory></CrudCategory>
+      </div>
 
-<div id="Product" className="tabcontent">
-<CrudProducts></CrudProducts>
-</div>
+      <div id="Product" className="tabcontent">
+        <CrudProducts></CrudProducts>
+      </div>
 
-<div id="Orders" className="tabcontent">
-<CrudOrder></CrudOrder>
-</div>
+      <div id="Orders" className="tabcontent">
+        <CrudOrder></CrudOrder>
+      </div>
 
-<div id="StoreSettingsManagement" className="tabcontent">
-<StoreSettingsManagement></StoreSettingsManagement>
-</div>
-<div id="StorePerUser" className="tabcontent">
-<StorePerUser></StorePerUser>
-</div>
+      <div id="StoreSettingsManagement" className="tabcontent">
+        <StoreSettingsManagement></StoreSettingsManagement>
+      </div>
+      <div id="StorePerUser" className="tabcontent">
+        <StorePerUser></StorePerUser>
+      </div>
 
 
-                </Provider>
-        )
+    </Provider>
+  )
 }
 export default Admin;
-      
+
 

@@ -2,30 +2,31 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 
- function EditProduct (props)  {
+function EditProduct(props) {
 
-    const update = (event) => {
-      var u;
-      if(event.target.name==="featured")          
-     u=event.target.checked;
-      else
-      u=event.target.value
-            props.setCurrentProduct({
-            ...props.currentProduct,
-            [event.target.name]:u
-      }); }
+  const update = (event) => {
+    var u;
+    if (event.target.name === "featured")
+      u = event.target.checked;
+    else
+      u = event.target.value
+    props.setCurrentProduct({
+      ...props.currentProduct,
+      [event.target.name]: u
+    });
+  }
 
-      const updateCategory = (event) => {
-        let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
-         setMyValues({
-          ...props.currentProduct,
-           category:k[0]._id
-         });
-       }
+  const updateCategory = (event) => {
+    let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+    //  setMyValues({
+    //   ...props.currentProduct,
+    //    category:k[0]._id
+    //  });
+  }
 
-    const Submit = ()=>{
-        props.editproduct(props.currentProduct);  
-    }
+  const Submit = () => {
+    props.editproduct(props.currentProduct);
+  }
   return (
     <div className="form form_create">
       <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
@@ -93,24 +94,25 @@ import { actions } from '../../../redux/action'
           </div>
         </div>
       </div>
-    
+
       <div className="form__row">
-                  <div className="form__col">
-                    <div className="field form__field">
-                      <div className="field__label">?מוצר מקודם</div>
-                    <br></br>
-                      <div className="field__wrap">
-                      <input type="checkbox" onClick={update}  name="featured"></input>
-                        <div className="field__icon"><i className="la la-wallet "></i></div>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-              
+        <div className="form__col">
+          <div className="field form__field">
+            <div className="field__label">?מוצר מקודם</div>
+            <br></br>
+            <div className="field__wrap">
+              <input type="checkbox" onClick={update} name="featured"></input>
+              <div className="field__icon"><i className="la la-wallet "></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="form__foot">
         <button className="form__btn btn" onClick={Submit}>edit</button>
       </div>
-    </div>)}
+    </div>)
+}
 export default connect(
   (state) => {
     return {
@@ -118,11 +120,11 @@ export default connect(
       currentProduct: state.productReducer.currentProduct
     }
   },
-  (dispatch)=>{
-          return {
-                     editproduct:(v)=>dispatch(actions.editProduct(v)),
-                     setCurrentProduct:(e)=>dispatch(actions.setCurrentProduct(e))
-          }
-  }             
-  )(EditProduct);
+  (dispatch) => {
+    return {
+      editproduct: (v) => dispatch(actions.editProduct(v)),
+      setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e))
+    }
+  }
+)(EditProduct);
 
