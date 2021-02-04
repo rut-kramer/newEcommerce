@@ -208,7 +208,7 @@ function LoginPage(props) {
                                                             onClick={(e) => e.preventDefault()}
                                                         >
                                                             Need Help?
-                                                        </p>
+            </p>
                                                     </h6>
                                                 </div>
                                             </Form>
@@ -216,9 +216,9 @@ function LoginPage(props) {
                                     </Col>
                                 </Row>
                             </Container>
-                        </div>
+                        </div >
                         <Footer />
-                    </div>
+                    </div >
                 </>
             )
     );

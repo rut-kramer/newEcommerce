@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import homeImg from '../assets/50344.jpg';
-import StorePerUser from './storePerUser';
+import StorePerUser from './store setting/storePerUser';
 import { connect } from 'react-redux';
 
 function Home(props) {
@@ -9,7 +9,7 @@ function Home(props) {
         return (
                 <div>
 
-                        <img id="home-img" alt="..." src={homeImg} style={{ float: "left" }} />
+                        <img id="home-img" src={homeImg} style={{ float: "left" }} alt="home" />
                         <div style={{ float: "left" }}>
                                 <h1>Wellcome!!{props.user.username}  </h1>
                                 <h2>Do you want to create your shop?</h2>

@@ -1,28 +1,41 @@
 import React from 'react';
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import Ecommerce from '../store design/Ecommerce';
 import CategoryByFilter from '../store design/category_page/categoryByFilter'
 
 import './wrap-component.css'
+import AdminCurd from '../store setting/admin'
+import { connect } from 'react-redux';
 
-
-function Content() {
+function Content(props) {
     function Temporary() {
         return <Ecommerce></Ecommerce>
         // <h3>לשים במקומי קומפוננטה</h3>
     }
-    function Admin() {
-        return <h3>לשים במקומי קומפוננטה אדמין</h3>
-    }
+
     return (
         <div className="Content">
+            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>
             <Switch>
                 <Route path="/filter-category" component={CategoryByFilter} />
+                <Route path="/:storeName/admin" component={AdminCurd} />
                 <Route path="/:storeName" component={Temporary} />
-                <Route path="/:storeName/admin" component={Admin} />
+
             </Switch>
         </div>
     )
 }
 
-export default Content;
+
+
+
+const mapStateToProps = (state) => {
+    return {
+        objectFields: state.storeReducer.objectFields,
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)
+    (Content);
+

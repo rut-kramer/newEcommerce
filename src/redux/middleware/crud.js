@@ -1,6 +1,8 @@
-import { actions } from '../action';
 import axios from 'axios';
 import $ from 'jquery';
+
+import { actions } from '../action';
+
 
 
 //9
@@ -18,10 +20,9 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
         const myFile = new FormData();
-        myFile.append("file"/*, action.value*/, action.payload);
+        myFile.append("file", action.payload);
         $.ajax({
             "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
-            // קריאה לשרת שלכן,
             "method": "POST",
             "processData": false,
             "mimeType": "multipart/form-data",
@@ -32,8 +33,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "data": myFile,
             "async": false,
             success: function (data1) {
-                dispatch(actions.setProfilePicture(/*action.payload,*/ data1))
-                //שמירה בuser שנמצא בreducer))
+                dispatch(actions.setProfilePicture(data1))
             },
             error: function (err) {
                 console.log("err upload", err)

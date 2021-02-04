@@ -33,8 +33,7 @@ export const signInWithEmailAndPassword = (email, password) => {
     // createUserWithEmailAndPassword
     auth.signInWithEmailAndPassword(email, password)
         .then((user) => {
-            console.log("e/p ", user.user);
-        })
+       })
         .catch((error) => {
             // var errorCode = error.code;
             var errorMessage = error.message;
