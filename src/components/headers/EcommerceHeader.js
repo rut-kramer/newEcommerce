@@ -11,11 +11,11 @@ import {
 } from "reactstrap";
 
 //images 
-import bg40 from "../../assets/img/bg40.jpg";
-import bg41 from "../../assets/img/bg41.jpg";
 import bg29 from "../../assets/img/bg29.jpg";
 //img xd
 import bannerSection from "../../assets/img/xd/BannerSection.png";
+import interior from "../../assets/img/xd/interior-with-white-sofa@2x.png";
+import img3 from "../../assets/img/xd/ia_300000045.png"
 // core components
 const items = [
   {
@@ -35,7 +35,7 @@ const items = [
     caption: "",
   },
   {
-    src: "url(" + bg41 + ")",
+    src: "url(" + interior + ")",
     content: (
       <Row>
         <Col className="ml-auto mr-auto text-center" md="8">
@@ -51,7 +51,7 @@ const items = [
     caption: "",
   },
   {
-    src: "url(" + bg29 + ")",
+    src: "url(" + img3 + ")",
     content: (
       <Row>
         <Col className="ml-auto mr-auto" md="8">
