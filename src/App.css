@@ -1,9 +1,32 @@
+/* //דף בולקומרס שהצגת התמונות יהיה רספונסיבי */
+.Aheight{
+  height: 47vh;
+  border:1px red solid 
+}
+/* // פוטר דף הבית */
+.colorFooter{
+  background-color:#F29544 ;
+  color: #FFFFFF;
+}
+.size{
+font-size: 0.800em !important;
+}
+.BtnGoToShop{
+  border: 1px solid #707070;
+  background-color:transparent;
+  height: 30px;
+  width:11%;
+  margin-left: 45%;
+  font-weight: bold;
+  font-size: 0.870em;
+}
 .borderTop{
   border-top: 5px solid red;
   text-align: center;
   bottom: 0;
     position: fixed;
 }
+
 
 .footer {
   padding-bottom: 72px;

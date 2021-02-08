@@ -30,16 +30,25 @@ export const signInWithGoogle = () => {
 }
 
 export const signInWithEmailAndPassword = (email, password) => {
-    auth.createUserWithEmailAndPassword(email, password)
+    // createUserWithEmailAndPassword
+    auth.signInWithEmailAndPassword(email, password)
         .then((user) => {
-            console.log("e/p ", user.user);
-        })
+       })
         .catch((error) => {
             // var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorMessage);
+            console.log("firebase", errorMessage);
             // ..
         });
+}
+
+export const createUserWithEmailAndPassword = (email, password) => {
+    auth.createUserWithEmailAndPassword(email, password).then(user => {
+        alert('User created');
+        console.log("createUserWithEmailAndPassword", user);
+    }).catch((error) => {
+        console.log(error);
+    })
 }
 
 // ...
