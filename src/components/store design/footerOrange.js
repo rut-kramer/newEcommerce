@@ -5,8 +5,10 @@ import React from "react";
 import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
+import { connect } from "react-redux";
+import { actions } from "../../redux/action";
 
-function FooterOrange() {
+function FooterOrange(props) {
     return (
         <>
             <footer className="footer colorFooter"
@@ -16,7 +18,7 @@ function FooterOrange() {
                     <div className="content">
                         <Row>
                             <Col md="5">
-                                <h5>MAYNOOTI</h5>
+                                <h5>פרטי החנות</h5>
                                 <ul className="mt-2 links-vertical size" >
                                     <li>
                                         <a
@@ -24,8 +26,9 @@ function FooterOrange() {
                                             href="#pablo"
                                             onClick={(e) => e.preventDefault()}
                                         >
-                                            Blog
-                    </a>
+
+                                            {props.objectFields.storeName}
+                                        </a>
                                     </li>
                                     <li>
                                         <a
@@ -33,8 +36,9 @@ function FooterOrange() {
                                             href="#pablo"
                                             onClick={(e) => e.preventDefault()}
                                         >
-                                            About Us
-                    </a>
+                                            {props.objectFields.tel}
+                                            {/* About Us */}
+                                        </a>
                                     </li>
                                     <li>
                                         <a
@@ -42,8 +46,9 @@ function FooterOrange() {
                                             href="#pablo"
                                             onClick={(e) => e.preventDefault()}
                                         >
-                                            Presentation
-                    </a>
+                                            {props.objectFields.email}
+                                            {/* Presentation */}
+                                        </a>
                                     </li>
                                     <li>
                                         <a
@@ -51,8 +56,9 @@ function FooterOrange() {
                                             href="#pablo"
                                             onClick={(e) => e.preventDefault()}
                                         >
-                                            Contact Us
-                    </a>
+                                            {props.objectFields.address}
+                                            {/* Contact Us */}
+                                        </a>
                                     </li>
                                 </ul>
                             </Col>
@@ -243,4 +249,12 @@ function FooterOrange() {
     );
 }
 
-export default FooterOrange;
+// export default FooterOrange;
+const mapStateToProps = (state) => {
+    return {
+        objectFields: state.storeReducer.objectFields,
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)(FooterOrange);

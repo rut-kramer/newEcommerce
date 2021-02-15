@@ -4,7 +4,6 @@ import Ecommerce from '../store design/Ecommerce';
 import Bullcommerce from '../store design/bullcommerce';
 import CategoryBullcomerce from "../store design/categoryBullcommerce"
 import CategoryByFilter from '../store design/category_page/categoryByFilter'
-import QuickLook from '../store design/quickLook'
 
 import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
@@ -16,9 +15,8 @@ function Content(props) {
     function Temporary() {
         // return <Ecommerce></Ecommerce>
         return <div className="container-fluid">
-            {/* <Bullcommerce></Bullcommerce> */}
+            <Bullcommerce></Bullcommerce>
             {/* <CategoryBullcomerce></CategoryBullcomerce> */}
-            <QuickLook></QuickLook>
         </div>
 
     }

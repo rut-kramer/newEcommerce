@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // reactstrap components
 import {
   Button,
@@ -16,12 +18,15 @@ import {
   UncontrolledTooltip,
 } from "reactstrap";
 
-function ScrollTransparentNavbar() {
+import { actions } from '../../redux/action';
+import { connect } from 'react-redux';
+
+function ScrollTransparentNavbar(props) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [navbarColor, setNavbarColor] = React.useState(
-    (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
-      ? ""
-      : " navbar-transparent"
+    //   (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
+    //     ? ""
+    //     : " navbar-transparent"
   );
   const [buyButtonColor, setBuyButtonColor] = React.useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
@@ -40,7 +45,7 @@ function ScrollTransparentNavbar() {
         document.documentElement.scrollTop < 500 ||
         document.body.scrollTop < 500
       ) {
-        setNavbarColor(" navbar-transparent");
+        // setNavbarColor(" navbar-transparent");
         setBuyButtonColor("neutral");
       }
     };
@@ -64,11 +69,12 @@ function ScrollTransparentNavbar() {
         <Container>
           <div className="navbar-translate">
             <NavbarBrand to="/" tag={Link} id="navbar-brand">
-              Now Ui Kit PRO React
+              <img alt="..."
+                src={props.objectFields.logo} className="logo"></img>
             </NavbarBrand>
-            <UncontrolledTooltip target="navbar-brand">
+            {/* <UncontrolledTooltip target="navbar-brand">
               Designed by Invision. Coded by Creative Tim
-            </UncontrolledTooltip>
+            </UncontrolledTooltip> */}
             <button
               onClick={() => {
                 document.documentElement.classList.toggle("nav-open");
@@ -83,7 +89,7 @@ function ScrollTransparentNavbar() {
             </button>
           </div>
           <Collapse isOpen={collapseOpen} navbar>
-            <Nav className="ml-auto" id="ceva" navbar>
+            <Nav className="mx-auto" id="ceva" navbar>
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
@@ -95,7 +101,7 @@ function ScrollTransparentNavbar() {
                   onClick={(e) => e.preventDefault()}
                 >
                   <i className="now-ui-icons design_app"></i>
-                  <p>Components</p>
+                  <p>Home</p>
                 </DropdownToggle>
                 <DropdownMenu aria-labelledby="navbarDropdownMenuLink1" right>
                   <DropdownItem to="/" tag={Link}>
@@ -129,7 +135,7 @@ function ScrollTransparentNavbar() {
                     aria-hidden={true}
                     className="now-ui-icons files_paper"
                   ></i>
-                  <p>Sections</p>
+                  <p>Categories</p>
                 </DropdownToggle>
                 <DropdownMenu aria-labelledby="navbarDropdownMenuLink" right>
                   <DropdownItem to="/sections#headers" tag={Link}>
@@ -240,6 +246,8 @@ function ScrollTransparentNavbar() {
                 </Button>
               </NavItem>
             </Nav>
+            <FontAwesomeIcon className="mt-2 ml-5" icon={['fas', 'search']}></FontAwesomeIcon>
+            <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
           </Collapse>
         </Container>
       </Navbar>
@@ -247,4 +255,12 @@ function ScrollTransparentNavbar() {
   );
 }
 
-export default ScrollTransparentNavbar;
+// export default ScrollTransparentNavbar;
+const mapStateToProps = (state) => {
+  return {
+    objectFields: state.storeReducer.objectFields,
+  }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

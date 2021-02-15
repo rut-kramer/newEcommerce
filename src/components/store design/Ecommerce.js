@@ -67,14 +67,14 @@ function Ecommerce(props) {
         <div className="main">
           <div className="section">
             <Container>
-              {/* <h2 className="section-title">Find what you need</h2> */}
+              <h2 className="section-title">Find what you need</h2>
               <Row>
-                {/* <Col md="3"> */}
-                {/* <div className="collapse-panel"> */}
-                {/*קומפוננטת סינון המוצרים*/}
-                {/* <FilteredProducts></FilteredProducts> */}
-                {/* </div> */}
-                {/* </Col> */}
+                <Col md="3">
+                  <div className="collapse-panel">
+                    {/*קומפוננטת סינון המוצרים*/}
+                    <FilteredProducts></FilteredProducts>
+                  </div>
+                </Col>
                 <Col md="9">
                   <Row>
                     <Col lg="4" md="6">

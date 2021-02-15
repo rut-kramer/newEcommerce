@@ -1,5 +1,6 @@
 import React from "react";
 
+
 // reactstrap components
 import {
   Container,
@@ -10,8 +11,11 @@ import {
   CarouselIndicators,
 } from "reactstrap";
 
-//images 
-import bg29 from "../../assets/img/bg29.jpg";
+//core
+import { connect } from "react-redux";
+import { actions } from "../../redux/action";
+
+
 //img xd
 import bannerSection from "../../assets/img/xd/BannerSection.png";
 import interior from "../../assets/img/xd/interior-with-white-sofa@2x.png";
@@ -68,7 +72,7 @@ const items = [
   },
 ];
 
-function EcommerceHeader() {
+function EcommerceHeader(props) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -149,4 +153,12 @@ function EcommerceHeader() {
   );
 }
 
-export default EcommerceHeader;
+// export default EcommerceHeader;
+const mapStateToProps = (state) => {
+  return {
+    objectFields: state.storeReducer.objectFields,
+  }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

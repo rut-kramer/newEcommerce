@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import { useHistory } from "react-router-dom";
+import logoo from "../assets/img/xd/Image.jpeg"
 
 function OpenStore(props) {
 
@@ -10,16 +11,16 @@ function OpenStore(props) {
     const [fileToUpload, setFileToUpload] = useState(null);
 
     const [detailsStore, setDetailsStore] = useState({
-        storeName: "",
-        urlRoute: "",
-        storeDescription: "",
-        address: "",
-        tel: "",
-        email: "",
-        colorDominates: "",
+        storeName: "MY STORE",
+        urlRoute: "MY_STORE",
+        storeDescription: "THE BEST STORE IN THE WORLD",
+        address: "JERUSALEM",
+        tel: "02:6277134",
+        email: "MYSTORE@GMAIL.COM",
+        colorDominates: "RED",
         policy: "",
         currency: "",
-        logo: "",
+        logo: logoo,
         checkInventoryManagement: false,
         checkoneProductPurchase: false
 
@@ -60,6 +61,12 @@ function OpenStore(props) {
         event.preventDefault()
         // props.setSaveAllDetailsStore(detailsStore)
         await props.createNewStore({ "store": detailsStore, "file": fileToUpload })
+        history.push("/0/" + detailsStore.urlRoute);
+    }
+
+    function skip(event) {
+        event.preventDefault()
+        props.createNewStore({ "store": detailsStore, "file": fileToUpload })
         history.push("/0/" + detailsStore.urlRoute);
     }
 
@@ -155,6 +162,8 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+            <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
+
         </>
     )
 
