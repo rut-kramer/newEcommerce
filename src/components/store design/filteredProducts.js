@@ -2,6 +2,8 @@
 import React from "react";
 // plugin that creates slider
 import Slider from "nouislider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // reactstrap components
 import {
         Button,
@@ -52,7 +54,6 @@ function FilteredProducts(props) {
                 if (
                         !document.getElementById("sliderRefine").classList.contains("noUi-target")
                 ) {
-
                         Slider.create(document.getElementById("sliderRefine"), {
                                 start: [min + 20, max],
                                 connect: [false, true, false],
@@ -89,7 +90,7 @@ function FilteredProducts(props) {
                                                                         <div className="collapse-panel"> */}
                         <CardBody>
                                 <Card className="card-refine card-plain">
-                                        <CardTitle tag="h4">
+                                        {/* <CardTitle tag="h4">
                                                 Refine{" "}
                                                 <Button
                                                         className="btn-icon btn-neutral pull-right"
@@ -104,7 +105,7 @@ function FilteredProducts(props) {
                                                 >
                                                         Reset Filter
                           </UncontrolledTooltip>
-                                        </CardTitle>
+                                        </CardTitle> */}
                                         <CardHeader id="headingOne" role="tab">
                                                 <h6 className="mb-0">
                                                         <a
@@ -119,7 +120,10 @@ function FilteredProducts(props) {
                                                                 }}
                                                         >
                                                                 Price Range{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -160,7 +164,9 @@ function FilteredProducts(props) {
                                                                 }}
                                                         >
                                                                 Categories{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -193,7 +199,9 @@ function FilteredProducts(props) {
                                                                 }}
                                                         >
                                                                 Designer{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -279,8 +287,10 @@ function FilteredProducts(props) {
                                                                         changeCollapse(4);
                                                                 }}
                                                         >
-                                                                Colour{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+                                                                Color{" "}
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>

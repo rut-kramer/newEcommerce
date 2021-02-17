@@ -64,8 +64,7 @@ function OpenStore(props) {
         history.push("/0/" + detailsStore.urlRoute);
     }
 
-    function skip(event) {
-        event.preventDefault()
+    function skip() {
         props.createNewStore({ "store": detailsStore, "file": fileToUpload })
         history.push("/0/" + detailsStore.urlRoute);
     }

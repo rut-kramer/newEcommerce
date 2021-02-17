@@ -222,11 +222,15 @@ select::-ms-expand {
   display: none;
 } */
 
-select:-moz-focusring {
+/* select:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #000;
 }
 .field__select:focus {
   border-color: #5E81F4;
+} */
+/* //categoryBullcommerceNew */
+.titleCategory{
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 }
-

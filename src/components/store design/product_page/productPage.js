@@ -19,7 +19,7 @@ import {
     CarouselIndicators,
 } from "reactstrap";
 
-import ScrollTransparentNavbar from "./scrollTransparentNavbar";
+import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar";
 import ProductPageHeader from "./productPageHeader";
 import pp1 from "../../../assets/img/pp-1.jpg";
 import pp2 from "../../../assets/img/pp-2.jpg";

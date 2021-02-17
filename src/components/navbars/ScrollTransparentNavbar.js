@@ -21,6 +21,8 @@ import {
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 
+
+
 function ScrollTransparentNavbar(props) {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [navbarColor, setNavbarColor] = React.useState(
@@ -33,7 +35,26 @@ function ScrollTransparentNavbar(props) {
       ? "info"
       : "neutral"
   );
+  let masterCategoriesWithChildren = new Array();
   React.useEffect(() => {
+
+    let masterCategories = props.categories.filter(c => {
+      if (c.masterCategory === null && !c.masterCategory)
+        return c;
+    })
+    for (let index = 0; index < masterCategories.length; index++) {
+      let childrenCategories = props.categories.filter(c => {
+        if (c.masterCategory === masterCategories[index])
+          return c;
+      })
+      masterCategoriesWithChildren.push({
+        "masterCategory": masterCategories[index],
+        "childrenCategories": childrenCategories
+      })
+      console.log("ccccttttggggrryy", masterCategoriesWithChildren);
+
+    }
+
     const updateNavbarColor = () => {
       if (
         document.documentElement.scrollTop > 499 ||
@@ -53,6 +74,7 @@ function ScrollTransparentNavbar(props) {
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
+
   });
   return (
     <>
@@ -64,8 +86,11 @@ function ScrollTransparentNavbar(props) {
             setCollapseOpen(false);
           }}
         />
+
       ) : null}
-      <Navbar className={"fixed-top" + navbarColor} color="white" expand="lg">
+      {/* מחקנו מבצע שההידר יהיה סטיקי */}
+      {/* className={"fixed-top" + navbarColor}  */}
+      <Navbar color="white" expand="lg">
         <Container>
           <div className="navbar-translate">
             <NavbarBrand to="/" tag={Link} id="navbar-brand">
@@ -90,37 +115,28 @@ function ScrollTransparentNavbar(props) {
           </div>
           <Collapse isOpen={collapseOpen} navbar>
             <Nav className="mx-auto" id="ceva" navbar>
-              <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  href="#pablo"
-                  id="navbarDropdownMenuLink1"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                >
-                  <i className="now-ui-icons design_app"></i>
-                  <p>Home</p>
-                </DropdownToggle>
-                <DropdownMenu aria-labelledby="navbarDropdownMenuLink1" right>
-                  <DropdownItem to="/" tag={Link}>
-                    <i className="now-ui-icons design_image"></i>
-                    Presentation
-                  </DropdownItem>
-                  <DropdownItem to="/index" tag={Link}>
-                    <i className="now-ui-icons business_chart-pie-36"></i>
-                    All components
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/now-ui-kit-pro-react/#/documentation/introduction?ref=nuk-pro-react-scroll-transparent-navbar"
-                    target="_blank"
-                  >
-                    <i className="now-ui-icons design_bullet-list-67"></i>
-                    Documentation
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
+
+              <div class="topnav" style={{
+                // backgroundColor: this.props.objectFields.colorDominates,
+                overflow: "hidden",
+                width: "82%"
+              }}
+                id="myTopnav">
+                {props.categories.map((item, index) =>
+                (
+                  <Link key={index} to={"/0/category/" + item.categoryName} style={{
+                    float: "right",
+                    display: "block",
+                    color: "#707070",
+                    textAlign: "center",
+                    padding: "14px 16px",
+                    textDecoration: "none",
+                    fontSize: "17px"
+                  }} class="active">{item.categoryName}</Link>
+                ))
+                }
+              </div>
+              {/*  */}
               <UncontrolledDropdown nav>
                 <DropdownToggle
                   caret
@@ -235,16 +251,7 @@ function ScrollTransparentNavbar(props) {
                   </DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown>
-              <NavItem>
-                <Button
-                  className="nav-link btn-default"
-                  color={buyButtonColor}
-                  href="https://www.creative-tim.com/product/now-ui-kit-pro-react?ref=nuk-pro-react-scroll-transparent-navbar"
-                  target="_blank"
-                >
-                  <p>Buy Now</p>
-                </Button>
-              </NavItem>
+
             </Nav>
             <FontAwesomeIcon className="mt-2 ml-5" icon={['fas', 'search']}></FontAwesomeIcon>
             <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
@@ -255,10 +262,10 @@ function ScrollTransparentNavbar(props) {
   );
 }
 
-// export default ScrollTransparentNavbar;
 const mapStateToProps = (state) => {
   return {
     objectFields: state.storeReducer.objectFields,
+    categories: state.categoriesReducer.categories
   }
 }
 const mapDispatchToProps = (dispatch) => ({

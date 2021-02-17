@@ -73,6 +73,60 @@ const items = [
 ];
 
 function EcommerceHeader(props) {
+  const items = [
+    {
+
+      src: "url(" + { img3 } + ")",
+      // לא מצליחה לקרוא מהרידקס
+      // src={ props.homeStoreDesign.imageImage },
+
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto" md="8">
+            <h1 className="title">{props.objectFields.storeName}</h1>
+            {/* <h4 className="description text-white">
+              The haute couture crowds make stylish statements between shows
+              during couture season in Paris...
+            </h4> */}
+          </Col>
+        </Row>
+      ),
+      altText: "",
+      caption: "",
+    },
+    {
+      src: "url(" + interior + ")",
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto text-center" md="8">
+            <h1 className="title">{props.objectFields.storeName}</h1>
+            {/* <h4 className="description text-white">
+              See what Karlie Kloss, Tracee Ellis Ross and others wore between the
+              shows...
+            </h4> */}
+          </Col>
+        </Row>
+      ),
+      altText: "",
+      caption: "",
+    },
+    {
+      src: "url(" + bannerSection + ")",
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto" md="8">
+            <h1 className="title">{props.objectFields.storeName}</h1>
+            {/* <h4 className="description text-white">
+              Shirts that actually fit? Check. Linen shorts? Yup. Those wider
+              pants suddenly in style? Got them, too....
+            </h4> */}
+          </Col>
+        </Row>
+      ),
+      altText: "",
+      caption: "",
+    },
+  ];
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -153,10 +207,10 @@ function EcommerceHeader(props) {
   );
 }
 
-// export default EcommerceHeader;
 const mapStateToProps = (state) => {
   return {
     objectFields: state.storeReducer.objectFields,
+    imageImage: state.storeHomeReducer.homeStoreDesign.imageImage
   }
 }
 const mapDispatchToProps = (dispatch) => ({

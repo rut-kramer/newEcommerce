@@ -89,12 +89,13 @@ function Bullcommerce(props) {
                                                     alt="..."
                                                     src={ia0012}
                                                 ></img>
-
                                             </a>
                                         </div>
                                         <CardBody>
                                             <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">{props.products.name}Patio Arm Chair</CardTitle>
+                                                <CardTitle className="mt-2" tag="h4">
+                                                    {/* {props.products[0].name} */}
+                                                    Patio Arm Chair</CardTitle>
                                             </a>
 
                                             <CardFooter>
