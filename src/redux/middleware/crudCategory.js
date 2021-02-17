@@ -3,7 +3,6 @@ import $ from 'jquery';
 import { actions } from '../action';
 
 
-//4
 export const getAllCategories = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
@@ -13,7 +12,6 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 };
-//8
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
         if (action.type === 'CREATE_NEW_CATEGORY') {
@@ -46,7 +44,6 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 };
-//14
 export const editCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_CATEGORY') {
         var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });

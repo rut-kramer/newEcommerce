@@ -15,8 +15,8 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import Ecommerce from './components/store design/Ecommerce';
-import ProductPage from "./components/store design/product_page/productPage";
-import Cart from "./components/store design/cart";
+import QuickLook from './components/store design/quickLook'
+import CategoryBullcommerceNew from './components/store design/categoryBullcommerceNew'
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -34,11 +34,15 @@ function App() {
             <Route exact path="/ecommerce">
               <Ecommerce />
             </Route>
-            {/* <Route exact path="/cart">
-              <Cart />
-            </Route> */}
+            <Route exact path="/categoryBullcommerceNew">
+              <CategoryBullcommerceNew />
+            </Route>
+
             <Route exact path="/">
               <Home />
+            </Route>
+            <Route path="/quickLook">
+              <QuickLook />
             </Route>
 
             <Route exact path="/admin/category/add">
@@ -56,9 +60,6 @@ function App() {
 
             <Route path="/login">
               <Login />
-            </Route>
-            <Route path="/ProductPage">
-              <ProductPage />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />

@@ -3,7 +3,6 @@ import $ from 'jquery';
 import { actions } from '../action';
 
 
-//5
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
@@ -14,7 +13,6 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
-//7
 export const newProduct = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
         if (action.type === 'ADD_NEW_PRODUCTS') {
@@ -38,7 +36,6 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
         return next(action);
     })
 };
-//10
 export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ADD_IMG_TO_PRODUCT') {

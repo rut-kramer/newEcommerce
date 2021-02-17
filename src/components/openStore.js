@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import { useHistory } from "react-router-dom";
+import logoo from "../assets/img/xd/Image.jpeg"
 
 function OpenStore(props) {
 
@@ -10,16 +11,19 @@ function OpenStore(props) {
     const [fileToUpload, setFileToUpload] = useState(null);
 
     const [storeDetails, setStoreDetails] = useState({
-        storeName: "",
-        urlRoute: "",
-        storeDescription: "",
-        address: "",
-        tel: "",
-        email: "",
-        colorDominates: "",
+        storeName: "MY STORE",
+        urlRoute: "MY_STORE",
+        storeDescription: "THE BEST STORE IN THE WORLD",
+        address: "JERUSALEM",
+        tel: "02:6277134",
+        email: "MYSTORE@GMAIL.COM",
+        colorDominates: "RED",
         policy: "",
         currency: "",
-        logo: "",
+        logo: logoo,
+        checkInventoryManagement: false,
+        checkoneProductPurchase: false
+
 
     });
     function changeStoreDetails(event) {
@@ -55,8 +59,13 @@ function OpenStore(props) {
 
     const onSubmitStoreDetails = async (event) => {
         event.preventDefault()
-        // props.setSaveAllDetailsStore(detailsStore)
+        // props.setSaveAllDetailsStore(storeDetails)
         await props.createNewStore({ "store": storeDetails, "file": fileToUpload })
+        history.push("/0/" + storeDetails.urlRoute);
+    }
+
+    function skip() {
+        props.createNewStore({ "store": storeDetails, "file": fileToUpload })
         history.push("/0/" + storeDetails.urlRoute);
     }
 
@@ -107,6 +116,23 @@ function OpenStore(props) {
                     name="policy"
                     onChange={changeStoreDetails}
                 ></input><br></br>
+                <label for="myCheck">ניהול מלאי</label><br></br>
+                <input id="myCheck"
+                    name="checkInventoryManagement"
+                    type="checkbox"
+                    checked={storeDetails.checkInventoryManagement}
+                    onChange={(e) => setAllStoreDetails("checkInventoryManagement", e.target.checked)}
+                />
+                <br></br>
+                <label for="myCheck">קניה חד מוצרית</label><br></br>
+                <input id="myCheck"
+                    name="checkoneProductPurchase"
+                    type="checkbox"
+                    checked={storeDetails.checkoneProductPurchase}
+                    onChange={(e) => setAllStoreDetails("checkoneProductPurchase", e.target.checked)}
+                />
+                <br></br>
+                <br></br>
                 <label>בחר מטבע</label><br></br>
                 <select
                     onChange={e => setAllStoreDetails("currency", e.target.value)}>
@@ -135,6 +161,8 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+            <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
+
         </>
     )
 
@@ -143,7 +171,6 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.storeReducer.objectFields,
         coins: state.coinsReducer.coins
     }
 }

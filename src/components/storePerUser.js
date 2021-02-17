@@ -25,7 +25,7 @@ function StorePerUser(props) {
 
             <div className="data__body">
                 {props.stores.map((itemy, index) => (
-                    <Link to="/0" onClick={() => { funcReset(itemy) }} key={index}>
+                    <Link to={"/0/" + props.objectFields.urlRoute} onClick={() => { funcReset(itemy) }} key={index}>
                         <div className="data__item">
                             <div className="data__row" >
                                 <div className="data__cell data__cell_xl">
@@ -53,6 +53,8 @@ function StorePerUser(props) {
                     </Link>
                 ))}
 
+
+
             </div>
         </>
     )
@@ -61,8 +63,9 @@ function StorePerUser(props) {
 export default connect(
     (state) => {
         return {
-            stores: state.openStoreReducer.stores,
+            stores: state.userReducer.storesOfUser,
             user: state.userReducer.user,
+            objectFields: state.storeReducer.objectFields
         }
     },
     (dispatch) => {
@@ -76,6 +79,7 @@ export default connect(
             setCurrentStore: (i) => { dispatch(actions.setCurrentStore(i)) },
         }
     }
+
 
 )(StorePerUser);
 

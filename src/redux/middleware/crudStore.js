@@ -27,7 +27,6 @@ import $ from 'jquery';
 // };
 
 
-//16
 export const createNewStore = ({ dispatch, getState }) => next => action => {
 
     return new Promise((resolve, reject) => {
@@ -44,6 +43,9 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 "storeManager": getState().userReducer.user._id,
                 "currency": action.payload.store.currency,
                 "policy": action.payload.store.policy,
+                "checkInventoryManagement": action.payload.store.checkInventoryManagement,
+                "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
+
             });
 
             $.ajax({
@@ -84,6 +86,7 @@ export const deleteStore = ({ dispatch, getState }) => next => action => {
                 dispatch(actions.deleteOldStore(action.payload))
             });
     }
+
 
     return next(action);
 };

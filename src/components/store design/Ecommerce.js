@@ -42,6 +42,8 @@ import bg40 from "../../assets/img/bg40.jpg";
 import saintLaurent1 from "../../assets/img/saint-laurent1.jpg";
 import saintLaurent from "../../assets/img/saint-laurent.jpg";
 import gucci from "../../assets/img/gucci.jpg";
+//xd image
+import ia006 from "../../assets/img/xd/ia_300000006.png";
 
 function Ecommerce(props) {
 
@@ -356,7 +358,7 @@ function Ecommerce(props) {
               </Row>
             </Container>
           </div>
-          <Container>
+          {/* <Container>
             <h2 className="section-title">News in fashion</h2>
           </Container>
           <div className="projects-4">
@@ -441,12 +443,12 @@ function Ecommerce(props) {
               </Row>
             </Container>
           </div>
-          <div className="section">
-            <Container>
+          <div className="section"> */}
+          {/* <Container>
               <h2 className="section-title">Latest Offers</h2>
               <Row>
-                <Col md="4">
-                  <Card className="card-product card-plain">
+                <Col md="4"> */}
+          {/* <Card className="card-product card-plain">
                     <div className="card-image">
                       <img
                         alt="..."
@@ -454,18 +456,18 @@ function Ecommerce(props) {
                         src={saintLaurent1}
                       ></img>
                     </div>
-                    <CardBody>
-                      <CardTitle tag="h4">
+                    <CardBody> */}
+          {/* <CardTitle tag="h4">
                         <a href="#pablo" onClick={(e) => e.preventDefault()}>
                           Saint Laurent
                         </a>
-                      </CardTitle>
-                      <p className="card-description">
+                      </CardTitle> */}
+          {/* <p className="card-description">
                         The structured shoulders and sleek detailing ensure a
                         sharp silhouette. Team it with a silk pocket square and
                         leather loafers.
-                      </p>
-                      <CardFooter>
+                      </p> */}
+          {/* <CardFooter>
                         <div className="price-container">
                           <span className="price price-old mr-1">€1,430</span>
                           <span className="price price-new">€743</span>
@@ -488,51 +490,51 @@ function Ecommerce(props) {
                         </div>
                       </CardFooter>
                     </CardBody>
-                  </Card>
-                </Col>
-                <Col md="4">
-                  <Card className="card-product card-plain">
-                    <div className="card-image">
-                      <img
-                        alt="..."
-                        className="img rounded"
-                        src={saintLaurent}
-                      ></img>
-                    </div>
-                    <CardBody>
-                      <CardTitle tag="h4">Saint Laurent</CardTitle>
-                      <p className="card-description">
+                  </Card> */}
+          {/* </Col>
+          <Col md="4">
+            <Card className="card-product card-plain">
+              <div className="card-image">
+                <img
+                  alt="..."
+                  className="img rounded"
+                  src={saintLaurent}
+                ></img>
+              </div>
+              <CardBody> */}
+          {/* <CardTitle tag="h4">Saint Laurent</CardTitle> */}
+          {/* <p className="card-description">
                         The structured shoulders and sleek detailing ensure a
                         sharp silhouette. Team it with a silk pocket square and
                         leather loafers.
-                      </p>
-                      <CardFooter>
-                        <div className="price-container">
-                          <span className="price price-old mr-1">€1,430</span>
-                          <span className="price price-new">€743</span>
-                        </div>
-                        <div className="stats stats-right">
-                          <Button
-                            className="btn-icon"
-                            color="neutral"
-                            id="tooltip127778557"
-                            type="button"
-                          >
-                            <i className="now-ui-icons ui-2_favourite-28"></i>
-                          </Button>
-                          <UncontrolledTooltip
-                            delay={0}
-                            target="tooltip127778557"
-                          >
-                            Saved to Wishlist
+                      </p> */}
+          {/* <CardFooter>
+                  <div className="price-container">
+                    <span className="price price-old mr-1">€1,430</span>
+                    <span className="price price-new">€743</span>
+                  </div>
+                  <div className="stats stats-right">
+                    <Button
+                      className="btn-icon"
+                      color="neutral"
+                      id="tooltip127778557"
+                      type="button"
+                    >
+                      <i className="now-ui-icons ui-2_favourite-28"></i>
+                    </Button>
+                    <UncontrolledTooltip
+                      delay={0}
+                      target="tooltip127778557"
+                    >
+                  Saved to Wishlist
                           </UncontrolledTooltip>
-                        </div>
-                      </CardFooter>
-                    </CardBody>
-                  </Card>
-                </Col>
-                <Col md="4">
-                  <Card className="card-product card-plain">
+                  </div>
+                </CardFooter>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col md="4"> */}
+          {/* <Card className="card-product card-plain">
                     <div className="card-image">
                       <img
                         alt="..."
@@ -570,14 +572,14 @@ function Ecommerce(props) {
                         </div>
                       </CardFooter>
                     </CardBody>
-                  </Card>
-                </Col>
+                  </Card> */}
+          {/* </Col>
               </Row>
-            </Container>
-          </div>
+            </Container> */}
+          {/* </div> */}
         </div>
-        <Footer />
-      </div>
+        {/* <Footer /> */}
+      </div >
     </>
   );
 }

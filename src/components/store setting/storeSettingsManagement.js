@@ -11,13 +11,13 @@ function StoreSettingsManagement(props) {
         storeName: "",
         urlRoute: "",
         storeDescription: "",
-        logo: "",
         address: "",
         tel: "",
         email: "",
         colorDominates: "",
         policy: "",
         currency: "",
+        logo: "",
         inventoryManagement: "",
         oneProductPurchase: "",
 
@@ -83,7 +83,6 @@ function StoreSettingsManagement(props) {
                         value={storeDetails.storeDescription ? storeDetails.storeDescription : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
-
                     <label for="c">עדכן כתובת החנות</label><br></br>
                     <input
                         id="c"
