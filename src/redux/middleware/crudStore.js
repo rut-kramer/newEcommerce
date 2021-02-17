@@ -53,7 +53,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 contentType: "application/json",
                 data: raw,
                 success: function (data) {
-                    dispatch(actions.setSaveAllDetailsStore(data));
+                    dispatch(actions.setSaveAllStoreDetails(data));
                     resolve(data)
                 },
                 error: function (err) {

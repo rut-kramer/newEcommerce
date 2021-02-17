@@ -1,5 +1,4 @@
 import produce from 'immer';
-import { actions } from '../../action';
 import createReducer from "../reducerUtils";
 
 const initialState = {
@@ -14,7 +13,7 @@ const product = {
 
         setProducts(state, action) {
                 state.products = action.payload;
-                state.featuredProducts = state.products.filter(x => x.featured == true)
+                state.featuredProducts = state.products.filter(x => x.featured === true)
         },
         setProductImage(state, action) {
 
@@ -36,10 +35,10 @@ const product = {
                 state.products.push(action.payload);
         },
         deleteOldProduct(state, action) {
-                state.products = state.products.filter(x => x._id != action.payload);
+                state.products = state.products.filter(x => x._id !== action.payload);
         },
         editOldProduct(state, action) {
-                state.products = state.products.filter(x => x._id != action.payload._id);
+                state.products = state.products.filter(x => x._id !== action.payload._id);
                 state.products.push(action.payload);
         }
 };

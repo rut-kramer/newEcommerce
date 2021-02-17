@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './admin.css'
 import CrudCategory from './category_managment/crudCategory'
 import CrudOrder from './crudOrder'
@@ -6,7 +6,8 @@ import StoreSettingsManagement from './storeSettingsManagement'
 import CrudProducts from './product_management/crudProducts'
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
-import StorePerUser from './storePerUser'
+import StorePerUser from './storePerUser';
+import NewPaper from './createNewPaper';
 
 function Admin(props) {
 
@@ -32,7 +33,8 @@ function Admin(props) {
         <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Product</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>your Store</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>Your Store</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>New Paper</button>
       </div>
 
       <div id="Categories" className="tabcontent">
@@ -52,6 +54,9 @@ function Admin(props) {
       </div>
       <div id="StorePerUser" className="tabcontent">
         <StorePerUser></StorePerUser>
+      </div>
+      <div id="NewPaper" className="tabcontent">
+        <NewPaper></NewPaper>
       </div>
 
 

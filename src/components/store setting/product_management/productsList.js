@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 // import './crudProducts.css';
-import $ from 'jquery'
+// import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
-import cloneDeep from 'lodash/cloneDeep';
+// import cloneDeep from 'lodash/cloneDeep';
 
 function ProductsList(props) {
 
-        const [file, setFile] = useState()
+        // const [file, setFile] = useState()
         const fileI = React.createRef();
         let { Name, Description, Amount, Price, Category } = {
                 Name: "Name",
@@ -42,7 +42,7 @@ function ProductsList(props) {
 
                 if (event) {
 
-                         let reader = new FileReader();
+                        let reader = new FileReader();
                         reader.onloadend = () => {
 
                                 props.changeProductImage(num, reader.result)
@@ -147,35 +147,35 @@ function ProductsList(props) {
                                 </div>
                         </div>)
         }
-        function Data_Main({item,index}) {
-                return(
-                <div className="data__main">
-                        <div className="data__effect mobile-hide"><label className="switch">
-                                <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
-                                <span className="switch__content">
-                                </span></label></div>
-                        <div className="data__preview">
-                                <label className="prdct_img" for={"fileInput" + index}>
-                                        {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
-                                </label>
-                                <input ref={fileI}
-                                        name={index}
-                                        type={"file"}
-                                        id={"fileInput" + index}
-                                        htmlFor="myInput"
-                                        accept="image/*"
-                                        style={{
-                                                display: 'none',
-                                                cursor: 'pointer'
-                                        }}
-                                        onChange={onChangeHandlerImage} />
-                        </div>
-                        <div className="data__wrap">
-                                <div className="data__content">
-                                        <strong>{item.name}</strong></div>
-                                <div className="data__label">SKU {item.SKU}</div>
-                        </div>
-                </div>)
+        function Data_Main({ item, index }) {
+                return (
+                        <div className="data__main">
+                                <div className="data__effect mobile-hide"><label className="switch">
+                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
+                                        <span className="switch__content">
+                                        </span></label></div>
+                                <div className="data__preview">
+                                        <label className="prdct_img" for={"fileInput" + index}>
+                                                {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
+                                        </label>
+                                        <input ref={fileI}
+                                                name={index}
+                                                type={"file"}
+                                                id={"fileInput" + index}
+                                                htmlFor="myInput"
+                                                accept="image/*"
+                                                style={{
+                                                        display: 'none',
+                                                        cursor: 'pointer'
+                                                }}
+                                                onChange={onChangeHandlerImage} />
+                                </div>
+                                <div className="data__wrap">
+                                        <div className="data__content">
+                                                <strong>{item.name}</strong></div>
+                                        <div className="data__label">SKU {item.SKU}</div>
+                                </div>
+                        </div>)
         }
 
         return (
@@ -197,41 +197,41 @@ function ProductsList(props) {
                                                 <div className="data__body">
                                                         {/* TO DO FELTERADE */}
                                                         {props.products.map((item, index) => (
-                                                               index < (props.PageNum - 1) * 6||index>props.PageNum * 6 - 1?"":                                                             
-                                                                <div className="data__item" key={index}>
-                                                                        <div className="data__row" >
-                                                                                <div className="data__cell data__cell_xl">
-                                                                                        <Data_Main item={item} index={index}></Data_Main>
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content">{item.description}</div>
-                                                                                        {/* <div className="data__label">amount</div> */}
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>${item.price}</strong></div>
-                                                                                </div>
-                                                                                {item.category && <div className="data__cell mobile-hide">
-                                                                                        <div style={{ "backgroundColor": item.category.color }}
-                                                                                                className="tag gray">{item.category.categoryName}</div>
-                                                                                </div>}
+                                                                index < (props.PageNum - 1) * 6 || index > props.PageNum * 6 - 1 ? "" :
+                                                                        <div className="data__item" key={index}>
+                                                                                <div className="data__row" >
+                                                                                        <div className="data__cell data__cell_xl">
+                                                                                                <Data_Main item={item} index={index}></Data_Main>
+                                                                                        </div>
+                                                                                        <div className="data__cell mobile-hide">
+                                                                                                <div className="data__content">{item.description}</div>
+                                                                                                {/* <div className="data__label">amount</div> */}
+                                                                                        </div>
+                                                                                        <div className="data__cell mobile-hide">
+                                                                                                <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                        </div>
+                                                                                        <div className="data__cell mobile-hide">
+                                                                                                <div className="data__content"><strong>${item.price}</strong></div>
+                                                                                        </div>
+                                                                                        {item.category && <div className="data__cell mobile-hide">
+                                                                                                <div style={{ "backgroundColor": item.category.color }}
+                                                                                                        className="tag gray">{item.category.categoryName}</div>
+                                                                                        </div>}
 
-                                                                                <div className="data__cell data__cell_action">
-                                                                                        <button className="action action_stroke"
-                                                                                                onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
-                                                                                                <i className="la la-ellipsis-h "></i>
-                                                                                        </button>
-                                                                                </div>
-                                                                                <div className="data__cell data__cell_action">
-                                                                                        <button className="action action_stroke"
-                                                                                                onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
-                                                                                                <i className="far fa-trash-alt ml-auto"></i>
-                                                                                        </button>
+                                                                                        <div className="data__cell data__cell_action">
+                                                                                                <button className="action action_stroke"
+                                                                                                        onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
+                                                                                                        <i className="la la-ellipsis-h "></i>
+                                                                                                </button>
+                                                                                        </div>
+                                                                                        <div className="data__cell data__cell_action">
+                                                                                                <button className="action action_stroke"
+                                                                                                        onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
+                                                                                                        <i className="far fa-trash-alt ml-auto"></i>
+                                                                                                </button>
+                                                                                        </div>
                                                                                 </div>
                                                                         </div>
-                                                                </div>
                                                         ))}
                                                 </div>
                                         </div>

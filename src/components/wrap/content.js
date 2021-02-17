@@ -1,10 +1,12 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Ecommerce from '../store design/Ecommerce';
-import CategoryByFilter from '../store design/category_page/categoryByFilter'
+import CategoryByFilter from '../store design/category_page/categoryByFilter';
 
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
+import Cart from '../store design/cart';
+
 import { connect } from 'react-redux';
 
 function Content(props) {
@@ -15,10 +17,12 @@ function Content(props) {
 
     return (
         <div className="Content">
-            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>
+            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
+            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>
             <Switch>
                 <Route path="/filter-category" component={CategoryByFilter} />
                 <Route path="/:storeName/admin" component={AdminCurd} />
+                <Route path="/:storeName/cart" component={Cart} />
                 <Route path="/:storeName" component={Temporary} />
 
             </Switch>

@@ -57,6 +57,8 @@ function Ecommerce(props) {
       document.body.classList.remove("sidebar-collapse");
     };
   }, []);
+
+
   return (
     <>
       <ScrollTransparentNavbar />
@@ -67,13 +69,13 @@ function Ecommerce(props) {
             <Container>
               <h2 className="section-title">Find what you need</h2>
               <Row>
-                <Col md="3">
+                {/* <Col md="3">
                   <div className="collapse-panel">
-                    {/*קומפוננטת סינון המוצרים*/}
+                  קומפוננטת סינון המוצרים
                     <FilteredProducts></FilteredProducts>
                   </div>
-                </Col>
-                <Col md="9">
+                </Col>*/}
+                <Col md="12">
                   <Row>
                     <Col lg="4" md="6">
                       <Card className="card-product card-plain">
@@ -105,6 +107,26 @@ function Ecommerce(props) {
                             >
                               <i className="now-ui-icons ui-2_favourite-28"></i>
                             </Button>
+                            <Button onClick={() => props.addToCart(
+                              {
+                                "product": {
+                                  "amount": 4,
+                                  "price": 450,
+                                  "images": [],
+                                  "attributes": [
+                                    "6021297fb7ce77e4d5b3e8cf"
+                                  ],
+                                  "featured": false,
+                                  "_id": "602babe3c8336e62cd3d5f2e",
+                                  "name": "Simcha dress",
+                                  "description": "to wedding",
+                                  "SKU": "7786754614",
+                                  "category": "601bec7cbf7ea1c3829cd18b",
+                                  "store": "6012b0300718f71a8fa25df5",
+                                },
+                                "amount": 1
+                              }
+                            )}>add to cart</Button>
                             <UncontrolledTooltip
                               delay={0}
                               placement="left"
@@ -574,7 +596,8 @@ export default connect(
       filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
       setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
       setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
-      setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
+      setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
+      addToCart: (product) => { dispatch(actions.addToCart(product)) }
     }
   }
 )(Ecommerce);

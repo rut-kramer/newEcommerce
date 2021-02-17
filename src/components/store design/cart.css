@@ -1,0 +1,35 @@
+.cartButtons Button,.continueShop{
+        border-color: #707070;
+        color: #F29544;
+}
+
+.cartButtons Button:hover,.continueShop:hover{
+        border-color: #F29544;
+        background-color: #F29544;
+        color: white;
+}
+.cart tr{
+        text-align: center;
+        color:#707070;
+}
+.cart td:first-child{
+        text-align: left;
+}
+.calcAmount Button{
+        background-color: #E1DEDE;
+}
+.cart .tableHeader tr{
+        background-color: #F29544;
+        color:#FFFFFF;
+}
+.clickIcon{
+        cursor: pointer;
+}
+.totalLine{
+        border-bottom:2px dashed #707070;
+}
+
+.cart Table{
+        border-bottom: 2px solid #707070;
+}
+
