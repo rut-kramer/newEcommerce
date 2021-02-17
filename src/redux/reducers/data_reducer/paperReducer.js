@@ -8,7 +8,6 @@ const initialState = {
 
 const paper = {
         setPaper(state, action) {
-                debugger
                 state.paper = action.payload;
         }
 

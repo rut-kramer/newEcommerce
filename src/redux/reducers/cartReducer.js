@@ -49,7 +49,6 @@ const cartReducer = {
   },
 
   addProductToCart(state, action) {
-    debugger
 
     let productsCart = state.cart.products;
     if (!productsCart)
@@ -58,7 +57,6 @@ const cartReducer = {
     state.cart.products = productsCart;
     // dispatch(actions.callcTotalPrice());
     // this.callcTotalPrice(state)
-    debugger
     state.cart.totalPrice += action.payload.product.price;
 
   },

@@ -7,9 +7,7 @@ import { actions } from '../action';
 export const addToCart = ({ dispatch, getState }) => next => action => {
         if (action.type === 'ADD_TO_CART') {
                 let flag = false;
-                debugger
                 getState().cartReducer.cart.products.map((product, index) => {
-                        debugger
                         if (product.product.SKU.toString() === action.payload.product.SKU.toString()) {
                                 flag = true;
                                 dispatch(actions.pluseAmount(index));
@@ -24,7 +22,6 @@ export const addToCart = ({ dispatch, getState }) => next => action => {
 
 export const changeProductAmount = ({ dispatch, getState }) => next => action => {
         if (action.type === 'CHANGE_AMOUNT') {
-                debugger
 
                 switch (action.payload.plusOrMinus) {
                         //action.payload={index:Number,plusOrMinus:"plus/minus"}

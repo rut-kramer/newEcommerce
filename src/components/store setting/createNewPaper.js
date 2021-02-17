@@ -11,7 +11,6 @@ function CreateNewPaper(props) {
         const [design, setDesign] = useState("");
 
         const saveForm = (e) => {
-                debugger
                 e.preventDefault();
                 props.newPaper({
                         name: name,
@@ -20,7 +19,6 @@ function CreateNewPaper(props) {
                         content: content,
                         design: design
                 })
-                debugger
         }
 
         return (

@@ -16,7 +16,6 @@ import axios from 'axios';
 //8
 export const createNewPaper = ({ dispatch, getState }) => next => action => {
         if (action.type === 'CREATE_NEW_PAPER') {
-                debugger
                 var myHeaders = new Headers();
                 myHeaders.append("Content-Type", "application/json");
                 var raw = JSON.stringify({
@@ -27,14 +26,12 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                         "content": action.payload.content,
                         "design": action.payload.design
                 });
-                console.log("paper raw", raw);
                 var requestOptions = {
                         method: 'POST',
                         headers: myHeaders,
                         body: raw,
                         redirect: 'follow'
                 };
-                console.log(raw);
                 axios({
                         method: 'post',
                         url: 'https://community.leader.codes/api/papers/newPaper',
@@ -44,11 +41,9 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                 })
                         // axios.post("https://community.leader.codes/api/papers/newPaper", raw)
                         .then(newPaper => {
-                                debugger
                                 dispatch(actions.setPaper(newPaper.paper));
                         })
                         .catch(error => {
-                                debugger
                                 console.log('error', error)
                         });
         }
