@@ -81,455 +81,77 @@ function Bullcommerce(props) {
                                 <QuickLook></QuickLook>
                             </div>
                             <Row className="heightRow">
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0012}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">
-                                                    {/* {props.products[0].name} */}
-                                                    Patio Arm Chair</CardTitle>
-                                            </a>
 
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">150 $</span>
-                                                </div>
+                                {/*פה צריך לעשות לולאה שתשלוף את פיצר פרודקט */}
+                                {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
+                                    <Col md="3" key={index}>
 
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224088"
-                                                >
-                                                    {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
-                                                    {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
-                                                    <Link to="/"><img alt="...."
-                                                        src={cart}></img></Link>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224088"
-                                                >
-                                                    To Cart
-                                                        </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224089"
-                                                    onClick={w3_open}
-                                                >
+                                        <Card className="card-product card-plain">
+                                            <div className="card-image Aheight">
+                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                    <img
+                                                        alt="..."
+                                                        src={ia006}
+                                                    ></img>
+                                                </a>
+                                            </div>
+                                            <CardBody>
+                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                    <CardTitle className="mt-2" tag="h4">
 
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
+                                                        {item.name}</CardTitle>
+                                                </a>
 
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224089"
-                                                >
-                                                    To View
-                                                        </UncontrolledTooltip>
+                                                <CardFooter>
+                                                    <div className="price-container">
+                                                        <span className="price">{item.price + " $"}</span>
+                                                    </div>
 
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0010}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Patio Arm Chair</CardTitle>
-                                            </a>
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">€ 879</span>
-                                                </div>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip44332731"
-                                                >
-                                                    <img alt="...."
-                                                        src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip44332731"
-                                                >
-                                                    To Cart
-                                                        </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip44332732"
-                                                    onClick={w3_close}
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="...."
-                                                                src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip44332732"
-                                                >
-                                                    To View
-                            </UncontrolledTooltip>
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia008}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Patio Arm Chair</CardTitle>
-                                            </a>
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">555 $</span>
-                                                </div>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip601285753"
-                                                >
-                                                    <img alt="..." src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip601285753"
-                                                >
-                                                    To Cart
-                            </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip601285753"
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="..." src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip601285753"
-                                                >
-                                                    To View
-                            </UncontrolledTooltip>
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0019}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Thom Sweeney</CardTitle>
-                                            </a>
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">€ 680</span>
-                                                </div>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip931109693"
-                                                >
-                                                    <img alt="..." src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip931109693"
-                                                >
-                                                    To Cart
-                            </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip931109693"
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="..." src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip931109693"
-                                                >
-                                                    To View
-                            </UncontrolledTooltip>
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0024}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Table</CardTitle>
-                                            </a>
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">€ 725</span>
-                                                </div>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip512086450"
-                                                >
-                                                    <img alt="..." src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip512086450"
-                                                >
-                                                    To Cart
-                            </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip512086450"
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="..." src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip512086450"
-                                                >
-                                                    To View
-                            </UncontrolledTooltip>
+                                                    <Button
+                                                        className="btn-neutral btn-icon btn-round pull-right"
+                                                        color="danger"
+                                                        data-placement="left"
+                                                        id="tooltip719224088"
+                                                    >
+                                                        {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
+                                                        {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
+                                                        <Link to="/"><img alt="...."
+                                                            src={cart}></img></Link>
+                                                    </Button>
+                                                    <UncontrolledTooltip
+                                                        delay={0}
+                                                        placement="left"
+                                                        target="tooltip719224088"
+                                                    >
+                                                        To Cart
+                                                  </UncontrolledTooltip>
+                                                    <Button
+                                                        className="btn-neutral btn-icon btn-round pull-right"
+                                                        color="danger"
+                                                        data-placement="left"
+                                                        id="tooltip719224089"
+                                                        onClick={w3_open}
+                                                    >
 
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0096}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Boglioli</CardTitle>
-                                            </a>
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">€ 699</span>
-                                                </div>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip867244968"
-                                                >
-                                                    <img alt="..." src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip867244968"
-                                                >
-                                                    To Cart
-                            </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="default"
-                                                    data-placement="left"
-                                                    id="tooltip867244968"
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="..." src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip867244968"
-                                                >
-                                                    To View
-                            </UncontrolledTooltip>
+                                                        <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia006}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Patio Arm Chair</CardTitle>
-                                            </a>
+                                                    </Button>
+                                                    <UncontrolledTooltip
+                                                        delay={0}
+                                                        placement="left"
+                                                        target="tooltip719224089"
+                                                    >
+                                                        To View
+                                                  </UncontrolledTooltip>
 
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">500 $</span>
-                                                </div>
+                                                </CardFooter>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
 
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224088"
-                                                >
-                                                    <img alt="...."
-                                                        src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224088"
-                                                >
-                                                    To Cart
-                                                        </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224089"
-                                                >
-                                                    <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
-                                                    {/* <img alt="...."
-                                                                src={eyeRegular}></img> */}
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224089"
-                                                >
-                                                    To View
-                                                        </UncontrolledTooltip>
 
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col md="3">
-                                    <Card className="card-product card-plain">
-                                        <div className="card-image Aheight">
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <img
-                                                    alt="..."
-                                                    src={ia0035}
-                                                ></img>
-                                            </a>
-                                        </div>
-                                        <CardBody>
-                                            <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                <CardTitle className="mt-2" tag="h4">Patio Arm Chair</CardTitle>
-                                            </a>
-
-                                            <CardFooter>
-                                                <div className="price-container">
-                                                    <span className="price">456 $</span>
-                                                </div>
-
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224088"
-                                                >
-                                                    <img alt="...."
-                                                        src={cart}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224088"
-                                                >
-                                                    To Cart
-                                                        </UncontrolledTooltip>
-                                                <Button
-                                                    className="btn-neutral btn-icon btn-round pull-right"
-                                                    color="danger"
-                                                    data-placement="left"
-                                                    id="tooltip719224089"
-                                                >
-                                                    <img alt="...."
-                                                        src={eyeRegular}></img>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                    delay={0}
-                                                    placement="left"
-                                                    target="tooltip719224089"
-                                                >
-                                                    To View
-                                                        </UncontrolledTooltip>
-
-                                            </CardFooter>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-
+                                )
+                                ) : <h1>אין מוצרים מקודמים</h1>}
 
                             </Row>
                         </Container>
@@ -549,7 +171,8 @@ export default connect(
             slideMin: state.filterReducer.minPrice,
             slideMax: state.filterReducer.maxPrice,
             products: state.productReducer.products,
-            categories: state.categoriesReducer.categories
+            categories: state.categoriesReducer.categories,
+            featuredProducts: state.productReducer.featuredProducts
         }
     },
     (dispatch) => {

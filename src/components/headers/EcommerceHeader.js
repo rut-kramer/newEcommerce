@@ -78,7 +78,7 @@ function EcommerceHeader(props) {
 
       src: "url(" + { img3 } + ")",
       // לא מצליחה לקרוא מהרידקס
-      // src={ props.homeStoreDesign.imageImage },
+      // src: props.homeStoreDesign.image,
 
       content: (
         <Row>
@@ -95,7 +95,7 @@ function EcommerceHeader(props) {
       caption: "",
     },
     {
-      src: "url(" + interior + ")",
+      src: "url( " + props.homeStoreDesign.image + ")",
       content: (
         <Row>
           <Col className="ml-auto mr-auto text-center" md="8">
@@ -111,7 +111,7 @@ function EcommerceHeader(props) {
       caption: "",
     },
     {
-      src: "url(" + bannerSection + ")",
+      src: "url(" + interior + ")",
       content: (
         <Row>
           <Col className="ml-auto mr-auto" md="8">
@@ -210,7 +210,7 @@ function EcommerceHeader(props) {
 const mapStateToProps = (state) => {
   return {
     objectFields: state.storeReducer.objectFields,
-    imageImage: state.storeHomeReducer.homeStoreDesign.imageImage
+    homeStoreDesign: state.storeHomeReducer.homeStoreDesign
   }
 }
 const mapDispatchToProps = (dispatch) => ({

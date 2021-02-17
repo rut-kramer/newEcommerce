@@ -42,7 +42,7 @@ function FilteredProducts(props) {
         const history = useHistory();
 
         React.useEffect(() => {
-
+                // if(props.)
                 let min = props.products[0].price, max = props.products[0].price;
                 props.products.forEach(product => {
                         if (product.price > max)

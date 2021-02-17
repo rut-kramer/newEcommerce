@@ -10,7 +10,7 @@ const initialState = {
     //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     homeStoreDesign: {
         //לתוכו נכניס את שם הקומפוננטה שאותה נטעין בקונפיגורטור לדוג לוגו
-        imageImage: bannerSection,
+        image: bannerSection,
         imageYorN: true,
         imageHeight: "",
         ImageCompanyName: "",
