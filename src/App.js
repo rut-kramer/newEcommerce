@@ -18,9 +18,6 @@ import Ecommerce from './components/store design/Ecommerce';
 import QuickLook from './components/store design/quickLook'
 import CategoryBullcommerceNew from './components/store design/categoryBullcommerceNew'
 
-
-import ProductPage from "./components/store design/product_page/productPage"
-
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";

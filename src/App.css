@@ -151,7 +151,7 @@ font-size: 0.800em !important;
   border-top: 5px solid red;
   text-align: center;
   bottom: 0;
-    position: fixed;
+  position: fixed;
 }
 .logo{
   height: 30px;

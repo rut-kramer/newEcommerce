@@ -17,6 +17,7 @@ function Configurator(props) {
                         switch (props.currentComponent) {
                             case "Home": return <Home />;
                             case "OpenStore": return <OpenStore />;
+                            default:
                         }
                     })() :
                         <h3>No component was selected!</h3>

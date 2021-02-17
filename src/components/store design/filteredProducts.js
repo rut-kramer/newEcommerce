@@ -42,8 +42,9 @@ function FilteredProducts(props) {
         const history = useHistory();
 
         React.useEffect(() => {
-                // if(props.)
-                let min = props.products[0].price, max = props.products[0].price;
+
+                let min = props.storeProducts[0].price,
+                        max = props.storeProducts[0].price;
                 props.products.forEach(product => {
                         if (product.price > max)
                                 max = product.price;
@@ -122,8 +123,6 @@ function FilteredProducts(props) {
                                                                 Price Range{" "}
 
                                                                 <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
-
-                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -363,7 +362,7 @@ export default connect(
                 return {
                         slideMin: state.filterReducer.minPrice,
                         slideMax: state.filterReducer.maxPrice,
-                        products: state.productReducer.products,
+                        storeProducts: state.productReducer.products,
                         categories: state.categoriesReducer.categories
                 }
         },

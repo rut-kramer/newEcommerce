@@ -32,7 +32,7 @@ function StorePerUser(props) {
               <div className="data__cell data__cell_xl">
                 <div className="data__main">
                   <div className="data__effect mobile-hide"><label className="switch">
-                    <input  style={{ backgroundColor:'black'} } className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
+                    <input style={{ backgroundColor: 'black' }} className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
                     <br></br>
                     <strong>מחק</strong>
                     <span className="switch__content">
@@ -72,7 +72,7 @@ export default connect(
     return {
       getStoreByUser: (id) => { dispatch(actions.getStoreByUser(id)) },
       setFilteredItems: (i) => { dispatch(actions.setFilteredItems(i)) },
-      setSoreCurrent: (i) => { ; dispatch(actions.setSaveAllDetailsStore(i)) },
+      setSoreCurrent: (i) => { ; dispatch(actions.setSaveAllStoreDetails(i)) },
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },

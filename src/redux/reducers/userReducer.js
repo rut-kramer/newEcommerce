@@ -44,15 +44,15 @@ const user = {
         state.hasStores = action.payload
     },
     setLastUpdatedUserStore(state, action) {
-         
+
         if (action.payload === null || action.payload === [] || action.payload.length === 0)
             state.hasStores = false;
         state.lastUpdatedUserStore = action.payload;
     },
     deleteOldStore(state, action) {
-         ;
-        state.storesOfUser = state.storesOfUser.filter(x => x._id != action.payload);    
-},
+        ;
+        state.storesOfUser = state.storesOfUser.filter(x => x._id !== action.payload);
+    },
 
 }
 

@@ -4,10 +4,10 @@ import { actions } from "../../redux/action"
 function StoreSettingsManagement(props) {
 
     useEffect(() => {
-        setDetailsStore(props.objectFields)
+        setStoreDetails(props.objectFields)
     }, [])
 
-    const [detailsStore, setDetailsStore] = useState({
+    const [storeDetails, setStoreDetails] = useState({
         storeName: "",
         urlRoute: "",
         storeDescription: "",
@@ -24,11 +24,11 @@ function StoreSettingsManagement(props) {
     });
 
     function changeStoreDetails(event) {
-        setAllDetailsStore(event.target.name, event.target.value)
+        setAllStoreDetails(event.target.name, event.target.value)
     }
-    function setAllDetailsStore(name, value) {
-        setDetailsStore({
-            ...detailsStore,
+    function setAllStoreDetails(name, value) {
+        setStoreDetails({
+            ...storeDetails,
             [name]: value
         }
         )
@@ -37,7 +37,7 @@ function StoreSettingsManagement(props) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                setAllDetailsStore("logo", reader.result)
+                setAllStoreDetails("logo", reader.result)
             }
             reader.readAsDataURL(event)
         }
@@ -45,7 +45,7 @@ function StoreSettingsManagement(props) {
 
 
     function funcSendValue(event) {
-        setAllDetailsStore("urlRoute", event.target.value)
+        setAllStoreDetails("urlRoute", event.target.value)
 
     }
 
@@ -54,12 +54,12 @@ function StoreSettingsManagement(props) {
         let hasSpace = str.indexOf(' ');
         if (hasSpace >= 0)
             str = str.replace(/\s/g, '_')
-        setAllDetailsStore("urlRoute", str)
+        setAllStoreDetails("urlRoute", str)
     }
     function saveForm(event) {
         alert("save changes!")
         event.preventDefault()
-        props.setSaveAllDetailsStore(detailsStore)
+        props.setSaveAllStoreDetails(storeDetails)
 
     }
 
@@ -72,7 +72,7 @@ function StoreSettingsManagement(props) {
                     <input id="a"
                         required
                         name="storeName"
-                        value={detailsStore.storeName ? detailsStore.storeName : ""}
+                        value={storeDetails.storeName ? storeDetails.storeName : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
@@ -80,7 +80,7 @@ function StoreSettingsManagement(props) {
                     <input
                         id="b"
                         name="storeDescription"
-                        value={detailsStore.storeDescription ? detailsStore.storeDescription : ""}
+                        value={storeDetails.storeDescription ? storeDetails.storeDescription : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
                     <label for="c">עדכן כתובת החנות</label><br></br>
@@ -88,7 +88,7 @@ function StoreSettingsManagement(props) {
                         id="c"
                         name="address"
                         required
-                        value={detailsStore.address ? detailsStore.address : ""}
+                        value={storeDetails.address ? storeDetails.address : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
@@ -97,7 +97,7 @@ function StoreSettingsManagement(props) {
                         required
                         id="d"
                         name="tel"
-                        value={detailsStore.tel ? detailsStore.tel : ""}
+                        value={storeDetails.tel ? storeDetails.tel : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
@@ -106,7 +106,7 @@ function StoreSettingsManagement(props) {
                         id="e"
                         name="email"
                         required
-                        value={detailsStore.email ? detailsStore.email : ""}
+                        value={storeDetails.email ? storeDetails.email : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
@@ -115,7 +115,7 @@ function StoreSettingsManagement(props) {
                         required
                         type="text"
                         id="f"
-                        value={detailsStore.urlRoute ? detailsStore.urlRoute : ""}
+                        value={storeDetails.urlRoute ? storeDetails.urlRoute : ""}
                         onBlur={convertSpacesToUnderlines}
                         onChange={funcSendValue}
 
@@ -124,7 +124,7 @@ function StoreSettingsManagement(props) {
                     <label for="g">עדכן צבע ראשי לחנות</label><br></br>
                     <input
                         id="g"
-                        value={detailsStore.colorDominates ? detailsStore.colorDominates : ""}
+                        value={storeDetails.colorDominates ? storeDetails.colorDominates : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
@@ -132,7 +132,7 @@ function StoreSettingsManagement(props) {
                     <input
                         id="h"
                         name="policy"
-                        value={detailsStore.policy ? detailsStore.policy : ""}
+                        value={storeDetails.policy ? storeDetails.policy : ""}
                         onChange={changeStoreDetails}
 
                     ></input><br></br>
@@ -140,7 +140,7 @@ function StoreSettingsManagement(props) {
 
                     <lable>בחר מטבע</lable>
                     <select
-                        onChange={e => setAllDetailsStore("currency", e.target.value)}
+                        onChange={e => setAllStoreDetails("currency", e.target.value)}
                     >
                         {props.coins.map((item, index) => (
                             <option key={index} value={item.name}>{item.name}:{item.country}</option>
@@ -151,7 +151,7 @@ function StoreSettingsManagement(props) {
                     <div>
                         <label for="j">עדכן לוגו של החנות
                 <img className="logoC" alt=""
-                                src={detailsStore.logo ? detailsStore.logo : ""}></img>
+                                src={storeDetails.logo ? storeDetails.logo : ""}></img>
                         </label>
                         <input
                             type={"file"}
@@ -175,7 +175,7 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setSaveAllDetailsStore: (e) => dispatch(actions.setSaveAllDetailsStore(e))
+    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(StoreSettingsManagement);
