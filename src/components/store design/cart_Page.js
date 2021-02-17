@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { actions } from '../redux/action';
+import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
-import cartReduser from '../redux/reducers/cartReduser';
+// import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
 import { Link } from 'react-router-dom';
 var y = 1
@@ -10,20 +10,19 @@ function CartPage(props) {
         const [cookies, setCookie] = useCookies(["order"]);
 
         useEffect(() => {
-                props.setUser(props.user._id);
-              props.setStore(props.storeCurrent)
-             var t=cookies.order;
-               if((y==1)&&(t!=null)){
-             props.setCart(t)
-            y=2
-        }  
-        },[]) 
-               window.addEventListener("beforeunload", (ev) => 
-        {
-               ev.preventDefault();
-            setCookie("order", props.cart, {
-                path: "/"
-              });
+                // props.setUser(props.user._id);
+                // props.setStore(props.currentStore)
+                let t = cookies.order;
+                if ((y === 1) && (t !== null)) {
+                        props.setCart(t)
+                        y = 2
+                }
+        }, [])
+        window.addEventListener("beforeunload", (ev) => {
+                ev.preventDefault();
+                setCookie("order", props.cart, {
+                        path: "/"
+                });
         });
 
         const funcSubmit = () => {
@@ -100,27 +99,13 @@ function CartPage(props) {
                 </>
         )
 }
- 
-export default connect(              
-    (state)=>{      
-            return { 
-                     cart:state.cartReduser.cart,
-                     user:state.userReducer.user,
-                     storeCurrent:state.storeByUser.currentStore,
-            }
-    },
-    (dispatch)=>{
-            return {
-                    pluseAmount:(i)=>{ dispatch(actions.pluseAmount(i))},
-                    clear:()=>{ dispatch(actions.clear())},
-                    minuseAmount:(i)=>{ ; dispatch(actions.minuseAmount(i))},
-                    remove:(i)=>{ ; dispatch(actions.remove(i))},
-                    setCart:(e) =>{ dispatch(actions.setOrder(e))},
-                    newOrder: (e) =>{ dispatch(actions.newOrder(e))},
-                    updateSetOrder: (e) =>{ dispatch(actions.updateSetOrder(e))},
-                    setTotalPrice:(e) =>{ dispatch(actions.setTotalPrice(e))},
-                    setUser:(e) =>{ dispatch(actions.setUserOrder(e))},
-                    setStore:(e) =>{ dispatch(actions.setStore(e))},
+
+export default connect(
+        (state) => {
+                return {
+                        cart: state.cartReducer.cart,
+                        user: state.userReducer.user,
+                        currentStore: state.storeReducer.currentStore,
                 }
         },
         (dispatch) => {
@@ -134,8 +119,22 @@ export default connect(
                         updateSetOrder: (e) => { dispatch(actions.updateSetOrder(e)) },
                         setTotalPrice: (e) => { dispatch(actions.setTotalPrice(e)) },
                         setUser: (e) => { dispatch(actions.setUserOrder(e)) },
+                        setStore: (e) => { dispatch(actions.setStore(e)) },
                 }
-        }
+        },
+        // (dispatch) => {
+        //         return {
+        //                 pluseAmount: (i) => { dispatch(actions.pluseAmount(i)) },
+        //                 clear: () => { dispatch(actions.clear()) },
+        //                 minuseAmount: (i) => { ; dispatch(actions.minuseAmount(i)) },
+        //                 remove: (i) => { ; dispatch(actions.remove(i)) },
+        //                 setCart: (e) => { dispatch(actions.setOrder(e)) },
+        //                 newOrder: (e) => { dispatch(actions.newOrder(e)) },
+        //                 updateSetOrder: (e) => { dispatch(actions.updateSetOrder(e)) },
+        //                 setTotalPrice: (e) => { dispatch(actions.setTotalPrice(e)) },
+        //                 setUser: (e) => { dispatch(actions.setUserOrder(e)) },
+        //         }
+        // }
 )(CartPage);
 
 

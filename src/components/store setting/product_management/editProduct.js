@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 
@@ -17,7 +17,7 @@ function EditProduct(props) {
   }
 
   const updateCategory = (event) => {
-    let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+    // let k = props.categoryList.filter(p => p.categoryName == event.target.value)
     //  setMyValues({
     //   ...props.currentProduct,
     //    category:k[0]._id

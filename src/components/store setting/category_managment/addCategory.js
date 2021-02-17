@@ -3,32 +3,31 @@ import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 
 function AddCategory(props) {
-  const [Master_category ,setMaster_category]= useState(props.categoryList)
+  const [masterCategory, setMasterCategory] = useState(props.categoryList)
   useEffect(() => {
-   let list=Master_category.filter(c=>c.masterCategory==null)
-setMaster_category(list)
-  },[])
+    let list = masterCategory.filter(c => c.masterCategory === null)
+    setMasterCategory(list)
+  }, [])
 
 
   const [myValues, setMyValues] = useState({
     categoryName: '',
     color: "#000000",
     //  image:'',
-     store:props.storeCurrent
+    store: props.storeCurrent
   });
 
   const updateCategory = (event) => {
     let k;
-if(event.target.value==="ללא קטגורית אב")
-k=null;
-else
-{
-   k=props.categoryList.filter(p=>p.categoryName==event.target.value)
-   k=k[0]._id
-  }
+    if (event.target.value === "ללא קטגורית אב")
+      k = null;
+    else {
+      k = props.categoryList.filter(p => p.categoryName === event.target.value)
+      k = k[0]._id
+    }
     setMyValues({
       ...myValues,
-      masterCategory:k
+      masterCategory: k
     });
   }
   const update = (event) => {
@@ -63,26 +62,26 @@ else
             </div>
           </div>
         </div>
-   </div>
-        <div className="form__row">
+      </div>
+      <div className="form__row">
         <div className="form__col">
-                    <div className="field form__field">
-                      <div className="field__label">קטגוריה אב</div>
-                        <select onChange={updateCategory} name="categoryName"  className="field__select">
-                      
-                      <option>ללא קטגורית אב</option>
-                      {Master_category.map((item, index) => (
-                        <option>{item.categoryName}</option>           
-                        ))}
-                      </select>
-                        <div className="field__icon"><i className="la la-angle-down "></i></div>
-                      </div>
-                    </div>
-                  </div>
+          <div className="field form__field">
+            <div className="field__label">קטגוריה אב</div>
+            <select onChange={updateCategory} name="categoryName" className="field__select">
+
+              <option>ללא קטגורית אב</option>
+              {masterCategory.map((item, index) => (
+                <option>{item.categoryName}</option>
+              ))}
+            </select>
+            <div className="field__icon"><i className="la la-angle-down "></i></div>
+          </div>
+        </div>
+      </div>
       <label>בחר צבע לקטגוריה</label><br></br>
-                <input type={"color"} name="color"  onChange={update}></input><br></br>
-                
-      <div className="form__foot"> 
+      <input type={"color"} name="color" onChange={update}></input><br></br>
+
+      <div className="form__foot">
         <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
       </div>
     </div>
@@ -92,12 +91,12 @@ export default connect(
   (state) => {
     return {
       categoryList: state.categoriesReducer.categories,
-      storeCurrent:state.storeReducer.objectFields._id,
+      storeCurrent: state.storeReducer.objectFields._id,
     }
   },
   (dispatch) => {
     return {
-      createNewCategory: (n) =>{ dispatch(actions.createNewCategory(n));},
+      createNewCategory: (n) => { dispatch(actions.createNewCategory(n)); },
     }
   }
 )(AddCategory);

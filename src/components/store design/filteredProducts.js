@@ -41,7 +41,8 @@ function FilteredProducts(props) {
 
         React.useEffect(() => {
 
-                let min = props.products[0].price, max = props.products[0].price;
+                let min = props.storeProducts[0].price,
+                        max = props.storeProducts[0].price;
                 props.products.forEach(product => {
                         if (product.price > max)
                                 max = product.price;
@@ -353,7 +354,7 @@ export default connect(
                 return {
                         slideMin: state.filterReducer.minPrice,
                         slideMax: state.filterReducer.maxPrice,
-                        products: state.productReducer.products,
+                        storeProducts: state.productReducer.products,
                         categories: state.categoriesReducer.categories
                 }
         },

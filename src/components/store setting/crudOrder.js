@@ -5,14 +5,14 @@ function CrudOrder(props) {
 
         return (
                 <>
-     
+
                 </>
         )
 }
 export default connect(
         (state) => {
                 return {
-                        orders: state.ordersReduser.orders
+                        orders: state.ordersReducer.orders
                 }
         },
         (dispatch) => {

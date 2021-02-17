@@ -16,5 +16,6 @@ function Wrap(props) {
             </main>
             <Configurator state={props} />
         </div >
-    )}
-    export default Wrap;
+    )
+}
+export default Wrap;

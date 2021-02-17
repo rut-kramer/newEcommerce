@@ -7,10 +7,10 @@ import { actions } from './../redux/action'
 function StorePerUser(props) {
 
     function funcReset(item) {
-        // props.setCategories(item.categories);
+        props.setCategories(item.categories);
         props.setAllOrders(item.orders);
         props.setCurrentStore(item);
-        // props.setProducts(item.storeProducts)
+        props.setProducts(item.storeProducts)
         props.setFilteredItems(item.storeProducts)
     }
 

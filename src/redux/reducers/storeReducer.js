@@ -3,14 +3,18 @@ import createReducer from "./reducerUtils";
 
 const initialState = {
     objectFields: {
-    }
+    },
+    currentStore: {}
 }
 
 const storeReducer = {
 
-    setSaveAllDetailsStore(state, action) {
+    setSaveAllStoreDetails(state, action) {
         state.objectFields = action.payload
-     },
+    },
+    setCurrentStore(state, action) {
+        state.currentStore = action.payload
+    }
 }
 
 export default produce((state, action) => createReducer(state, action, storeReducer), initialState);
