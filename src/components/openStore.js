@@ -121,7 +121,7 @@ function OpenStore(props) {
                     name="checkInventoryManagement"
                     type="checkbox"
                     checked={storeDetails.checkInventoryManagement}
-                    onChange={(e) => setAllDetailsStore("checkInventoryManagement", e.target.checked)}
+                    onChange={(e) => setAllStoreDetails("checkInventoryManagement", e.target.checked)}
                 />
                 <br></br>
                 <label for="myCheck">קניה חד מוצרית</label><br></br>
@@ -129,7 +129,7 @@ function OpenStore(props) {
                     name="checkoneProductPurchase"
                     type="checkbox"
                     checked={storeDetails.checkoneProductPurchase}
-                    onChange={(e) => setAllDetailsStore("checkoneProductPurchase", e.target.checked)}
+                    onChange={(e) => setAllStoreDetails("checkoneProductPurchase", e.target.checked)}
                 />
                 <br></br>
                 <br></br>
@@ -171,7 +171,6 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.storeReducer.objectFields,
         coins: state.coinsReducer.coins
     }
 }
