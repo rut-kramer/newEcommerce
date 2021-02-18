@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -109,8 +109,12 @@ function ScrollTransparentNavbar(props) {
                 </UncontrolledDropdown>
               ))}
             </Nav>
+
             <FontAwesomeIcon className="mt-2 ml-5" icon={['fas', 'search']}></FontAwesomeIcon>
-            <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+            <Link to={"/" + props.objectFields.storeName + "/cart"}>
+              <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+            </Link>
+
           </Collapse>
         </Container>
       </Navbar>

@@ -53,7 +53,7 @@ import ia0010 from "../../assets/img/xd/ia_300000010.png";
 import ia008 from "../../assets/img/xd/ia_300000008.png";
 import cart from "../../assets/img/xd/cart.svg"
 
-function Ecommerce(props) {
+function CategoryBullcommerce(props) {
 
   React.useEffect(() => {
 
@@ -77,12 +77,12 @@ function Ecommerce(props) {
           <div className="section">
             <Container>
               {/* <h2 className="section-title">Find what you need</h2> */}
-              <h2 className="titleCategory">fffff</h2>
+              <h2 className="section-title titleCategory">fffff</h2>
               <Row>
                 <Col md="3">
                   <div className="collapse-panel">
                     {/*קומפוננטת סינון המוצרים*/}
-                    {/* <FilteredProducts></FilteredProducts> */}
+                    <FilteredProducts></FilteredProducts>
                   </div>
                 </Col>
                 <Col md="9">
@@ -114,18 +114,39 @@ function Ecommerce(props) {
                               color="danger"
                               data-placement="left"
                               id="tooltip719224088"
+                              onClick={() => props.addToCart(
+                                {
+                                  "product": {
+                                    "amount": 4,
+                                    "price": 450,
+                                    "images": [],
+                                    "attributes": [
+                                      "6021297fb7ce77e4d5b3e8cf"
+                                    ],
+                                    "featured": false,
+                                    "_id": "602babe3c8336e62cd3d5f2e",
+                                    "name": "Simcha dress",
+                                    "description": "to wedding",
+                                    "SKU": "7786754614",
+                                    "category": "601bec7cbf7ea1c3829cd18b",
+                                    "store": "6012b0300718f71a8fa25df5",
+                                  },
+                                  "amount": 1
+                                }
+                              )}
+
                             >
                               {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                               {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
-                              <Link to="/"><img alt="...."
-                                src={cart}></img></Link>
+                              <img alt="...."
+                                src={cart}></img>
                             </Button>
                             <UncontrolledTooltip
                               delay={0}
                               placement="left"
                               target="tooltip719224088"
                             >
-                              To Cart
+                              Add To Cart
                                                         </UncontrolledTooltip>
                             <Button
                               className="btn-neutral btn-icon btn-round pull-right"
@@ -178,9 +199,11 @@ export default connect(
       filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
       setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
       setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
+      addToCart: (product) => { dispatch(actions.addToCart(product)) }
+
     }
   }
-)(Ecommerce);
+)(CategoryBullcommerce);
 
 
 

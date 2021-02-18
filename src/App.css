@@ -10,6 +10,13 @@
 .eye{
   color: #707070;
 }
+/* הידר תמונת פתיחה */
+.arrowIcon{
+  color:black;
+  height: 40px;
+  width:40px
+
+}
 /* //מבט מהיר */
 .sideBar{
   display: block;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Bullcommerce from '../store design/bullcommerce';
 import CategoryByFilter from '../store design/category_page/categoryByFilter'
-
+import CategoryBullcommerce from "../store design/categoryBullcommerceNew"
 import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
@@ -14,7 +14,8 @@ import { Container } from 'reactstrap';
 function Content(props) {
     function Temporary() {
         return <div className="container-fluid">
-            <Bullcommerce></Bullcommerce>
+            {/* <Bullcommerce></Bullcommerce> */}
+            <CategoryBullcommerce></CategoryBullcommerce>
         </div>
 
     }
@@ -22,7 +23,6 @@ function Content(props) {
     return (
         <div className="Content">
             <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
-            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>
             {/* //זה אמור להיות שם מוצר דינאמי Saint_Laurent */}
             <Link to={"/" + props.objectFields.urlRoute + "/productPage/Saint_Laurent"}>product page</Link>
             <Switch>

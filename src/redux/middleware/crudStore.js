@@ -57,7 +57,27 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 success: function (data) {
                     dispatch(actions.setSaveAllStoreDetails(data));
                     resolve(data)
+
+
+                    console.log(data)
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "DefaultCategory1",
+                        "color": "red", "masterCategory": null
+                    }))
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "DefaultCategory2",
+                        "color": "green", "masterCategory": null
+                    }))
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "DefaultCategory3",
+                        "color": "blue", "masterCategory": null
+                    }))
                 },
+
+
                 error: function (err) {
                     reject(err)
                 }

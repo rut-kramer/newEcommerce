@@ -40,17 +40,17 @@ function FilteredProducts(props) {
         };
 
         const history = useHistory();
-
         React.useEffect(() => {
 
-                let min = props.storeProducts[0].price,
-                        max = props.storeProducts[0].price;
-                props.products.forEach(product => {
-                        if (product.price > max)
-                                max = product.price;
-                        if (product.price < min)
-                                min = product.price;
-                });
+
+                // let min = props.storeProducts[0].price,
+                //         max = props.storeProducts[0].price;
+                // props.products.forEach(product => {
+                //         if (product.price > max)
+                //                 max = product.price;
+                //         if (product.price < min)
+                //                 min = product.price;
+                // });
 
                 if (
                         !document.getElementById("sliderRefine").classList.contains("noUi-target")
@@ -135,8 +135,8 @@ function FilteredProducts(props) {
                                                                 €{props.slideMin}
                                                         </span>
                                                         <span
-                                                                className="price-right pull-right"
-                                                                id="price-right"
+                                                        // className="price-right pull-right"
+                                                        // id="price-right"
                                                         >
                                                                 €{props.slideMax}
                                                         </span>
