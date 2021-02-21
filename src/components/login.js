@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "../assets/img/now-logo.png";
 import background from "../assets/img/login.jpg";
 import googleIcon from "../assets/img/google.png";
@@ -33,10 +33,10 @@ function LoginPage(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
-
-    const [firstFocus, setFirstFocus] = React.useState(false);
-    const [lastFocus, setLastFocus] = React.useState(false);
-    React.useEffect(() => {
+    
+    const [firstFocus, setFirstFocus] = useState(false);
+    const [lastFocus, setLastFocus] = useState(false);
+    useEffect(() => {
         document.body.classList.add("login-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
@@ -47,35 +47,56 @@ function LoginPage(props) {
             document.body.classList.remove("sidebar-collapse");
         };
     }, []);
-
+    
     const onChangeEmail = (e) => {
         setEmail(e.target.value)
     }
-
+    
     const onChangePassword = (e) => {
         setPassword(e.target.value)
     }
-
+    
     const onChangeUsername = (e) => {
         props.setUsername(e.target.value)
     }
-
-
+    
+    
     const onSubmitForm = (e) => {
         e.preventDefault()
         signInWithEmailAndPassword(email, password);
     }
-
-    function AfterLogin() {
+    
+    function AfterLogin({props}) {
         const [, setCookie] = useCookies(["jwt"]);
-        setCookie("jwt", props.user.tokenFromCookies, {
-            path: "/"
-        })
-        return <Redirect to={"/home"} />
+        // const [toLoad, setToLoad] = useState(false);
+        useEffect(() => {
+                setCookie("jwt", props.user.tokenFromCookies, {
+                        path: "/"
+                    })
+                    props.getLastUpdatedStore(props.user._id);
+                }, []);
+                // useEffect(() => {
+                //         setToLoad(true);
+                //     }, [props.lastUpdatedUserStore]);
+                    
+
+        return props.isUpdate?<Redirect to={"/"+props.lastUpdatedUserStore[0].storeName} />: 
+    <div className="page-header header-filter" filter-color="blue">
+        <div
+            className="page-header-image"
+            style={{
+                backgroundImage: "url(" + background + ")",
+            }}
+        ></div>
+        <div className="content" style={{ margin: 0 }}>
+        <h3> ...טוען</h3>
+        </div>
+    </div>
+
     }
 
     return (
-        !!props.user._id ? (<AfterLogin></AfterLogin>) :
+        !!props.user._id ?  <AfterLogin props={props}/> :
             (
                 <>
                     <div className="page-header header-filter" filter-color="blue">
@@ -224,12 +245,15 @@ function LoginPage(props) {
 export default connect(
     (state) => {
         return {
-            user: state.userReducer.user
+            user: state.userReducer.user,
+            lastUpdatedUserStore: state.userReducer.lastUpdatedUserStore,           
+            isUpdate: state.userReducer.isUpdate            
         }
     },
     (dispatch) => {
         return {
-            setUsername: (e) => dispatch(actions.setUsername(e))
+            setUsername: (e) => dispatch(actions.setUsername(e)),
+            getLastUpdatedStore: (e) => dispatch(actions.lastUpdatedStore(e))
         }
     }
 
