@@ -116,7 +116,7 @@ function OpenStore(props) {
                     name="policy"
                     onChange={changeStoreDetails}
                 ></input><br></br>
-                <label for="myCheck">ניהול מלאי</label><br></br>
+                <label htmlFor="myCheck">ניהול מלאי</label><br></br>
                 <input id="myCheck"
                     name="checkInventoryManagement"
                     type="checkbox"
@@ -124,7 +124,7 @@ function OpenStore(props) {
                     onChange={(e) => setAllStoreDetails("checkInventoryManagement", e.target.checked)}
                 />
                 <br></br>
-                <label for="myCheck">קניה חד מוצרית</label><br></br>
+                <label htmlFor="myCheck">קניה חד מוצרית</label><br></br>
                 <input id="myCheck"
                     name="checkoneProductPurchase"
                     type="checkbox"

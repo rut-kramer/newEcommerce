@@ -62,7 +62,7 @@ function Bullcommerce(props) {
                     <div className="section">
                         <Container>
                             <div className="w3-sidebar w3-bar-block w3-border-right" style={{ display: "none" }} id="mySidebar">
-                                <button onclick={w3_close} className="w3-bar-item w3-large">Close &times;</button>
+                                <button onClick={w3_close} className="w3-bar-item w3-large">Close &times;</button>
                                 <QuickLook></QuickLook>
                             </div>
                             <Row className="heightRow">
