@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { actions } from '../action';
 import axios from 'axios';
 
@@ -26,12 +25,12 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                         "content": action.payload.content,
                         "design": action.payload.design
                 });
-                var requestOptions = {
-                        method: 'POST',
-                        headers: myHeaders,
-                        body: raw,
-                        redirect: 'follow'
-                };
+                // var requestOptions = {
+                //         method: 'POST',
+                //         headers: myHeaders,
+                //         body: raw,
+                //         redirect: 'follow'
+                // };
                 axios({
                         method: 'post',
                         url: 'https://community.leader.codes/api/papers/newPaper',

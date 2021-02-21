@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
@@ -10,25 +10,25 @@ import ProductsGrid from './productsGrid'
 
 function CrudProducts(props) {
 
-        const [file, setFile] = useState()
+        // const [file, setFile] = useState()
 
         let i = 0;
 
-        const onChangeHandlerImage = (event, thiss) => {
+        // const onChangeHandlerImage = (event, thiss) => {
 
-                if (event) {
-                        let reader = new FileReader();
-                        reader.onloadend = () => {
-                                 ;
-                                props.changeProductImage(0, reader.result)
+        //         if (event) {
+        //                 let reader = new FileReader();
+        //                 reader.onloadend = () => {
+        //                          ;
+        //                         props.changeProductImage(0, reader.result)
                                
 
-                        }
-                        reader.readAsDataURL(event)
-                }
-                props.setSearchReasult(props.products);
+        //                 }
+        //                 reader.readAsDataURL(event)
+        //         }
+        //         props.setSearchReasult(props.products);
 
-        }
+        // }
 
         // const onChangeHandlerImage2 = (e) => {
 
@@ -50,25 +50,25 @@ function CrudProducts(props) {
         //         // }
         // }
 
-        let [pageNum, setNum] = useState(2)
-         let items= props.products
+        // let [pageNum, setNum] = useState(2)
+        //  let items= props.products
        // let [items, setMyItems] = useState(props.filteredProducts)
-        function changePageNum(num)
-         {
-                  ;
-                 setNum(num);        
-                 let p1=(pageNum - 1) * 6;
-                 let p2=pageNum * 6 - 1;
-                items=items.slice(p1, p2)
-        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
-                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
-        // setMyItems({
-        //         ...items,
-        //       list
-        //       });
+       
+//        function changePageNum(num)
+//         {
+//                  ;
+//                 setNum(num);        
+//                 let p1=(pageNum - 1) * 6;
+//                 let p2=pageNum * 6 - 1;
+//                items=items.slice(p1, p2)
+//        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
+//                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
+//        // setMyItems({
+//        //         ...items,
+//        //       list
+//        //       });
 
-        }
-        
+//        }
         return (
                 <>
                         <div className="page">
@@ -95,7 +95,7 @@ function CrudProducts(props) {
                                                         <div className="panel__body">
                                                                 {props.viewLOrGrid === "list" ? <ProductsList /> : <ProductsGrid />}
                                                                 <div className="panel__foot">
-                                                                        <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
+                                                                <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
                                                                                 <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
                                                                         </div>
                                                                 </div>

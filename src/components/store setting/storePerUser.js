@@ -18,8 +18,11 @@ function StorePerUser(props) {
     else
       alert('מזל שהתחרטת...')
   }
-  useEffect(async () => {
-    await props.getStoreByUser(props.user._id);
+  useEffect(() => {
+    async function fetchData() {
+      await props.getStoreByUser(props.user._id);
+    }
+    fetchData();
   }, [])
   return (
     <>

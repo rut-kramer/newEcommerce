@@ -2,8 +2,6 @@ import createReducer from '../reducerUtils'
 import produce from 'immer';
 //img xd
 import bannerSection from "../../../assets/img/xd/BannerSection.png";
-import interior from "../../../assets/img/xd/interior-with-white-sofa@2x.png";
-import img3 from "../../../assets/img/xd/ia_300000045.png"
 
 
 const initialState = {

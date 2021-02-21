@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from 'react' 
+import React, { useState} from 'react' 
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 
@@ -21,7 +21,7 @@ import { actions } from '../../../redux/action'
         });
 
         const updateCategory = (event) => {
-          let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+          let k=props.categoryList.filter(p=>p.categoryName===event.target.value)
            setMyValues({
              ...myValues,
              category:k[0]._id
@@ -39,7 +39,7 @@ import { actions } from '../../../redux/action'
          }); }
      
     const Submit = ()=>{
-       if(myValues.category!="")
+       if(myValues.category!=='')
        {
         props.createNewProduct(myValues); 
       } 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
@@ -147,7 +147,7 @@ function ProductsList(props) {
                                 </div>
                         </div>)
         }
-        function Data_Main({ item, index }) {
+        function DataMain({ item, index }) {
                 return (
                         <div className="data__main">
                                 <div className="data__effect mobile-hide"><label className="switch">
@@ -201,7 +201,7 @@ function ProductsList(props) {
                                                                         <div className="data__item" key={index}>
                                                                                 <div className="data__row" >
                                                                                         <div className="data__cell data__cell_xl">
-                                                                                                <Data_Main item={item} index={index}></Data_Main>
+                                                                                                <DataMain item={item} index={index}></DataMain>
                                                                                         </div>
                                                                                         <div className="data__cell mobile-hide">
                                                                                                 <div className="data__content">{item.description}</div>

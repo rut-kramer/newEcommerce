@@ -8,7 +8,7 @@ import { actions } from '../../../redux/action'
   useEffect(() => {
    let list=Master_category.filter(c=>c.masterCategory==null)
 setMaster_category(list)
-  },[])
+  }, [])
 
 
     const [myValues ,setMyValues]= useState({
@@ -23,7 +23,7 @@ setMaster_category(list)
          k=null
          else
          {
-            k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+            k=props.categoryList.filter(p=>p.categoryName===event.target.value)
             k=k[0]._id
            }
            setMyValues({

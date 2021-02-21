@@ -9,7 +9,6 @@ import AdminCurd from '../store setting/admin'
 import Cart from '../store design/cart';
 
 import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
 
 function Content(props) {
     function Temporary() {
