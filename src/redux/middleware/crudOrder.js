@@ -11,8 +11,11 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
             headers: myHeaders,
             body: raw,
             redirect: 'follow'
-        };        fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
+        };     
+          fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
             .then(createOrder => {
+                alert("הזמנתך נקלטה במערכת")
+
             })
             .catch(error => console.log('error', error));}
     return next(action);

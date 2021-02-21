@@ -26,10 +26,12 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
             success: function (data) {
                 dispatch(actions.addNewCategory(data));
                 resolve(data)
+                alert("הקטגוריה נוצרה בהצלחה")
             },
             error: function (err) {
                 console.log(err)
                 reject(err)
+                 alert("הוספת הקטגוריה נכשלה")
             } });}
     return next(action);
 })};
@@ -38,25 +40,30 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
         axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
             .then(res => {
                 dispatch(actions.deleteOldCategory(action.payload))
-            }).catch(console.log("error"))}
+                alert("הקטגוריה נמחקה בהצלחה")
+                
+              
+                }).catch(()=>{console.log("error");   alert("מחיקת הקטגוריה נכשלה")})}
     return next(action);
 };
 //14
 export const editCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_CATEGORY') {
-        var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
+        var raw = JSON.stringify({ categoryName: action.payload.categoryName,masterCategory: action.payload.masterCategory, color: action.payload.color });
         $.ajax({
-            url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
+            url: `https://community.leader.codes/api/categories/editCategoty/${action.payload._id}`,
             method: "post",
             dataType: "json",
             contentType: "application/json",
             data: raw,
             success: function (data) {
               dispatch(actions.editOldCategory(data))
+              alert("הקטגוריה התעדכנה בהצלחה")
             },
-
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+                alert("עדכון הקטגוריה נכשל")
+
             }
         });
     };

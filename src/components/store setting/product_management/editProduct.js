@@ -17,7 +17,7 @@ import { actions } from '../../../redux/action'
 
       const updateCategory = (event) => {
         let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
-         setMyValues({
+        props.setCurrentProduct({
           ...props.currentProduct,
            category:k[0]._id
          });
@@ -25,6 +25,14 @@ import { actions } from '../../../redux/action'
 
     const Submit = ()=>{
         props.editproduct(props.currentProduct);  
+    }
+    function  removeAttr(item) {
+      let att=props.currentProduct.attributes
+      att=att.filter(p=>p!=item)
+      props.setCurrentProduct({
+       ...props.currentProduct,
+       attributes:att
+     });
     }
   return (
     <div className="form form_create">
@@ -54,7 +62,7 @@ import { actions } from '../../../redux/action'
           <div className="field form__field">
             <div className="field__label">מק"ט</div>
             <div className="field__wrap">
-              <input className="field__input" type="text" name="sku" id="sku-in" onChange={update} value={props.currentProduct.sku} placeholder="Start typing…" />
+              <input className="field__input" type="text" name="sku" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="Start typing…" />
               <div className="field__icon"><i className="la la-truck-loading "></i></div>
             </div>
           </div>
@@ -100,11 +108,25 @@ import { actions } from '../../../redux/action'
                       <div className="field__label">?מוצר מקודם</div>
                     <br></br>
                       <div className="field__wrap">
-                      <input type="checkbox" onClick={update}  name="featured"></input>
+                      <input type="checkbox" onClick={update} checked={props.currentProduct.featured}  name="featured"></input>
                         <div className="field__icon"><i className="la la-wallet "></i></div>
                       </div>
                     </div>
                   </div>
+                  <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">תכונות המוצר</div>
+                    <br></br>
+                      <div className="field__wrap">
+                      {props.currentProduct.attributes&&props.currentProduct.attributes.map((item, index) => (
+                       item&& <div><button onClick={()=>removeAttr(item)}>-</button><strong>{item.name}</strong> </div>         
+                        ))}
+                        {/*    */}
+                        <div className="field__icon"><i className="la la-wallet "></i></div>
+                      </div>
+                    </div>
+                  </div>
+                  
                   </div>
               
       <div className="form__foot">

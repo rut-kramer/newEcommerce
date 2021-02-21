@@ -7,6 +7,7 @@ import CrudProducts from './product_management/crudProducts'
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
 import StorePerUser from './storePerUser'
+import CrudAttributes from './attribute_management/crudAttribute'
 
 function Admin(props) {
 
@@ -31,6 +32,7 @@ function Admin(props) {
   <button className="tablinks" onClick={()=>{openCity(event, 'Categories')}}>Categories</button>
   <button className="tablinks" onClick={()=>{openCity(event, 'Orders')}}>Orders</button>
   <button className="tablinks" onClick={()=>{openCity(event, 'Product')}}>Product</button>
+  <button className="tablinks" onClick={()=>{openCity(event, 'Attributes')}}>Attributes</button>
   <button className="tablinks" onClick={()=>{openCity(event, 'StoreSettingsManagement')}}>Store Settings</button>
   <button className="tablinks" onClick={()=>{openCity(event, 'StorePerUser')}}>your Store</button>
 </div>
@@ -52,6 +54,9 @@ function Admin(props) {
 </div>
 <div id="StorePerUser" className="tabcontent">
 <StorePerUser></StorePerUser>
+</div>
+<div id="Attributes" className="tabcontent">
+<CrudAttributes></CrudAttributes>
 </div>
 
 

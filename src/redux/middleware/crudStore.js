@@ -45,7 +45,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             "currency": action.payload.store.currency,
             "policy": action.payload.store.policy,
         });
-
+       
         $.ajax({
             url: "https://community.leader.codes/api/stores/newStore",
             method: "post",
@@ -55,6 +55,16 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             success: function (data) {
                  dispatch(actions.setSaveAllDetailsStore(data));
                 resolve(data)
+                console.log(data)
+                dispatch(actions.createNewCategory({"store":data._id, 
+                "categoryName": "DefaultCategory1", 
+                "color":"red" ,"masterCategory":null}))
+                dispatch(actions.createNewCategory({"store":data._id, 
+                "categoryName": "DefaultCategory2", 
+                "color":"green" ,"masterCategory":null}))
+                dispatch(actions.createNewCategory({"store":data._id, 
+                "categoryName": "DefaultCategory3", 
+                "color":"blue" ,"masterCategory":null}))
             },
             error: function (err) {
                 reject(err)
