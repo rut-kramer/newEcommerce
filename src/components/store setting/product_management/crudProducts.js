@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-//  import './crudProducts.css';
+  import './crudProducts.css';
 //בכדי לראות את הטבלה מסודרת צריך להוריד את ההערה
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';

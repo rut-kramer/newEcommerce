@@ -14,41 +14,62 @@ import axios from 'axios';
 //     return next(action);
 // };
 //8
+
 export const createNewPaper = ({ dispatch, getState }) => next => action => {
-        if (action.type === 'CREATE_NEW_PAPER') {
-                var myHeaders = new Headers();
-                myHeaders.append("Content-Type", "application/json");
-                var raw = JSON.stringify({
-                        "name": action.payload.name,
-                        "description": action.payload.description,
-                        "store": getState().storeReducer.currentStore,
-                        "title": action.payload.title,
-                        "content": action.payload.content,
-                        "design": action.payload.design
+        return new Promise((resolve, reject) => {
+            if (action.type === 'CREATE_NEW_PAPER') {
+                var raw = JSON.stringify(action.payload);
+                $.ajax({
+                    url: "https://community.leader.codes/api/papers/newPaper",
+                    method: "post",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: raw,
+                    success: function (data) {
+                        dispatch(actions.setPaper(data));
+                        resolve(data)
+                    },
+                    error: function (err) {
+                        reject(err)
+                    }
                 });
-                var requestOptions = {
-                        method: 'POST',
-                        headers: myHeaders,
-                        body: raw,
-                        redirect: 'follow'
-                };
-                axios({
-                        method: 'post',
-                        url: 'https://community.leader.codes/api/papers/newPaper',
-                        data: {
-                                raw
-                        }
-                })
-                        // axios.post("https://community.leader.codes/api/papers/newPaper", raw)
-                        .then(newPaper => {
-                                dispatch(actions.setPaper(newPaper.paper));
-                        })
-                        .catch(error => {
-                                console.log('error', error)
-                        });
-        }
-        return next(action);
-};
+            }
+            return next(action);
+        })
+    };
+
+
+
+
+// export const createNewPaper = ({ dispatch, getState }) => next => action => {
+//         if (action.type === 'CREATE_NEW_PAPER') {
+//                 var myHeaders = new Headers();
+//                 myHeaders.append("Content-Type", "application/json");
+//                 var raw = JSON.stringify(action.payload);
+//                 var requestOptions = {
+//                         method: 'POST',
+//                         headers: myHeaders,
+//                         body: raw,
+//                         redirect: 'follow'
+//                 };
+//                 console.log(raw)
+//                 axios({
+//                         method: 'post',
+//                         url: 'https://community.leader.codes/api/papers/newPaper',
+//                         data: {
+//                                 raw
+//                         }
+//                 })
+//                         // axios.post("https://community.leader.codes/api/papers/newPaper", raw)
+//                         .then(newPaper => {
+//                                 dispatch(actions.setPaper(newPaper.paper));
+//                         })
+//                         .catch(error => {
+//                                 console.log('error', error)
+//                         });
+//         }
+//         return next(action);
+// };
 // export const deleteCategory = ({ dispatch, getState }) => next => action => {
 //         if (action.type === 'DELETE_CATEGORY') {
 //                 axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
