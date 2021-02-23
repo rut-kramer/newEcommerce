@@ -5,23 +5,6 @@ import { actions } from "../../../redux/action"
 
 function CreateNewPaper(props) {
 
-        // const [paper, setPaper] = useState({
-        //         name: "",
-        //         description: "",
-        //         title: "",
-        //         content: "",
-        //         design: "" ,
-        //         store:props.currentStore
-
-        // });
-        // const update = (event) => {
-        //         setPaper({
-        //            ...paper,
-        //            [event.target.name]:event.target.value
-        //        }); }
-           
-
-
         // const saveForm = (e) => {
         //         e.preventDefault();
         //         props.newPaper(paper);
@@ -47,13 +30,6 @@ function CreateNewPaper(props) {
                                 placeholder={"Write your content..."}
                                 onChange={props.setQuillDescription}
                         ></textarea><br></br>
-                                     {/* <label for="b">title:</label><br></br>
-                        <textarea
-                                id="b"
-                                name="title"
-                                placeholder={"Write your content..."}
-                                onChange={update}
-                        ></textarea><br></br> */}
                         
                         <label for="b">content:</label><br></br>
                         <textarea
@@ -61,16 +37,7 @@ function CreateNewPaper(props) {
                                 name="content"
                                 placeholder={"Write your content..."}
                                 onChange={props.setQuillStyle}
-                        ></textarea><br></br>
-                                                       
-                          {/* <label for="b">design:</label><br></br>
-                        <textarea
-                                id="b"
-                                name="design"
-                                placeholder={"Write your content..."}
-                                onChange={update}
-                        ></textarea><br></br>
-                        <input type="submit" value="Save your paper"></input> */}
+                        ></textarea><br></br>                                           
 
                 </form>
 <Link to="/paper">           to design the paper</Link>
@@ -88,7 +55,7 @@ export default connect(
                 return {
                         // newPaper: (paper) => { dispatch(actions.createNewPaper(paper)) }
                         setQuillDescription :(d) => { dispatch(actions.setQuillDescription(d)) },
-                        setQuillStyle:(d) => { dispatch(actions.setQuillStyle(d)) },
+                        setQuillStyle:(d) => { dispatch(actions.setQuillStyleFromInput(d)) },
                         setQuillName:(d) => {debugger; dispatch(actions.setQuillName(d)) }
                 }
         }

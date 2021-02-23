@@ -15,13 +15,13 @@ function  show() {
 }
 
 function  submit() {
-        
+ props.newPaper(props.quote);   
 }
 
 
 
     return (<>
-          {/* <h1> ערוך את דף {props.quote.name}</h1> */}
+          <h1> ערוך את דף {props.quote.name}</h1>
       <br></br>
       <br></br>
       <br></br>         
@@ -29,7 +29,7 @@ function  submit() {
       <br></br>
       <br></br>   
             <Editor></Editor>
-           {/* {props.quillStyle} */}
+           {props.quote.quillStyle}
  <div style={{ border: '1px solid',width:'70%',height:'50%'}} id="id"></div>
  <button onClick={show}>show</button>
  <button onClick={submit}>submit</button>
@@ -46,7 +46,9 @@ function  submit() {
             },
             (dispatch) => {
                     return {
-                        changeQuillStyle: (q) =>  {dispatch(actions.setQuillStyle(q))},                   
+                        changeQuillStyle: (q) =>  {dispatch(actions.setQuillStyle(q))},    
+                         newPaper: (paper) => { dispatch(actions.createNewPaper(paper)) }
+
                     }
             }
     )(PaperShow);

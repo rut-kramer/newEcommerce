@@ -4,21 +4,29 @@ import axios from 'axios';
 
 
 //4
-// export const getAllCategories = ({ dispatch, getState }) => next => action => {
-//     if (action.type === 'GET_ALL_CATEGORIES') {
-//         axios.get('https://community.leader.codes/api/categories')
-//             .then(res => {
-//                 dispatch(actions.setCategories(res.data))
-//             }).catch(err => console.log("errrrrrrr", err));
-//     }
-//     return next(action);
-// };
+export const getAllPaper = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_ALL_PAPER') {
+         axios.get('https://community.leader.codes/api/papers/getAllPapersOfStore/'+action.payload)
+            .then(res => {
+                 dispatch(actions.setPapers(res.data))
+            }).catch(err => console.log("errrrrrrr", err));
+    }
+    return next(action);
+};
 //8
 
 export const createNewPaper = ({ dispatch, getState }) => next => action => {
         return new Promise((resolve, reject) => {
             if (action.type === 'CREATE_NEW_PAPER') {
-                var raw = JSON.stringify(action.payload);
+                var raw = JSON.stringify(
+                    {
+                    name:action.payload.name,
+                    description: action.payload.description,
+                    //TODO
+                    store:"6016c8f6686b0fad932aa57d",
+                    quillStyle:action.payload.quillStyle,                   
+                   
+                    });
                 $.ajax({
                     url: "https://community.leader.codes/api/papers/newPaper",
                     method: "post",
@@ -26,7 +34,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                     contentType: "application/json",
                     data: raw,
                     success: function (data) {
-                        dispatch(actions.setPaper(data));
+                        // dispatch(actions.setPaper(data));
                         resolve(data)
                     },
                     error: function (err) {
