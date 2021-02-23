@@ -23,12 +23,13 @@ import filterReducer from "./reducers/filterReducer";
 import wrapReducer from "./reducers/wrapReducer";
 import { addToCart, changeProductAmount } from "./middleware/crudCart"
 import { actions } from './action';
+import quillReducer from './reducers/data_reducer/quillReducer';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
-        coinsReducer, storeReducer, wrapReducer, filterReducer, paperReducer
+        coinsReducer, storeReducer, wrapReducer, filterReducer, paperReducer,quillReducer
     })
 
 const store = createStore(

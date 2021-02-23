@@ -17,6 +17,7 @@ import Wrap from './components/wrap/wrap';
 import Ecommerce from './components/store design/Ecommerce';
 import QuickLook from './components/store design/quickLook'
 import CategoryBullcommerceNew from './components/store design/categoryBullcommerceNew'
+import PaperShow  from './components/store setting/paper_managment/paperShow'
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -57,6 +58,10 @@ function App() {
             <Route exact path="/admin/category/edit">
               <EditCategory />
             </Route>
+            <Route exact path="/paper">
+            <PaperShow></PaperShow>
+            </Route>
+         
 
             <Route path="/login">
               <Login />

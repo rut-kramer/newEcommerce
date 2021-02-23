@@ -8,7 +8,7 @@ const initialState = {
 
 const paper = {
         setPaper(state, action) {
-                state.paper = action.payload;
+                state.paper = action.payload.paper;
         }
 
 }
