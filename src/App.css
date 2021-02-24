@@ -164,6 +164,9 @@ font-size: 0.800em !important;
   max-width: 1244px;
 }
 
+.outFooter{
+  margin-bottom: 21px;
+}
 /* .center {
   padding: 0 32px;
 } */
