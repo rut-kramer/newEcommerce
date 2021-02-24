@@ -29,7 +29,17 @@ setQuillDescription(state, action) {
 },
 setPapers(state, action) {
     state.papers = action.payload;
+},
+setQuote(state, action) {
+    state.quote = action.payload;
+},
+deleteOldPaper(state, action) {
+    debugger;
+    state.papers = state.papers.filter(x => x._id !== action.payload);
+},
+editOldPaper(state, action) {
+    state.papers = state.papers.filter(x => x._id !== action.payload._id);
+    state.papers.push(action.payload);
 }
-
 }
 export default produce((state, action) => createReducer(state, action, quill), initialState);

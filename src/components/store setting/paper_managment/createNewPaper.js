@@ -2,17 +2,10 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actions } from "../../../redux/action"
-
+import CrudPaper from "./crudPaper";
 function CreateNewPaper(props) {
-
-        // const saveForm = (e) => {
-        //         e.preventDefault();
-        //         props.newPaper(paper);
-        // }
-
         return (
 <>
-{/* onSubmit={saveForm} */}
                 <form >
                         <h1>Create your paper</h1>
                         <label for="a">name:</label><br></br>
@@ -40,7 +33,9 @@ function CreateNewPaper(props) {
                         ></textarea><br></br>                                           
 
                 </form>
-<Link to="/paper">           to design the paper</Link>
+<Link to="/paper"> to design the paper</Link>
+<CrudPaper></CrudPaper>
+
 </>
         )
 }
@@ -56,7 +51,7 @@ export default connect(
                         // newPaper: (paper) => { dispatch(actions.createNewPaper(paper)) }
                         setQuillDescription :(d) => { dispatch(actions.setQuillDescription(d)) },
                         setQuillStyle:(d) => { dispatch(actions.setQuillStyleFromInput(d)) },
-                        setQuillName:(d) => {debugger; dispatch(actions.setQuillName(d)) }
+                        setQuillName:(d) => { dispatch(actions.setQuillName(d)) }
                 }
         }
 )(CreateNewPaper);

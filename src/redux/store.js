@@ -6,10 +6,9 @@ import { newOrder, getOrdersByStore } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import { createNewStore, getStoreByUser, deleteStore } from './middleware/crudStore'
 import { getTheLastUpdatedStorePerUser } from './middleware/crudUser'
-import { createNewPaper } from './middleware/crudPaper'
+import { createNewPaper ,getAllPaper,deletePaper,editPaper} from './middleware/crudPaper'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
-import paperReducer from './reducers/data_reducer/paperReducer'
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
 import cartReducer from './reducers/cartReducer';
 import ordersReducer from './reducers/data_reducer/ordersReducer';
@@ -29,7 +28,7 @@ const reducers =
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
-        coinsReducer, storeReducer, wrapReducer, filterReducer, paperReducer,quillReducer
+        coinsReducer, storeReducer, wrapReducer, filterReducer,quillReducer
     })
 
 const store = createStore(
@@ -69,7 +68,7 @@ const store = createStore(
             getTheLastUpdatedStorePerUser,
             getStoreByUser,
             deleteStore,
-            createNewPaper,
+            createNewPaper,getAllPaper,deletePaper,editPaper,
             addToCart,
             changeProductAmount
         ))
