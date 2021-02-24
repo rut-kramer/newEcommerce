@@ -10,6 +10,7 @@ function StorePerUser(props) {
     props.setSoreCurrent(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
+      props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -79,6 +80,8 @@ export default connect(
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
+      getAllAttributes:(y)=>dispatch(actions.getAllAttributes(y))
+
     }
   }
 

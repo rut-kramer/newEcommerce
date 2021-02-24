@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-//  import './crudProducts.css';
+  import './crudProducts.css';
 //בכדי לראות את הטבלה מסודרת צריך להוריד את ההערה
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';
@@ -67,8 +67,25 @@ function CrudProducts(props) {
 //        //         ...items,
 //        //       list
 //        //       });
+        
+        useEffect(() => {
+                var acc = document.getElementsByClassName("accordion");
+                var i;
+                
+                for (i = 0; i < acc.length; i++) {
+                  acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                      panel.style.maxHeight = null;
+                    } else {
+                      panel.style.maxHeight = panel.scrollHeight + "px";
+                    } 
+                  });
+               }},[])
+             
 
-//        }
+
         return (
                 <>
                         <div className="page">
@@ -80,7 +97,7 @@ function CrudProducts(props) {
                                                                 <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
                                                 </div>
                                                 <div className="container__new new js-new">
-                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addProduct") }}>
+                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddProduct") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
                                                 </div>
@@ -110,7 +127,7 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                       // filteredProducts: state.searchReducer.filteredItems,
+                        //filteredProducts: state.searchReducer.filteredItems,
                         //items: state.searchReducer.filteredItems,
                         //sortYOrNo: state.sortReducer.ascendingProductsYOrN,
                         viewLOrGrid: state.productReducer.viewListOrGrid
