@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from 'react' 
+import React, { useState} from 'react' 
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 import { actions } from '../../../redux/action'

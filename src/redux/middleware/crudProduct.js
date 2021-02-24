@@ -3,51 +3,53 @@ import $ from 'jquery';
 import { actions } from '../action';
 
 
-//5
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
         axios.get('https://community.leader.codes/api/products')
             .then(res => {
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
-            }).catch(console.log("error")) }
+            }).catch(console.log("error"))
+    }
     return next(action);
 }
-//7
 export const newProduct = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
-    if (action.type === 'ADD_NEW_PRODUCTS') {
-    //     var raw = JSON.stringify({
-    //         "featured":action.payload.featured,
-    //     "store":action.payload.store,
-    //      "SKU": action.payload.sku,
-    //       "category": action.payload.category,
-    //   attributes     "price": action.payload.price,
-    //         "name": action.payload.name,
-    //          "description": action.payload.description, 
-    //          "amount": action.payload.amount,
-    //         "":action.payload.attributes
-    //         });
-       var raw = JSON.stringify(action.payload)
-console.log(raw)
-        $.ajax({
-            url: "https://community.leader.codes/api/products/newProduct",
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: raw,
-            success: function (data) {
-                alert("add the product")
-                dispatch(actions.addNewProduct(data));
-                dispatch(actions.setFilteredItems(getState().productReducer.products));
-                resolve(data)
-            },
-            error: function (err) {
-                reject(err)
-                alert("המוצר לא הוסף ,בדוק האם המק''ט כבר קיים")
-            }}); }
-    return next(action);
-})};
+        if (action.type === 'ADD_NEW_PRODUCTS') {
+            //     var raw = JSON.stringify({
+            //         "featured":action.payload.featured,
+            //     "store":action.payload.store,
+            //      "SKU": action.payload.sku,
+            //       "category": action.payload.category,
+            //   attributes     "price": action.payload.price,
+            //         "name": action.payload.name,
+            //          "description": action.payload.description, 
+            //          "amount": action.payload.amount,
+            //         "":action.payload.attributes
+            //         });
+            var raw = JSON.stringify(action.payload)
+            console.log(raw)
+            $.ajax({
+                url: "https://community.leader.codes/api/products/newProduct",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    alert("add the product")
+                    dispatch(actions.addNewProduct(data));
+                    dispatch(actions.setFilteredItems(getState().productReducer.products));
+                    resolve(data)
+                },
+                error: function (err) {
+                    reject(err)
+                    alert("המוצר לא הוסף ,בדוק האם המק''ט כבר קיים")
+                }
+            });
+        }
+        return next(action);
+    })
+};
 //10
 export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 
@@ -63,13 +65,17 @@ export const addNewImageToProduct = ({ dispatch, getState }) => next => action =
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_PRODUCT') {
         axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
-            .then(res => { dispatch(actions.deleteOldProduct(action.payload)) 
-            dispatch(actions.setFilteredItems(getState().productReducer.products));
-            alert("המוצר נמחק בהצלחה")
-        }).catch(
-            ()=>{console.log("error");
-            alert("המוצר נמחק")}
-            )}
+            .then(res => {
+                dispatch(actions.deleteOldProduct(action.payload))
+                dispatch(actions.setFilteredItems(getState().productReducer.products));
+                alert("המוצר נמחק בהצלחה")
+            }).catch(
+                () => {
+                    console.log("error");
+                    alert("המוצר נמחק")
+                }
+            )
+    }
     return next(action);
 };
 //13
@@ -85,12 +91,16 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
             success: function (data) {
                 dispatch(actions.editOldProduct(data))
                 dispatch(actions.setFilteredItems(getState().productReducer.products));
-            alert("המוצר התעדכן בהצלחה")
+                alert("המוצר התעדכן בהצלחה")
 
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown);
                 alert("העדכון נכשל")
-            }}); };
+            }
+        });
+    };
     return next(action);
 };
+
+

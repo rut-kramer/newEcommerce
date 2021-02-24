@@ -27,9 +27,8 @@ import $ from 'jquery';
 // };
 
 
-//16
 export const createNewStore = ({ dispatch, getState }) => next => action => {
- 
+
     return new Promise((resolve, reject) => {
     if (action.type === 'CREATE_NEW_STORE') {
         var raw = JSON.stringify({
@@ -44,6 +43,9 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
             "storeManager": getState().userReducer.user._id,
             "currency": action.payload.store.currency,
             "policy": action.payload.store.policy,
+            "checkInventoryManagement": action.payload.store.checkInventoryManagement,
+            "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
+
         });
        
         $.ajax({
@@ -70,19 +72,32 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 reject(err)
             }}) }
 
-    return next(action);
-})};
-
+            $.ajax({
+                url: "https://community.leader.codes/api/stores/newStore",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    dispatch(actions.setSaveAllStoreDetails(data));
+                    resolve(data)
+                },
+                error: function (err) {
+                    reject(err)
+                }
+            })
+        return next(action);
+    })
+};
 //19
 export const getStoreByUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_STORE_BY_USER') {
- 
-        axios.get('https://community.leader.codes/api//users/getAllStores/'+action.payload)
+
+        axios.get('https://community.leader.codes/api/users/getAllStores/' + action.payload)
             .then(res => {
-             
                 dispatch(actions.setStorePerUser(res.data))
-            })      
-        .catch(err => console.log("errrrrrrr", err));
+            })
+            .catch(err => console.log("errrrrrrr", err));
     }
     return next(action);
 }
@@ -94,5 +109,7 @@ export const deleteStore = ({ dispatch, getState }) => next => action => {
             });
     }
 
+
     return next(action);
 };
+

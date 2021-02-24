@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import './admin.css'
 import CrudCategory from './category_managment/crudCategory'
 import CrudOrder from './crudOrder'
@@ -8,61 +8,64 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 import StorePerUser from './storePerUser'
 import CrudAttributes from './attribute_management/crudAttribute'
+import NewPaper from './createNewPaper';
 
 function Admin(props) {
 
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-          tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-          tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-      }
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+  }
 
-        return (
-                <Provider store={store}>
+  return (
+    <Provider store={store}>
 
-<div className="tab">
-  <button className="tablinks" onClick={()=>{openCity(event, 'Categories')}}>Categories</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'Orders')}}>Orders</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'Product')}}>Product</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'Attributes')}}>Attributes</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'StoreSettingsManagement')}}>Store Settings</button>
-  <button className="tablinks" onClick={()=>{openCity(event, 'StorePerUser')}}>your Store</button>
-</div>
+      <div className="tab">
+        <button className="tablinks" onClick={() => { openCity(event, 'Categories') }}>Categories</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Orders') }}>Orders</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Product') }}>Product</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Attributes') }}>Attributes</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'StorePerUser') }}>your Store</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'NewPaper') }}>New Paper</button>
+      </div>
 
-<div id="Categories" className="tabcontent">
-<CrudCategory></CrudCategory>
-</div>
+      <div id="Categories" className="tabcontent">
+        <CrudCategory></CrudCategory>
+      </div>
 
-<div id="Product" className="tabcontent">
-<CrudProducts></CrudProducts>
-</div>
+      <div id="Product" className="tabcontent">
+        <CrudProducts></CrudProducts>
+      </div>
 
-<div id="Orders" className="tabcontent">
-<CrudOrder></CrudOrder>
-</div>
+      <div id="Orders" className="tabcontent">
+        <CrudOrder></CrudOrder>
+      </div>
 
-<div id="StoreSettingsManagement" className="tabcontent">
-<StoreSettingsManagement></StoreSettingsManagement>
-</div>
-<div id="StorePerUser" className="tabcontent">
-<StorePerUser></StorePerUser>
-</div>
-<div id="Attributes" className="tabcontent">
-<CrudAttributes></CrudAttributes>
-</div>
-
-
-                </Provider>
-        )
+      <div id="StoreSettingsManagement" className="tabcontent">
+        <StoreSettingsManagement></StoreSettingsManagement>
+      </div>
+      <div id="StorePerUser" className="tabcontent">
+        <StorePerUser></StorePerUser>
+      </div>
+      <div id="Attributes" className="tabcontent">
+        <CrudAttributes></CrudAttributes>
+      </div>
+      <div id="NewPaper" className="tabcontent">
+        <NewPaper></NewPaper>
+      </div>
+    </Provider>
+  )
 }
 export default Admin;
-      
+
 

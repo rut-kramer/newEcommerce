@@ -1,8 +1,6 @@
 import React from "react";
 import ppCov from "../../../assets/img/pp-cov.jpg"
-// reactstrap components
 
-// core components
 
 function ProductPageHeader() {
     let pageHeader = React.createRef();

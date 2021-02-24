@@ -1,34 +1,40 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
+import Bullcommerce from '../store design/bullcommerce';
+import CategoryByFilter from '../store design/category_page/categoryByFilter'
+
+import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
+import Cart from '../store design/cart';
+
 import { connect } from 'react-redux';
 
 function Content(props) {
     function Temporary() {
+        return <div className="container-fluid">
+            <Bullcommerce></Bullcommerce>
+        </div>
 
-       
-        return<div>
-         <h3>לשים במקומי קומפוננטה</h3>
-        
-    </div>
-    
-    
     }
-    
+
     return (
         <div className="Content">
-          <Link to={"/"+props.objectFields.urlRoute+"/admin"}>admin</Link>
-                <Switch>
-                    <Route path="/:storeName/admin" component={AdminCurd} />
-                    <Route path="/:storeName" component={Temporary} />
-                    
-                </Switch>
-            </div>
-        )
+            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
+            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>
+            {/* //זה אמור להיות שם מוצר דינאמי Saint_Laurent */}
+            <Link to={"/" + props.objectFields.urlRoute + "/productPage/Saint_Laurent"}>product page</Link>
+            <Switch>
+                <Route path="/:storeName/productPage/Saint_Laurent" component={ProductPage} />
+                <Route path="/filter-category" component={CategoryByFilter} />
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <Route path="/:storeName/cart" component={Cart} />
+                <Route path="/:storeName" component={Temporary} />
+
+            </Switch>
+        </div>
+    )
 }
-
-
 
 
 const mapStateToProps = (state) => {
@@ -39,5 +45,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
 })
 export default connect(mapStateToProps, mapDispatchToProps)
-(Content);
-
+    (Content);

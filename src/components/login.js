@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from '../redux/action';
 import { useCookies } from "react-cookie";
-import { signInWithGoogle, signInWithEmailAndPassword } from '../services/firebase';
+import { signInWithGoogle, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '../services/firebase';
 
 
 // reactstrap components
@@ -27,7 +27,7 @@ import {
 } from "reactstrap";
 
 // core components
-import Footer from "./footer/footer.js";
+import Footer from "./footers/footer.js";
 
 function LoginPage(props) {
 
@@ -61,9 +61,12 @@ function LoginPage(props) {
     }
 
 
-    const onSubmitForm = (e) => {
+    const onSubmitForm = (e, sign) => {
         e.preventDefault()
-        signInWithEmailAndPassword(email, password);
+        if (sign === "signIn")
+            signInWithEmailAndPassword(email, password);
+        else
+            createUserWithEmailAndPassword(email, password);
     }
 
     function AfterLogin() {
@@ -166,7 +169,7 @@ function LoginPage(props) {
                                                                 className="btn-round"
                                                                 color="info"
                                                                 href="#"
-                                                                onClick={(e) => onSubmitForm(e)}
+                                                                onClick={(e) => onSubmitForm(e, "signIn")}
                                                                 size="lg"
                                                             >
                                                                 Get Started
@@ -192,10 +195,10 @@ function LoginPage(props) {
                                                     <h6>
                                                         <p
                                                             className="link footer-link"
-                                                            onClick={(e) => e.preventDefault()}
+                                                            onClick={(e) => onSubmitForm(e, "signUp")}
                                                         >
                                                             Create Account
-            </p>
+                                                        </p>
                                                     </h6>
                                                 </div>
                                                 <div className="pull-right">
@@ -213,9 +216,9 @@ function LoginPage(props) {
                                     </Col>
                                 </Row>
                             </Container>
-                        </div>
+                        </div >
                         <Footer />
-                    </div>
+                    </div >
                 </>
             )
     );

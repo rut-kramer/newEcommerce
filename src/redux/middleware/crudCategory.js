@@ -3,16 +3,15 @@ import $ from 'jquery';
 import { actions } from '../action';
 
 
-//4
-export const getAllCategories = ({ dispatch, getState }) => next => action => {    if (action.type === 'GET_ALL_CATEGORIES') {
+export const getAllCategories = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_ALL_CATEGORIES') {
         axios.get('https://community.leader.codes/api/categories')
             .then(res => {
                 dispatch(actions.setCategories(res.data))
-            }) .catch(err => console.log("errrrrrrr", err));
+            }).catch(err => console.log("errrrrrrr", err));
     }
     return next(action);
 };
-//8
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
     if (action.type === 'CREATE_NEW_CATEGORY') {
@@ -46,7 +45,6 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
                 }).catch(()=>{console.log("error");   alert("מחיקת הקטגוריה נכשלה")})}
     return next(action);
 };
-//14
 export const editCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_CATEGORY') {
         var raw = JSON.stringify({ categoryName: action.payload.categoryName,masterCategory: action.payload.masterCategory, color: action.payload.color });
@@ -71,25 +69,25 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
 };
 export const getCategoriesByStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_CATEGORIES_BY_STORE') {
- 
-        axios.get('https://community.leader.codes/api/stores/storeCategories/'+action.payload)
+
+        axios.get('https://community.leader.codes/api/stores/storeCategories/' + action.payload)
             .then(res => {
                 dispatch(actions.setCategories(res.data))
 
-                let  list=[];
-               res.data.forEach(c => {
+                let list = [];
+                res.data.forEach(c => {
                     c.products.forEach(p => {
-                         list.push(p)
+                        list.push(p)
                     });
                 });
                 dispatch(actions.setProducts(list))
-            dispatch(actions.setFilteredItems(list));
-          
-            
+                dispatch(actions.setFilteredItems(list));
 
-                
-            })      
-        .catch(err => console.log("errrrrrrr", err));
+
+
+
+            })
+            .catch(err => console.log("errrrrrrr", err));
     }
     return next(action);
 }

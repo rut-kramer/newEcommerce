@@ -5,7 +5,6 @@ import { actions } from '../action';
 
 
 
-//9
 export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'USER_ID_BY_EMAIL') {
@@ -16,7 +15,6 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
     return next(action);
 };
 
-//17
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
         const myFile = new FormData();

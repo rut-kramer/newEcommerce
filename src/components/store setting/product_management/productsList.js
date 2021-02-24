@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 // import './crudProducts.css';
-import $ from 'jquery'
+// import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
-import cloneDeep from 'lodash/cloneDeep';
+// import cloneDeep from 'lodash/cloneDeep';
 
 function ProductsList(props) {
 
-        const [file, setFile] = useState()
+        // const [file, setFile] = useState()
         const fileI = React.createRef();
         let { Name, Description, Amount, Price, Category } = {
                 Name: "Name",
@@ -42,7 +42,7 @@ function ProductsList(props) {
 
                 if (event) {
 
-                         let reader = new FileReader();
+                        let reader = new FileReader();
                         reader.onloadend = () => {
 
                                 props.changeProductImage(num, reader.result)

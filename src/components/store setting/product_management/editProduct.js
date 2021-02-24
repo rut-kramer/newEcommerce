@@ -1,19 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 
- function EditProduct (props)  {
+function EditProduct(props) {
 
-    const update = (event) => {
-      var u;
-      if(event.target.name==="featured")          
-     u=event.target.checked;
-      else
-      u=event.target.value
-            props.setCurrentProduct({
-            ...props.currentProduct,
-            [event.target.name]:u
-      }); }
+  const update = (event) => {
+    var u;
+    if (event.target.name === "featured")
+      u = event.target.checked;
+    else
+      u = event.target.value
+    props.setCurrentProduct({
+      ...props.currentProduct,
+      [event.target.name]: u
+    });
+  }
 
       const updateCategory = (event) => {
         let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
@@ -101,7 +102,7 @@ import { actions } from '../../../redux/action'
           </div>
         </div>
       </div>
-    
+
       <div className="form__row">
                   <div className="form__col">
                     <div className="field form__field">
@@ -132,7 +133,8 @@ import { actions } from '../../../redux/action'
       <div className="form__foot">
         <button className="form__btn btn" onClick={Submit}>edit</button>
       </div>
-    </div>)}
+    </div>)
+}
 export default connect(
   (state) => {
     return {
@@ -140,11 +142,11 @@ export default connect(
       currentProduct: state.productReducer.currentProduct
     }
   },
-  (dispatch)=>{
-          return {
-                     editproduct:(v)=>dispatch(actions.editProduct(v)),
-                     setCurrentProduct:(e)=>dispatch(actions.setCurrentProduct(e))
-          }
-  }             
-  )(EditProduct);
+  (dispatch) => {
+    return {
+      editproduct: (v) => dispatch(actions.editProduct(v)),
+      setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e))
+    }
+  }
+)(EditProduct);
 

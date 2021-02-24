@@ -1,8 +1,6 @@
 import React from "react";
-// react plugin used to create DropdownMenu for selecting items
 import Select from "react-select";
 
-// reactstrap components
 import {
     Button,
     Card,
@@ -21,8 +19,7 @@ import {
     CarouselIndicators,
 } from "reactstrap";
 
-// core components
-import ScrollTransparentNavbar from "./scrollTransparentNavbar";
+import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar";
 import ProductPageHeader from "./productPageHeader";
 import pp1 from "../../../assets/img/pp-1.jpg";
 import pp2 from "../../../assets/img/pp-2.jpg";
@@ -57,7 +54,6 @@ const items = [
 ];
 
 function ProductPage() {
-    // carousel states and functions
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
     const onExiting = () => {
@@ -80,7 +76,6 @@ function ProductPage() {
         if (animating) return;
         setActiveIndex(newIndex);
     };
-    // collapse states and functions
     const [collapses, setCollapses] = React.useState([1]);
     const changeCollapse = (collapse) => {
         if (collapses.includes(collapse)) {
@@ -89,7 +84,6 @@ function ProductPage() {
             setCollapses([...collapses, collapse]);
         }
     };
-    // select states and functions
     const [colorSelect, setColorSelect] = React.useState(null);
     const [sizeSelect, setSizeSelect] = React.useState(null);
     React.useEffect(() => {
@@ -540,10 +534,6 @@ function ProductPage() {
                     </Container>
                 </div>
             </div>
-
-
-
-
         </>
     );
 }

@@ -14691,6 +14691,7 @@ img {
 
 .ml-auto {
         margin-left: auto;
+        margin: auto;
 }
 
 .mr-auto {

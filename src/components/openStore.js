@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import { useHistory } from "react-router-dom";
+import logoo from "../assets/img/xd/Image.jpeg"
 
 function OpenStore(props) {
 
@@ -9,25 +10,28 @@ function OpenStore(props) {
 
     const [fileToUpload, setFileToUpload] = useState(null);
 
-    const [detailsStore, setDetailsStore] = useState({
-        storeName: "",
-        urlRoute: "",
-        storeDescription: "",
-        address: "",
-        tel: "",
-        email: "",
-        colorDominates: "",
+    const [storeDetails, setStoreDetails] = useState({
+        storeName: "MY STORE",
+        urlRoute: "MY_STORE",
+        storeDescription: "THE BEST STORE IN THE WORLD",
+        address: "JERUSALEM",
+        tel: "02:6277134",
+        email: "MYSTORE@GMAIL.COM",
+        colorDominates: "RED",
         policy: "",
         currency: "",
-        logo: "",
+        logo: logoo,
+        checkInventoryManagement: false,
+        checkoneProductPurchase: false
+
 
     });
     function changeStoreDetails(event) {
-        setAllDetailsStore(event.target.name, event.target.value)
+        setAllStoreDetails(event.target.name, event.target.value)
     }
-    function setAllDetailsStore(name, value) {
-        setDetailsStore({
-            ...detailsStore,
+    function setAllStoreDetails(name, value) {
+        setStoreDetails({
+            ...storeDetails,
             [name]: value
         }
         )
@@ -37,7 +41,7 @@ function OpenStore(props) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                setAllDetailsStore("logo", reader.result)
+                setAllStoreDetails("logo", reader.result)
             }
             reader.readAsDataURL(event)
             setFileToUpload(event);
@@ -48,16 +52,21 @@ function OpenStore(props) {
         let hasSpace = str.indexOf(' ');
         if (hasSpace > -1)
             str = str.replace(/\s/g, '_')
-        setAllDetailsStore("urlRoute", str)
+        setAllStoreDetails("urlRoute", str)
     }
 
 
 
     const onSubmitStoreDetails = async (event) => {
         event.preventDefault()
-        // props.setSaveAllDetailsStore(detailsStore)
-        await props.createNewStore({ "store": detailsStore, "file": fileToUpload })
-        history.push("/0/" + detailsStore.urlRoute);
+        // props.setSaveAllDetailsStore(storeDetails)
+        await props.createNewStore({ "store": storeDetails, "file": fileToUpload })
+        history.push("/0/" + storeDetails.urlRoute);
+    }
+
+    function skip() {
+        props.createNewStore({ "store": storeDetails, "file": fileToUpload })
+        history.push("/0/" + storeDetails.urlRoute);
     }
 
     return (
@@ -107,9 +116,26 @@ function OpenStore(props) {
                     name="policy"
                     onChange={changeStoreDetails}
                 ></input><br></br>
+                <label htmlFor="myCheck">ניהול מלאי</label><br></br>
+                <input id="myCheck"
+                    name="checkInventoryManagement"
+                    type="checkbox"
+                    checked={storeDetails.checkInventoryManagement}
+                    onChange={(e) => setAllStoreDetails("checkInventoryManagement", e.target.checked)}
+                />
+                <br></br>
+                <label htmlFor="myCheck">קניה חד מוצרית</label><br></br>
+                <input id="myCheck"
+                    name="checkoneProductPurchase"
+                    type="checkbox"
+                    checked={storeDetails.checkoneProductPurchase}
+                    onChange={(e) => setAllStoreDetails("checkoneProductPurchase", e.target.checked)}
+                />
+                <br></br>
+                <br></br>
                 <label>בחר מטבע</label><br></br>
                 <select
-                    onChange={e => setAllDetailsStore("currency", e.target.value)}>
+                    onChange={e => setAllStoreDetails("currency", e.target.value)}>
                     {props.coins.map((item, index) => (
                         <option key={index} value={item.name}>{item.name}:{item.country}</option>
                     ))}
@@ -117,7 +143,7 @@ function OpenStore(props) {
                 <div>
                     <label htmlFor="logoS">
                         <img className="logoC" alt="הכנס לוגו של החנות"
-                            src={detailsStore.logo}
+                            src={storeDetails.logo}
                         ></img>
                     </label>
                     <input
@@ -135,6 +161,8 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+            <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
+
         </>
     )
 
@@ -143,12 +171,11 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.storeReducer.objectFields,
         coins: state.coinsReducer.coins
     }
 }
 const mapDispatchToProps = (dispatch) => ({
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
-    setSaveAllDetailsStore: (e) => dispatch(actions.setSaveAllDetailsStore(e))
+    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);

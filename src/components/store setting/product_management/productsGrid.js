@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
 // import './crudProducts.css';
 import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
-import cloneDeep from 'lodash/cloneDeep';
+// import cloneDeep from 'lodash/cloneDeep';
 
 function ProductsGrid(props) {
 
-        const [file, setFile] = useState()
+        // const [file, setFile] = useState()
 
-        let { Name, Description, Amount, Price, Category } = {
-                Name: "Name",
-                Description: "Description",
-                Amount: "Amount",
-                Price: "Price",
-                Category: "Category"
-        }
+        // let { Name, Description, Amount, Price, Category } = {
+        //         Name: "Name",
+        //         Description: "Description",
+        //         Amount: "Amount",
+        //         Price: "Price",
+        //         Category: "Category"
+        // }
         useEffect(() => {
                 var panel = $('.js-panel');
                 if (panel.length) {
@@ -30,7 +30,7 @@ function ProductsGrid(props) {
                                 btn.removeClass('active');
                                 btn.eq(index).addClass('active');
 
-                                 ;
+                                ;
                                 tab.hide();
                                 tab.eq(index).show();
                         });
@@ -38,47 +38,47 @@ function ProductsGrid(props) {
         }, [])
 
 
-        let i = 0;
+        // let i = 0;
 
-        const onChangeHandlerImage = (event, thiss) => {
-              
-                if (event) {
-                        let reader = new FileReader();
-                        reader.onloadend = () => {
-                                 ;
-                                props.changeProductImage(0, reader.result)
-                               
-                        }
-                        reader.readAsDataURL(event)
-                }
-                props.setSearchReasult(props.products);
+        // const onChangeHandlerImage = (event, thiss) => {
 
-        }
+        //         if (event) {
+        //                 let reader = new FileReader();
+        //                 reader.onloadend = () => {
+        //                          ;
+        //                         props.changeProductImage(0, reader.result)
 
-        const sortColumn = (columnName) => {
-                 ;
-                props.setSortYOrN();
+        //                 }
+        //                 reader.readAsDataURL(event)
+        //         }
+        //         props.setSearchReasult(props.products);
 
-                let sortProducts = props.filteredProducts;
+        // }
 
-                let bb = sortProducts.slice().sort((a, b) => {
+        // const sortColumn = (columnName) => {
+        //          ;
+        //         props.setSortYOrN();
 
-                        let x = a[columnName].toString().toLowerCase();
-                        let y = b[columnName].toString().toLowerCase()
+        //         let sortProducts = props.filteredProducts;
 
-                        if (x < y) { return -1; }
-                        if (x > y) { return 1; }
-                        return 0
+        //         let bb = sortProducts.slice().sort((a, b) => {
 
-                        // return a[columnName].localeCompare(b[columnName])
-                });
-                if (!props.sortYOrNo)
-                        bb.reverse();
+        //                 let x = a[columnName].toString().toLowerCase();
+        //                 let y = b[columnName].toString().toLowerCase()
 
-                 ;
-              props.setSearchReasult(bb);
+        //                 if (x < y) { return -1; }
+        //                 if (x > y) { return 1; }
+        //                 return 0
 
-        }
+        //                 // return a[columnName].localeCompare(b[columnName])
+        //         });
+        //         if (!props.sortYOrNo)
+        //                 bb.reverse();
+
+        //          ;
+        //       props.setSearchReasult(bb);
+
+        // }
 
         // const onChangeHandlerImage2 = (e) => {
 
@@ -108,7 +108,7 @@ function ProductsGrid(props) {
                                                 <div className="data__head">
                                                 </div>
                                                 <div className="data__body">
-                                                       {/*TO DOs  filteredProducts */}
+                                                        {/*TO DOs  filteredProducts */}
                                                         {props.products.map((item, index) => (
                                                                 <div class="data__item">
                                                                         <div class="data__corner">
@@ -137,14 +137,15 @@ function ProductsGrid(props) {
                                         </div>
                                 </div>
                         </div>
-                </>)}
+                </>)
+}
 
 export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
                         //filteredProducts: state.searchReducer.filteredItems,
-                       // sortYOrNo: state.sortReducer.ascendingProductsYOrN
+                        // sortYOrNo: state.sortReducer.ascendingProductsYOrN
                 }
         },
         (dispatch) => {
