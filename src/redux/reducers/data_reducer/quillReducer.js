@@ -40,6 +40,9 @@ deleteOldPaper(state, action) {
 editOldPaper(state, action) {
     state.papers = state.papers.filter(x => x._id !== action.payload._id);
     state.papers.push(action.payload);
+},
+addPaper(state, action) {
+    state.papers.push(action.payload.quill);
 }
 }
 export default produce((state, action) => createReducer(state, action, quill), initialState);
