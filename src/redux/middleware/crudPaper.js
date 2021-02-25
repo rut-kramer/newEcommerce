@@ -35,6 +35,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                     data: raw,
                     success: function (data) {
                          dispatch(actions.setPaper(data));
+                         dispatch(actions.addPaper(data));
                         resolve(data)
                     },
                     error: function (err) {
@@ -61,7 +62,7 @@ export const editPaper= ({ dispatch, getState }) => next => action => {
         if (action.type === 'EDIT_PAPER') {
                 var raw = JSON.stringify(action.payload);
                 $.ajax({
-                        url: `https://community.leader.codes/api/papers/editPaper/${action.payload.id}`,
+                        url: `https://community.leader.codes/api/papers/editPaper/${action.payload._id}`,
                         method: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -69,7 +70,6 @@ export const editPaper= ({ dispatch, getState }) => next => action => {
                         success: function (data) {
                                 dispatch(actions.editOldPaper(data))
                         },
-
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
                         }

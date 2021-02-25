@@ -30,7 +30,7 @@ function  submit() {
  <div style={{ border: '1px solid',width:'70%',height:'50%'}} id="id"></div>
  <button onClick={show}>show</button>
  <button onClick={submit}>submit</button>
- <button onClick={props.editPaper(props.quote)}>edit</button>
+ <button onClick={()=>{props.editPaper(props.quote)}}>edit</button>
  <Link to="/:storeName/admin">to the admin</Link>
             </>
         )

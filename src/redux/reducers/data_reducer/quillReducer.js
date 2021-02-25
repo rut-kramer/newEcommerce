@@ -34,7 +34,7 @@ setQuote(state, action) {
     state.quote = action.payload;
 },
 deleteOldPaper(state, action) {
-    debugger;
+    
     state.papers = state.papers.filter(x => x._id !== action.payload);
 },
 editOldPaper(state, action) {
