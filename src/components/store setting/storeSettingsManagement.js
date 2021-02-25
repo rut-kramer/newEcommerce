@@ -68,7 +68,7 @@ function StoreSettingsManagement(props) {
             <h1>welcome to setting!!!!!</h1>
             <div>
                 <form onSubmit={saveForm}>
-                    <label for="a">עדכן שם חנות</label><br></br>
+                    <label htmlFor="a">עדכן שם חנות</label><br></br>
                     <input id="a"
                         required
                         name="storeName"
@@ -76,14 +76,14 @@ function StoreSettingsManagement(props) {
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
-                    <label for="b">עדכן תאור לחנות</label><br></br>
+                    <label htmlFor="b">עדכן תאור לחנות</label><br></br>
                     <input
                         id="b"
                         name="storeDescription"
                         value={storeDetails.storeDescription ? storeDetails.storeDescription : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
-                    <label for="c">עדכן כתובת החנות</label><br></br>
+                    <label htmlFor="c">עדכן כתובת החנות</label><br></br>
                     <input
                         id="c"
                         name="address"
@@ -92,7 +92,7 @@ function StoreSettingsManagement(props) {
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
-                    <label for="d">עדכן טלפון החנות</label><br></br>
+                    <label htmlFor="d">עדכן טלפון החנות</label><br></br>
                     <input
                         required
                         id="d"
@@ -101,7 +101,7 @@ function StoreSettingsManagement(props) {
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
-                    <label for="e">עדכן אימיל החנות</label><br></br>
+                    <label htmlFor="e">עדכן אימיל החנות</label><br></br>
                     <input
                         id="e"
                         name="email"
@@ -110,7 +110,7 @@ function StoreSettingsManagement(props) {
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
-                    <label for="f">עדכן כתובת ניתוב החנות</label><br></br>
+                    <label htmlFor="f">עדכן כתובת ניתוב החנות</label><br></br>
                     <input
                         required
                         type="text"
@@ -121,14 +121,14 @@ function StoreSettingsManagement(props) {
 
                     ></input><br></br>
 
-                    <label for="g">עדכן צבע ראשי לחנות</label><br></br>
+                    <label htmlFor="g">עדכן צבע ראשי לחנות</label><br></br>
                     <input
                         id="g"
                         value={storeDetails.colorDominates ? storeDetails.colorDominates : ""}
                         onChange={changeStoreDetails}
                     ></input><br></br>
 
-                    <label for="h">עדכן מדיניות לחנות</label><br></br>
+                    <label htmlFor="h">עדכן מדיניות לחנות</label><br></br>
                     <input
                         id="h"
                         name="policy"
@@ -138,7 +138,7 @@ function StoreSettingsManagement(props) {
                     ></input><br></br>
 
 
-                    <lable>בחר מטבע</lable>
+                    <label>בחר מטבע</label>
                     <select
                         onChange={e => setAllStoreDetails("currency", e.target.value)}
                     >
@@ -149,7 +149,7 @@ function StoreSettingsManagement(props) {
                     </select>
 
                     <div>
-                        <label for="j">עדכן לוגו של החנות
+                        <label htmlFor="j">עדכן לוגו של החנות
                 <img className="logoC" alt=""
                                 src={storeDetails.logo ? storeDetails.logo : ""}></img>
                         </label>

@@ -4,12 +4,15 @@ import { actions } from "../../redux/action"
 
 function CreateNewPaper(props) {
 
-        const [name, setName] = useState("");
-        const [description, setDescription] = useState("");
+        const [name, ] = useState("");
+        // setName
+        const [description, ] = useState("");
+        // setDescription
         const [title, setTitle] = useState("");
         const [content, setContent] = useState("");
-        const [design, setDesign] = useState("");
-
+        const [design, ] = useState("");
+        // setDesign
+        
         const saveForm = (e) => {
                 e.preventDefault();
                 props.newPaper({

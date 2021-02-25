@@ -1,41 +1,33 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actions } from '../../../redux/action'
-import createAttribute from '../attribute_management/createAttribute';
+import createAttribute from './createAttribute';
 import '../product_management/crudProducts'
 
 
-function CrudCategory(props) {
-        function categoryNameFromId(categoryId)
-        {
-             let y=props.categoryList.filter(f=>f._id==categoryId)
-          if(y[0])
-             return y[0].categoryName;
-             else
-             return "אין"
-        }
-        function askDeleteCategory(i) {
-                if (window.confirm("אם אתה בטוח שברצונך למחוק את הקטגוריה"))
-                props.deleteCategory(i)
+function CrudAttributes(props) {
+        
+        function askDeleteAttributes(i) {
+                if (window.confirm("אם אתה בטוח שברצונך למחוק את התכונה"))
+                props.deleteAttributes(i)
               }
-              
         return (
                 <>
                         <div className="page">
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Category</div>
+                                                <div className="container__title title title_md">Attribute</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search "></i></button>
                                                 </div>
-                                                <div className="container__new new js-new">
+                                                {/* <div className="container__new new js-new">
                                                      
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddCategory") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
-                                                </div>
+                                                </div> */}
                                         </div>
                                         <div className="container__body">
                                                 <div className="panel js-panel">
@@ -55,65 +47,73 @@ function CrudCategory(props) {
                                                 <div className="data__filter" >מחיקה</div>
                                         </div>
                                         <div className="data__cell">
-                                                <div className="data__filter">צבע קטגוריה</div>
+                                                <div className="data__filter">שם תכונה</div>
                                         </div>
                                         <div className="data__cell">
-                                                <div className="data__filter" >שם קטגוריה</div>
+                                                <div className="data__filter" >סלוג </div>
                                         </div>
 
                                         <div className="data__cell">
-                                                <div className="data__filter">קטגורית על</div>
+                                                <div className="data__filter"> מונחים</div>
                                         </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter">עריכת קטגוריה</div>
-                                        </div>
+                                   
                                         <div className="data__cell data__cell_action"></div>
                                 </div>
                         </div>
       
 
                                                                                         <div className="data__body">
-                                                                                                {props.categoryList.map((item, index) => (
-                                                                                                        <div className="data__item" key={index}>
+                                                                                                {props.attributesList&&props.attributesList.map((item, index) => (
+                                                                                                      
+                                                                                                      <div className="data__item" key={index}>
+                                                                                                            <button className="accordion"> 
+
                                                                                                                 <div className="data__row" >
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={ () => { askDeleteCategory(item._id)}} />
+                                                                                                                                                <input className="switch__input" type="button" onClick={()=>{askDeleteAttributes(item._id);}} />
                                                                                                                                                 <button>
                                                                                                                                                         <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
                                                                                                                                                         </i></button>
                                                                                                                                                 <span className="switch__content">
                                                                                                                                                 </span></label></div>
-                                                                                                                                        <div className="data__preview" style={{ "backgroundColor": item.color }}>
-                                                                                                                                        </div>
+                                                                                                                                      
                                                                                                                                         <div className="data__cell mobile-hide"> 
                                                                                                                                          <div className="data__wrap">
                                                                                                                                                    <div className="data__content">
-                                                                                                                                                        <strong>{item.categoryName}</strong></div>
+                                                                                                                                                        <strong>{item.name}</strong></div>
                                                                                                                                         </div>
                                                                                                                                         </div>
-                                                                                                                                       
-                                                                                                                                        <div className="data__cell mobile-hide"> 
-                                                                                                                                    
-                                                                                                                                        <div className="data__wrap">
-                                                                                                                                                <div className="data__content">
-                                                                                                                                                        <strong>{categoryNameFromId(item.masterCategory)}</strong>
-                                                                                               
-                                                                                                                                                        {/* <strong>{item.masterCategory}</strong> */}</div>
-                                                                                                                                        </div></div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content">{item.image}</div>
+                                                                                                                                <div className="data__content">{item.slug}</div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell data__cell_action">
-                                                                                                                                <button onClick={() => { props.setcomponnet("EditCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
+                                                                                                                                <button onClick={() => { props.setcomponnet("EditAttribute"); props.setCurrentAttribute(item) }} className="action action_stroke" >
                                                                                                                                         <i className="la la-ellipsis-h "></i>
                                                                                                                                 </button>
                                                                                                                         </div>
                                                                                                                 </div>
-                                                                                                        </div>
+                                                                                                                </button> 
+                                                                                                                <div className="panel1">
+                                                                         <div>
+                                                                         <div className="data__content">
+                                                          <h5>:מונחים</h5> 
+                                                                        
+                                                                                        {item.terms&&item.terms.map((term, index) => (
+                                                                                <div>
+                                                                                {/* <strong>{term&&term._id}</strong> 
+                                                                                <strong>{term&&term}</strong>  */}
+                                                                                <strong>{term&&term.name}</strong> 
+                                                                                </div>
+                                                                                ))}
+                                                                                 
+
+                                                                                 </div>  </div> </div>
+                                                                
+                                                                                                                </div>
                                                                                                 ))}
                                                                                         </div>
                                                                                 </div>
@@ -144,20 +144,21 @@ function CrudCategory(props) {
                                 </div>
                         </div>
                 </>
-        )
+//       <div></div>
+      )
 }
 export default connect(
         (state) => {
                 return {
-                        categoryList: state.categoriesReducer.categories
+                  attributesList:state.attributeReducer.attributes,
                 }
         },
         (dispatch) => {
                 return {
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
-                        setCurrentCategory: (n) => dispatch(actions.setCurrentCategory(n)),
-                        deleteCategory: (i) => { dispatch(actions.deleteCategory(i)) }
+                        setCurrentAttribute: (n) => dispatch(actions.setCurrentAttribute(n)),
+                        deleteAttributes:(p) => dispatch(actions.deleteAttributes(p)),      
                 }
         }
-)(CrudCategory);
+)(CrudAttributes);
 

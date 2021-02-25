@@ -5,7 +5,6 @@ import "./scrollNavbar.css"
 
 // reactstrap components
 import {
-  Button,
   Collapse,
   DropdownToggle,
   DropdownMenu,
@@ -13,7 +12,6 @@ import {
   UncontrolledDropdown,
   NavbarBrand,
   Navbar,
-  NavItem,
   Nav,
   Container,
   UncontrolledTooltip,
@@ -21,19 +19,19 @@ import {
   Col,
 } from "reactstrap";
 
-import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 
 
 
 function ScrollTransparentNavbar(props) {
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-  const [navbarColor, setNavbarColor] = React.useState(
-    //   (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
-    //     ? ""
-    //     : " navbar-transparent"
-  );
-  const [buyButtonColor, setBuyButtonColor] = React.useState(
+  // const [collapseOpen, setCollapseOpen] = React.useState(false);
+  // const [navbarColor, setNavbarColor] = React.useState(
+  //   (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
+  //     ? ""
+  //     : " navbar-transparent"
+  // );
+  // buyButtonColor
+  const [, setBuyButtonColor] = React.useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
       ? "info"
       : "neutral"
@@ -45,7 +43,7 @@ function ScrollTransparentNavbar(props) {
         document.documentElement.scrollTop > 499 ||
         document.body.scrollTop > 499
       ) {
-        setNavbarColor("");
+        // setNavbarColor("");
         setBuyButtonColor("info");
       } else if (
         document.documentElement.scrollTop < 500 ||

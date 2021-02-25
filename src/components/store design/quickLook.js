@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table, Container, Row, Col, Button } from 'reactstrap';
 

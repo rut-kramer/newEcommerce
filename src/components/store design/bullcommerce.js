@@ -1,25 +1,18 @@
 import React from "react";
-import Slider from "nouislider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
     Button,
     Card,
-    CardHeader,
     CardBody,
     CardFooter,
     CardTitle,
-    Collapse,
-    Label,
-    FormGroup,
-    Input,
     Container,
-    InputGroupAddon,
     Row,
     Col,
     UncontrolledTooltip,
 } from "reactstrap";
-import { Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // core components
 // import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
@@ -30,17 +23,9 @@ import { connect } from 'react-redux';
 import QuickLook from './quickLook'
 
 //images
-import sweeney from "../../assets/img/sweeney.jpg";
+
 //xd image
 import ia006 from "../../assets/img/xd/ia_300000006.png";
-import ia0010 from "../../assets/img/xd/ia_300000010.png";
-import ia008 from "../../assets/img/xd/ia_300000008.png";
-import ia0019 from "../../assets/img/xd/ia_300000019.png";
-import ia0024 from "../../assets/img/xd/ia_100000024.png";
-import ia0096 from "../../assets/img/xd/ia_100000096.png";
-import ia0012 from "../../assets/img/xd/ia_300000012@2x.png"
-import ia0035 from "../../assets/img/xd/ia_300000035.png";
-import eyeRegular from "../../assets/img/xd/eye-regular.svg";
 import cart from "../../assets/img/xd/cart.svg"
 function Bullcommerce(props) {
 
@@ -75,7 +60,7 @@ function Bullcommerce(props) {
                     <div className="section">
                         <Container>
                             <div className="w3-sidebar w3-bar-block w3-border-right" style={{ display: "none" }} id="mySidebar">
-                                <button onclick={w3_close} className="w3-bar-item w3-large">Close &times;</button>
+                                <button onClick={w3_close} className="w3-bar-item w3-large">Close &times;</button>
                                 <QuickLook></QuickLook>
                             </div>
                             <Row className="heightRow">

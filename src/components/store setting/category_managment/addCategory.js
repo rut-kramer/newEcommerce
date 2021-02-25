@@ -38,7 +38,13 @@ function AddCategory(props) {
   }
 
   const Submit = () => {
-    props.createNewCategory(myValues);
+   let r=props.categoryList.filter(p=>p.categoryName==myValues.categoryName)
+if(r.length==0){
+      props.createNewCategory(myValues);
+    }
+  
+    else
+      alert("שם הקטגוריה קיים כבר נא החלף שם")
   }
   return (
     <div className="form form_create">
