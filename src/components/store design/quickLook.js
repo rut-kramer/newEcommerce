@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import { connect } from "react-redux";
-import { actions } from '../../redux/action';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table, Container, Row, Col, Button } from 'reactstrap';
-
+// import  from 'react';
 
 
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 
+//בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function QuickLook(props) {
+    const [value, setValue] = useState(0)
 
-    const [orderAmount, setOrderAmount] = useState(1)
+    function decrease() {
+        setValue(value - 1)
+    }
+
+    function increase() {
+        setValue(value + 1)
+    }
+
 
     return (
         <>
@@ -22,32 +29,15 @@ function QuickLook(props) {
                     <div>name</div>
                     <div>price</div>
                     <div className="qu mt-4">Quantity:</div>
-
-                    <td className="calcAmount">
-                        <Button size="sm"
-                            onClick={() => { setOrderAmount(orderAmount + 1) }}
-                        >
-                            <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
-                        </Button>{' '}
-                        {orderAmount}{' '}
-                        <Button size="sm"
-                            onClick={() => {
-                                if (orderAmount > 1)
-                                    setOrderAmount(orderAmount - 1);
-                                else
-                                    setOrderAmount(orderAmount)
-                            }}
-                        >
-                            <FontAwesomeIcon icon={['fas', 'minus']}></FontAwesomeIcon>
-                        </Button>
-                    </td>
-                    <button className="btnCart"
-                        onClick={() => {
-                            props.addToCart({
-                                // "product": product,
-                                "amount": orderAmount
-                            })
-                        }}>
+                    <div className="def-number-input number-input">
+                        <button onClick={decrease} className="minus"></button>
+                        <input className="quantity" name="quantity"
+                            value={value}
+                            onChange={() => console.log('change')}
+                            type="number" />
+                        <button onClick={increase} className="plus"></button>
+                    </div>
+                    <button className="btnCart">
                         <FontAwesomeIcon className="mr-2" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>ADD TO CART
                         </button>
                 </div>
@@ -57,12 +47,15 @@ function QuickLook(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        cart: state.cartReducer.cart,
+        //אפשר לקרוא שם אחר לאוביקט
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    addToCart: (product) => { dispatch(actions.addToCart(product)) }
-
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(QuickLook);
+
+
+/////////////////////////////
+
+
