@@ -16,7 +16,7 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
 export const newProduct = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
         if (action.type === 'ADD_NEW_PRODUCTS') {
-            var raw = JSON.stringify({ "featured": action.payload.featured, "store": action.payload.store, "SKU": action.payload.sku, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
+            var raw = JSON.stringify({ "featured": action.payload.featured, "store": action.payload.store, "SKU": action.payload.SKU, "category": action.payload.category, "price": action.payload.price, "name": action.payload.name, "description": action.payload.description, "amount": action.payload.amount });
             $.ajax({
                 url: "https://community.leader.codes/api/products/newProduct",
                 method: "post",

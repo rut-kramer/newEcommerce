@@ -57,8 +57,6 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 success: function (data) {
                     dispatch(actions.setSaveAllStoreDetails(data));
                     resolve(data)
-
-
                     console.log(data)
                     dispatch(actions.createNewCategory({
                         "store": data._id,
@@ -74,7 +72,22 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                         "store": data._id,
                         "categoryName": "DefaultCategory3",
                         "color": "blue", "masterCategory": null
-                    }))
+                    })).then((dataCategory) => {
+                        for (let index = 1; index < 13; index++) {
+                            dispatch(actions.addNewProducts({
+                                "name": "DefaultProduct" + index,
+                                "description": "The Best Product ",
+                                "SKU": "DefultSKU_" + index + "sar",
+                                "category": dataCategory._id,
+                                "store": data._id,
+                                "price": "123",
+                                "featured": true,
+                            }))
+                        }
+
+                    })
+
+
                 },
 
 
@@ -87,6 +100,9 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
         return next(action);
     })
 };
+
+
+
 //19
 export const getStoreByUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_STORE_BY_USER') {

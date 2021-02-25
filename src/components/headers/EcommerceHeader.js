@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // reactstrap components
 import {
   Container,
+  Button,
   Row,
   Col,
   Carousel,
@@ -133,11 +134,21 @@ function EcommerceHeader(props) {
           }}
           role="button"
         >
-          <span
-          //  className="now-ui-icons arrows-1_minimal-left"
-          />
-          <FontAwesomeIcon icon={['fas', 'chevron-left']} className="arrowIcon"></FontAwesomeIcon>
-          <span className="sr-only">Previous</span>
+          <Button
+            className="btn-icon btn-round"
+            name="button"
+            size="sm"
+            type="button"
+            backgroundColor="transparent"
+          >
+            <FontAwesomeIcon icon={['fas', 'chevron-left']}>
+            </FontAwesomeIcon>
+          </Button>
+          {/* <span */}
+          {/* //  className="now-ui-icons arrows-1_minimal-left" */}
+          {/* /> */}
+          {/* <FontAwesomeIcon icon={['fas', 'chevron-left']} className="arrowIcon"></FontAwesomeIcon> */}
+          {/* <span className="sr-only">Previous</span> */}
         </a>
         <a
           className="right carousel-control carousel-control-next"
@@ -149,12 +160,21 @@ function EcommerceHeader(props) {
           }}
           role="button"
         >
-          <span
-          // className="now-ui-icons arrows-1_minimal-right"
-          />
-          <FontAwesomeIcon icon={['fas', 'chevron-right']} className="arrowIcon"></FontAwesomeIcon>
+          <Button
+            className="btn-icon btn-round"
+            name="button"
+            size="sm"
+            type="button"
+            backgroundColor="transparent"
+          >
+            <FontAwesomeIcon icon={['fas', 'chevron-right']}>
+            </FontAwesomeIcon>                                                                                </Button>
+          {/* <span */}
+          {/* // className="now-ui-icons arrows-1_minimal-right" */}
+          {/* /> */}
+          {/* <FontAwesomeIcon icon={['fas', 'chevron-right']} className="arrowIcon"></FontAwesomeIcon> */}
 
-          <span className="sr-only">Next</span>
+          {/* <span className="sr-only">Next</span> */}
         </a>
       </Carousel>
     </>

@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React from "react";
+import { Link } from "react-router-dom";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
@@ -15,55 +16,58 @@ function FooterOrange(props) {
             //  data-background-color="orange"
             >
                 <Container>
-                    <div className="content">
-                        <Row>
-                            <Col md="5">
-                                <h5>פרטי החנות</h5>
-                                <ul className="mt-2 links-vertical size" >
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
+                    {/* <div className="content"> */}
+                    <Row className="d-flex justify-content-between">
+                        <Col >
+                            <h5>פרטי החנות</h5>
+                            <ul className="mt-2 links-vertical size" >
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
 
-                                            {props.objectFields.storeName}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            {props.objectFields.tel}
-                                            {/* About Us */}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            {props.objectFields.email}
-                                            {/* Presentation */}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            {props.objectFields.address}
-                                            {/* Contact Us */}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </Col>
-                            <Col md="2">
-                                <h5>Information</h5>
+                                        {props.objectFields.storeName}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        {props.objectFields.tel}
+                                        {/* About Us */}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        {props.objectFields.email}
+                                        {/* Presentation */}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        {props.objectFields.address}
+                                        {/* Contact Us */}
+                                    </a>
+                                </li>
+                            </ul>
+                        </Col>
+                        <Col >
+                            {/* <Link to={"/ssss"> */}
+                            <Link to={"/" + props.objectFields.urlRoute + "/category/"}>
+
+                                <h5>Categories</h5>
                                 <ul className="mt-2 links-vertical size">
                                     <li>
                                         <a
@@ -110,121 +114,114 @@ function FooterOrange(props) {
                                             Transactions
                     </a>
                                     </li>
-                                    {/* <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Affiliates Program
-                    </a>
-                                    </li> */}
-                                </ul>
-                            </Col>
-                            <Col md="2">
-                                <h5>Element</h5>
-                                <ul className="mt-2 links-vertical size">
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            About Us
-                    </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            How to Register
-                    </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Sell
-                    </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Receive
-                    </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Transactions
-                    </a>
-                                    </li>
 
                                 </ul>
-                            </Col>
-                            <Col md="3">
-                                <h5>Help</h5>
-                                <ul className="mt-2 links-vertical size">
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            About Us
+                            </Link>
+                        </Col>
+                        <Col>
+                            <h5>Element</h5>
+                            <ul className="mt-2 links-vertical size">
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        About Us
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            How to Register
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        How to Register
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Sell
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Sell
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Receive
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Receive
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Transactions
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Transactions
                     </a>
-                                    </li>
+                                </li>
 
-                                </ul>
-                            </Col>
-                        </Row>
-                    </div>
+                            </ul>
+                        </Col>
+                        <Col>
+                            <h5>Help</h5>
+                            <ul className="mt-2 links-vertical size">
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        About Us
+                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        How to Register
+                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Sell
+                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Receive
+                    </a>
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Transactions
+                    </a>
+                                </li>
+
+                            </ul>
+                        </Col>
+                    </Row>
+                    {/* </div> */}
                     {/* <hr></hr> */}
                     {/* <div className="copyright" id="copyright">
                         © {new Date().getFullYear()}, Designed by{" "}

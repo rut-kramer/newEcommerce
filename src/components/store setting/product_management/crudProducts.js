@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-//  import './crudProducts.css';
+// import './crudProducts.css';
 //בכדי לראות את הטבלה מסודרת צריך להוריד את ההערה
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';
@@ -19,9 +19,9 @@ function CrudProducts(props) {
                 if (event) {
                         let reader = new FileReader();
                         reader.onloadend = () => {
-                                 ;
+                                ;
                                 props.changeProductImage(0, reader.result)
-                               
+
 
                         }
                         reader.readAsDataURL(event)
@@ -51,24 +51,23 @@ function CrudProducts(props) {
         // }
 
         let [pageNum, setNum] = useState(2)
-         let items= props.products
-       // let [items, setMyItems] = useState(props.filteredProducts)
-        function changePageNum(num)
-         {
-                  ;
-                 setNum(num);        
-                 let p1=(pageNum - 1) * 6;
-                 let p2=pageNum * 6 - 1;
-                items=items.slice(p1, p2)
-        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
-                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
-        // setMyItems({
-        //         ...items,
-        //       list
-        //       });
+        let items = props.products
+        // let [items, setMyItems] = useState(props.filteredProducts)
+        function changePageNum(num) {
+                ;
+                setNum(num);
+                let p1 = (pageNum - 1) * 6;
+                let p2 = pageNum * 6 - 1;
+                items = items.slice(p1, p2)
+                //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
+                var list = items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
+                // setMyItems({
+                //         ...items,
+                //       list
+                //       });
 
         }
-        
+
         return (
                 <>
                         <div className="page">
@@ -90,7 +89,7 @@ function CrudProducts(props) {
                                                         <div className="panel__head panel__head_line">
                                                                 <div className="panel__group btn-group btn-group_tabs">
                                                                         <button className="btn btn_light btn_icon js-panel-btn active" onClick={() => props.setViewLOrG("list")}>
-                                                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
+                                                                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
                                                         </div>
                                                         <div className="panel__body">
                                                                 {props.viewLOrGrid === "list" ? <ProductsList /> : <ProductsGrid />}
@@ -104,13 +103,14 @@ function CrudProducts(props) {
                                         </div>
                                 </div>
                         </div>
-                </>)}
+                </>)
+}
 
 export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                       // filteredProducts: state.searchReducer.filteredItems,
+                        // filteredProducts: state.searchReducer.filteredItems,
                         //items: state.searchReducer.filteredItems,
                         //sortYOrNo: state.sortReducer.ascendingProductsYOrN,
                         viewLOrGrid: state.productReducer.viewListOrGrid

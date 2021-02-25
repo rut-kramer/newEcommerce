@@ -22,10 +22,9 @@ import {
 import { Switch, Route, Link } from "react-router-dom";
 
 // core components
-import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
+// import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
-import FooterOrange from "./footerOrange";
-
+import './bullcommerce.css'
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import QuickLook from './quickLook'
@@ -68,7 +67,6 @@ function Bullcommerce(props) {
 
     return (
         <>
-            <ScrollTransparentNavbar />
             <div className="wrapper">
                 <Container fluid>
                     <EcommerceHeader />
@@ -86,21 +84,28 @@ function Bullcommerce(props) {
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
                                         <Card className="card-product card-plain">
+                                            {/* <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}> */}
+
                                             <div className="card-image Aheight">
-                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                    <img
-                                                        alt="..."
-                                                        src={ia006}
-                                                    ></img>
-                                                </a>
+
+                                                <img
+                                                    alt="..."
+                                                    src={ia006}
+                                                ></img>
+
                                             </div>
+                                            {/* </Link> */}
+
                                             <CardBody>
-                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                    <CardTitle className="mt-2" tag="h4">
+                                                {/* <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU} */}
+                                                {/* // פה אמורים לשלוח את המוצר לדף מוצר */}
+                                                {/* > */}
+                                                {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { featuredProducts.item } }}> */}
 
-                                                        {item.name}</CardTitle>
-                                                </a>
+                                                <CardTitle className="mt-2" tag="h4">
 
+                                                    {item.name}</CardTitle>
+                                                {/* </Link> */}
                                                 <CardFooter>
                                                     <div className="price-container">
                                                         <span className="price">{item.price + " $"}</span>
@@ -178,7 +183,6 @@ function Bullcommerce(props) {
 
                     </div>
                 </div>
-                <FooterOrange />
             </div >
         </>
     );
@@ -191,7 +195,8 @@ export default connect(
             slideMax: state.filterReducer.maxPrice,
             products: state.productReducer.products,
             categories: state.categoriesReducer.categories,
-            featuredProducts: state.productReducer.featuredProducts
+            featuredProducts: state.productReducer.featuredProducts,
+            objectFields: state.storeReducer.objectFields
         }
     },
     (dispatch) => {
