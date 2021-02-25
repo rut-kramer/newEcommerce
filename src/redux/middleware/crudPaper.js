@@ -22,8 +22,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                     {
                     name:action.payload.name,
                     description: action.payload.description,
-                    //TODO
-                    store:"6016c8f6686b0fad932aa57d",
+                    store:getState().storeReducer.objectFields._id,
                     quillStyle:action.payload.quillStyle,                   
                    
                     });
