@@ -50,6 +50,7 @@ const cartReducer = {
 
   addProductToCart(state, action) {
 
+    debugger
     let productsCart = state.cart.products;
     if (!productsCart)
       productsCart = new Array();
@@ -57,7 +58,7 @@ const cartReducer = {
     state.cart.products = productsCart;
     // dispatch(actions.callcTotalPrice());
     // this.callcTotalPrice(state)
-    state.cart.totalPrice += action.payload.product.price;
+    state.cart.totalPrice += (action.payload.product.price * action.payload.amount);
 
   },
   pluseAmount(state, action) {

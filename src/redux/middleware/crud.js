@@ -19,21 +19,28 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 //17
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
+        debugger
+        if (action.payload.size > 5242880) {
+            alert(`sorry, the file ${action.payload.name} is too big file, Please remove it from the list`);
+            return;
+        }
         const myFile = new FormData();
         myFile.append("file", action.payload);
         $.ajax({
-            "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
+            "url": "https://community.leader.codes/api/uploadImage/D2uxGNcpVGPw3MLWQaadsO3kmAh1",
+            // + getState().userReducer.user.uid,
             "method": "POST",
             "processData": false,
             "mimeType": "multipart/form-data",
             "contentType": false,
             "headers": {
-                "Authorization": getState().userReducer.user.tokenFromCookies
+                "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiJEMnV4R05jcFZHUHczTUxXUWFhZHNPM2ttQWgxIiwiZW1haWwiOiJ5ZXVkaXRAbGVhZGVyLmNvZGVzIiwiaXAiOiI4MC4xNzkuMTQ3LjEwOSIsImlhdCI6MTYxNDE3MDk3NX0.ckGyN99m8KPoG7GoxArfHUx5a6lojfTICfb4jq4p_lY"
+                // getState().userReducer.user.tokenFromCookies
             },
             "data": myFile,
             "async": false,
             success: function (data1) {
-                dispatch(actions.setProfilePicture(data1))
+                dispatch(actions.setPicture(data1))
             },
             error: function (err) {
                 console.log("err upload", err)

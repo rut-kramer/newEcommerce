@@ -81,5 +81,26 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
     };
     return next(action);
 };
+//14
+export const oneProduct = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'ONE_PRODUCT') {
+        // var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
+        $.ajax({
+            url: `https://community.leader.codes/api/products/6036035c3a092220599e2894`,
+            method: "get",
+            dataType: "json",
+            contentType: "application/json",
+            // data: raw,
+            success: function (data) {
+                console.log("product1", data);
+                dispatch(actions.setCurrentProduct(data))
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
+            }
+        });
+    };
+    return next(action);
+};
 
 

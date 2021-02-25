@@ -6,6 +6,7 @@ import CategoryByFilter from '../store design/category_page/categoryByFilter';
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 import Cart from '../store design/cart';
+import Product from '../store design/product_page/product';
 
 import { connect } from 'react-redux';
 
@@ -18,11 +19,17 @@ function Content(props) {
     return (
         <div className="Content">
             <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
-            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>
+            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>/
+
+            <Link to={{ pathname: `/${props.objectFields.storeName}/product`, state: { product: props.product1 } }}>productPage</Link>
+            /
+
+
             <Switch>
                 <Route path="/filter-category" component={CategoryByFilter} />
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <Route path="/:storeName/cart" component={Cart} />
+                <Route path="/:storeName/product" component={Product} />
                 <Route path="/:storeName" component={Temporary} />
 
             </Switch>
@@ -36,6 +43,7 @@ function Content(props) {
 const mapStateToProps = (state) => {
     return {
         objectFields: state.storeReducer.objectFields,
+        product1: state.productReducer.currentProduct
     }
 }
 const mapDispatchToProps = (dispatch) => ({

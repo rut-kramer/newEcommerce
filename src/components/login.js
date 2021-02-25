@@ -89,6 +89,7 @@ function LoginPage(props) {
                             }}
                         ></div>
                         <div className="content" style={{ margin: 0 }}>
+
                             <Container>
                                 <Row>
                                     <Col className="ml-auto mr-auto" md="5">

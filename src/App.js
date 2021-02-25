@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login"
 import Home from "./components/home";
 import OpenStore from "./components/openStore"
@@ -15,8 +15,10 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import Ecommerce from './components/store design/Ecommerce';
-import ProductPage from "./components/store design/product_page/productPage";
-import Cart from "./components/store design/cart";
+import Upload from './components/modals/yeuditUploadImage'
+
+// import Product from "./components/store design/product_page/product";
+// import Cart from "./components/store design/cart";
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -30,7 +32,11 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          <Link to={"/upload"}>uploadImage</Link>‏
+
           <Switch>
+            <Route path="/upload" component={Upload} />
+
             <Route exact path="/ecommerce">
               <Ecommerce />
             </Route>
@@ -57,9 +63,9 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            <Route path="/ProductPage">
-              <ProductPage />
-            </Route>
+            {/* <Route path="/product">
+              <Product />
+            </Route> */}
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />

@@ -303,11 +303,15 @@ const initialState = {
                         "name": "KES",
                         "country": "Kenyan Shilling"
                 },
-        ]
+        ],
+        picture: ""
 }
 
 const coins = {
-
+        setPicture(state, action) {
+                debugger
+                state.picture = action.payload;
+        },
 
 }
 
