@@ -37,8 +37,6 @@ import FilteredProducts from "./filteredProducts";
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
-
-
 //images
 import aa from "../../assets/img/xd/CAMA0476 (Medium).JPG";
 import a from "../../assets/img/xd/IMG_2510.JPG";
