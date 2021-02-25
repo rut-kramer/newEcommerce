@@ -1,8 +1,3 @@
-/* //דף בולקומרס שהצגת התמונות יהיה רספונסיבי */
-/* .heightRow{
-  height: 47vh;
-} */
-
 .heightViewProduct{
     height: 47vh;
     border-image:1px red solid ;

@@ -37,25 +37,13 @@ import FilteredProducts from "./filteredProducts";
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
-//images
-import aa from "../../assets/img/xd/CAMA0476 (Medium).JPG";
-import a from "../../assets/img/xd/IMG_2510.JPG";
 //xd image
 import ia006 from "../../assets/img/xd/ia_300000006.png";
-import dd from "../../assets/img/pricing2.jpg"
-import ia008 from "../../assets/img/xd/ia_300000008.png";
-import ia0010 from "../../assets/img/xd/ia_300000010.png";
-import ia0012 from "../../assets/img/xd/ia_300000012.png";
-import ia0019 from "../../assets/img/xd/ia_300000019.png";
-import ia0024 from "../../assets/img/xd/ia_100000024.png";
-import ia0035 from "../../assets/img/xd/ia_300000035.png";
-import ia0096 from "../../assets/img/xd/ia_100000096.png";
-import ia0045 from "../../assets/img/xd/ia_300000045.png"
 import cart from "../../assets/img/xd/cart.svg"
 function CategoryBullcommerce(props) {
-  const item = {
-    SKU: "3456666"
-  }
+  // const item = {
+  //   SKU: "3456666"
+  // }
   React.useEffect(() => {
 
     document.body.classList.add("ecommerce-page");

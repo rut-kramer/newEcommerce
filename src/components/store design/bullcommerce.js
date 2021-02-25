@@ -69,28 +69,23 @@ function Bullcommerce(props) {
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
                                         <Card className="card-product card-plain">
-                                            {/* <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}> */}
+                                            <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}>
 
-                                            <div className="card-image Aheight">
+                                                <div className="card-image Aheight">
 
-                                                <img
-                                                    alt="..."
-                                                    src={ia006}
-                                                ></img>
+                                                    <img
+                                                        alt="..."
+                                                        src={ia006}
+                                                    ></img>
 
-                                            </div>
-                                            {/* </Link> */}
+                                                </div>
+                                            </Link>
 
                                             <CardBody>
-                                                {/* <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU} */}
-                                                {/* // פה אמורים לשלוח את המוצר לדף מוצר */}
-                                                {/* > */}
-                                                {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { featuredProducts.item } }}> */}
 
                                                 <CardTitle className="mt-2" tag="h4">
 
                                                     {item.name}</CardTitle>
-                                                {/* </Link> */}
                                                 <CardFooter>
                                                     <div className="price-container">
                                                         <span className="price">{item.price + " $"}</span>

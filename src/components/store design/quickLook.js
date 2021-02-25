@@ -8,7 +8,6 @@ import { Table, Container, Row, Col, Button } from 'reactstrap';
 
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 
-//בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function QuickLook(props) {
 
     const [orderAmount, setOrderAmount] = useState(1)
@@ -67,8 +66,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(QuickLook);
-
-
-/////////////////////////////
-
-

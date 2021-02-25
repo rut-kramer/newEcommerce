@@ -38,7 +38,6 @@ function FooterOrange(props) {
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         {props.objectFields.tel}
-                                        {/* About Us */}
                                     </a>
                                 </li>
                                 <li>
@@ -48,7 +47,6 @@ function FooterOrange(props) {
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         {props.objectFields.email}
-                                        {/* Presentation */}
                                     </a>
                                 </li>
                                 <li>
@@ -58,13 +56,11 @@ function FooterOrange(props) {
                                         onClick={(e) => e.preventDefault()}
                                     >
                                         {props.objectFields.address}
-                                        {/* Contact Us */}
                                     </a>
                                 </li>
                             </ul>
                         </Col>
                         <Col >
-                            {/* <Link to={"/ssss"> */}
                             <Link to={"/" + props.objectFields.urlRoute + "/category/"}>
 
                                 <h5>Categories</h5>
@@ -246,7 +242,6 @@ function FooterOrange(props) {
     );
 }
 
-// export default FooterOrange;
 const mapStateToProps = (state) => {
     return {
         objectFields: state.storeReducer.objectFields,

@@ -14,10 +14,8 @@ function MainStore() {
             <Switch>
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/" component={CategoryBullcommerce}></Route>
-                <Route path="/:storeName/product/:productSKU"
-                    component={Product}></Route>
+                <Route path="/:storeName/product/:productSKU" component={Product}></Route>
                 <Route path="/:storeName" component={Bullcommerce}></Route>
-
             </Switch>
             <FooterOrange></FooterOrange>
         </div>
