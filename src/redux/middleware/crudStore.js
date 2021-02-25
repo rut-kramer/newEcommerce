@@ -30,47 +30,27 @@ import $ from 'jquery';
 export const createNewStore = ({ dispatch, getState }) => next => action => {
 
     return new Promise((resolve, reject) => {
-    if (action.type === 'CREATE_NEW_STORE') {
-        var raw = JSON.stringify({
-            "storeName": action.payload.store.storeName,
-            "urlRoute": action.payload.store.urlRoute,
-            "storeDescription": action.payload.store.storeDescription,
-            "logo": action.payload.store.logo,
-            "address": action.payload.store.address,
-            "tel": action.payload.store.tel,
-            "email": action.payload.store.email,
-            "colorDominates": action.payload.store.colorDominates,
-            "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.store.currency,
-            "policy": action.payload.store.policy,
-            "checkInventoryManagement": action.payload.store.checkInventoryManagement,
-            "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
+        if (action.type === 'CREATE_NEW_STORE') {
+            var raw = JSON.stringify({
+                "storeName": action.payload.store.storeName,
+                "urlRoute": action.payload.store.urlRoute,
+                "storeDescription": action.payload.store.storeDescription,
+                "logo": action.payload.store.logo,
+                "address": action.payload.store.address,
+                "tel": action.payload.store.tel,
+                "email": action.payload.store.email,
+                "colorDominates": action.payload.store.colorDominates,
+                "storeManager": getState().userReducer.user._id,
+                "currency": action.payload.store.currency,
+                "policy": action.payload.store.policy,
+                "checkInventoryManagement": action.payload.store.checkInventoryManagement,
+                "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
 
-        });
-       
-        $.ajax({
-            url: "https://community.leader.codes/api/stores/newStore",
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: raw,
-            success: function (data) {
-                 dispatch(actions.setSaveAllDetailsStore(data));
-                resolve(data)
-                console.log(data)
-                dispatch(actions.createNewCategory({"store":data._id, 
-                "categoryName": "DefaultCategory1", 
-                "color":"red" ,"masterCategory":null}))
-                dispatch(actions.createNewCategory({"store":data._id, 
-                "categoryName": "DefaultCategory2", 
-                "color":"green" ,"masterCategory":null}))
-                dispatch(actions.createNewCategory({"store":data._id, 
-                "categoryName": "DefaultCategory3", 
-                "color":"blue" ,"masterCategory":null}))
-            },
-            error: function (err) {
-                reject(err)
-            }}) }
+            });
+
+
+
+
 
             $.ajax({
                 url: "https://community.leader.codes/api/stores/newStore",
@@ -101,17 +81,14 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                             dispatch(actions.addNewProducts({
                                 "name": "DefaultProduct" + index,
                                 "description": "The Best Product ",
-                                "SKU": "DefultSKU_" + index + "sar",
+                                "SKU": "DefultSKU_" + index + "hilman",
                                 "category": dataCategory._id,
                                 "store": data._id,
                                 "price": "123",
                                 "featured": true,
                             }))
                         }
-
                     })
-
-
                 },
 
 
@@ -119,6 +96,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                     reject(err)
                 }
             })
+        }
         return next(action);
     })
 };

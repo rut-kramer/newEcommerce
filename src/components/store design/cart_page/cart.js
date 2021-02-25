@@ -3,7 +3,7 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Table, Container, Row, Col, Button } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
