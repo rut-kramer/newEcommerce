@@ -11,7 +11,7 @@ function Header(props) {
             <header className="header js-header">
                 <div className="header__center center">
                     {
-                        <Link to={"/" + props.objectFields.urlRoute} className="header__logo" onClick={props.changeCurrentComponent("LOGO")}>
+                        <Link to="/0/" className="header__logo" onClick={props.changeCurrentComponent("LOGO")}>
                             {props.logoDesign.LogoYOrN === true ?
                                 <img className="" src={props.objectFields.logoStore ? props.objectFields.logoStore : tempLogo} alt=""
                                     style={{ borderRadius: props.logoDesign.logoBorderRadiusLogo }}
@@ -38,7 +38,7 @@ function Header(props) {
                         id="myTopnav">
                         {props.categories.map((item, index) =>
                         (
-                            <Link key={index} to={"/" + objectFields.urlRoute + "/" + item.categoryName} style={{
+                            <Link key={index} to={"/0/category/" + item.categoryName} style={{
                                 float: "right",
                                 display: "block",
                                 color: "#f2f2f2",

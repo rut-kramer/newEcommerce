@@ -14,7 +14,9 @@ import EditProduct from './components/store setting/product_management/editProdu
 import EditCategory from './components/store setting/category_managment/editCategory';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
+import Ecommerce from './components/store design/Ecommerce';
 import QuickLook from './components/store design/quickLook'
+import CategoryBullcommerceNew from './components/store design/categoryBullcommerceNew'
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -29,6 +31,12 @@ function App() {
       <Router>
         <div className="App">
           <Switch>
+            <Route exact path="/ecommerce">
+              <Ecommerce />
+            </Route>
+            <Route exact path="/categoryBullcommerceNew">
+              <CategoryBullcommerceNew />
+            </Route>
 
             <Route exact path="/">
               <Home />

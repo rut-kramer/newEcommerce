@@ -30,13 +30,13 @@ function Admin(props) {
     <Provider store={store}>
 
       <div className="tab">
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Product</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Attributes') }}>Attributes</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>your Store</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>New Paper</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Categories') }}>Categories</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Orders') }}>Orders</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Product') }}>Product</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'Attributes') }}>Attributes</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'StorePerUser') }}>your Store</button>
+        <button className="tablinks" onClick={() => { openCity(event, 'NewPaper') }}>New Paper</button>
       </div>
 
       <div id="Categories" className="tabcontent">

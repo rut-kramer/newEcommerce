@@ -63,8 +63,8 @@
             &,
             &:focus,
             &:hover{
-                background-color: orange;
-                border-color:ora;
+                background-color: $brand-info;
+                border-color: $brand-info;
             }
         }
     }

@@ -44,7 +44,7 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to={"/" + props.objectFields.urlRoute}>
+                    <Link onClick={() => { funcReset(itemy) }} to="/0">
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -69,9 +69,7 @@ export default connect(
     return {
       stores: state.userReducer.storesOfUser,
       user: state.userReducer.user,
-      categories: categoryReducer.categories,
-      objectFields: state.storeReducer.objectFields
-
+      categories: categoryReducer.categories
     }
   },
   (dispatch) => {

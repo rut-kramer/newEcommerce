@@ -15,9 +15,10 @@ import {
 import { Link } from "react-router-dom";
 
 // core components
-// import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
+import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
-import './bullcommerce.css'
+import FooterOrange from "./footerOrange";
+
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import QuickLook from './quickLook'
@@ -52,6 +53,7 @@ function Bullcommerce(props) {
 
     return (
         <>
+            <ScrollTransparentNavbar />
             <div className="wrapper">
                 <Container fluid>
                     <EcommerceHeader />
@@ -68,24 +70,23 @@ function Bullcommerce(props) {
                                 {/*פה צריך לעשות לולאה שתשלוף את פיצר פרודקט */}
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
+
                                         <Card className="card-product card-plain">
-                                            <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}>
-
-                                                <div className="card-image Aheight">
-
+                                            <div className="card-image Aheight">
+                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
                                                     <img
                                                         alt="..."
                                                         src={ia006}
                                                     ></img>
-
-                                                </div>
-                                            </Link>
-
+                                                </a>
+                                            </div>
                                             <CardBody>
+                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                    <CardTitle className="mt-2" tag="h4">
 
-                                                <CardTitle className="mt-2" tag="h4">
+                                                        {item.name}</CardTitle>
+                                                </a>
 
-                                                    {item.name}</CardTitle>
                                                 <CardFooter>
                                                     <div className="price-container">
                                                         <span className="price">{item.price + " $"}</span>
@@ -96,31 +97,11 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224088"
-                                                        onClick={() => props.addToCart(
-                                                            {
-                                                                "product": {
-                                                                    "amount": 4,
-                                                                    "price": 450,
-                                                                    "images": [],
-                                                                    "attributes": [
-                                                                        "6021297fb7ce77e4d5b3e8cf"
-                                                                    ],
-                                                                    "featured": false,
-                                                                    "_id": "602babe3c8336e62cd3d5f2e",
-                                                                    "name": "Simcha dress",
-                                                                    "description": "to wedding",
-                                                                    "SKU": "7786754614",
-                                                                    "category": "601bec7cbf7ea1c3829cd18b",
-                                                                    "store": "6012b0300718f71a8fa25df5",
-                                                                },
-                                                                "amount": 1
-                                                            }
-                                                        )}
                                                     >
-                                                        {/* //אם רוצים להשתמש באיקון הזה צריך לקנות אותו */}
+                                                        {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                                         {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
-                                                        <img alt="...."
-                                                            src={cart}></img>
+                                                        <Link to="/"><img alt="...."
+                                                            src={cart}></img></Link>
                                                     </Button>
                                                     <UncontrolledTooltip
                                                         delay={0}
@@ -163,6 +144,7 @@ function Bullcommerce(props) {
 
                     </div>
                 </div>
+                <FooterOrange />
             </div >
         </>
     );
@@ -175,8 +157,7 @@ export default connect(
             slideMax: state.filterReducer.maxPrice,
             products: state.productReducer.products,
             categories: state.categoriesReducer.categories,
-            featuredProducts: state.productReducer.featuredProducts,
-            objectFields: state.storeReducer.objectFields
+            featuredProducts: state.productReducer.featuredProducts
         }
     },
     (dispatch) => {
@@ -184,9 +165,7 @@ export default connect(
             filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
             setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
             setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
-            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
-            addToCart: (product) => { dispatch(actions.addToCart(product)) }
-
+            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
         }
     }
 )(Bullcommerce);
