@@ -31,42 +31,49 @@ function App() {
       <Router>
         <div className="App">
           {/* <div className="outFooter"> */}
-            <Switch>
-              <Route exact path="/ecommerce">
-                <Ecommerce />
-              </Route>
-              <Route exact path="/categoryBullcommerceNew">
-                <CategoryBullcommerceNew />
-              </Route>
+          <Switch>
+            <Route exact path="/ecommerce">
+              <Ecommerce />
+            </Route>
+            <Route exact path="/categoryBullcommerceNew">
+              <CategoryBullcommerceNew />
+            </Route>
 
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/quickLook">
-                <QuickLook />
-              </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/quickLook">
+              <QuickLook />
+            </Route>
 
-              <Route exact path="/admin/category/add">
-                <AddCategory />
-              </Route>
-              <Route exact path="/admin/product/add">
-                <AddProduct />
-              </Route>
-              <Route exact path="/admin/product/edit">
-                <EditProduct />
-              </Route>
-              <Route exact path="/admin/category/edit">
-                <EditCategory />
-              </Route>
+            <Route exact path="/admin/category/add">
+              <AddCategory />
+            </Route>
+            <Route exact path="/admin/product/add">
+              <AddProduct />
+            </Route>
+            <Route exact path="/admin/product/edit">
+              <EditProduct />
+            </Route>
+            <Route exact path="/admin/category/edit">
+              <EditCategory />
+            </Route>
 
-              <Route path="/login">
-                <Login />
-              </Route>
-              <PrivateRoute path="/openStore" component={OpenStore} />
-              <PrivateRoute path="/home" component={Index} />
-              <PrivateRoute path="/:comp" component={Wrap} />
-            </Switch>
+            <Route path="/login">
+              <Login />
+            </Route>
+            <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/home" component={Index} />
+            <PrivateRoute path="/:comp" component={Wrap} />
+          </Switch>
           {/* </div> */}
+          <footer className="footer" data-background-color="transparent" style={{
+            // bottom: 0,
+            // position: "fixed", width: "100%", 
+            padding: 0
+          }}>
+            <a>ggg</a>
+          </footer>
           <TopFooter></TopFooter>
         </div>
       </Router>
