@@ -8,38 +8,32 @@ import { actions } from '../../../redux/action'
   useEffect(() => {
    let list=Master_category.filter(c=>c.masterCategory==null)
 setMaster_category(list)
-  },[])
+  }, [])
 
 
-    const [myValues ,setMyValues]= useState({
-        id:props.currentCategory._id,
-        categoryName:props.currentCategory.categoryName,
-        color:props.currentCategory.color,
-        store:props.currentCategory.store
-        });
         const updateCategory = (event) => {
           let k;
          if(event.target.value==="ללא קטגורית אב")
          k=null
          else
          {
-            k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+            k=props.categoryList.filter(p=>p.categoryName===event.target.value)
             k=k[0]._id
            }
-           setMyValues({
-             ...myValues,
+           props.setCurrentCategory({
+             ...props.currentCategory,
              masterCategory:k           });
          }
 
     const update = (event) => {        
-        setMyValues({
-            ...myValues,       
+      props.setCurrentCategory({
+        ...props.currentCategory,   
             [event.target.name]:event.target.value
         });
     }
     
     const Submit = ()=>{
-        props.editCategory(myValues);
+        props.editCategory(props.currentCategory);
     }
 
     return(
@@ -50,7 +44,7 @@ setMaster_category(list)
                     <div className="field form__field">
                       <div className="field__label">שם קטגוריה </div>
                       <div className="field__wrap">
-                          <input className="field__input" type="text" onChange={update} value={myValues.categoryName} name="categoryName" placeholder="Start typing…" />
+                          <input className="field__input" type="text" onChange={update} value={props.currentCategory.categoryName} name="categoryName" placeholder="Start typing…" />
                         <div className="field__icon"><i className="la la-truck-loading "></i></div>
                       </div>
                     </div>
@@ -59,14 +53,14 @@ setMaster_category(list)
                     <div className="field form__field">
                       <div className="field__label">צבע</div>
                       <div className="field__wrap">
-                          <input className="field__input" type="text" placeholder="Start typing…" name="color" id="description-in" onChange={update} value={myValues.color}/>
+                          <input className="field__input" type="text" placeholder="Start typing…" name="color" id="description-in" onChange={update} value={props.currentCategory.color}/>
                         <div className="field__icon"><i className="la la-warehouse "></i></div>
                       </div>
                     </div>
                   </div>
                 </div>
                 <label>בחר צבע לקטגוריה</label><br></br>
-                <input type={"color"} name="color"  onChange={update}></input><br></br>
+                <input type={"color"} name="color" value={props.currentCategory.color}  onChange={update}></input><br></br>
                
 
 <div className="form__col">
@@ -95,5 +89,7 @@ export default connect(
   (dispatch)=>{
           return {
                   editCategory:(n)=>{ ;dispatch(actions.editCategory(n))},
+                  setCurrentCategory: (n) => dispatch(actions.setCurrentCategory(n)),
+
           }}             
   )(EditCategory);

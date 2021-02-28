@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // reactstrap components
 import {
-  Button,
   Collapse,
   DropdownToggle,
   DropdownMenu,
@@ -12,25 +11,24 @@ import {
   UncontrolledDropdown,
   NavbarBrand,
   Navbar,
-  NavItem,
   Nav,
   Container,
   UncontrolledTooltip,
 } from "reactstrap";
 
-import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 
 
 
 function ScrollTransparentNavbar(props) {
-  const [collapseOpen, setCollapseOpen] = React.useState(false);
-  const [navbarColor, setNavbarColor] = React.useState(
+  // const [collapseOpen, setCollapseOpen] = React.useState(false);
+  // const [navbarColor, setNavbarColor] = React.useState(
     //   (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
     //     ? ""
     //     : " navbar-transparent"
-  );
-  const [buyButtonColor, setBuyButtonColor] = React.useState(
+  // );
+  // buyButtonColor
+  const [, setBuyButtonColor] = React.useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
       ? "info"
       : "neutral"
@@ -42,7 +40,7 @@ function ScrollTransparentNavbar(props) {
         document.documentElement.scrollTop > 499 ||
         document.body.scrollTop > 499
       ) {
-        setNavbarColor("");
+        // setNavbarColor("");
         setBuyButtonColor("info");
       } else if (
         document.documentElement.scrollTop < 500 ||
@@ -78,10 +76,13 @@ function ScrollTransparentNavbar(props) {
             // isOpen={collapseOpen}
             navbar>
             <Nav className="mx-auto" id="ceva" navbar>
-              {props.categories.filter(item => {
-                if (!item.masterCategory && item.masterCategory === null)
-                  return item
-              }).map((item, index) => (
+              {props.categories.filter(item => 
+              !item.masterCategory && item.masterCategory === null
+              // {
+              //   if (!item.masterCategory && item.masterCategory === null)
+              //     return item
+              // }
+              ).map((item, index) => (
                 <UncontrolledDropdown nav key={index}>
                   <DropdownToggle
                     caret

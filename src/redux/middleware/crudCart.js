@@ -7,7 +7,7 @@ import { actions } from '../action';
 export const addToCart = ({ dispatch, getState }) => next => action => {
         if (action.type === 'ADD_TO_CART') {
                 let flag = false;
-                getState().cartReducer.cart.products.map((product, index) => {
+                getState().cartReducer.cart.products.forEach((product, index) => {
                         if (product.product.SKU.toString() === action.payload.product.SKU.toString()) {
                                 flag = true;
                                 dispatch(actions.pluseAmount(index));

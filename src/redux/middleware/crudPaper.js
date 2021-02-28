@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import { actions } from '../action';
 import axios from 'axios';
 

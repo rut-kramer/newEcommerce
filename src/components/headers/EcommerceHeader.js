@@ -3,7 +3,6 @@ import React from "react";
 
 // reactstrap components
 import {
-  Container,
   Row,
   Col,
   Carousel,
@@ -13,64 +12,13 @@ import {
 
 //core
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
 
 
 //img xd
-import bannerSection from "../../assets/img/xd/BannerSection.png";
 import interior from "../../assets/img/xd/interior-with-white-sofa@2x.png";
 import img3 from "../../assets/img/xd/ia_300000045.png"
 // core components
-const items = [
-  {
-    src: "url(" + bannerSection + ")",
-    content: (
-      <Row>
-        <Col className="ml-auto mr-auto" md="8">
-          <h1 className="title">Finding the Perfect.</h1>
-          <h4 className="description text-white">
-            The haute couture crowds make stylish statements between shows
-            during couture season in Paris...
-          </h4>
-        </Col>
-      </Row>
-    ),
-    altText: "",
-    caption: "",
-  },
-  {
-    src: "url(" + interior + ")",
-    content: (
-      <Row>
-        <Col className="ml-auto mr-auto text-center" md="8">
-          <h1 className="title">Street Style: Couture.</h1>
-          <h4 className="description text-white">
-            See what Karlie Kloss, Tracee Ellis Ross and others wore between the
-            shows...
-          </h4>
-        </Col>
-      </Row>
-    ),
-    altText: "",
-    caption: "",
-  },
-  {
-    src: "url(" + img3 + ")",
-    content: (
-      <Row>
-        <Col className="ml-auto mr-auto" md="8">
-          <h1 className="title">lorem ispum</h1>
-          <h4 className="description text-white">
-            Shirts that actually fit? Check. Linen shorts? Yup. Those wider
-            pants suddenly in style? Got them, too....
-          </h4>
-        </Col>
-      </Row>
-    ),
-    altText: "",
-    caption: "",
-  },
-];
+
 
 function EcommerceHeader(props) {
   const items = [

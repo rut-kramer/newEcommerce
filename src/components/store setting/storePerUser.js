@@ -11,6 +11,7 @@ function StorePerUser(props) {
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
     props.getAllPaper(item._id)
+      props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -19,8 +20,11 @@ function StorePerUser(props) {
     else
       alert('מזל שהתחרטת...')
   }
-  useEffect(async () => {
-    await props.getStoreByUser(props.user._id);
+  useEffect(() => {
+    async function fetchData() {
+      await props.getStoreByUser(props.user._id);
+    }
+    fetchData();
   }, [])
   return (
     <>
@@ -77,9 +81,7 @@ export default connect(
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
-      getAllPaper:(i) => { dispatch(actions.getAllPaper(i)) },
     }
   }
-
 )(StorePerUser);
 

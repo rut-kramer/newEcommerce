@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
@@ -122,7 +122,10 @@ function ProductsList(props) {
         //         props.addNewImageFromDbP({ f: myFile, t: "title" });
         //         // }
         // }
-
+        function askDeleteProduct(i) {
+                if (window.confirm("אם אתה בטוח שברצונך למחוק את המוצר"))
+                props.delete(i)
+              }
         function DataHaed() {
                 return (
                         <div className="data__head">
@@ -147,35 +150,35 @@ function ProductsList(props) {
                                 </div>
                         </div>)
         }
-        function Data_Main({ item, index }) {
-                return (
-                        <div className="data__main">
-                                <div className="data__effect mobile-hide"><label className="switch">
-                                        <input className="switch__input" type="button" onClick={() => { props.delete(item._id); props.setSearchReasult(props.products); }} />
-                                        <span className="switch__content">
-                                        </span></label></div>
-                                <div className="data__preview">
-                                        <label className="prdct_img" for={"fileInput" + index}>
-                                                {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
-                                        </label>
-                                        <input ref={fileI}
-                                                name={index}
-                                                type={"file"}
-                                                id={"fileInput" + index}
-                                                htmlFor="myInput"
-                                                accept="image/*"
-                                                style={{
-                                                        display: 'none',
-                                                        cursor: 'pointer'
-                                                }}
-                                                onChange={onChangeHandlerImage} />
-                                </div>
-                                <div className="data__wrap">
-                                        <div className="data__content">
-                                                <strong>{item.name}</strong></div>
-                                        <div className="data__label">SKU {item.SKU}</div>
-                                </div>
-                        </div>)
+        function Data_Main({item,index}) {
+                return(
+                <div className="data__main">
+                        <div className="data__effect mobile-hide"><label className="switch">
+                                <input className="switch__input" type="button" onClick={() => { askDeleteProduct(item._id); props.setSearchReasult(props.products); }} />
+                                <span className="switch__content">
+                                </span></label></div>
+                        <div className="data__preview">
+                                <label className="prdct_img" for={"fileInput" + index}>
+                                        {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
+                                </label>
+                                <input ref={fileI}
+                                        name={index}
+                                        type={"file"}
+                                        id={"fileInput" + index}
+                                        htmlFor="myInput"
+                                        accept="image/*"
+                                        style={{
+                                                display: 'none',
+                                                cursor: 'pointer'
+                                        }}
+                                        onChange={onChangeHandlerImage} />
+                        </div>
+                        <div className="data__wrap">
+                                <div className="data__content">
+                                        <strong>{item.name}</strong></div>
+                                <div className="data__label">SKU {item.SKU}</div>
+                        </div>
+                </div>)
         }
 
         return (
@@ -197,47 +200,65 @@ function ProductsList(props) {
                                                 <div className="data__body">
                                                         {/* TO DO FELTERADE */}
                                                         {props.products.map((item, index) => (
-                                                                index < (props.PageNum - 1) * 6 || index > props.PageNum * 6 - 1 ? "" :
-                                                                        <div className="data__item" key={index}>
-                                                                                <div className="data__row" >
-                                                                                        <div className="data__cell data__cell_xl">
-                                                                                                <Data_Main item={item} index={index}></Data_Main>
-                                                                                        </div>
-                                                                                        <div className="data__cell mobile-hide">
-                                                                                                <div className="data__content">{item.description}</div>
-                                                                                                {/* <div className="data__label">amount</div> */}
-                                                                                        </div>
-                                                                                        <div className="data__cell mobile-hide">
-                                                                                                <div className="data__content"><strong>{item.amount}</strong> </div>
-                                                                                        </div>
-                                                                                        <div className="data__cell mobile-hide">
-                                                                                                <div className="data__content"><strong>${item.price}</strong></div>
-                                                                                        </div>
-                                                                                        {item.category && <div className="data__cell mobile-hide">
-                                                                                                <div style={{ "backgroundColor": item.category.color }}
-                                                                                                        className="tag gray">{item.category.categoryName}</div>
-                                                                                        </div>}
+                                                               index < (props.PageNum - 1) * 6||index>props.PageNum * 6 - 1?"":                                                             
+                                                               
+                                                               <div className="data__item" key={index}>
+                                                                                         <button className="accordion">
 
-                                                                                        <div className="data__cell data__cell_action">
-                                                                                                <button className="action action_stroke"
-                                                                                                        onClick={() => { props.setcomponnet("editProduct"); props.setCurrentProduct(item) }} >
-                                                                                                        <i className="la la-ellipsis-h "></i>
-                                                                                                </button>
-                                                                                        </div>
-                                                                                        <div className="data__cell data__cell_action">
-                                                                                                <button className="action action_stroke"
-                                                                                                        onClick={() => { props.delete(item._id); props.setSearchReasult(props.products) }} >
-                                                                                                        <i className="far fa-trash-alt ml-auto"></i>
-                                                                                                </button>
-                                                                                        </div>
+                                                                        <div className="data__row" >
+                                                                                <div className="data__cell data__cell_xl">
+                                                                                        <Data_Main item={item} index={index}></Data_Main>
                                                                                 </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content">{item.description}</div>
+                                                                                        {/* <div className="data__label">amount</div> */}
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                <div className="data__content">
+                                                                              <input type="checkbox"
+                                                                              checked={item.featured}
+                                                                              ></input></div>
                                                                         </div>
+                                                                        
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>${item.price}</strong></div>
+                                                                                </div>
+                                                                                {item.category && <div className="data__cell mobile-hide">
+                                                                                        <div style={{ "backgroundColor": item.category.color }}
+                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                </div>}
+
+                                                                                <div className="data__cell data__cell_action">
+                                                                                        <button className="action action_stroke"
+                                                                                                onClick={() => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }} >
+                                                                                                <i className="la la-ellipsis-h "></i>
+                                                                                        </button>
+                                                                                </div>
+                                                                                
+                                                                        </div> 
+                                                                         </button>
+                                                                         <div className="panel1">
+                                                                         <div>
+                                                                         <div className="data__content">
+                                                                         <h5>:תכונות</h5> 
+                                                                         {item.attributes&&item.attributes.map((att, index) => (
+                                                                         att&&<div>
+                                                                                 {/* <h1>{att}</h1> */}
+                                                                                 <strong>{att.name}</strong>
+                                                                         </div>))}
+
+                                                                                 </div>  </div> </div>
+                                                                </div>
+                                                              
                                                         ))}
                                                 </div>
                                         </div>
                                 </div>
                         </div>
-
+{/* {a()} */}
                 </>
         )
 
