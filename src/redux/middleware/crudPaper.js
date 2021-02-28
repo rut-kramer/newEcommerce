@@ -1,5 +1,6 @@
 import { actions } from '../action';
 import axios from 'axios';
+import $ from 'jquery';
 
 
 //4

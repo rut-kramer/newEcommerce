@@ -81,6 +81,8 @@ export default connect(
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
+      getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
+      getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
     }
   }
 )(StorePerUser);
