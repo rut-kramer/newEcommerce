@@ -10,6 +10,7 @@ function showPaper(props) {
     return (<> 
  <div style={{ width: "80%", marginLeft: "auto", marginRight: "auto" }} 
  dangerouslySetInnerHTML={{ __html:props.quote ? props.quote.quillStyle ?props.quote.quillStyle : "" : "" }}></div>      
+ <Link to="/:storeName/admin">to the admin</Link>
             </>
         )
 }
