@@ -15,7 +15,7 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import Ecommerce from './components/store design/Ecommerce';
-import Upload from './components/modals/yeuditUploadImage'
+import Upload from './components/modals/yeuditUploadImage';
 
 // import Product from "./components/store design/product_page/product";
 // import Cart from "./components/store design/cart";
@@ -32,9 +32,9 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          <Link to={"/upload"}>uploadImage</Link>‏
 
           <Switch>
+
             <Route path="/upload" component={Upload} />
 
             <Route exact path="/ecommerce">

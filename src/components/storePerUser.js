@@ -8,10 +8,11 @@ function StorePerUser(props) {
 
     function funcReset(item) {
         props.setCategories(item.categories);
+        // props.setCategoryListMenu(item.categories)
         props.setAllOrders(item.orders);
         props.setCurrentStore(item);
         props.setProducts(item.storeProducts)
-        props.setFilteredItems(item.storeProducts)
+        props.setFilteredItems(item.storeProducts);
     }
 
 
@@ -74,6 +75,7 @@ export default connect(
             setCategories: (i) => { dispatch(actions.setCategories(i)) },
             setAllOrders: (i) => { dispatch(actions.setAllOrders(i)) },
             setCurrentStore: (i) => { dispatch(actions.setCurrentStore(i)) },
+            // setCategoryListMenu: (i) => { dispatch(actions.setCategoryListMenu(i)) },
         }
     }
 

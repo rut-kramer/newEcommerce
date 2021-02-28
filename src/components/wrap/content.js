@@ -7,6 +7,7 @@ import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 import Cart from '../store design/cart';
 import Product from '../store design/product_page/product';
+import Dnd from '../navbars/yeuditDnd'
 
 import { connect } from 'react-redux';
 
@@ -23,9 +24,12 @@ function Content(props) {
 
             <Link to={{ pathname: `/${props.objectFields.storeName}/product`, state: { product: props.product1 } }}>productPage</Link>
             /
+            <Link to={"/dnd"}>Category dnd</Link>
 
 
             <Switch>
+                <Route path="/dnd" component={Dnd} />
+
                 <Route path="/filter-category" component={CategoryByFilter} />
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <Route path="/:storeName/cart" component={Cart} />
