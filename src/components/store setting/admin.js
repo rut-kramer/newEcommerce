@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 import StorePerUser from './storePerUser'
 import CrudAttributes from './attribute_management/crudAttribute'
-import NewPaper from './createNewPaper';
+import NewPaper from './paper_managment/createNewPaper';
 
 function Admin(props) {
 
