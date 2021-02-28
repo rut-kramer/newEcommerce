@@ -61,12 +61,12 @@ function OpenStore(props) {
         event.preventDefault()
         // props.setSaveAllDetailsStore(storeDetails)
         await props.createNewStore({ "store": storeDetails, "file": fileToUpload })
-        history.push("/0/" + storeDetails.urlRoute);
+        history.push("/" + storeDetails.urlRoute);
     }
 
     function skip() {
         props.createNewStore({ "store": storeDetails, "file": fileToUpload })
-        history.push("/0/" + storeDetails.urlRoute);
+        history.push("/" + storeDetails.urlRoute);
     }
 
     return (

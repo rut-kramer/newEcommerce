@@ -1,8 +1,11 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 // reactstrap components
 import {
+  Container,
+  Button,
   Row,
   Col,
   Carousel,
@@ -25,16 +28,13 @@ function EcommerceHeader(props) {
     {
 
       src: "url(" + { img3 } + ")",
-      // לא מצליחה לקרוא מהרידקס
-      // src: props.homeStoreDesign.image,
 
       content: (
         <Row>
           <Col className="ml-auto mr-auto" md="8">
             <h1 className="title">{props.objectFields.storeName}</h1>
             {/* <h4 className="description text-white">
-              The haute couture crowds make stylish statements between shows
-              during couture season in Paris...
+              The haute couture crowds make stylish 
             </h4> */}
           </Col>
         </Row>
@@ -49,8 +49,7 @@ function EcommerceHeader(props) {
           <Col className="ml-auto mr-auto text-center" md="8">
             <h1 className="title">{props.objectFields.storeName}</h1>
             {/* <h4 className="description text-white">
-              See what Karlie Kloss, Tracee Ellis Ross and others wore between the
-              shows...
+              See what Karlie Kloss, Tracee
             </h4> */}
           </Col>
         </Row>
@@ -65,7 +64,6 @@ function EcommerceHeader(props) {
           <Col className="ml-auto mr-auto" md="8">
             <h1 className="title">{props.objectFields.storeName}</h1>
             {/* <h4 className="description text-white">
-              Shirts that actually fit? Check. Linen shorts? Yup. Those wider
               pants suddenly in style? Got them, too....
             </h4> */}
           </Col>
@@ -134,8 +132,21 @@ function EcommerceHeader(props) {
           }}
           role="button"
         >
-          <span className="now-ui-icons arrows-1_minimal-left" />
-          <span className="sr-only">Previous</span>
+          <Button
+            className="btn-icon btn-round"
+            name="button"
+            size="sm"
+            type="button"
+            backgroundColor="transparent"
+          >
+            <FontAwesomeIcon icon={['fas', 'chevron-left']}>
+            </FontAwesomeIcon>
+          </Button>
+          {/* <span */}
+          {/* //  className="now-ui-icons arrows-1_minimal-left" */}
+          {/* /> */}
+          {/* <FontAwesomeIcon icon={['fas', 'chevron-left']} className="arrowIcon"></FontAwesomeIcon> */}
+          {/* <span className="sr-only">Previous</span> */}
         </a>
         <a
           className="right carousel-control carousel-control-next"
@@ -147,8 +158,21 @@ function EcommerceHeader(props) {
           }}
           role="button"
         >
-          <span className="now-ui-icons arrows-1_minimal-right" />
-          <span className="sr-only">Next</span>
+          <Button
+            className="btn-icon btn-round"
+            name="button"
+            size="sm"
+            type="button"
+            backgroundColor="transparent"
+          >
+            <FontAwesomeIcon icon={['fas', 'chevron-right']}>
+            </FontAwesomeIcon>                                                                                </Button>
+          {/* <span */}
+          {/* // className="now-ui-icons arrows-1_minimal-right" */}
+          {/* /> */}
+          {/* <FontAwesomeIcon icon={['fas', 'chevron-right']} className="arrowIcon"></FontAwesomeIcon> */}
+
+          {/* <span className="sr-only">Next</span> */}
         </a>
       </Carousel>
     </>

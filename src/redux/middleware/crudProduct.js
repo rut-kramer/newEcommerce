@@ -16,17 +16,6 @@ export const getAllProducts = ({ dispatch, getState }) => next => action => {
 export const newProduct = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
         if (action.type === 'ADD_NEW_PRODUCTS') {
-            //     var raw = JSON.stringify({
-            //         "featured":action.payload.featured,
-            //     "store":action.payload.store,
-            //      "SKU": action.payload.sku,
-            //       "category": action.payload.category,
-            //   attributes     "price": action.payload.price,
-            //         "name": action.payload.name,
-            //          "description": action.payload.description, 
-            //          "amount": action.payload.amount,
-            //         "":action.payload.attributes
-            //         });
             var raw = JSON.stringify(action.payload)
             console.log(raw)
             $.ajax({
