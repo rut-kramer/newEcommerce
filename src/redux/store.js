@@ -6,10 +6,11 @@ import { newOrder, getOrdersByStore } from './middleware/crudOrder'
 import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
 import {  createNewStore,getStoreByUser,deleteStore } from './middleware/crudStore'
 import { getTheLastUpdatedStorePerUser} from './middleware/crudUser'
-import { createNewPaper ,getAllPaper,deletePaper,editPaper} from './middleware/crudPaper'
+import { createNewPaper } from './middleware/crudPaper'
 import {getAllAttributes,newAttributes,deleteAttributes,editAttribute} from './middleware/crudAttribute'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
+import paperReducer from './reducers/data_reducer/paperReducer'
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
 import cartReducer from './reducers/cartReducer';
 import ordersReducer from './reducers/data_reducer/ordersReducer';
@@ -25,13 +26,13 @@ import { addToCart, changeProductAmount } from "./middleware/crudCart"
 import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import {deleteTerms,newTerm} from './middleware/crudTerm';
-import quillReducer from './reducers/data_reducer/quillReducer';
+
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
-        coinsReducer, storeReducer, wrapReducer, filterReducer,quillReducer,attributeReducer
+        coinsReducer, storeReducer, wrapReducer, filterReducer, paperReducer,attributeReducer
     })
 
 const store = createStore(
@@ -71,7 +72,7 @@ const store = createStore(
             getTheLastUpdatedStorePerUser,
             getStoreByUser,
             deleteStore,
-            createNewPaper,getAllPaper,deletePaper,editPaper,
+            createNewPaper,
             addToCart,
             changeProductAmount,
             deleteAttributes,newAttributes,getAllAttributes,editAttribute,

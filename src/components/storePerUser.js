@@ -12,7 +12,6 @@ function StorePerUser(props) {
         props.setCurrentStore(item);
         props.setProducts(item.storeProducts)
         props.setFilteredItems(item.storeProducts)
-        props.getAllPaper(item)
     }
 
 
