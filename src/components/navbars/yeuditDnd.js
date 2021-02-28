@@ -68,7 +68,7 @@ function Dnd(props) {
                                                 style={getListStyle(snapshot.isDraggingOver)}
                                                 {...provided.droppableProps}
                                         >
-                                                {/* <i class="fas fa-home pt-2" style={{ color: '#FFB100' }}></i> */}
+                                                <i class="fas fa-home pt-2" style={{ color: '#FFB100' }}></i>
                                                 {
                                                         props.categories.map((item, index) => (
                                                                 <Draggable key={index} draggableId={`${index}`} index={index}>
