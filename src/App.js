@@ -19,6 +19,7 @@ import Upload from './components/modals/yeuditUploadImage';
 
 // import Product from "./components/store design/product_page/product";
 // import Cart from "./components/store design/cart";
+import QuickLook from './components/store design/quickLook'
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -46,6 +47,9 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
+            <Route path="/quickLook">
+              <QuickLook />
+            </Route>
 
             <Route exact path="/admin/category/add">
               <AddCategory />
@@ -63,9 +67,6 @@ function App() {
             <Route path="/login">
               <Login />
             </Route>
-            {/* <Route path="/product">
-              <Product />
-            </Route> */}
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />

@@ -1,21 +1,22 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
-import Ecommerce from '../store design/Ecommerce';
-import CategoryByFilter from '../store design/category_page/categoryByFilter';
-
+import Bullcommerce from '../store design/bullcommerce';
+import CategoryByFilter from '../store design/category_page/categoryByFilter'
+import CategoryBullcommerce from "../store design/categoryBullcommerceNew"
+// import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
-import Cart from '../store design/cart';
+// import Cart from '../store design/cart';
 import Product from '../store design/product_page/product';
 import Dnd from '../navbars/yeuditDnd'
+import Cart from '../store design/cart_page/cart';
 
 import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
+import MainStoreRoutes from "../store design/store_page/mainStore"
 
 function Content(props) {
-    function Temporary() {
-        return <Ecommerce></Ecommerce>
-        // <h3>לשים במקומי קומפוננטה</h3>
-    }
+
 
     return (
         <div className="Content">
@@ -36,12 +37,13 @@ function Content(props) {
                 <Route path="/:storeName/product" component={Product} />
                 <Route path="/:storeName" component={Temporary} />
 
+                {/* <Switch>
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <MainStoreRoutes></MainStoreRoutes> */}
             </Switch>
         </div>
     )
 }
-
-
 
 
 const mapStateToProps = (state) => {
@@ -54,4 +56,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 export default connect(mapStateToProps, mapDispatchToProps)
     (Content);
-

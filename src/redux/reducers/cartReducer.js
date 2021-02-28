@@ -53,7 +53,7 @@ const cartReducer = {
     debugger
     let productsCart = state.cart.products;
     if (!productsCart)
-      productsCart = new Array();
+      productsCart = [];
     productsCart.push(action.payload);
     state.cart.products = productsCart;
     // dispatch(actions.callcTotalPrice());

@@ -2,11 +2,24 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actions } from '../../../redux/action'
+import createAttribute from '../attribute_management/createAttribute';
 import '../product_management/crudProducts'
 
 
 function CrudCategory(props) {
-
+        function categoryNameFromId(categoryId)
+        {
+             let y=props.categoryList.filter(f=>f._id==categoryId)
+          if(y[0])
+             return y[0].categoryName;
+             else
+             return "אין"
+        }
+        function askDeleteCategory(i) {
+                if (window.confirm("אם אתה בטוח שברצונך למחוק את הקטגוריה"))
+                props.deleteCategory(i)
+              }
+              
         return (
                 <>
                         <div className="page">
@@ -18,8 +31,8 @@ function CrudCategory(props) {
                                                                 <i className="la la-search "></i></button>
                                                 </div>
                                                 <div className="container__new new js-new">
-                                                        <Link to="/admin/category/add">הוספה</Link>
-                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("addCategory") }}>
+                                                     
+                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddCategory") }}>
                                                                 <i className="la la-plus-circle "></i>
                                                         </button>
                                                 </div>
@@ -35,6 +48,30 @@ function CrudCategory(props) {
                                                                         style={{ display: 'block' }}>
                                                                         <div className="data data_list">
                                                                                 <div className="data__container">
+
+                                                                                <div className="data__head">
+                                <div className="data__row">
+                                        <div className="data__cell data__cell_xl" >
+                                                <div className="data__filter" >מחיקה</div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter">צבע קטגוריה</div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter" >שם קטגוריה</div>
+                                        </div>
+
+                                        <div className="data__cell">
+                                                <div className="data__filter">קטגורית על</div>
+                                        </div>
+                                        <div className="data__cell">
+                                                <div className="data__filter">עריכת קטגוריה</div>
+                                        </div>
+                                        <div className="data__cell data__cell_action"></div>
+                                </div>
+                        </div>
+      
+
                                                                                         <div className="data__body">
                                                                                                 {props.categoryList.map((item, index) => (
                                                                                                         <div className="data__item" key={index}>
@@ -42,9 +79,7 @@ function CrudCategory(props) {
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={async () => {
-                                                                                                                                                        await props.deleteCategory(item._id);
-                                                                                                                                                }} />
+                                                                                                                                                <input className="switch__input" type="button" onClick={ () => { askDeleteCategory(item._id)}} />
                                                                                                                                                 <button>
                                                                                                                                                         <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
                                                                                                                                                         </i></button>
@@ -52,23 +87,28 @@ function CrudCategory(props) {
                                                                                                                                                 </span></label></div>
                                                                                                                                         <div className="data__preview" style={{ "backgroundColor": item.color }}>
                                                                                                                                         </div>
-                                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                        </div>
-                                                                                                                                        <div className="data__wrap">
-                                                                                                                                                <div className="data__content">
+                                                                                                                                        <div className="data__cell mobile-hide"> 
+                                                                                                                                         <div className="data__wrap">
+                                                                                                                                                   <div className="data__content">
                                                                                                                                                         <strong>{item.categoryName}</strong></div>
                                                                                                                                         </div>
+                                                                                                                                        </div>
+                                                                                                                                       
+                                                                                                                                        <div className="data__cell mobile-hide"> 
+                                                                                                                                    
                                                                                                                                         <div className="data__wrap">
                                                                                                                                                 <div className="data__content">
-                                                                                                                                                        <strong>{item.masterCategory}</strong></div>
-                                                                                                                                        </div>
+                                                                                                                                                        <strong>{categoryNameFromId(item.masterCategory)}</strong>
+                                                                                               
+                                                                                                                                                        {/* <strong>{item.masterCategory}</strong> */}</div>
+                                                                                                                                        </div></div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">
                                                                                                                                 <div className="data__content">{item.image}</div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell data__cell_action">
-                                                                                                                                <button onClick={() => { props.setcomponnet("editCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
+                                                                                                                                <button onClick={() => { props.setcomponnet("EditCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
                                                                                                                                         <i className="la la-ellipsis-h "></i>
                                                                                                                                 </button>
                                                                                                                         </div>
@@ -77,6 +117,8 @@ function CrudCategory(props) {
                                                                                                 ))}
                                                                                         </div>
                                                                                 </div>
+            
+                                                               
                                                                         </div>
                                                                 </div>
                                                                 <div className="panel__foot">

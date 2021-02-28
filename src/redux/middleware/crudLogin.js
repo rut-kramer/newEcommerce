@@ -5,7 +5,6 @@ import { auth } from '../../services/firebase';
 
 let username = "";
 
-//1
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
         $.ajax({
@@ -27,7 +26,6 @@ export const setUserId = ({ dispatch, getState }) => next => action => {
 
 
 
-//2
 export const checkPermission = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'CHECK_PERMISSION') {
@@ -61,7 +59,6 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
-//3
 export const onAuthStateChanged = ({ dispatch, getState }) => next => action => {
 
     if (action.type === 'ON_AUTH_STATE_CHANGED') {

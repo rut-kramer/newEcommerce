@@ -2,6 +2,8 @@
 import React from "react";
 // plugin that creates slider
 import Slider from "nouislider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 // reactstrap components
 import {
         Button,
@@ -27,6 +29,37 @@ import { useHistory } from "react-router-dom";
 
 function FilteredProducts(props) {
 
+        // 
+
+        // React.useEffect(() => {
+        //         if (
+        //                 !document
+        //                         .getElementById("sliderRegular")
+        //                         .classList.contains("noUi-target")
+        //         ) {
+        //                 Slider.create(document.getElementById("sliderRegular"), {
+        //                         start: [50],
+        //                         connect: [true, false],
+        //                         step: 0.5,
+        //                         range: { min: 0, max: 100 },
+        //                 });
+        //         }
+        //         if (
+        //                 !document.getElementById("sliderDouble").classList.contains("noUi-target")
+        //         ) {
+        //                 Slider.create(document.getElementById("sliderDouble"), {
+        //                         start: [20, 80],
+        //                         connect: [false, true, false],
+        //                         step: 1,
+        //                         range: { min: 0, max: 100 },
+        //                 });
+        //         }
+        // });
+
+        // 
+
+
+
         // collapse states and functions
         const [collapses, setCollapses] = React.useState([1]);
         const changeCollapse = (collapse) => {
@@ -38,34 +71,33 @@ function FilteredProducts(props) {
         };
 
         const history = useHistory();
+        // React.useEffect(() => {
 
-        React.useEffect(() => {
 
-                let min = props.storeProducts[0].price,
-                        max = props.storeProducts[0].price;
-                props.products.forEach(product => {
-                        if (product.price > max)
-                                max = product.price;
-                        if (product.price < min)
-                                min = product.price;
-                });
+        //         let min = props.storeProducts[0].price,
+        //                 max = props.storeProducts[0].price;
+        //         props.storeProducts.forEach(product => {
+        //                 if (product.price > max)
+        //                         max = product.price;
+        //                 if (product.price < min)
+        //                         min = product.price;
+        //         });
 
-                if (
-                        !document.getElementById("sliderRefine").classList.contains("noUi-target")
-                ) {
+        //         if (
+        //                 !document.getElementById("sliderRefine").classList.contains("noUi-target")
+        //         ) {
+        //                 Slider.create(document.getElementById("sliderRefine"), {
+        //                         start: [min + 20, max],
+        //                         connect: [false, true, false],
+        //                         step: 1,
+        //                         range: { min: min, max: max },
+        //                 }).on("update", function (values) {
 
-                        Slider.create(document.getElementById("sliderRefine"), {
-                                start: [min + 20, max],
-                                connect: [false, true, false],
-                                step: 1,
-                                range: { min: min, max: max },
-                        }).on("update", function (values) {
-
-                                props.setSliderMin(Math.round(values[0]));
-                                props.setSliderMax(Math.round(values[1]));
-                        });
-                }
-        }, []);
+        //                         props.setSliderMin(Math.round(values[0]));
+        //                         props.setSliderMax(Math.round(values[1]));
+        //                 });
+        //         }
+        // }, []);
 
         const onFilter = () => {
 
@@ -78,79 +110,12 @@ function FilteredProducts(props) {
 
         return (
                 <>
-                        {/* <ScrollTransparentNavbar /> */}
-                        {/* <div className="wrapper"> */}
-                        {/* <EcommerceHeader /> */}
-                        {/* <div className="main">
-                                        <div className="section">
-                                                <Container> */}
-                        {/* <h2 className="section-title">Find what you need</h2> */}
-                        {/* <Row> */}
-                        {/* <Col md="3">
-                                                                        <div className="collapse-panel"> */}
                         <CardBody>
-                                <Card className="card-refine card-plain">
-                                        <CardTitle tag="h4">
-                                                Refine{" "}
-                                                <Button
-                                                        className="btn-icon btn-neutral pull-right"
-                                                        color="default"
-                                                        id="tooltip633919451"
-                                                >
-                                                        <i className="arrows-1_refresh-69 now-ui-icons"></i>
-                                                </Button>
-                                                <UncontrolledTooltip
-                                                        delay={0}
-                                                        target="tooltip633919451"
-                                                >
-                                                        Reset Filter
-                          </UncontrolledTooltip>
-                                        </CardTitle>
-                                        <CardHeader id="headingOne" role="tab">
-                                                <h6 className="mb-0">
-                                                        <a
-                                                                className="text-info"
-                                                                aria-expanded={collapses.includes(1)}
-                                                                data-toggle="collapse"
-                                                                data-parent="#accordion"
-                                                                href="#pablo"
-                                                                onClick={(e) => {
-                                                                        e.preventDefault();
-                                                                        changeCollapse(1);
-                                                                }}
-                                                        >
-                                                                Price Range{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
-                                                        </a>
-                                                </h6>
-                                        </CardHeader>
-                                        <Collapse isOpen={collapses.includes(1)}>
-                                                <CardBody>
-                                                        <span
-                                                                className="price-left pull-left"
-                                                                id="price-left"
-                                                        >
-                                                                €{props.slideMin}
-                                                        </span>
-                                                        <span
-                                                                className="price-right pull-right"
-                                                                id="price-right"
-                                                        >
-                                                                €{props.slideMax}
-                                                        </span>
-                                                        <div className="clearfix"></div>
-                                                        <div
-                                                                className="slider slider-refine"
-                                                                id="sliderRefine"
-                                                        ></div>
-                                                </CardBody>
-                                        </Collapse>
-                                </Card>
                                 <Card className="card-refine card-plain">
                                         <CardHeader id="headingTwo" role="tab">
                                                 <h6>
                                                         <a
-                                                                className="text-info"
+                                                                className="text-info as"
                                                                 aria-expanded={collapses.includes(2)}
                                                                 data-toggle="collapse"
                                                                 data-parent="#accordion"
@@ -161,7 +126,9 @@ function FilteredProducts(props) {
                                                                 }}
                                                         >
                                                                 Categories{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -178,7 +145,138 @@ function FilteredProducts(props) {
                                                         ))}
                                                 </CardBody>
                                         </Collapse>
+
                                 </Card>
+                                <Card className="card-refine card-plain">
+                                        <CardHeader id="headingfour" role="tab">
+                                                <h6>
+                                                        <a
+                                                                className="text-info"
+                                                                aria-expanded={collapses.includes(4)}
+                                                                data-toggle="collapse"
+                                                                data-parent="#accordion"
+                                                                href="#pablo"
+                                                                onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        changeCollapse(4);
+                                                                }}
+                                                        >
+                                                                Color{" "}
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
+                                                        </a>
+                                                </h6>
+                                        </CardHeader>
+                                        <Collapse isOpen={collapses.includes(4)}>
+                                                <CardBody>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Black
+                              </Label>
+                                                        </FormGroup>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Blue
+                              </Label>
+                                                        </FormGroup>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Brown
+                              </Label>
+                                                        </FormGroup>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Gray
+                              </Label>
+                                                        </FormGroup>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Green
+                              </Label>
+                                                        </FormGroup>
+                                                        <FormGroup check>
+                                                                <Label check>
+                                                                        <Input type="checkbox"></Input>
+                                                                        <span className="form-check-sign"></span>
+                                Purple
+                              </Label>
+                                                        </FormGroup>
+                                                </CardBody>
+                                        </Collapse>
+                                </Card>
+
+
+                                <Card className="card-refine card-plain">
+
+                                        {/* <CardTitle tag="h4">
+                                                Refine{" "}
+                                                <Button
+                                                        className="btn-icon btn-neutral pull-right"
+                                                        color="default"
+                                                        id="tooltip633919451"
+                                                >
+                                                        <i className="arrows-1_refresh-69 now-ui-icons"></i>
+                                                </Button>
+                                                <UncontrolledTooltip
+                                                        delay={0}
+                                                        target="tooltip633919451"
+                                                >
+                                                        Reset Filter
+                          </UncontrolledTooltip>
+                                        </CardTitle> */}
+                                        <CardHeader id="headingOne" role="tab">
+                                                <h6 className="mb-0">
+                                                        <a
+                                                                className="text-info"
+                                                                aria-expanded={collapses.includes(1)}
+                                                                data-toggle="collapse"
+                                                                data-parent="#accordion"
+                                                                href="#pablo"
+                                                                onClick={(e) => {
+                                                                        e.preventDefault();
+                                                                        changeCollapse(1);
+                                                                }}
+                                                        >
+                                                                Price Range{" "}
+
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+                                                        </a>
+                                                </h6>
+                                        </CardHeader>
+                                        <Collapse isOpen={collapses.includes(1)}>
+                                                <CardBody>
+                                                        <span
+                                                                className="price-left pull-left"
+                                                                id="price-left"
+                                                        >
+                                                                €{props.slideMin}
+                                                        </span>
+                                                        <span
+                                                        // className="price-right pull-right"
+                                                        // id="price-right"
+                                                        >
+                                                                €{props.slideMax}
+                                                        </span>
+                                                        <div className="clearfix"></div>
+                                                        <div
+                                                                className="slider slider-refine"
+                                                                id="sliderRefine"
+                                                        ></div>
+                                                </CardBody>
+                                        </Collapse>
+                                </Card>
+
                                 <Card className="card-refine card-plain">
                                         <CardHeader id="headingThree" role="tab">
                                                 <h6>
@@ -194,7 +292,9 @@ function FilteredProducts(props) {
                                                                 }}
                                                         >
                                                                 Designer{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
+                                                                <FontAwesomeIcon icon={['fas', 'chevron-down']}></FontAwesomeIcon>
+
+                                                                {/* <i className="now-ui-icons arrows-1_minimal-down"></i> */}
                                                         </a>
                                                 </h6>
                                         </CardHeader>
@@ -266,72 +366,18 @@ function FilteredProducts(props) {
                                                 </CardBody>
                                         </Collapse>
                                 </Card>
-                                <Card className="card-refine card-plain">
-                                        <CardHeader id="headingfour" role="tab">
-                                                <h6>
-                                                        <a
-                                                                className="text-info"
-                                                                aria-expanded={collapses.includes(4)}
-                                                                data-toggle="collapse"
-                                                                data-parent="#accordion"
-                                                                href="#pablo"
-                                                                onClick={(e) => {
-                                                                        e.preventDefault();
-                                                                        changeCollapse(4);
-                                                                }}
-                                                        >
-                                                                Colour{" "}
-                                                                <i className="now-ui-icons arrows-1_minimal-down"></i>
-                                                        </a>
-                                                </h6>
-                                        </CardHeader>
-                                        <Collapse isOpen={collapses.includes(4)}>
-                                                <CardBody>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Black
-                              </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Blue
-                              </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Brown
-                              </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Gray
-                              </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Green
-                              </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                                <Label check>
-                                                                        <Input type="checkbox"></Input>
-                                                                        <span className="form-check-sign"></span>
-                                Purple
-                              </Label>
-                                                        </FormGroup>
-                                                </CardBody>
-                                        </Collapse>
-                                </Card>
+                                {/*  */}
+                                {/* <Col lg="3" sm="6">
+                                        <p className="category">Sliders</p>
+                                        <div className="slider" id="sliderRegular"></div>
+                                        <br></br>
+                                        <div className="slider slider-info" id="sliderDouble"></div>
+                                </Col> */}
+
+                                {/*  */}
+
+
+
                                 <Button
                                         className="btn-round"
                                         color="info"
@@ -349,6 +395,7 @@ function FilteredProducts(props) {
         );
 }
 
+
 export default connect(
         (state) => {
                 return {
@@ -365,8 +412,6 @@ export default connect(
                         setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
                         setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
                 }
-        }
-)(FilteredProducts);
-
+        })(FilteredProducts);
 
 
