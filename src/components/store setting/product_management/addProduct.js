@@ -72,8 +72,10 @@ setMyValues({
   att=[];
 }
 function addAtt(id_attr) {
-  att.push(id_attr);
-  setMyValues({
+  let attNew={attribute,terms:[]}
+  attNew.attribute.push(id_attr);
+  attNew
+    setMyValues({
     ...myValues,
     attributes:att
   });

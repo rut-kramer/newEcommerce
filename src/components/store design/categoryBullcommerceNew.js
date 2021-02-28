@@ -10,7 +10,6 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  CardImg,
   Collapse,
   Label,
   FormGroup,
@@ -19,31 +18,50 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-
   InputGroupAddon,
   Row,
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 
 
 // core components
+import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
+import Footer from "../footers/footer.js";
 import FilteredProducts from "./filteredProducts";
 
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
+import FooterOrange from "./footerOrange";
+
+
+//images
+import polo from "../../assets/img/polo.jpg";
+import tomFord from "../../assets/img/tom-ford.jpg";
+import wooyoungmi from "../../assets/img/wooyoungmi.jpg";
+import sweeney from "../../assets/img/sweeney.jpg";
+import kingsman from "../../assets/img/kingsman.jpg";
+import boglioli from "../../assets/img/boglioli.jpg";
+import bg35 from "../../assets/img/bg35.jpg";
+import bg40 from "../../assets/img/bg40.jpg";
+import saintLaurent1 from "../../assets/img/saint-laurent1.jpg";
+import saintLaurent from "../../assets/img/saint-laurent.jpg";
+import gucci from "../../assets/img/gucci.jpg";
 //xd image
 import ia006 from "../../assets/img/xd/ia_300000006.png";
+import ia0010 from "../../assets/img/xd/ia_300000010.png";
+import ia008 from "../../assets/img/xd/ia_300000008.png";
 import cart from "../../assets/img/xd/cart.svg"
 function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
+  let num;
+  let arr=[]
   React.useEffect(() => {
 
     document.body.classList.add("ecommerce-page");
@@ -87,7 +105,7 @@ function CategoryBullcommerce(props) {
         <div className="main">
           <div className="section">
             <Container>
-              <Row className="mx-5 px-5">
+            <Row className="mx-5 px-5">
                 <Col md="12" className="row justify-content-between titleCategory">
                   <div className="section-title py-2">Active filters:  Clear all</div>
                   <div className="iconGridAndList py-2">
@@ -198,11 +216,13 @@ function CategoryBullcommerce(props) {
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
+                        {arr.map((item, index) => (
+        <div>
                             <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={() => { changePageNum('-') }}
                               >
                                 <span aria-hidden={true}>
                                   <i
@@ -212,35 +232,47 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                            <PaginationItem>
+     
+                            <PaginationItem  
+                     className={degelBtn == index ? "active" : ""}
+
+                             >
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => {e.preventDefault();changePageNum(1)}}
                               >
-                                1
+                                {index}
                         </PaginationLink>
                             </PaginationItem>
-                            <PaginationItem className="active">
+                            <PaginationItem
+                     className={degelBtn == (index+1) ? "active " : ""}
+                            
+                            >
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => {e.preventDefault();changePageNum(2)}}
                               >
-                                2
+                                    {index+1}
                         </PaginationLink>
                             </PaginationItem>
-                            <PaginationItem>
+                            <PaginationItem
+                     className={degelBtn ==(index+2)? "active" : ""}
+                            
+                            >
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => {e.preventDefault();changePageNum(3)}}
                               >
-                                3
+                                    {index+2}
                         </PaginationLink>
                             </PaginationItem>
+                        
+
                             <PaginationItem>
                               <PaginationLink
                                 aria-label="Next"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={() => { changePageNum('+') }}
                               >
                                 <span aria-hidden={true}>
                                   <i
@@ -250,6 +282,7 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
+                            </div>))}
                           </Pagination>
 
                         </Col>
@@ -279,7 +312,6 @@ export default connect(
       categories: state.categoriesReducer.categories,
       filteredProducts: state.filterReducer.filteredItems,
       objectFields: state.storeReducer.objectFields
-
     }
   },
   (dispatch) => {
