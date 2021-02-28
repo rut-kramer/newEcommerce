@@ -15,7 +15,7 @@ import {
 
 // core components
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
-import ProductPageHeader from "../../headers/ProductPageHeader.js";
+// import ProductPageHeader from "../../headers/ProductPageHeader.js";
 import FooterSocial from "../../footers/FooterSocial.js";
 import FilteredProducts from "../filteredProducts"
 
@@ -41,7 +41,7 @@ function CategoryByFilter(props) {
                 <>
                         <ScrollTransparentNavbar />
                         <div className="wrapper">
-                                <ProductPageHeader />
+                                {/* <ProductPageHeader /> */}
                                 <div className="section">
                                         <Container>
                                                 <Row>
