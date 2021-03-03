@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from '../../redux/action';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table, Container, Row, Col, Button } from 'reactstrap';
-// import './quickLook.css'
+import {
+    // Table,
+    //  Container,
+    //   Row,
+    //    Col, 
+    Button
+} from 'reactstrap';
+import './quickLook.css'
 
 
 
@@ -84,7 +90,6 @@ function QuickLook(props) {
 const mapStateToProps = (state) => {
     return {
         cart: state.cartReducer.cart,
-        products: state.productReducer.products
     }
 }
 const mapDispatchToProps = (dispatch) => ({

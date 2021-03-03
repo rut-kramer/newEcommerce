@@ -11,6 +11,7 @@ import Cart from "../cart_page/cart";
 import CheckOut from "../checkout_page/checkOut";
 import QuickLook from '../quickLook'
 import UploadImages from "../upload_images/uploadImages"
+import '../quickLook.css'
 
 function MainStore() {
     const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -20,6 +21,7 @@ function MainStore() {
         setSideBarOpen(true)
         setQuickLookProduct(item)
     }
+
 
     return (
         <div className="MainStore">

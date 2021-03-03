@@ -1,42 +1,59 @@
-/* //מבט מהיר */
-/* .sideBar{
-    display: block;
-    border: 2pxsolid red;
-    width: 100%;
-    height: 100vh;
+ /* //מבט מהיר */
+ .sideBar{
+  display: block;
+  margin-top: 10%;
+}
+.imageProductQLook{
+  display: block;
+  margin: auto;
+ width: 75%; 
+}
+.detailsProduct{
+   width: 55%; 
+   margin: auto;
+  color: #707070;
+  font-weight: bold;
+}
+.qu{
+  float: left;
+  margin-left: 8%;
+}
+.calcAmount{
+  float: right;
+  margin-right: 6%;
+}
+.qu,.calcAmount{
+  display: inline;
+} 
+.btnCart{
+  background-color: #F29544;
+  color:white;
+  font-weight: normal!important;
+border:none;
+font: normal normal normal 13px/15px Roboto;
+width: 100%;
+height: 35px;
+margin-bottom: 8vh;
+} 
+ /* החלק של סיידבר שנפתח ונסגר מבט מהיר */
+ .w3-sidebar{
+  top: 0;
+  height:100vh;
+    width:24%;
+    background-color:#fff;
+    display: flex;
+    position:fixed;
+    z-index:4;overflow:auto;
   }
-  .imageProduct{
-    display: block;
-    margin: auto; */
-    /* width: 75%; */
-  /* }
-  .detailsProduct{ */
-    /* width: 55%; */
-    /* margin: auto;
-    color: #707070;
-    font-weight: bold;
+  .w3-bar-block .w3-bar-item{
+    display:block;
+    padding:8px 16px;
+    border:none;
+    white-space:normal;
+    float:right;
+    outline:0
   }
-  .qu{
-    float: left;
-    margin-left: 8%;
-  }
-  .calcAmount{
-    float: right;
-    margin-right: 6%;
-  }
-  .qu,.calcAmount{
-    display: inline;
-  }
-  
-  .btnCart{
-    background-color: #F29544;
-    color:white;
-    font-weight: normal!important;
-  border:none;
-  font: normal normal normal 13px/15px Roboto;
-  width: 100%;
-  height: 35px;
-  margin-bottom: 8vh;
-  }
-   */
-  
+  .w3-border-right{
+    border-right:1px solid #ccc!important}
+   
+/* עד כאן החלק של מבט מהיר */

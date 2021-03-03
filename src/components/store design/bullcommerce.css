@@ -42,29 +42,5 @@
     font-size: 0.870em;
   } 
   /* //// */
-  /* החלק של סיידבר שנפתח ונסגר מבט מהיר */
-.w3-sidebar{
-  top: 0;
-  height:100vh;
-    width:24%;
-    background-color:#fff;
-    /* position:fixed; */
-    display: flex;
-    position:fixed;
-    z-index:4;overflow:auto;
-    
-    /* opacity: 4; */
-  }
-  .w3-bar-block .w3-bar-item{
-    /* width:100%; */
-    display:block;
-    padding:8px 16px;
-    border:none;
-    white-space:normal;
-    float:right;
-    outline:0
-  }
-  .w3-border-right{
-    border-right:1px solid #ccc!important}
-  
+ 
   
