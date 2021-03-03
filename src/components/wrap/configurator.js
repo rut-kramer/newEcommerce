@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
@@ -13,16 +13,17 @@ import EditAttribute from '../store setting/attribute_management/editAttribute'
 
 
 function Configurator(props) {
+    const [adminLink,setAdminLink]=useState(true)
     return (
         <>
             {
                 // props.flag&&
-                <div className="Configurator-configurator-28 Configurator-configuratorOpen-29" style={{ width: props.flag ? "15%" : "0" }}>
+                <div className="Configurator-configurator-28 Configurator-configuratorOpen-29" style={{ width: props.flag ? "17%" : "0" }}>
                     <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50" style={{ transform: props.flag ? "translate(0px)" : "translate(-100%)" }}>
                         <div className="con-title">
                                 Home Page
-                            <Link to='/0/admin'>
-                                <span class="material-icons pointer">settings</span>
+                            <Link to={'/' + props.objectFields.urlRoute +(adminLink? '/admin':'') } onClick={()=>{setAdminLink(!adminLink)}}>
+                                <span className="material-icons pointer">settings</span>
                             </Link>
                         </div>
                         {
@@ -55,6 +56,7 @@ function Configurator(props) {
 
 const mapStateToProps = (state) => {
     return {
+        objectFields: state.storeReducer.objectFields,
         currentComponent: state.wrapReducer.currentComponent
     }
 }

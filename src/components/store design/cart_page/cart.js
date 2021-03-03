@@ -20,7 +20,7 @@ function Cart(props) {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
                 let t = cookies.order;
-                if ((flag === 1) && (t !== "undefined")) {
+                if ((flag === 1) && (t)) {
                         props.setCart(t)
                         flag = 2
                 }

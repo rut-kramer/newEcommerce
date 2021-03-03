@@ -11194,7 +11194,7 @@ img {
         height: 21px;
 }
 
-.table thead {
+/* .table thead {
         text-align: left;
 }
 
@@ -11218,7 +11218,7 @@ img {
 
 .table tbody tr:first-child td {
         padding-top: 16px;
-}
+} */
 
 .table__total {
         font-size: 16px;
@@ -14956,7 +14956,7 @@ img {
         .upload_lg {
                 height: 340px;
         }
-        .table th,
+        /* .table th,
         .table td {
                 padding: 10px;
         }
@@ -14967,7 +14967,7 @@ img {
         .table th:last-child,
         .table td:last-child {
                 padding-right: 16px;
-        }
+        } */
         .table__total {
                 font-size: 14px;
         }

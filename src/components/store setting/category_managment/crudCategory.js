@@ -80,11 +80,11 @@ function CrudCategory(props) {
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
                                                                                                                                                 <input className="switch__input" type="button" onClick={ () => { askDeleteCategory(item._id)}} />
-                                                                                                                                                <button>
-                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                                                                                                                <button style={{ border: "none" }}>
+                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
                                                                                                                                                         </i></button>
-                                                                                                                                                <span className="switch__content">
-                                                                                                                                                </span></label></div>
+                                                                                                                                                {/* <span className="switch__content"></span> */}
+                                                                                                                                                </label></div>
                                                                                                                                         <div className="data__preview" style={{ "backgroundColor": item.color }}>
                                                                                                                                         </div>
                                                                                                                                         <div className="data__cell mobile-hide"> 

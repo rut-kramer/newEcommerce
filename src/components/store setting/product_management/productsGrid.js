@@ -113,7 +113,12 @@ function ProductsGrid(props) {
                                                                 <div class="data__item">
                                                                         <div class="data__corner">
                                                                                 <button class="action action_stroke"><i class="la la-ellipsis-h "></i></button></div>
-                                                                        <div class="data__corner data__corner_left"><label class="switch"><input class="switch__input" type="checkbox" /><span class="switch__content"></span></label></div>
+                                                                        <div class="data__corner data__corner_left">
+                                                                                <label class="switch">
+                                                                                        <input class="switch__input" type="checkbox" />
+                                                                                        <span class="switch__content"></span>
+                                                                                </label>
+                                                                        </div>
                                                                         <div class="data__row">
                                                                                 <div class="data__cell">
                                                                                         <div class="data__main">

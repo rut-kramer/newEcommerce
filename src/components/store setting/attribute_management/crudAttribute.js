@@ -7,11 +7,11 @@ import '../product_management/crudProducts'
 
 
 function CrudAttributes(props) {
-        
+
         function askDeleteAttributes(i) {
                 if (window.confirm("אם אתה בטוח שברצונך למחוק את התכונה"))
-                props.deleteAttributes(i)
-              }
+                        props.deleteAttributes(i)
+        }
         return (
                 <>
                         <div className="page">
@@ -41,84 +41,84 @@ function CrudAttributes(props) {
                                                                         <div className="data data_list">
                                                                                 <div className="data__container">
 
-                                                                                <div className="data__head">
-                                <div className="data__row">
-                                        <div className="data__cell data__cell_xl" >
-                                                <div className="data__filter" >מחיקה</div>
-                                        </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter">שם תכונה</div>
-                                        </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter" >סלוג </div>
-                                        </div>
+                                                                                        <div className="data__head">
+                                                                                                <div className="data__row">
+                                                                                                        <div className="data__cell data__cell_xl" >
+                                                                                                                <div className="data__filter" >מחיקה</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">שם תכונה</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter" >סלוג </div>
+                                                                                                        </div>
 
-                                        <div className="data__cell">
-                                                <div className="data__filter"> מונחים</div>
-                                        </div>
-                                   
-                                        <div className="data__cell data__cell_action"></div>
-                                </div>
-                        </div>
-      
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter"> מונחים</div>
+                                                                                                        </div>
+
+                                                                                                        <div className="data__cell data__cell_action"></div>
+                                                                                                </div>
+                                                                                        </div>
+
 
                                                                                         <div className="data__body">
-                                                                                                {props.attributesList&&props.attributesList.map((item, index) => (
-                                                                                                      
-                                                                                                      <div className="data__item" key={index}>
-                                                                                                            <button className="accordion"> 
+                                                                                                {props.attributesList && props.attributesList.map((item, index) => (
 
-                                                                                                                <div className="data__row" >
-                                                                                                                        <div className="data__cell data__cell_xl">
-                                                                                                                                <div className="data__main">
-                                                                                                                                        <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={()=>{askDeleteAttributes(item._id);}} />
-                                                                                                                                                <button>
-                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
-                                                                                                                                                        </i></button>
-                                                                                                                                                <span className="switch__content">
-                                                                                                                                                </span></label></div>
-                                                                                                                                      
-                                                                                                                                        <div className="data__cell mobile-hide"> 
-                                                                                                                                         <div className="data__wrap">
-                                                                                                                                                   <div className="data__content">
-                                                                                                                                                        <strong>{item.name}</strong></div>
-                                                                                                                                        </div>
+                                                                                                        <div className="data__item" key={index}>
+                                                                                                                <button className="accordion">
+
+                                                                                                                        <div className="data__row" >
+                                                                                                                                <div className="data__cell data__cell_xl">
+                                                                                                                                        <div className="data__main">
+                                                                                                                                                <div className="data__effect mobile-hide"><label className="switch">
+                                                                                                                                                        <input className="switch__input" type="button" onClick={() => { askDeleteAttributes(item._id); }} />
+                                                                                                                                                        <button style={{ border: "none" }}>
+                                                                                                                                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
+                                                                                                                                                                </i></button>
+                                                                                                                                                        {/* <span className="switch__content"></span> */}
+                                                                                                                                                </label></div>
+
+                                                                                                                                                <div className="data__cell mobile-hide">
+                                                                                                                                                        <div className="data__wrap">
+                                                                                                                                                                <div className="data__content">
+                                                                                                                                                                        <strong>{item.name}</strong></div>
+                                                                                                                                                        </div>
+                                                                                                                                                </div>
                                                                                                                                         </div>
                                                                                                                                 </div>
+                                                                                                                                <div className="data__cell mobile-hide">
+                                                                                                                                        <div className="data__content">{item.slug}</div>
+                                                                                                                                </div>
+                                                                                                                                <div className="data__cell data__cell_action">
+                                                                                                                                        <button onClick={() => { props.setcomponnet("EditAttribute"); props.setCurrentAttribute(item) }} className="action action_stroke" >
+                                                                                                                                                <i className="la la-ellipsis-h "></i>
+                                                                                                                                        </button>
+                                                                                                                                </div>
                                                                                                                         </div>
-                                                                                                                        <div className="data__cell mobile-hide">
-                                                                                                                                <div className="data__content">{item.slug}</div>
-                                                                                                                        </div>
-                                                                                                                        <div className="data__cell data__cell_action">
-                                                                                                                                <button onClick={() => { props.setcomponnet("EditAttribute"); props.setCurrentAttribute(item) }} className="action action_stroke" >
-                                                                                                                                        <i className="la la-ellipsis-h "></i>
-                                                                                                                                </button>
-                                                                                                                        </div>
-                                                                                                                </div>
-                                                                                                                </button> 
+                                                                                                                </button>
                                                                                                                 <div className="panel1">
-                                                                         <div>
-                                                                         <div className="data__content">
-                                                          <h5>:מונחים</h5> 
-                                                                        
-                                                                                        {item.terms&&item.terms.map((term, index) => (
-                                                                                <div>
-                                                                                {/* <strong>{term&&term._id}</strong> 
-                                                                                <strong>{term&&term}</strong>  */}
-                                                                                <strong>{term&&term.name}</strong> 
-                                                                                </div>
-                                                                                ))}
-                                                                                 
+                                                                                                                        <div>
+                                                                                                                                <div className="data__content">
+                                                                                                                                        <h5>:מונחים</h5>
 
-                                                                                 </div>  </div> </div>
-                                                                
-                                                                                                                </div>
+                                                                                                                                        {item.terms && item.terms.map((term, index) => (
+                                                                                                                                                <div>
+                                                                                                                                                        {/* <strong>{term&&term._id}</strong> 
+                                                                                <strong>{term&&term}</strong>  */}
+                                                                                                                                                        <strong>{term && term.name}</strong>
+                                                                                                                                                </div>
+                                                                                                                                        ))}
+
+
+                                                                                                                                </div>  </div> </div>
+
+                                                                                                        </div>
                                                                                                 ))}
                                                                                         </div>
                                                                                 </div>
-            
-                                                               
+
+
                                                                         </div>
                                                                 </div>
                                                                 <div className="panel__foot">
@@ -144,20 +144,20 @@ function CrudAttributes(props) {
                                 </div>
                         </div>
                 </>
-//       <div></div>
-      )
+                //       <div></div>
+        )
 }
 export default connect(
         (state) => {
                 return {
-                  attributesList:state.attributeReducer.attributes,
+                        attributesList: state.attributeReducer.attributes,
                 }
         },
         (dispatch) => {
                 return {
                         setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
                         setCurrentAttribute: (n) => dispatch(actions.setCurrentAttribute(n)),
-                        deleteAttributes:(p) => dispatch(actions.deleteAttributes(p)),      
+                        deleteAttributes: (p) => dispatch(actions.deleteAttributes(p)),
                 }
         }
 )(CrudAttributes);
