@@ -5,6 +5,7 @@ import { actions } from '../../../redux/action'
 import CreateAttribute from "../attribute_management/createAttribute";
 //לחשוב על דרך נכונה יותר שהמערך לא יאותחל מחדש כול פעולה
 let att=[];
+let existAttributes={};
  function AddProduct (props)  {
         console.log(props);
     const [myValues ,setMyValues]= useState({
@@ -74,21 +75,97 @@ setMyValues({
 function addAtt(id_attr) {
   let attNew={attribute,terms:[]}
   attNew.attribute.push(id_attr);
-  attNew
+  att.push(attNew)
     setMyValues({
     ...myValues,
     attributes:att
   });
 }
-function addExistAttributes(event)
-{         
-   let k=props.attributesList.filter(p=>p.name==event.target.value)
- att.push(k[0]._id)
-  setMyValues({
-  ...myValues,
-  attributes:att
-});
+const [flageOpen ,setFlageOpen]= useState(0)
+const [currentTerms ,setcurrentTerms]= useState([])
+
+function opemAddAttribute(params) {
+  setFlageOpen(1)
 }
+
+function createCheckbox(label) {
+return (
+  <>
+  <br></br>
+  <input
+  type="checkbox"
+  onChange={(e)=>{
+    if(e.target.checked==true)
+    existAttributes.terms.push(label)
+else{
+  existAttributes.terms=  existAttributes.terms.filter(g=>g._id!==label._id)
+  console.log(existAttributes)
+}
+
+  }}
+/><label>{label.name}</label>
+</>
+)
+}
+function AddExistAttributes(event)
+{   
+  return(
+<>
+    <div className="form__row">
+    <div className="form__col">
+      <div className="field form__field">
+        <div className="field__label">תכונה</div>
+        <div className="field__wrap">
+        {props.attributesList.map((item, index) => (
+        <>
+        <br></br>
+         <input type="radio" 
+         onChange={()=>{ 
+           console.log(item,"PPPPPPPPPPPPP")
+         setcurrentTerms(item.terms)
+         existAttributes.attribute=item
+         existAttributes.terms=[]
+        }}
+         ></input>  
+        <label>{item.name}</label> 
+         </>      
+         ))}
+
+          <div className="field__icon"><i className="la la-truck-loading "></i></div>
+        </div>
+      </div>
+    </div>
+    <div className="form__col">
+      <div className="field form__field">
+        <div className="field__label">מונחים</div>
+        <div className="field__wrap">
+
+           {currentTerms.map(createCheckbox)} 
+
+          <div className="field__icon"><i className="la la-warehouse "></i></div>
+        </div>
+      </div>
+       <button onClick={()=>{
+         setFlageOpen(0)
+         att.push(existAttributes)
+         setMyValues({
+          ...myValues,
+          attributes:att
+        });
+         }}>save</button>
+  
+    </div>
+  </div>
+</>
+
+  )
+  
+
+//    let k=props.attributesList.filter(p=>p.name==event.target.value)
+//  att.push(k[0]._id)
+
+}
+
 function  removeAttr(item) {
   att=att.filter(p=>p!=item)
    setMyValues({
@@ -185,7 +262,15 @@ function  removeAttr(item) {
                       <div className="field__label">רשימת תכונות</div>
                       <br></br>
                       {myValues.attributes&&myValues.attributes.map((item, index) => (
-                     <div><button onClick={()=>removeAttr(item)} >-</button><strong>{item}</strong> </div>         
+                     <div>
+                       <button onClick={()=>removeAttr(item)} >-</button>
+                       <strong>{item.attribute.name}</strong> 
+                     <br></br>  
+                     <strong>מונחים</strong>
+                       {item.terms&&item.terms.map((i, index) => (
+                       <><br></br><strong>{i.name}</strong> </>
+                       ))}
+                       </div>         
                         ))}
                 {/* <button className="form__btn btn" onClick={Submit}>mpv </button> */}
                     </div>
@@ -197,12 +282,8 @@ function  removeAttr(item) {
                     <div className="field form__field">
                       <div className="field__label">הוסף תכונה</div>
                       {/* איך שולחים את כול האוביקט הנבחר ולא רק את הטקסט */}
-                        <select onChange={addExistAttributes} name="attribute"  className="field__select" >     
-                   <option>ללא נבחר</option>
-                      {props.attributesList.map((item, index) => (
-                        <option >{item.name}</option>           
-                        ))}
-                      </select>
+                 <button onClick={opemAddAttribute}>Add Exist Attributes</button>
+                   {flageOpen &&<AddExistAttributes></AddExistAttributes>}                 
                         <div className="field__icon"><i className="la la-angle-down "></i></div>
                       </div>
                   </div>

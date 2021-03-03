@@ -60,8 +60,7 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
-  let num;
-  let arr=[]
+
   React.useEffect(() => {
 
     document.body.classList.add("ecommerce-page");
@@ -69,22 +68,44 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+    // callPager() 
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
-
-      let arr=new Array(7)
-      for (let index = 0; index < arr.length; index++) {
-       arr[index]
-        
-      }
-
     };
+
   }, []);
-  const [numPager, setNumPager] = useState(props.products/12)
+
+  const [arrPager, setArrPager] = useState([])
+
+function  callPager() 
+{
+  
+  let numPaper=(props.products.length/3);
+  numPaper= Math.round(numPaper)+1
+  console.log(numPaper)
+  // let arrPager2=new Array(numPaper)
+
+  //  setArrPager({...arrPager2})
+  for (let index = 0; index < numPaper; index++) 
+  {
+   let p1 = (index+1 - 1) * 3;
+   let p2 = (index+1) * 3 - 1;
+   let list = props.products;
+   list = list[0] ? list.slice(p1, p2) : [];
+   console.log("list",index, list);
+   
+  //  arrPager[index]=list  
+  setArrPager({
+    ...arrPager,
+      list
+  })          
+  } 
+}
   
   const [degelBtn, setDegelBtn] = useState(1)
-  function changePageNum(num) {
+  function changePageNum(num)
+   {
           let PageNum=degelBtn;
 
           if (num == "+")
@@ -96,10 +117,11 @@ function CategoryBullcommerce(props) {
                           PageNum = num;
           }
           setDegelBtn(PageNum)               
-  }
+        }
 
   return (
     <>
+    <button onClick={callPager}>call pager</button>
       <div className="wrapper">
         <EcommerceHeader />
         <div className="main">
@@ -123,6 +145,9 @@ function CategoryBullcommerce(props) {
                 </Col>
                 <Col md="9">
                   <Row>
+                  
+                  {/* {arrPager[degelBtn].map((item, index) => ( */}
+
                     {props.products.map((item, index) => (
                       <Col lg="4" md="6" sm="12" key={index}>
                         <Card className="card-product card-plain">
@@ -212,12 +237,11 @@ function CategoryBullcommerce(props) {
                         <Col md="6"><div className="pt-3">1-48 of 323 Results</div>
                         </Col>
                         <Col md="6">
-                          <Pagination
+
+                        <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
-                        {arr.map((item, index) => (
-        <div>
                             <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
@@ -232,47 +256,47 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-     
-                            <PaginationItem  
-                     className={degelBtn == index ? "active" : ""}
-
-                             >
+                            {/* {arrPager&&arrPager.map((item, index) => ( */}
+                            {/* <PaginationItem
+                             className={degelBtn == index ? "active" : ""}
+                            >
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => {e.preventDefault();changePageNum(1)}}
+                                onClick={(e) => {e.preventDefault();changePageNum(index)}}
                               >
                                 {index}
                         </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem
-                     className={degelBtn == (index+1) ? "active " : ""}
-                            
+                            </PaginationItem> */}
+                   {/* ))}  */}
+
+                            {/* <PaginationItem
+                             className={degelBtn == 2 ? "active" : ""}
                             >
                               <PaginationLink
                                 href="#pablo"
                                 onClick={(e) => {e.preventDefault();changePageNum(2)}}
                               >
-                                    {index+1}
+                                2
                         </PaginationLink>
                             </PaginationItem>
                             <PaginationItem
-                     className={degelBtn ==(index+2)? "active" : ""}
-                            
+                              className={degelBtn == 3 ? "active" : ""}
                             >
                               <PaginationLink
                                 href="#pablo"
                                 onClick={(e) => {e.preventDefault();changePageNum(3)}}
                               >
-                                    {index+2}
+                                3
                         </PaginationLink>
-                            </PaginationItem>
-                        
-
-                            <PaginationItem>
+                            </PaginationItem>*/}
+                            <PaginationItem 
+                            
+                            >
                               <PaginationLink
                                 aria-label="Next"
                                 href="#pablo"
-                                onClick={() => { changePageNum('+') }}
+                                onClick={(e) => {changePageNum('+')}}
+
                               >
                                 <span aria-hidden={true}>
                                   <i
@@ -282,11 +306,9 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                            </div>))}
                           </Pagination>
-
                         </Col>
-                      </Row>
+                      </Row> 
 
 
 
