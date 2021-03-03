@@ -31,15 +31,15 @@ import { Switch, Route, Link } from "react-router-dom";
 
 
 // core components
-import EcommerceHeader from "../headers/EcommerceHeader.js";
-import FilteredProducts from "./filteredProducts";
+import EcommerceHeader from "../../headers/EcommerceHeader.js";
+import FilteredProducts from "../filteredProducts";
 
-import { actions } from '../../redux/action';
+import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
 //xd image
-import ia006 from "../../assets/img/xd/ia_300000006.png";
-import cart from "../../assets/img/xd/cart.svg"
+import ia006 from "../../../assets/img/xd/ia_300000006.png";
+import cart from "../../../assets/img/xd/cart.svg"
 function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
@@ -230,6 +230,7 @@ function CategoryBullcommerce(props) {
                           </Pagination>
 
                         </Col>
+
                       </Row>
 
 
@@ -250,8 +251,6 @@ function CategoryBullcommerce(props) {
 export default connect(
   (state) => {
     return {
-      slideMin: state.filterReducer.minPrice,
-      slideMax: state.filterReducer.maxPrice,
       products: state.productReducer.products,
       categories: state.categoriesReducer.categories,
       filteredProducts: state.filterReducer.filteredItems,
@@ -262,8 +261,6 @@ export default connect(
   (dispatch) => {
     return {
       filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
-      setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
-      setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
       addToCart: (product) => { dispatch(actions.addToCart(product)) }
 
     }

@@ -7,7 +7,7 @@ import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
+import { actions } from "../../../redux/action";
 
 function FooterOrange(props) {
     return (
