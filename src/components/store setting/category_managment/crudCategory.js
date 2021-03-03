@@ -25,7 +25,7 @@ function CrudCategory(props) {
                         <div className="page">
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Category</div>
+                                                <div className="container__title crud_title title_md">Category</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search "></i></button>
@@ -129,7 +129,7 @@ function CrudCategory(props) {
                                                                                 <div className="pager__list">
                                                                                         <a className="pager__link action" href="#">1</a>
                                                                                         <a className="pager__link action" href="#">2</a>
-                                                                                        <a className="pager__link action active" href="#">3</a>
+                                                                                        <a className="pager__link action crud_active" href="#">3</a>
                                                                                         <a className="pager__link action" href="#">4</a>
                                                                                         <a className="pager__link action" href="#">5</a>
                                                                                 </div>

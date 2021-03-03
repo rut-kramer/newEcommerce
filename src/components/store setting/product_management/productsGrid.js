@@ -27,8 +27,8 @@ function ProductsGrid(props) {
                         btn.on('click', function () {
                                 var index = $(this).index();
 
-                                btn.removeClass('active');
-                                btn.eq(index).addClass('active');
+                                btn.removeClass('crud_active');
+                                btn.eq(index).addClass('crud_active');
 
                                 ;
                                 tab.hide();

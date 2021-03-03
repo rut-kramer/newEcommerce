@@ -168,7 +168,7 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">1-48 of 323 Results</div>
+                        <Col md="6" style={{ padding: 0}}><div className="pt-3">1-48 of 323 Results</div>
                         </Col>
                         <Col md="6">
                           <Pagination
