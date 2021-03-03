@@ -6,10 +6,10 @@ import { Container } from "reactstrap";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function TopFooter(props) {
   return (
-    <>
       <footer className="footer" data-background-color="black" style={{
         bottom: 0,
         position: "fixed", width: "100%", padding: 0
+        ,zIndex: 2237
       }}>
         <Container>
           <nav>
@@ -59,7 +59,6 @@ function TopFooter(props) {
             </div>
         </Container>
       </footer>
-    </>
   )
 }
 const mapStateToProps = (state) => {

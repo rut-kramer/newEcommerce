@@ -127,8 +127,8 @@
   
   margin-top: 50px;
   flex: 1 0 auto;
-  height: calc(100% - 71px);
-  /* height: 100%; */
+  /* height: calc(100% - 71px); */
+  height: 100%;
   display: flex;
   
   outline: 0;

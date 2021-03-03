@@ -26,7 +26,7 @@ function TopFrame({setFlagCon}) {
                 {/* <MenuIcon /> */}
                     <h2>=</h2> 
                 </button>
-                <Link>
+                <Link to="/home">
                     <img alt="logo" src={appleIcon} style={{maxWidth: "24%"}}></img>
                 </Link>
         </div>
