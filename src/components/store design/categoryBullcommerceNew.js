@@ -77,11 +77,13 @@ function CategoryBullcommerce(props) {
   }, []);
 
   const [arrPager, setArrPager] = useState([])
-
+  const [p1, setP1] = useState(1)
+  const [p2, setP2] = useState(1)
+const numOfPage=12
 function  callPager() 
 {
   
-  let numPaper=(props.products.length/3);
+  let numPaper=(props.products.length/numOfPage);
   numPaper= Math.round(numPaper)+1
   console.log(numPaper)
   // let arrPager2=new Array(numPaper)
@@ -89,8 +91,8 @@ function  callPager()
   //  setArrPager({...arrPager2})
   for (let index = 0; index < numPaper; index++) 
   {
-   let p1 = (index+1 - 1) * 3;
-   let p2 = (index+1) * 3 - 1;
+    setP1((index) * numOfPage);
+    setP2((index+1) * numOfPage - 1);
    let list = props.products;
    list = list[0] ? list.slice(p1, p2) : [];
    console.log("list",index, list);
@@ -234,7 +236,7 @@ function  callPager()
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">1-48 of 323 Results</div>
+                        <Col md="6"><div className="pt-3">{p1}-{p2} of {props.product.length} Results</div>
                         </Col>
                         <Col md="6">
 

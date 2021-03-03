@@ -147,7 +147,7 @@ function AddExistAttributes(event)
       </div>
        <button onClick={()=>{
          setFlageOpen(0)
-         att.push(existAttributes)
+         att.push({...existAttributes})
          setMyValues({
           ...myValues,
           attributes:att
