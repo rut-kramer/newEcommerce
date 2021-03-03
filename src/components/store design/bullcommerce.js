@@ -1,4 +1,6 @@
 import React from "react";
+// import React, { useState } from 'react';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -15,21 +17,25 @@ import {
 import { Link } from "react-router-dom";
 
 // core components
-import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
+// import ScrollTransparentNavbar from "../navbars/ScrollTransparentNavbar.js";
 import EcommerceHeader from "../headers/EcommerceHeader.js";
-import FooterOrange from "./footerOrange";
-
+import './bullcommerce.css'
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
-import QuickLook from './quickLook'
-
-//images
-
+// import QuickLook from './quickLook'
 //xd image
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 import cart from "../../assets/img/xd/cart.svg"
 function Bullcommerce(props) {
 
+    // const [sideBarOpen, setSideBarOpen] = useState(false)
+
+    // const [quickLookProduct, setQuickLookProduct] = useState()
+
+    // function w3_open(item) {
+    //     setSideBarOpen(true)
+    //     setQuickLookProduct(item)
+    // }
     React.useEffect(() => {
 
         document.body.classList.add("ecommerce-page");
@@ -43,17 +49,21 @@ function Bullcommerce(props) {
         };
     }, []);
 
-    function w3_open() {
-        document.getElementById("mySidebar").style.display = "block";
-    }
-    function w3_close() {
-        debugger
-        document.getElementById("mySidebar").style.display = "none";
-    }
 
     return (
         <>
-            <ScrollTransparentNavbar />
+            {/* <div
+                className="w3-sidebar w3-bar-block w3-border-right"
+                style={{
+                    display:
+                        sideBarOpen ? "block" : "none"
+                }}
+            >
+                {quickLookProduct ?
+                    <QuickLook sideBarOpenORclose={setSideBarOpen}
+                        currentProduct={quickLookProduct}
+                    ></QuickLook> : ""}
+            </div> */}
             <div className="wrapper">
                 <Container fluid>
                     <EcommerceHeader />
@@ -61,32 +71,22 @@ function Bullcommerce(props) {
                 <div className="main">
                     <div className="section">
                         <Container>
-                            <div className="w3-sidebar w3-bar-block w3-border-right" style={{ display: "none" }} id="mySidebar">
-                                <button onClick={w3_close} className="w3-bar-item w3-large">Close &times;</button>
-                                <QuickLook></QuickLook>
-                            </div>
-                            <Row className="heightRow">
 
-                                {/*פה צריך לעשות לולאה שתשלוף את פיצר פרודקט */}
+                            <Row className="heightRow">
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
-
                                         <Card className="card-product card-plain">
-                                            <div className="card-image Aheight">
-                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                            <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}>
+                                                <div className="card-image Aheight">
                                                     <img
                                                         alt="..."
                                                         src={ia006}
                                                     ></img>
-                                                </a>
-                                            </div>
+                                                </div>
+                                            </Link>
                                             <CardBody>
-                                                <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                    <CardTitle className="mt-2" tag="h4">
-
-                                                        {item.name}</CardTitle>
-                                                </a>
-
+                                                <CardTitle className="mt-2" tag="h4">
+                                                    {item.name}</CardTitle>
                                                 <CardFooter>
                                                     <div className="price-container">
                                                         <span className="price">{item.price + " $"}</span>
@@ -97,11 +97,32 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224088"
+                                                        onClick={() => props.addToCart(
+                                                            {
+                                                                "product": {
+                                                                    "amount": 4,
+                                                                    "price": 450,
+                                                                    "images": [],
+                                                                    "attributes": [
+                                                                        "6021297fb7ce77e4d5b3e8cf"
+                                                                    ],
+                                                                    "featured": false,
+                                                                    "_id": "602babe3c8336e62cd3d5f2e",
+                                                                    "name": "Simcha dress",
+                                                                    "description": "to wedding",
+                                                                    "SKU": "7786754614",
+                                                                    "category": "601bec7cbf7ea1c3829cd18b",
+                                                                    "store": "6012b0300718f71a8fa25df5",
+                                                                },
+                                                                "amount": 1
+                                                            }
+                                                        )}
+
                                                     >
-                                                        {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
+                                                        {/* //אם רוצים להשתמש באיקון הזה צריך לקנות אותו */}
                                                         {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
-                                                        <Link to="/"><img alt="...."
-                                                            src={cart}></img></Link>
+                                                        <img alt="...."
+                                                            src={cart}></img>
                                                     </Button>
                                                     <UncontrolledTooltip
                                                         delay={0}
@@ -115,7 +136,7 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224089"
-                                                        onClick={w3_open}
+                                                        onClick={() => props.w3_open(item)}
                                                     >
 
                                                         <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
@@ -144,7 +165,6 @@ function Bullcommerce(props) {
 
                     </div>
                 </div>
-                <FooterOrange />
             </div >
         </>
     );
@@ -157,7 +177,8 @@ export default connect(
             slideMax: state.filterReducer.maxPrice,
             products: state.productReducer.products,
             categories: state.categoriesReducer.categories,
-            featuredProducts: state.productReducer.featuredProducts
+            featuredProducts: state.productReducer.featuredProducts,
+            objectFields: state.storeReducer.objectFields
         }
     },
     (dispatch) => {
@@ -165,7 +186,9 @@ export default connect(
             filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
             setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
             setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
-            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
+            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
+            addToCart: (product) => { dispatch(actions.addToCart(product)) }
+
         }
     }
 )(Bullcommerce);

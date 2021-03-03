@@ -10,6 +10,7 @@ function StorePerUser(props) {
     props.setSoreCurrent(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
+      props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -43,7 +44,7 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to="/0">
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + props.objectFields.urlRoute}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -68,7 +69,9 @@ export default connect(
     return {
       stores: state.userReducer.storesOfUser,
       user: state.userReducer.user,
-      categories: categoryReducer.categories
+      categories: categoryReducer.categories,
+      objectFields: state.storeReducer.objectFields
+
     }
   },
   (dispatch) => {
@@ -79,6 +82,8 @@ export default connect(
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
+      getAllAttributes:(y)=>dispatch(actions.getAllAttributes(y))
+
     }
   }
 

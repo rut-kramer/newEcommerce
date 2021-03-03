@@ -6,7 +6,8 @@ import StoreSettingsManagement from './storeSettingsManagement'
 import CrudProducts from './product_management/crudProducts'
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
-import StorePerUser from './storePerUser';
+import StorePerUser from './storePerUser'
+import CrudAttributes from './attribute_management/crudAttribute'
 import NewPaper from './createNewPaper';
 
 function Admin(props) {
@@ -32,8 +33,9 @@ function Admin(props) {
         <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Product</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Attributes') }}>Attributes</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>Your Store</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>your Store</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>New Paper</button>
       </div>
 
@@ -55,11 +57,12 @@ function Admin(props) {
       <div id="StorePerUser" className="tabcontent">
         <StorePerUser></StorePerUser>
       </div>
+      <div id="Attributes" className="tabcontent">
+        <CrudAttributes></CrudAttributes>
+      </div>
       <div id="NewPaper" className="tabcontent">
         <NewPaper></NewPaper>
       </div>
-
-
     </Provider>
   )
 }
