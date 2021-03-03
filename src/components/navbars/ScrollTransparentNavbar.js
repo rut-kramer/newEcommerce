@@ -15,8 +15,8 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-  Row,
-  Col,
+  // Row,
+  // Col,
 } from "reactstrap";
 
 import { connect } from 'react-redux';
@@ -67,9 +67,10 @@ function ScrollTransparentNavbar(props) {
       <Navbar color="white" expand="lg">
         <Container className="d-flex justify-content-between">
           <div className="navbar-translate">
-            <NavbarBrand to="/" tag={Link} id="navbar-brand">
+            <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
-                src={props.objectFields.logo} className="logoHeader"></img>
+                src={props.objectFields.logo} className="logoHeader">
+              </img>
             </NavbarBrand>
             <UncontrolledTooltip target="navbar-brand">
               To Home Store Page
@@ -113,12 +114,13 @@ function ScrollTransparentNavbar(props) {
             <Link to="/">
               <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']}></FontAwesomeIcon>
             </Link>
-            <div className="separatorStripe"></div>
+            <Link to={"/" + props.objectFields.storeName + "/checkOut"}>
+              <div className="separatorStripe"></div>
+            </Link>
             <Link to={"/" + props.objectFields.storeName + "/cart"}>
               <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
             </Link>
-
-            <Link to={"/" + props.objectFields.storeName + "/"}>
+            <Link to={"/" + props.objectFields.storeName + "/checkOut"}>
 
               <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
             </Link>

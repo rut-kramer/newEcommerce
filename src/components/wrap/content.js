@@ -1,9 +1,6 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Bullcommerce from '../store design/bullcommerce';
-import CategoryByFilter from '../store design/category_page/categoryByFilter'
-import CategoryBullcommerce from "../store design/categoryBullcommerceNew"
-// import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 import Cart from '../store design/cart_page/cart';
