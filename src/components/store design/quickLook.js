@@ -38,7 +38,8 @@ function QuickLook(props) {
                 <div>{props.currentProduct.price}</div>
                 <div>
                     <div className="qu mt-4">Quantity:</div>
-                    <div className="calcAmount">
+                    {/* אולי כדאי להחליף לדיו את תגית טידי */}
+                    <td className="calcAmount">
                         <Button size="sm"
                             onClick={() => { setOrderAmount(orderAmount + 1) }}
                         >
@@ -56,26 +57,12 @@ function QuickLook(props) {
                         >
                             <FontAwesomeIcon icon={['fas', 'minus']}></FontAwesomeIcon>
                         </Button>
-                    </div>
+                    </td>
                 </div>
                 <button className="btnCart"
                     onClick={() => props.addToCart(
                         {
-                            "product": {
-                                "amount": orderAmount,
-                                "price": props.currentProduct.price,
-                                "images": [],
-                                "attributes": [
-                                    "6021297fb7ce77e4d5b3e8cf"
-                                ],
-                                "featured": props.currentProduct.featured,
-                                "_id": props.currentProduct._id,
-                                "name": props.currentProduct.name,
-                                "description": props.currentProduct.description,
-                                "SKU": "7786754614",
-                                "category": props.currentProduct.category,
-                                "store": props.currentProduct.store,
-                            },
+                            "product": props.currentProduct,
                             "amount": orderAmount
                         }
                     )}

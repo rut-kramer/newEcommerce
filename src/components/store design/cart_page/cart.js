@@ -85,7 +85,7 @@ function Cart(props) {
                                                                                                                 </FontAwesomeIcon>
                                                                                                         </Button>
                                                                                                 </td>
-                                                                                                <td>{item.amount * item.product.price}$</td>
+                                                                                                <td>{(item.amount * item.product.price).toFixed(2)}$</td>
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">

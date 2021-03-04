@@ -75,11 +75,11 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                         "categoryName": "DefaultCategory3",
                         "color": "blue", "masterCategory": null
                     })).then((dataCategory) => {
-                        for (let index = 1; index < 13; index++) {
+                        for (let index = 1; index < 9; index++) {
                             dispatch(actions.addNewProducts({
                                 "name": "DefaultProduct" + index,
                                 "description": "The Best Product ",
-                                "SKU": "DefultSKU_" + index + "m",
+                                "SKU": "DefultSKU_" + index + "q",
                                 "category": dataCategory._id,
                                 "store": data._id,
                                 "price": "123",

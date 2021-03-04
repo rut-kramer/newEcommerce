@@ -42,9 +42,11 @@ function MainStore() {
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 <Route path="/:storeName/uploadImages" component={UploadImages}></Route>
                 <Route path="/:storeName/cart" component={Cart}></Route>
-                <Route path="/:storeName/category/" component={CategoryBullcommerce}></Route>
+                <Route path="/:storeName/category/"><CategoryBullcommerce w3_open={w3_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
-                <Route path="/:storeName"><Bullcommerce w3_open={w3_open}></Bullcommerce></Route>
+                <Route path="/:storeName"><Bullcommerce w3_open={w3_open}
+                //  currentProduct={quickLookProduct}
+                ></Bullcommerce></Route>
 
             </Switch>
             <FooterOrange></FooterOrange>
