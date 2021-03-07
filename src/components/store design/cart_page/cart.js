@@ -104,6 +104,8 @@ function Cart(props) {
                                                                                 ))}
                                                                         </tbody>
                                                                 </Table>
+
+
                                                                 <Container>
                                                                         <Row>
                                                                                 <Col md="4">

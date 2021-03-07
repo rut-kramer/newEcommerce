@@ -15,6 +15,7 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import QuickLook from './components/store design/quickLook'
+import CartPanel from "./components/store design/cart_page/cart_panel"
 
 //styles
 import "./assets/css/bootstrap.min.css";
@@ -33,9 +34,10 @@ function App() {
             <Route exact path="/">
               <Home />
             </Route>
-            <Route path="/quickLook">
+            <Route path="/cartPanal"><CartPanel /></Route>
+            {/* <Route path="/quickLook">
               <QuickLook />
-            </Route>
+            </Route> */}
 
             <Route exact path="/admin/category/add">
               <AddCategory />
