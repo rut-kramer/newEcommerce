@@ -38,13 +38,16 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide"><label className="switch">
                     <input style={{ backgroundColor: 'black' }} className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
                     <br></br>
+                    <button style={{ border: "none" }}>
+                      <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                      </i></button>
+                    <br />
                     <strong>מחק</strong>
-                    <span className="switch__content">
-                    </span></label></div>
+                    {/* <span className="switch__content"></span> */}
+                  </label></div>
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    {console.log("obj", props.objectFields)}
                     <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.storeName}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>

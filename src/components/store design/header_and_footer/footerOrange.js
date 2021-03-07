@@ -7,7 +7,7 @@ import { Button, Container, Row, Col } from "reactstrap";
 
 // core components
 import { connect } from "react-redux";
-import { actions } from "../../redux/action";
+import { actions } from "../../../redux/action";
 
 function FooterOrange(props) {
     return (
@@ -26,7 +26,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                    >
+                                        >
 
                                         {props.objectFields.storeName}
                                     </a>
@@ -36,7 +36,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                    >
+                                        >
                                         {props.objectFields.tel}
                                     </a>
                                 </li>
@@ -45,7 +45,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                    >
+                                        >
                                         {props.objectFields.email}
                                     </a>
                                 </li>
@@ -54,7 +54,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                    >
+                                        >
                                         {props.objectFields.address}
                                     </a>
                                 </li>
@@ -64,6 +64,7 @@ function FooterOrange(props) {
                             <Link to={"/" + props.objectFields.urlRoute + "/category/"}>
 
                                 <h5>Categories</h5>
+                                        </Link>
                                 <ul className="mt-2 links-vertical size">
                                     <li>
                                         <a
@@ -112,7 +113,6 @@ function FooterOrange(props) {
                                     </li>
 
                                 </ul>
-                            </Link>
                         </Col>
                         <Col>
                             <h5>Element</h5>

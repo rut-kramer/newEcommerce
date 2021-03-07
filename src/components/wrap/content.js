@@ -1,9 +1,6 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import Bullcommerce from '../store design/bullcommerce';
-import CategoryByFilter from '../store design/category_page/categoryByFilter'
-import CategoryBullcommerce from "../store design/categoryBullcommerceNew"
-// import ProductPage from "../store design/product_page/productPage"
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 // import Cart from '../store design/cart';
@@ -20,9 +17,6 @@ function Content(props) {
 
     return (
         <div className="Content">
-            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
-            <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>/
-
             <Switch>
                 <Route path="/dnd" component={Dnd} />
 
@@ -43,8 +37,6 @@ function Content(props) {
 
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.storeReducer.objectFields,
-        product1: state.productReducer.currentProduct
     }
 }
 const mapDispatchToProps = (dispatch) => ({

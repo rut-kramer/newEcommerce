@@ -27,7 +27,6 @@ import {
 } from "reactstrap";
 
 // core components
-import Footer from "./footers/footer.js";
 
 function LoginPage(props) {
 
@@ -218,7 +217,6 @@ function LoginPage(props) {
                                 </Row>
                             </Container>
                         </div >
-                        <Footer />
                     </div >
                 </>
             )

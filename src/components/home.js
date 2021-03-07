@@ -13,13 +13,12 @@ function Home() {
                 <h1>Wellcome!!</h1>
                 <h2>Do you want to create your shop?</h2>
                 <Link to='/login'>
-                    <button>create virtual shop</button>
+                    <button style={{marginBottom:"21px"}}>create virtual shop</button>
                 </Link>
             </div>
 
         </div>
     )
-
 }
 
 export default Home;
