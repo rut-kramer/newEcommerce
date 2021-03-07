@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "./components/login"
 import Home from "./components/home";
 import OpenStore from "./components/openStore"
-import TopFooter from './components/topFooter'
 import PrivateRoute from './PrivateRoute.js';
 import AddCategory from './components/store setting/category_managment/addCategory';
 import AddProduct from './components/store setting/product_management/addProduct';
@@ -28,6 +27,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          {/* <div className="outFooter"> */}
           <Switch>
 
             <Route exact path="/">
@@ -57,7 +57,28 @@ function App() {
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
-          <TopFooter></TopFooter>
+          {/* </div> */}
+          {/* <footer className="footer" data-background-color="transparent" style={{
+            // bottom: 0,
+            // position: "fixed", width: "100%", 
+            padding: 0
+          }}>
+            <a>ggg</a>
+          </footer> */}
+
+          {/* <footer className="footer" data-background-color="black" 
+          style={{zIndex: 2237,width: "100%",position: "sticky",padding: "0px"}}>
+        <div className="container"></div></footer> */}
+        {/* position:sticky
+להוריד פדינגים פנימיים בקישורים */}
+
+        {/* position:fixed 
+        bottom: 0,
+      */}
+
+
+      {/* import TopFooter from './components/topFooter' */}
+          {/* <TopFooter></TopFooter> */}
         </div>
       </Router>
     </Provider >);
