@@ -19,7 +19,8 @@ function Cart(props) {
         useEffect(() => {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
-                let t = cookies.order;
+                let  str=props.storeCurrent;
+                let t = cookies[str];
                 if ((flag === 1) && (t !== "undefined")) {
                         props.setCart(t)
                         flag = 2
@@ -28,10 +29,33 @@ function Cart(props) {
 
         window.addEventListener("beforeunload", (ev) => {
                 ev.preventDefault();
-                setCookie("order", props.cart, {
+                // let listOrder=cookies.listOrder
+                // let cart= listFromCookies.find(c=>c.store==props.cart.store)
+                // if(cart)
+                // {
+
+                // }
+                // else
+                // {
+                //         listOrder.push(props.cart)
+                //         setCookie("listOrder",listOrder, {
+                //                  path: "/"
+                //         });     
+                // }
+                setCookie(props.storeCurrent,props.cart, {
                         path: "/"
-                });
+                      }); 
+
         });
+        // function  save() {
+        //         setCookie(props.storeCurrent,props.cart, {
+        //                 path: "/"
+        //               }); 
+        // }
+        // function  get() {
+        //       let  str=props.storeCurrent;
+        //       let t = cookies[str];
+        // }
 
         // const onSubmit = () => {
         //         props.newOrder(props.cart)
@@ -50,7 +74,8 @@ function Cart(props) {
                         <div className="wrapper">
                                 <div className="main">
                                         <div className="section cart">
-
+{/* <button onClick={save}>save</button>
+<button onClick={get}>get</button> */}
                                                 <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
                                                 {/* {console.log("if", Array.isArray(props.cart.products))} */}
 
@@ -159,7 +184,9 @@ export default connect(
                         cart: state.cartReducer.cart,
                         user: state.userReducer.user,
                         currentStore: state.storeReducer.currentStore,
-                        objectFields: state.storeReducer.objectFields
+                        objectFields: state.storeReducer.objectFields,
+                        storeCurrent:state.storeReducer.objectFields._id,
+
                 }
         },
         (dispatch) => {

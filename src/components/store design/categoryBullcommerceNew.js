@@ -236,7 +236,7 @@ function  callPager()
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{p1}-{p2} of {props.product.length} Results</div>
+                        <Col md="6"><div className="pt-3">{p1}-{p2} of {props.products.length} Results</div>
                         </Col>
                         <Col md="6">
 

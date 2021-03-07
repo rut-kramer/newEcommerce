@@ -6,6 +6,7 @@ import CreateAttribute from "../attribute_management/createAttribute";
 //לחשוב על דרך נכונה יותר שהמערך לא יאותחל מחדש כול פעולה
 let att=[];
 let existAttributes={};
+
  function AddProduct (props)  {
         console.log(props);
     const [myValues ,setMyValues]= useState({
@@ -19,7 +20,14 @@ let existAttributes={};
         //  images:'',
          featured:false,
          store:props.storeCurrent,
-         attributes:null
+         attributes:null,
+         salePrice:'',
+         photoGallery:'',
+         video:'',
+         isStock:false,
+         isDraft:false,
+         weight:'',
+
         });
 
 const updateCategory = (event) => {
@@ -31,7 +39,7 @@ const updateCategory = (event) => {
          }
 const update = (event) => {
           var u;
-             if(event.target.name==="featured")          
+             if(event.target.name==="featured"||event.target.name==="isStock"||event.target.name==="isDraft")          
             u=event.target.checked;
              else
              u=event.target.value
@@ -68,7 +76,13 @@ setMyValues({
   //  images:'',
    featured:false,
    store:props.storeCurrent,
-   attributes:null
+   attributes:null,
+   salePrice:'',
+   photoGallery:'',
+   video:'',
+   isStock:false,
+   isDraft:false,
+   weight:'',
   })
   att=[];
 }
@@ -287,7 +301,65 @@ function  removeAttr(item) {
                         <div className="field__icon"><i className="la la-angle-down "></i></div>
                       </div>
                   </div>
+     
+                  <div className="form__row">
+                  <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">salePrice</div>
+                      <div className="field__wrap">
+                          <input className="field__input" type="text" onChange={update} value={myValues.salePrice} name="salePrice" placeholder="Start typing…" />
+                        <div className="field__icon"><i className="la la-truck-loading "></i></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">weight</div>
+                      <div className="field__wrap">
+                          <input className="field__input" type="text" placeholder="Start typing…" name="weight" id="description-in" onChange={update} value={myValues.weight}/>
+                        <div className="field__icon"><i className="la la-warehouse "></i></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="form__row">
+                <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">isDraft</div>
+                    <br></br>
+                      <div className="field__wrap">
+                      <input type="checkbox" onClick={update}  name="isDraft"></input>
+                        <div className="field__icon"><i className="la la-wallet "></i></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form__col">
+                    <div className="field form__field">
+                      <div className="field__label">isStock</div>
+                    <br></br>
+                      <div className="field__wrap">
+                      <input type="checkbox" onClick={update}  name="isStock"></input>
+                        <div className="field__icon"><i className="la la-wallet "></i></div>
+                      </div>
+                    </div>
+                  </div>
               
+                  </div>
+                  {/* צריך לבדוק */}
+                 <div className="form__row">
+                  <div className="form__col">
+                  <div className="field__label">photoGallery</div>
+                <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
+                  </div>
+                  <div className="form__col">
+                  <div className="field__label">video</div>
+                <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
+                  </div>
+             </div>
+               
+
+
+
 
                 <div className="form__foot">
                 <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>

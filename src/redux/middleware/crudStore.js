@@ -64,24 +64,25 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                     console.log(data)
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory1",
+                        "categoryName": "Default66Category1",
                         "color": "red", "masterCategory": null
                     }))
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory2",
+                        "categoryName": "Defaul66Category2",
                         "color": "green", "masterCategory": null
                     }))
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory3",
+                        "categoryName": "Default66Category3",
                         "color": "blue", "masterCategory": null
-                    })).then((dataCategory) => {
-                        for (let index = 1; index < 13; index++) {
+                    }))
+                    .then((dataCategory) => {
+                        for (let index = 1; index < 3; index++) {
                             dispatch(actions.addNewProducts({
                                 "name": "DefaultProduct" + index,
                                 "description": "The Best Product ",
-                                "SKU": "DefultSKU_" + index + "hilman",
+                                "SKU": "Defuddt" + index + "v",
                                 "category": dataCategory._id,
                                 "store": data._id,
                                 "price": "123",
