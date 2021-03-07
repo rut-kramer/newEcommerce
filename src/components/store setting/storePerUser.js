@@ -10,7 +10,7 @@ function StorePerUser(props) {
     props.setSoreCurrent(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
-      props.getAllAttributes(item._id)
+    props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -38,9 +38,13 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide"><label className="switch">
                     <input style={{ backgroundColor: 'black' }} className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
                     <br></br>
+                    <button style={{ border: "none"}}>
+                      <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                      </i></button>
+                      <br/>
                     <strong>מחק</strong>
-                    <span className="switch__content">
-                    </span></label></div>
+                    {/* <span className="switch__content"></span> */}
+                    </label></div>
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
@@ -82,7 +86,7 @@ export default connect(
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
-      getAllAttributes:(y)=>dispatch(actions.getAllAttributes(y))
+      getAllAttributes: (y) => dispatch(actions.getAllAttributes(y))
 
     }
   }
