@@ -36,6 +36,7 @@ function MainStore() {
                     ></QuickLook> : ""}
             </div>
             <HeaderNavbar></HeaderNavbar>
+
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 <Route path="/:storeName/uploadImages" component={UploadImages}></Route>
@@ -45,6 +46,7 @@ function MainStore() {
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open}></Bullcommerce></Route>
 
             </Switch>
+
             <FooterOrange></FooterOrange>
         </div>
     )

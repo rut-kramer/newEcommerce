@@ -8,10 +8,11 @@
 
 //     function funcReset(item) {
 //         props.setCategories(item.categories);
+//         // props.setCategoryListMenu(item.categories)
 //         props.setAllOrders(item.orders);
 //         props.setCurrentStore(item);
 //         props.setProducts(item.storeProducts)
-//         props.setFilteredItems(item.storeProducts)
+//         props.setFilteredItems(item.storeProducts);
 //     }
 
 
@@ -25,7 +26,7 @@
 
 //             <div className="data__body">
 //                 {props.stores.map((itemy, index) => (
-//                     <Link to={"/" + props.objectFields.urlRoute} onClick={() => { funcReset(itemy) }} key={index}>
+//                     <Link to="/0" onClick={() => { funcReset(itemy) }} key={index}>
 //                         <div className="data__item">
 //                             <div className="data__row" >
 //                                 <div className="data__cell data__cell_xl">
@@ -53,8 +54,6 @@
 //                     </Link>
 //                 ))}
 
-
-
 //             </div>
 //         </>
 //     )
@@ -63,9 +62,8 @@
 // export default connect(
 //     (state) => {
 //         return {
-//             stores: state.userReducer.storesOfUser,
+//             stores: state.openStoreReducer.stores,
 //             user: state.userReducer.user,
-//             objectFields: state.storeReducer.objectFields
 //         }
 //     },
 //     (dispatch) => {
@@ -77,9 +75,9 @@
 //             setCategories: (i) => { dispatch(actions.setCategories(i)) },
 //             setAllOrders: (i) => { dispatch(actions.setAllOrders(i)) },
 //             setCurrentStore: (i) => { dispatch(actions.setCurrentStore(i)) },
+//             // setCategoryListMenu: (i) => { dispatch(actions.setCategoryListMenu(i)) },
 //         }
 //     }
-
 
 // )(StorePerUser);
 

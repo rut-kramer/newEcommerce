@@ -46,6 +46,7 @@ function CategoryBullcommerce(props) {
   // }
   React.useEffect(() => {
 
+    console.log("ssttrree", props.objectFields);
     document.body.classList.add("ecommerce-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -82,93 +83,85 @@ function CategoryBullcommerce(props) {
                 </Col>
                 <Col md="9">
                   <Row>
-                    {props.products.map((item, index) => (
-                      <Col lg="4" md="6" sm="12" key={index}>
-                        <Card className="card-product card-plain">
-                          <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                              <img className="imageProduct"
-                                alt="..."
-                                src={ia006}
-                              ></img>
-                            </Link>
-                          </div>
-                          <CardBody>
-                            <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
-                            <p className="card-description">
-                              {item.description}
-                            </p>
-                            <CardFooter>
-                              <div className="price-container">
-                                <span className="price">$ {item.price}</span>
-                              </div>
-                              <Button
-                                className="btn-neutral btn-icon btn-round pull-right"
-                                color="danger"
-                                data-placement="left"
-                                id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": {
-                                      "amount": 4,
-                                      "price": 450,
-                                      "images": [],
-                                      "attributes": [
-                                        "6021297fb7ce77e4d5b3e8cf"
-                                      ],
-                                      "featured": false,
-                                      "_id": "602babe3c8336e62cd3d5f2e",
-                                      "name": "Simcha dress",
-                                      "description": "to wedding",
-                                      "SKU": "7786754614",
-                                      "category": "601bec7cbf7ea1c3829cd18b",
-                                      "store": "6012b0300718f71a8fa25df5",
-                                    },
-                                    "amount": 1
-                                  }
-                                )}
+                    {console.log("condition", (Array.isArray(props.filteredProducts) &&
+                      props.filteredProducts.length > 0))}
+                    {(Array.isArray(props.filteredProducts) &&
+                      props.filteredProducts.length > 0) &&
+                      props.filteredProducts.map((item, index) => (
 
-                              >
-                                {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
-                                <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
-                                <img alt="...."
-                                  src={cart}></img>
-                              </Button>
-                              <UncontrolledTooltip
-                                delay={0}
-                                placement="left"
-                                target="tooltip719224088"
-                              >
-                                Add To Cart
+                        <Col lg="4" md="6" sm="12" key={index}>
+
+                          <Card className="card-product card-plain">
+                            <div className="card-image frameToProductView">
+                              <Link to={{ pathname: "/" + props.objectFields.storeName + "/product/" + item.SKU, state: { product: item } }}>
+                                <img className="imageProduct"
+                                  alt="..."
+                                  src={ia006}
+                                ></img>
+                              </Link>
+                            </div>
+                            <CardBody>
+                              <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                              <p className="card-description">
+                                {item.description}
+                              </p>
+                              <CardFooter>
+                                <div className="price-container">
+                                  <span className="price">$ {item.price}</span>
+                                </div>
+                                <Button
+                                  className="btn-neutral btn-icon btn-round pull-right"
+                                  color="danger"
+                                  data-placement="left"
+                                  id="tooltip719224088"
+                                  onClick={() => props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    }
+                                  )}
+
+                                >
+                                  {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
+                                  <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
+                                  <img alt="...."
+                                    src={cart}></img>
+                                </Button>
+                                <UncontrolledTooltip
+                                  delay={0}
+                                  placement="left"
+                                  target="tooltip719224088"
+                                >
+                                  Add To Cart
                                                       </UncontrolledTooltip>
-                              <Button
-                                className="btn-neutral btn-icon btn-round pull-right"
-                                color="danger"
-                                data-placement="left"
-                                id="tooltip719224089"
+                                <Button
+                                  className="btn-neutral btn-icon btn-round pull-right"
+                                  color="danger"
+                                  data-placement="left"
+                                  id="tooltip719224089"
 
-                              >
+                                >
 
-                                <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
+                                  <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
-                              </Button>
-                              <UncontrolledTooltip
-                                delay={0}
-                                placement="left"
-                                target="tooltip719224089"
-                              >
-                                To View
+                                </Button>
+                                <UncontrolledTooltip
+                                  delay={0}
+                                  placement="left"
+                                  target="tooltip719224089"
+                                >
+                                  To View
                                                       </UncontrolledTooltip>
 
-                            </CardFooter>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                    ))
+                              </CardFooter>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      ))
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6" style={{ padding: 0}}><div className="pt-3">1-48 of 323 Results</div>
+                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">1-48 of 323 Results</div>
                         </Col>
                         <Col md="6">
                           <Pagination
@@ -260,7 +253,10 @@ export default connect(
   },
   (dispatch) => {
     return {
-      filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
+      // setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
+      // setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
+      // setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
+      setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
       addToCart: (product) => { dispatch(actions.addToCart(product)) }
 
     }
