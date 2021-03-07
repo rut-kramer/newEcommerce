@@ -84,12 +84,12 @@ function Cart(props) {
                                                                                                                 </FontAwesomeIcon>
                                                                                                         </Button>
                                                                                                 </td>
-                                                                                                <td>{props.cart.totalPrice}$</td>
+                                                                                                <td>{item.amount * item.product.price}$</td>
                                                                                                 {/******item.amount * item.product.price */}
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">
-                                                                                                                        <Link to={{ pathname: `/${props.objectFields.storeName}/product`, state: { product: item.product } }} style={{ color: "#212529" }}>
+                                                                                                                        <Link to={{ pathname: `/${props.objectFields.storeName}/product/${item.product.SKU}`, state: { product: item.product } }} style={{ color: "#212529" }}>
                                                                                                                                 <FontAwesomeIcon className="clickIcon" icon={['fas', 'pencil-alt']} >
                                                                                                                                 </FontAwesomeIcon>
                                                                                                                         </Link>

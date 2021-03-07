@@ -46,7 +46,6 @@ function Bullcommerce(props) {
         document.getElementById("mySidebar").style.display = "block";
     }
     function w3_close() {
-        debugger
         document.getElementById("mySidebar").style.display = "none";
     }
 
@@ -69,7 +68,7 @@ function Bullcommerce(props) {
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
                                         <Card className="card-product card-plain">
-                                            <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}>
+                                            <Link to={{ pathname: "/" + props.objectFields.storeName + "/product/" + item.SKU, state: { product: item } }}>
 
                                                 <div className="card-image Aheight">
 
@@ -98,21 +97,7 @@ function Bullcommerce(props) {
                                                         id="tooltip719224088"
                                                         onClick={() => props.addToCart(
                                                             {
-                                                                "product": {
-                                                                    "amount": 4,
-                                                                    "price": 450,
-                                                                    "images": [],
-                                                                    "attributes": [
-                                                                        "6021297fb7ce77e4d5b3e8cf"
-                                                                    ],
-                                                                    "featured": false,
-                                                                    "_id": "602babe3c8336e62cd3d5f2e",
-                                                                    "name": "Simcha dress",
-                                                                    "description": "to wedding",
-                                                                    "SKU": "7786754614",
-                                                                    "category": "601bec7cbf7ea1c3829cd18b",
-                                                                    "store": "6012b0300718f71a8fa25df5",
-                                                                },
+                                                                "product": item,
                                                                 "amount": 1
                                                             }
                                                         )}

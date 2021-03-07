@@ -50,7 +50,6 @@ const cartReducer = {
 
   addProductToCart(state, action) {
 
-    debugger
     let productsCart = state.cart.products;
     if (!productsCart)
       productsCart = [];

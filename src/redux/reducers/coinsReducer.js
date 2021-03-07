@@ -309,7 +309,6 @@ const initialState = {
 
 const coins = {
         setPicture(state, action) {
-                debugger
                 state.picture = action.payload;
         },
 

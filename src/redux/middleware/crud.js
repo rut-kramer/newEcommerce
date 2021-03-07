@@ -17,7 +17,6 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
-        debugger
         if (action.payload.size > 5242880) {
             alert(`sorry, the file ${action.payload.name} is too big file, Please remove it from the list`);
             return;

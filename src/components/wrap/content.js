@@ -8,7 +8,7 @@ import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
 // import Cart from '../store design/cart';
 import Product from '../store design/product_page/product';
-import Dnd from '../navbars/yeuditDnd'
+import Dnd from '../navbars/DndCategories'
 import Cart from '../store design/cart_page/cart';
 
 import { connect } from 'react-redux';
@@ -23,23 +23,18 @@ function Content(props) {
             <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
             <Link to={"/" + props.objectFields.storeName + "/cart"}>cart</Link>/
 
-            <Link to={{ pathname: `/${props.objectFields.storeName}/product`, state: { product: props.product1 } }}>productPage</Link>
-            /
-            <Link to={"/dnd"}>Category dnd</Link>
-
-
             <Switch>
                 <Route path="/dnd" component={Dnd} />
 
-                <Route path="/filter-category" component={CategoryByFilter} />
+                {/* <Route path="/filter-category" component={CategoryByFilter} />
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <Route path="/:storeName/cart" component={Cart} />
                 <Route path="/:storeName/product" component={Product} />
-                <Route path="/:storeName" component={Temporary} />
+                <Route path="/:storeName" component={Temporary} /> */}
 
-                {/* <Switch>
+                {/* <Switch> */}
                 <Route path="/:storeName/admin" component={AdminCurd} />
-                <MainStoreRoutes></MainStoreRoutes> */}
+                <MainStoreRoutes></MainStoreRoutes>
             </Switch>
         </div>
     )

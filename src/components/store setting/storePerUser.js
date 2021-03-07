@@ -7,10 +7,10 @@ import categoryReducer from '../../redux/reducers/data_reducer/categoryReducer';
 function StorePerUser(props) {
 
   function funcReset(item) {
-    props.setSoreCurrent(item);
+    props.setCurrentStore(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
-      props.getAllAttributes(item._id)
+    props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -44,7 +44,8 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to={"/" + props.objectFields.urlRoute}>
+                    {console.log("obj", props.objectFields)}
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.storeName}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -78,11 +79,11 @@ export default connect(
     return {
       getStoreByUser: (id) => { dispatch(actions.getStoreByUser(id)) },
       setFilteredItems: (i) => { dispatch(actions.setFilteredItems(i)) },
-      setSoreCurrent: (i) => { ; dispatch(actions.setSaveAllStoreDetails(i)) },
+      setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
       getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
-      getAllAttributes:(y)=>dispatch(actions.getAllAttributes(y))
+      getAllAttributes: (y) => dispatch(actions.getAllAttributes(y))
 
     }
   }

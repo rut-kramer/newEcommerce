@@ -38,7 +38,7 @@ import {
 } from "reactstrap";
 
 // core components
-import ScrollTransparentNavbar from "./scrollTransparentNavbar";
+import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar";
 
 const items = [
         {
@@ -67,19 +67,19 @@ function Product(props) {
         const [activeIndex, setActiveIndex] = React.useState(0);
         const [animating, setAnimating] = React.useState(false);
 
-        let productWithVariations = {
-                "amount": product.amount,
-                "price": product.price,
-                "images": product.images,
-                "featured": true,
-                "_id": "603649252539d95fde38eba0",
-                "name": product.name,
-                "description": product.description,
-                "SKU": product.SKU,
-                "category": product.category,
-                "store": product.store,
-                "attributes": [],
-        }
+        // let productWithVariations = {
+        //         "amount": product.amount,
+        //         "price": product.price,
+        //         "images": product.images,
+        //         "featured": true,
+        //         "_id": "603649252539d95fde38eba0",
+        //         "name": product.name,
+        //         "description": product.description,
+        //         "SKU": product.SKU,
+        //         "category": product.category,
+        //         "store": product.store,
+        //         "attributes": [],
+        // }
 
         const [orderAmount, setOrderAmount] = React.useState(1)
 
@@ -128,7 +128,9 @@ function Product(props) {
         }, []);
         return (
                 <>
-                        <ScrollTransparentNavbar />
+                        {/* <Container className="p-0">
+                                <Row>
+                                        <Col sm="12" md={{ size: 10, offset: 1 }}> */}
                         <div className="wrapper">
                                 <div className="main">
                                         <div className="section" id="productDetails">
@@ -457,6 +459,9 @@ function Product(props) {
                                         </div>
                                 </div>
                         </div>
+                        {/* </Col>
+                                </Row>
+                        </Container> */}
                 </>
         );
 }

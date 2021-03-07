@@ -6,7 +6,6 @@ import { actions } from '../action';
 //5
 export const addToCart = ({ dispatch, getState }) => next => action => {
         if (action.type === 'ADD_TO_CART') {
-                debugger
                 let flag = false;
                 getState().cartReducer.cart.products.forEach((product, index) => {
                         if (product.product.SKU.toString() === action.payload.product.SKU.toString()) {
