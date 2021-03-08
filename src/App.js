@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Login from "./components/login"
 import Home from "./components/home";
 import OpenStore from "./components/openStore"
@@ -13,6 +13,10 @@ import EditProduct from './components/store setting/product_management/editProdu
 import EditCategory from './components/store setting/category_managment/editCategory';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
+import Upload from './components/modals/yeuditUploadImage';
+
+// import Product from "./components/store design/product_page/product";
+// import Cart from "./components/store design/cart";
 import QuickLook from './components/store design/quickLook'
 
 //styles
@@ -27,9 +31,13 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
-          {/* <div className="outFooter"> */}
           <Switch>
 
+            <Route path="/upload" component={Upload} />
+
+            {/* <Route exact path="/cart">
+              <Cart />
+            </Route> */}
             <Route exact path="/">
               <Home />
             </Route>
@@ -69,15 +77,15 @@ function App() {
           {/* <footer className="footer" data-background-color="black" 
           style={{zIndex: 2237,width: "100%",position: "sticky",padding: "0px"}}>
         <div className="container"></div></footer> */}
-        {/* position:sticky
+          {/* position:sticky
 להוריד פדינגים פנימיים בקישורים */}
 
-        {/* position:fixed 
+          {/* position:fixed 
         bottom: 0,
       */}
 
 
-      {/* import TopFooter from './components/topFooter' */}
+          {/* import TopFooter from './components/topFooter' */}
           {/* <TopFooter></TopFooter> */}
         </div>
       </Router>
