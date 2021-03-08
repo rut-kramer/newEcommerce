@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // reactstrap components
@@ -55,8 +55,31 @@ function CategoryBullcommerce(props) {
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
+
+      let arr=new Array(7)
+      for (let index = 0; index < arr.length; index++) {
+       arr[index]
+        
+      }
+
     };
   }, []);
+  const [numPager, setNumPager] = useState(props.products/12)
+  
+  const [degelBtn, setDegelBtn] = useState(1)
+  function changePageNum(num) {
+          let PageNum=degelBtn;
+
+          if (num == "+")
+                  PageNum++;
+          else {
+                  if (num == "-")
+                          PageNum--;
+                  else
+                          PageNum = num;
+          }
+          setDegelBtn(PageNum)               
+  }
 
   return (
     <>

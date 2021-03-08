@@ -13,6 +13,9 @@ import EditProduct from './components/store setting/product_management/editProdu
 import EditCategory from './components/store setting/category_managment/editCategory';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
+import EditPaper  from './components/store setting/paper_managment/editPaper'
+import ShowPaper  from './components/store setting/paper_managment/showPaper'
+
 import Upload from './components/modals/yeuditUploadImage';
 
 // import Product from "./components/store design/product_page/product";
@@ -31,6 +34,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <div className="App">
+          {/* <div className="outFooter"> */}
           <Switch>
 
             <Route path="/upload" component={Upload} />
@@ -56,6 +60,12 @@ function App() {
             </Route>
             <Route exact path="/admin/category/edit">
               <EditCategory />
+            </Route>
+            <Route exact path="/paper">
+            <EditPaper></EditPaper>
+            </Route>
+            <Route exact path="/showPaper">
+            <ShowPaper></ShowPaper>
             </Route>
 
             <Route path="/login">
