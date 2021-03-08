@@ -8,10 +8,11 @@
 
 //     function funcReset(item) {
 //         props.setCategories(item.categories);
+//         // props.setCategoryListMenu(item.categories)
 //         props.setAllOrders(item.orders);
 //         props.setCurrentStore(item);
 //         props.setProducts(item.storeProducts)
-//         props.setFilteredItems(item.storeProducts)
+//         props.setFilteredItems(item.storeProducts);
 //     }
 
 
@@ -52,8 +53,6 @@
 //                         </div>
 //                     </Link>
 //                 ))}
-
-
 
 //             </div>
 //         </>

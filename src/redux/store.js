@@ -3,7 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { getAllCategories, createNewCategory, deleteCategory, editCategory, getCategoriesByStore } from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
 import { newOrder, getOrdersByStore } from './middleware/crudOrder'
-import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
+import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct, oneProduct  } from './middleware/crudProduct'
 import {  createNewStore,getStoreByUser,deleteStore } from './middleware/crudStore'
 import { getTheLastUpdatedStorePerUser} from './middleware/crudUser'
 import { createNewPaper ,getAllPaper,deletePaper,editPaper} from './middleware/crudPaper'
@@ -61,6 +61,7 @@ const store = createStore(
             addNewImageToProduct,
             deleteProduct,
             editproduct,
+            oneProduct,
             //crudStore - פונקציות מ 
 
             createNewStore,
@@ -73,12 +74,13 @@ const store = createStore(
             createNewPaper,getAllPaper,deletePaper,editPaper,
             addToCart,
             changeProductAmount,
-            deleteAttributes,newAttributes,getAllAttributes,editAttribute,
-            deleteTerms,newTerm
+            deleteAttributes, newAttributes, getAllAttributes, editAttribute,
+            deleteTerms, newTerm
         ))
 )
 window.store = store;
 
 store.dispatch(actions.onAuthStateChanged());
+store.dispatch(actions.oneProduct())
 
 export default store;

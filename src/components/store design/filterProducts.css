@@ -1,0 +1,23 @@
+.collapse-panel{
+        text-align: left;
+}
+
+#footerHead input[type="checkbox"]:checked + .form-check-sign::after{
+        opacity: 1;
+        color:red;
+}
+
+.form-check-sign1{
+        width: 20px;
+        height: 20px;
+        border-radius:20%;
+        border: 1px solid #BBBBBB;
+        padding:5px;
+        margin-right: 1.5rem;
+}
+.form-check-sign1 .fa-check{
+        opacity:0;
+}
+#footerHead input[type="checkbox"]:checked + .form-check-sign1 .fa-check{
+        opacity: 1;
+}
