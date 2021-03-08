@@ -45,6 +45,8 @@ import wooyoungmi from "../../../assets/img/wooyoungmi.jpg"
 import saintLaurent from "../../../assets/img/saint-laurent.jpg"
 import saintLaurent1 from "../../../assets/img/saint-laurent1.jpg"
 import gucci from "../../../assets/img/gucci.jpg"
+import { connect } from "react-redux";
+import { actions } from "../../../redux/action";
 
 const items = [
     {
@@ -64,8 +66,9 @@ const items = [
     },
 ];
 
-function Product() {
+function Product(props) {
     // carousel states and functions
+
     const [activeIndex, setActiveIndex] = React.useState(0);
     const [animating, setAnimating] = React.useState(false);
     const onExiting = () => {
@@ -101,6 +104,11 @@ function Product() {
     const [colorSelect, setColorSelect] = React.useState(null);
     const [sizeSelect, setSizeSelect] = React.useState(null);
     React.useEffect(() => {
+            //לא לשכוח לשנות-אחראי על 3 מומצרים אחרוני שנצפו
+    props.addToTreeProduct(props.products[0]);
+    props.addToTreeProduct(props.products[1]);
+    props.addToTreeProduct(props.products[2]);
+    props.addToTreeProduct(props.products[3]);
         document.body.classList.add("product-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
@@ -401,4 +409,23 @@ function Product() {
     );
 }
 
-export default Product;
+
+
+export default connect(
+    (state) => {
+            return {
+                products: state.productReducer.products,
+
+
+            }
+    },
+    (dispatch) => {
+            return {
+                 
+                addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) }
+            }
+    },
+)(Product);
+
+
+

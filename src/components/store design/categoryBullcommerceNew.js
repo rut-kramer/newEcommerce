@@ -60,7 +60,7 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
-
+  let pager2=[];
   React.useEffect(() => {
 
     document.body.classList.add("ecommerce-page");
@@ -68,7 +68,15 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    // callPager() 
+    // callPager()
+    let numPaper=(props.products.length/numOfPage);
+    numPaper= Math.round(numPaper)+1+1
+     pager2=new Array(numPaper)
+    for (let index = 0; index < pager2.length; index++) 
+    {
+     pager2[index]=index;
+      
+    }
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
@@ -258,18 +266,20 @@ function  callPager()
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                            {/* {arrPager&&arrPager.map((item, index) => ( */}
-                            {/* <PaginationItem
+
+
+                             {pager2.map((item, index) => ( 
+                            <PaginationItem
                              className={degelBtn == index ? "active" : ""}
                             >
                               <PaginationLink
                                 href="#pablo"
                                 onClick={(e) => {e.preventDefault();changePageNum(index)}}
                               >
-                                {index}
+                                {item}
                         </PaginationLink>
-                            </PaginationItem> */}
-                   {/* ))}  */}
+                            </PaginationItem>
+                    ))}  
 
                             {/* <PaginationItem
                              className={degelBtn == 2 ? "active" : ""}

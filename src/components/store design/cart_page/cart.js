@@ -4,11 +4,38 @@ import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
 import { Link } from 'react-router-dom';
-import { Table, Container, Row, Col, Button } from 'reactstrap';
+// import { Table, Container, Row, Col, Button,  Card, } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
 import './cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import ia006 from "../../../assets/img/xd/ia_300000006.png";
+import cart from "../../../assets/img/xd/cart.svg"
+
+
+import {
+        Button,
+        Card,
+        CardHeader,
+        CardBody,
+        CardFooter,
+        CardTitle,
+        Collapse,
+        Label,
+        FormGroup,
+        Input,
+        Container,
+        Pagination,
+        PaginationItem,
+        PaginationLink,
+        InputGroupAddon,
+        Row,
+        Col,
+        UncontrolledTooltip,
+      } from "reactstrap";
+
+
+
 
 let flag = 1;
 
@@ -169,7 +196,41 @@ function Cart(props) {
 
                                         </div>
                                         <div className="section viewedProducts">
-                                                <h3 style={{ textAlign: 'center' }}><b>Products you viewed</b></h3>
+                 <h3 style={{ textAlign: 'center' }}>
+                         <b>Products you viewed</b></h3>
+                         <div>
+                         <Row>
+                         {props.treeProduct.map((item, index) => (
+                         <Col lg="4" md="6" sm="12" key={index}>
+                         <Card className="card-product card-plain">
+                          <div className="card-image frameToProductView">
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                              <img className="imageProduct"
+                                alt="..."
+                                src={ia006}
+                              ></img>
+                            </Link>
+                          </div>
+
+                           <CardBody>
+                                   <br></br>
+                            <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                            <CardFooter>
+                              <div className="price-container">
+                                <span className="price">$ {item.price}</span>
+                              </div>
+                            </CardFooter>
+                          </CardBody>
+
+                            </Card>
+                            </Col>
+                             ))  }</Row></div>
+
+                
+                      
+                     
+
+
                                         </div>
 
                                 </div>
@@ -186,7 +247,7 @@ export default connect(
                         currentStore: state.storeReducer.currentStore,
                         objectFields: state.storeReducer.objectFields,
                         storeCurrent:state.storeReducer.objectFields._id,
-
+                        treeProduct:state.productReducer.treeProduct,
                 }
         },
         (dispatch) => {
