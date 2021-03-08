@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 // import { useParams } from "react-router";
 import { connect } from 'react-redux';
 import { actions } from '../../../redux/action'
-  import './crudProducts.css';
+import './crudProducts.css';
 //בכדי לראות את הטבלה מסודרת צריך להוריד את ההערה
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';
@@ -21,7 +21,7 @@ function CrudProducts(props) {
         //                 reader.onloadend = () => {
         //                          ;
         //                         props.changeProductImage(0, reader.result)
-                               
+
 
         //                 }
         //                 reader.readAsDataURL(event)
@@ -52,38 +52,39 @@ function CrudProducts(props) {
 
         // let [pageNum, setNum] = useState(2)
         //  let items= props.products
-       // let [items, setMyItems] = useState(props.filteredProducts)
-       
-//        function changePageNum(num)
-//         {
-//                  ;
-//                 setNum(num);        
-//                 let p1=(pageNum - 1) * 6;
-//                 let p2=pageNum * 6 - 1;
-//                items=items.slice(p1, p2)
-//        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
-//                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
-//        // setMyItems({
-//        //         ...items,
-//        //       list
-//        //       });
-        
+        // let [items, setMyItems] = useState(props.filteredProducts)
+
+        //        function changePageNum(num)
+        //         {
+        //                  ;
+        //                 setNum(num);
+        //                 let p1=(pageNum - 1) * 6;
+        //                 let p2=pageNum * 6 - 1;
+        //                items=items.slice(p1, p2)
+        //        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
+        //                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
+        //        // setMyItems({
+        //        //         ...items,
+        //        //       list
+        //        //       });
+
         useEffect(() => {
                 var acc = document.getElementsByClassName("accordion");
                 var i;
-                
+
                 for (i = 0; i < acc.length; i++) {
-                  acc[i].addEventListener("click", function() {
-                    this.classList.toggle("active");
-                    var panel = this.nextElementSibling;
-                    if (panel.style.maxHeight) {
-                      panel.style.maxHeight = null;
-                    } else {
-                      panel.style.maxHeight = panel.scrollHeight + "px";
-                    } 
-                  });
-               }},[])
-             
+                        acc[i].addEventListener("click", function () {
+                                this.classList.toggle("crud_active");
+                                var panel = this.nextElementSibling;
+                                if (panel.style.maxHeight) {
+                                        panel.style.maxHeight = null;
+                                } else {
+                                        panel.style.maxHeight = panel.scrollHeight + "px";
+                                }
+                        });
+                }
+        }, [])
+
 
 
         return (
@@ -91,7 +92,7 @@ function CrudProducts(props) {
                         <div className="page">
                                 <div>
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Products</div>
+                                                <div className="container__title crud_title title_md">Products</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
@@ -106,14 +107,14 @@ function CrudProducts(props) {
                                                 <div className="panel js-panel">
                                                         <div className="panel__head panel__head_line">
                                                                 <div className="panel__group btn-group btn-group_tabs">
-                                                                        <button className="btn btn_light btn_icon js-panel-btn active" onClick={() => props.setViewLOrG("list")}>
-                                                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
+                                                                        <button className="btn btn_light btn_icon js-panel-btn crud_active" onClick={() => props.setViewLOrG("list")}>
+                                                                                <i className="la la-list "></i>List</button><button className="btn btn_light btn_icon js-panel-btn" onClick={() => props.setViewLOrG("grid")}><i className="la la-border-all "></i>Grid</button></div>
                                                         </div>
                                                         <div className="panel__body">
                                                                 {props.viewLOrGrid === "list" ? <ProductsList /> : <ProductsGrid />}
                                                                 <div className="panel__foot">
-                                                                <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
-                                                                                <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
+                                                                        <div className="pager"><a className="pager__arrow action action_icon_before" href="#"><i className="la la-angle-left "></i>Prev</a>
+                                                                                <div className="pager__list"><a className="pager__link action" href="#">1</a><a className="pager__link action" href="#">2</a><a className="pager__link action crud_active" href="#">3</a><a className="pager__link action" href="#">4</a><a className="pager__link action" href="#">5</a></div><a className="pager__arrow action action_icon_after" href="#">Next<i className="la la-angle-right "></i></a>
                                                                         </div>
                                                                 </div>
                                                         </div>
@@ -121,7 +122,8 @@ function CrudProducts(props) {
                                         </div>
                                 </div>
                         </div>
-                </>)}
+                </>)
+}
 
 export default connect(
         (state) => {

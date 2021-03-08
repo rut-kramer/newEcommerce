@@ -69,7 +69,6 @@ const store = createStore(
             getOrdersByStore,
             //crudUser - פונקציות מ
             getTheLastUpdatedStorePerUser,
-            getStoreByUser,
             deleteStore,
             createNewPaper,getAllPaper,deletePaper,editPaper,
             addToCart,

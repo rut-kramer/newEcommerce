@@ -11,7 +11,7 @@ function StorePerUser(props) {
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
     props.getAllPaper(item._id)
-      props.getAllAttributes(item._id)
+    props.getAllAttributes(item._id)
   }
 
   function deleteSto(i) {
@@ -39,13 +39,17 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide"><label className="switch">
                     <input style={{ backgroundColor: 'black' }} className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
                     <br></br>
+                    <button style={{ border: "none"}}>
+                      <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                      </i></button>
+                      <br/>
                     <strong>מחק</strong>
-                    <span className="switch__content">
-                    </span></label></div>
+                    {/* <span className="switch__content"></span> */}
+                    </label></div>
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to="/0">
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + props.objectFields.urlRoute}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -70,7 +74,9 @@ export default connect(
     return {
       stores: state.userReducer.storesOfUser,
       user: state.userReducer.user,
-      categories: categoryReducer.categories
+      categories: categoryReducer.categories,
+      objectFields: state.storeReducer.objectFields
+
     }
   },
   (dispatch) => {
@@ -85,5 +91,6 @@ export default connect(
       getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
     }
   }
+
 )(StorePerUser);
 

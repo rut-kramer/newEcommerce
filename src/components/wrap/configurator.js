@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from "react-redux";
+import { Link } from 'react-router-dom';
+
 import './wrap-component.css'
 import Home from "../home";
 import OpenStore from "../openStore";
@@ -11,32 +13,42 @@ import EditAttribute from '../store setting/attribute_management/editAttribute'
 
 
 function Configurator(props) {
+    const [adminLink,setAdminLink]=useState(true)
     return (
-        <div className="Configurator-configurator-28 Configurator-configuratorOpen-29">
-            <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50">
-               
-                {
-                    props.currentComponent ? (() => {
-                        switch (props.currentComponent) {
-                            case "Home": return <Home />;
-                            case "OpenStore": return <OpenStore />;
-                            case "AddCategory": return <AddCategory />;
-                            case "AddProduct": return <AddProduct />;
-                            case "EditProduct": return <EditProduct />;
-                            case "EditCategory": return <EditCategory />;
-                            case "EditAttribute": return <EditAttribute/>;
-                            
+        <>
+            {
+                // props.flag&&
+                <div className="Configurator-configurator-28 Configurator-configuratorOpen-29" style={{ width: props.flag ? "17%" : "0" }}>
+                    <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50" style={{ transform: props.flag ? "translate(0px)" : "translate(-100%)" }}>
+                        <div className="con-title">
+                                Home Page
+                            <Link to={'/' + props.objectFields.urlRoute +(adminLink? '/admin':'') } onClick={()=>{setAdminLink(!adminLink)}}>
+                                <span className="material-icons pointer">settings</span>
+                            </Link>
+                        </div>
+                        {
+                            props.currentComponent ? (() => {
+                                switch (props.currentComponent) {
+                                    case "Home": return <Home />;
+                                    case "OpenStore": return <OpenStore />;
+                                    case "AddCategory": return <AddCategory />;
+                                    case "AddProduct": return <AddProduct />;
+                                    case "EditProduct": return <EditProduct />;
+                                    case "EditCategory": return <EditCategory />;
+                                    case "EditAttribute": return <EditAttribute/>;
+                                        }
+                            })() :
+                                <h3>No component was selected!</h3>
                         }
-                    })() :
-                        <h3>No component was selected!</h3>
-                }
 
 
 
 
 
-            </div>
-        </div>
+                    </div>
+                </div>
+            }
+        </>
     )
 }
 
@@ -44,6 +56,7 @@ function Configurator(props) {
 
 const mapStateToProps = (state) => {
     return {
+        objectFields: state.storeReducer.objectFields,
         currentComponent: state.wrapReducer.currentComponent
     }
 }
