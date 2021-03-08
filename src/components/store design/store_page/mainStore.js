@@ -10,7 +10,7 @@ import Product from "../product_page/product";
 import Cart from "../cart_page/cart";
 import CheckOut from "../checkout_page/checkOut";
 import QuickLook from '../quickLook'
-import UploadImages from "../upload_images/uploadImages"
+import MediaGallery from "../media_gallery/mediaGallery"
 
 function MainStore() {
     const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -39,7 +39,7 @@ function MainStore() {
 
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
-                <Route path="/:storeName/uploadImages" component={UploadImages}></Route>
+                <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/" component={CategoryBullcommerce}></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>

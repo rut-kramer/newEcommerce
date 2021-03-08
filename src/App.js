@@ -14,7 +14,7 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import Upload from './components/modals/yeuditUploadImage';
-
+import MediaGallery from './components/store design/media_gallery/mediaGallery'
 // import Product from "./components/store design/product_page/product";
 // import Cart from "./components/store design/cart";
 import QuickLook from './components/store design/quickLook'
@@ -25,6 +25,7 @@ import "./assets/scss/now-ui-kit.scss";
 import "./assets/demo/demo.css";
 import "./assets/demo/react-demo.css";
 import "./assets/demo/nucleo-icons-page-styles.css";
+import { uploadImage } from './redux/middleware/crud';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
             </Route>
             <Route exact path="/admin/category/edit">
               <EditCategory />
+            </Route>    
+            <Route exact path="/admin/category/edit">
+              <MediaGallery />
             </Route>
 
             <Route path="/login">

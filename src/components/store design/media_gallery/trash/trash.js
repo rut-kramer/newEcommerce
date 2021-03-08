@@ -1,5 +1,5 @@
 import React from 'react'
-import { actions } from "../../../redux/action"
+import { actions } from "../../../../redux/action"
 import { connect } from 'react-redux';
 import {
     Row,
