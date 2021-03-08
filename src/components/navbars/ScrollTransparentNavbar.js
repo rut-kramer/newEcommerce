@@ -118,7 +118,7 @@ function ScrollTransparentNavbar(props) {
               <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
             </Link>
 
-            <Link to={"/" + props.objectFields.storeName + "/"}>
+            <Link to={"/" + props.objectFields.storeName + "/checkOut"}>
 
               <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
             </Link>

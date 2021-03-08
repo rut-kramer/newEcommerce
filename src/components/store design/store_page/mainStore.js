@@ -6,6 +6,7 @@ import Bullcommerce from '../bullcommerce';
 import CategoryBullcommerce from "../categoryBullcommerceNew"
 import Product from "../product_page/product";
 import Cart from "../cart_page/cart"
+import CheckOut from '../check_out/checkOut';
 
 function MainStore() {
     return (
@@ -15,6 +16,7 @@ function MainStore() {
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/" component={CategoryBullcommerce}></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
+                <Route path="/:storeName/checkOut" component={CheckOut}></Route>
                 <Route path="/:storeName" component={Bullcommerce}></Route>
             </Switch>
             <FooterOrange></FooterOrange>

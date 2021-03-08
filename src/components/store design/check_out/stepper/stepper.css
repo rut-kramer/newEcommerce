@@ -1,0 +1,62 @@
+.itemStep{
+    /* background-color: darkgray; */
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #D2D2D2 0% 0% no-repeat padding-box;
+    border-radius: 50px; 
+    font-size:10px;
+    font-weight: bold;
+    border: 0px;
+}
+.stepWord{
+    color: #787D91;
+    font-size: 0.8vw;
+    font-weight: bold;
+}
+.num{
+    margin: 25px;
+    text-align: center;
+    font: var(--unnamed-font-style-normal) normal medium 16px/16px var(--unnamed-font-family-roboto);
+    text-align: left;
+    font: normal normal medium 16px/16px Roboto;
+    letter-spacing: 0.45px;
+    color: #909092;
+    text-transform: capitalize;
+    opacity: 1;
+}
+.line{
+    border-bottom: #D2D2D2 2px solid;
+    width: 5rem;
+    background: #D2D2D2 0% 0% no-repeat padding-box;
+
+}
+.stepper-button{
+    width: 8rem;
+    height: 2rem;
+    border: 1px solid #707070;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    margin-top: 3%;
+    margin-bottom: 1.5%;
+    margin-left: 25%;
+}
+.stepper-button:hover{
+    background-color: #F29544;
+    border: 0px;
+}
+.stepper-button :hover{
+    color: white;
+}
+.stepper-button-next{
+    text-align: center;
+    font: var(--unnamed-font-style-normal) normal medium 18px/16px var(--unnamed-font-family-roboto);
+    color: var(--unnamed-color-f29544);
+    text-align: left;
+    font: normal normal medium 18px/16px Roboto;
+    letter-spacing: 0.5px;
+    color: #F29544;
+    text-transform: capitalize;
+    opacity: 1;
+    font-weight: bold;
+}

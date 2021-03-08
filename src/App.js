@@ -55,6 +55,7 @@ function App() {
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />
+            <Route path="/:comp" component={Wrap} />
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
           <TopFooter></TopFooter>
