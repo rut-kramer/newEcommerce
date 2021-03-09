@@ -20,7 +20,7 @@ function Cart(props) {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
                 let t = cookies.order;
-                if ((flag === 1) && (t !== "undefined")) {
+                if ((flag === 1) && (t)) {
                         props.setCart(t)
                         flag = 2
                 }
@@ -52,7 +52,6 @@ function Cart(props) {
                                         <div className="section cart">
 
                                                 <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
-                                                {/* {console.log("if", Array.isArray(props.cart.products))} */}
 
                                                 {(Array.isArray(props.cart.products) && props.cart.products.length) ?
                                                         <>
@@ -86,11 +85,14 @@ function Cart(props) {
                                                                                                         </Button>
                                                                                                 </td>
                                                                                                 <td>{item.amount * item.product.price}$</td>
+                                                                                                {/******item.amount * item.product.price */}
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">
-                                                                                                                        <FontAwesomeIcon icon={['fas', 'pencil-alt']}>
-                                                                                                                        </FontAwesomeIcon>
+                                                                                                                        <Link to={{ pathname: `/${props.objectFields.storeName}/product/${item.product.SKU}`, state: { product: item.product } }} style={{ color: "#212529" }}>
+                                                                                                                                <FontAwesomeIcon className="clickIcon" icon={['fas', 'pencil-alt']} >
+                                                                                                                                </FontAwesomeIcon>
+                                                                                                                        </Link>
                                                                                                                 </Col>
                                                                                                         </Row>
                                                                                                         <Row>
@@ -158,8 +160,7 @@ export default connect(
                 return {
                         cart: state.cartReducer.cart,
                         user: state.userReducer.user,
-                        currentStore: state.storeReducer.currentStore,
-                        objectFields: state.storeReducer.objectFields
+                        objectFields: state.storeReducer.objectFields,
                 }
         },
         (dispatch) => {
