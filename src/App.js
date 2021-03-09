@@ -58,7 +58,7 @@ function App() {
             <Route exact path="/admin/category/edit">
               <EditCategory />
             </Route>    
-            <Route exact path="/admin/category/edit">
+            <Route exact path="/mediaGallery">
               <MediaGallery />
             </Route>
 
