@@ -7,6 +7,7 @@ import './crudProducts.css';
 //import { editProduct } from '../redux/middleWares/crud';
 import ProductsList from './productsList';
 import ProductsGrid from './productsGrid'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CrudProducts(props) {
 
@@ -68,22 +69,22 @@ function CrudProducts(props) {
         //        //       list
         //        //       });
 
-        useEffect(() => {
-                var acc = document.getElementsByClassName("accordion");
-                var i;
+        // useEffect(() => {
+                // var acc = document.getElementsByClassName("accordion");
+                // var i;
 
-                for (i = 0; i < acc.length; i++) {
-                        acc[i].addEventListener("click", function () {
-                                this.classList.toggle("crud_active");
-                                var panel = this.nextElementSibling;
-                                if (panel.style.maxHeight) {
-                                        panel.style.maxHeight = null;
-                                } else {
-                                        panel.style.maxHeight = panel.scrollHeight + "px";
-                                }
-                        });
-                }
-        }, [])
+                // for (i = 0; i < acc.length; i++) {
+                //         acc[i].addEventListener("click", function () {
+                //                 this.classList.toggle("crud_active");
+                //                 var panel = this.nextElementSibling;
+                //                 if (panel.style.maxHeight) {
+                //                         panel.style.maxHeight = null;
+                //                 } else {
+                //                         panel.style.maxHeight = panel.scrollHeight + "px";
+                //                 }
+                //         });
+                // }
+        // },props.products)
 
 
 
@@ -94,12 +95,17 @@ function CrudProducts(props) {
                                         <div className="container__head">
                                                 <div className="container__title crud_title title_md">Products</div>
                                                 <div className="container__search search js-search mySearch">
-                                                        <button className="search__action action js-search-open">
-                                                                <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
+                                                        <button className="search__action action js-search-open" onClick={() => { props.setcomponnet("search") }}>
+                                                        <FontAwesomeIcon
+                                                             icon={['fas','search']}>
+                                                             </FontAwesomeIcon>
+                                                                </button>
                                                 </div>
                                                 <div className="container__new new js-new">
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddProduct") }}>
-                                                                <i className="la la-plus-circle "></i>
+                                                             <FontAwesomeIcon
+                                                             icon={['fas','plus-circle']}>
+                                                             </FontAwesomeIcon>
                                                         </button>
                                                 </div>
                                         </div>

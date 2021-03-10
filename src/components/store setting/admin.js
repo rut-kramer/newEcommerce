@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import './admin.css'
 import CrudCategory from './category_managment/crudCategory'
 import CrudOrder from './crudOrder'
@@ -12,6 +12,7 @@ import NewPaper from './paper_managment/createNewPaper';
 
 function Admin(props) {
 
+  
   function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -30,20 +31,20 @@ function Admin(props) {
     <Provider store={store}>
 
       <div className="tab">
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Products</button>
+        <button className="tablinks crud_active" onClick={(event) => { openCity(event, 'Product') }}>Products</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Attributes') }}>Attributes</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>All Your Stores</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>New Paper</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>All Pages</button>
       </div>
 
       <div id="Categories" className="tabcontent">
         <CrudCategory></CrudCategory>
       </div>
 
-      <div id="Product" className="tabcontent">
+      <div id="Product" style={{display:"block"}} className="tabcontent">
         <CrudProducts></CrudProducts>
       </div>
 
@@ -63,6 +64,7 @@ function Admin(props) {
       <div id="NewPaper" className="tabcontent">
         <NewPaper></NewPaper>
       </div>
+    
     </Provider>
   )
 }
