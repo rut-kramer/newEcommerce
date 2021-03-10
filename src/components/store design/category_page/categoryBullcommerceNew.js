@@ -106,13 +106,14 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": item,
-                                    "amount": 1
-                                  }
-                                )}
-
+                                onClick={() => {
+                                  props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    });
+                                  props.cartPanal_open()
+                                }}
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                 <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
@@ -155,7 +156,7 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">1-48 of 323 Results</div>
+                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">1-48 of 323 Results</div>
                         </Col>
                         <Col md="6">
                           <Pagination

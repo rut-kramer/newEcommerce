@@ -25,7 +25,7 @@ function CrudCategory(props) {
                         <div className="page">
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Category</div>
+                                                <div className="container__title crud_title title_md">Category</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
                                                                 <i className="la la-search "></i></button>
@@ -80,11 +80,11 @@ function CrudCategory(props) {
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
                                                                                                                                                 <input className="switch__input" type="button" onClick={ () => { askDeleteCategory(item._id)}} />
-                                                                                                                                                <button>
-                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                                                                                                                <button style={{ border: "none" }}>
+                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
                                                                                                                                                         </i></button>
-                                                                                                                                                <span className="switch__content">
-                                                                                                                                                </span></label></div>
+                                                                                                                                                {/* <span className="switch__content"></span> */}
+                                                                                                                                                </label></div>
                                                                                                                                         <div className="data__preview" style={{ "backgroundColor": item.color }}>
                                                                                                                                         </div>
                                                                                                                                         <div className="data__cell mobile-hide"> 
@@ -129,7 +129,7 @@ function CrudCategory(props) {
                                                                                 <div className="pager__list">
                                                                                         <a className="pager__link action" href="#">1</a>
                                                                                         <a className="pager__link action" href="#">2</a>
-                                                                                        <a className="pager__link action active" href="#">3</a>
+                                                                                        <a className="pager__link action crud_active" href="#">3</a>
                                                                                         <a className="pager__link action" href="#">4</a>
                                                                                         <a className="pager__link action" href="#">5</a>
                                                                                 </div>

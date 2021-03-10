@@ -16,17 +16,15 @@ import './quickLook.css'
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 
 function QuickLook(props) {
-    function w3_close() {
-        props.sideBarOpenORclose(false)
-    }
+
 
     const [orderAmount, setOrderAmount] = useState(1)
     return (
 
         <div className="sideBar">
             <button
-                onClick={w3_close}
-                className="w3-bar-item w3-large">&times;
+                onClick={props.w3_close}
+                className="">&times;
                     </button>
 
             <img alt="...." className="imageProductQLook mt-4"
@@ -60,12 +58,14 @@ function QuickLook(props) {
                     </td>
                 </div>
                 <button className="btnCart"
-                    onClick={() => props.addToCart(
-                        {
-                            "product": props.currentProduct,
-                            "amount": orderAmount
-                        }
-                    )}
+                    onClick={() => {
+                        props.addToCart(
+                            {
+                                "product": props.currentProduct,
+                                "amount": orderAmount
+                            });
+                        props.cartPanal_open()
+                    }}
                 >
                     <FontAwesomeIcon className="mr-2" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>ADD TO CART
                         </button>

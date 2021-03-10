@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -15,39 +15,87 @@ import {
 import productInCart from "../../../assets/img/xd/631e3939-9988-41b6-a6fe-d60206ab0582@2x.png";
 import "./cart.css"
 function CartPanel(props) {
-    let products = [
-        {
-            name: "sari",
-            price: "7677",
-            amount: "2"
-        },
-        {
-            name: "dd",
-            price: "3",
-            amount: "1"
-        }
-    ]
+    // const [cartPanelOpen, setCartPanelOpen] = useState(false)
+    // function cartPanal_open() {
+    //     setCartPanelOpen(true)
+    // }
+    // function cartPanal_close() {
+    //     setCartPanelOpen(false)
+    // }
     return (
-        <div className="cartPanal ml-5 mt-5">
 
-            {/*row פה צריך לעשות לולאה שתציג את כל המוצרים בתוך  */}
-            {products.map((item, index) => (
-                <Row md="12 borderToProduct">
-                    <Col md="3"><img src={productInCart}></img></Col>
-                    <Col md="3">dddd</Col>
-                    <Col md="3">+9-</Col>
-                    <Col md="3">888$</Col>
-                </Row>
-            ))}
-            <Row md="12 mt-4">
-                <Col md="10 cartTotal">Total:</Col>
-                <Col md="2">jj</Col>
+        <div className="cartPanal ml-5 mt-5"
+        style={{
+            display:
+                props.cartPanelOpen ? "block" : "none"
+        }}>
+        <Container>
+
+            <Row>
+                <Col sm="12"
+                    md={{ size: 10, offset: 1 }}
+                    className="onlyProduct"
+                >
+
+                    {props.cart.products.map((item, index) => (
+                        <>
+                            <Row md="12 borderToProduct mt-4 ">
+                                <Col md="3" style={{ width: "18px" }}><img src={productInCart}></img></Col>
+                                <Col md="3">{item.product.name}</Col>
+                                <Col md="3">
+                                    <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }} onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
+                                        <FontAwesomeIcon icon={['fas', 'plus']}>
+                                        </FontAwesomeIcon>
+                                    </Button>{' '}
+                                    {item.amount}{' '}
+                                    <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
+                                        onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
+                                        <FontAwesomeIcon icon={['fas', 'minus']}>
+                                        </FontAwesomeIcon>
+                                    </Button>
+                                </Col>
+                                <Col md="3">{item.product.price * item.amount}</Col>
+                            </Row>
+                        </>
+                    ))}
+
+
+                </Col>
+                <Col sm="12"
+                    md={{ size: 10, offset: 1 }}>
+                    <Row md="12 mt-4">
+                        <Col md="9" className="cartTotal">Total:
+                        
+                        </Col>
+                        <Col md="3" className="pr-5">{props.cart.totalPrice}</Col>
+                    </Row>
+
+                    <Row md="12 mt-4 mb-2">
+                        <Col md="6">
+                            {/* <Link to="/:storeName/cart"> */}
+                                <button className="btnCartTotal ml-5" >view/edit bag</button>
+                                {/* </Link> */}
+                                </Col>
+                        <Col md="6">
+                            {/* <Link to="/:storeName/checkout"> */}
+                                <button className="btnCartTotal mr-5" >checkout</button>
+                                {/* </Link> */}
+                                </Col>
+                    </Row>
+                </Col>
             </Row>
-            <Row md="12 mt-4 mb-4">
-                <Col md="6"><button className="btnCartTotal ml-5">view/edit bag</button></Col>
-                <Col md="6"><button className="btnCartTotal mr-5">checkout</button></Col>
-            </Row>
-        </div>
+        </Container>
+    </div>
+
+    
+
+
+
+
+
+
+       
+
     )
 }
 const mapStateToProps = (state) => {

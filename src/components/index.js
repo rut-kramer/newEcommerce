@@ -8,7 +8,6 @@ function Home(props) {
 
         return (
                 <div>
-
                         <img id="home-img" src={homeImg} style={{ float: "left" }} alt="home" />
                         <div style={{ float: "left" }}>
                                 <h1>Wellcome!!{props.user.username}  </h1>
@@ -20,7 +19,7 @@ function Home(props) {
                                 {/* <a href="/addUser">create user</a> */}
                         </div>
                         <div style={{ float: "right" }}>
-                                <StorePerUser ></StorePerUser>
+                                <StorePerUser  style={{marginBottom:"21px"}}></StorePerUser>
                         </div>
                 </div>
         )

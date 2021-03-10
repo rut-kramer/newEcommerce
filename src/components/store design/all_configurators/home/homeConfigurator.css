@@ -1,0 +1,19 @@
+.tafritHomeConfig{
+    color: #EBEAEA;
+}
+.lineTafrit{
+    width: 0.10rem;
+    height: 1.3rem;
+    background: transparent linear-gradient( 
+                100deg
+                , #FC894D 0%, #FE5196 100%)
+                 0% 0% no-repeat padding-box;
+}
+.inputLogo{
+    width: 5.5rem;
+    height: 4.4rem;
+    background-color: #707070;
+}
+.navigation{
+    margin-left: -0.9rem;
+}

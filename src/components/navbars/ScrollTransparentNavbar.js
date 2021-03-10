@@ -15,11 +15,13 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
+  Button,
   // Row,
   // Col,
 } from "reactstrap";
 
 import { connect } from 'react-redux';
+import { actions } from "../../redux/action";
 
 
 
@@ -69,8 +71,14 @@ function ScrollTransparentNavbar(props) {
           <div className="navbar-translate">
             <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
-                src={props.objectFields.logo} className="logoHeader">
+                src={props.objectFields.logo} className="logoHeader"
+                onClick={() => props.changeCurrentComponent("SliderConfigurator")}
+
+              >
               </img>
+              {/* <Button
+
+              >tt</Button> */}
             </NavbarBrand>
             <UncontrolledTooltip target="navbar-brand">
               To Home Store Page
@@ -114,9 +122,7 @@ function ScrollTransparentNavbar(props) {
             <Link to="/">
               <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']}></FontAwesomeIcon>
             </Link>
-            <Link to={"/" + props.objectFields.storeName + "/checkOut"}>
-              <div className="separatorStripe"></div>
-            </Link>
+            <div className="separatorStripe"></div>
             <Link to={"/" + props.objectFields.storeName + "/cart"}>
               <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
             </Link>
@@ -138,5 +144,7 @@ const mapStateToProps = (state) => {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
+  changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

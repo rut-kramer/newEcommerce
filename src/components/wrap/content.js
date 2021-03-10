@@ -14,7 +14,6 @@ function Content(props) {
 
     return (
         <div className="Content">
-            <Link to={"/" + props.objectFields.urlRoute + "/admin"}>admin</Link>/
             <Switch>
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
@@ -26,7 +25,6 @@ function Content(props) {
 
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.storeReducer.objectFields,
     }
 }
 const mapDispatchToProps = (dispatch) => ({

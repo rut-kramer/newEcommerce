@@ -32,19 +32,26 @@
 .cart Table{
         border-bottom: 2px solid #707070;
 }
-.borderToProduct{
+ .borderToProduct{
         border-bottom: 1px solid #707070;
+        text-align: center;
+} 
+.onlyProduct{
+        height: 13rem;
+        overflow-y:auto;
 }
-
 .cartPanal{
-  border:0.5px solid #00000029;
-  height: 40vh;
-    width: 30vw;
-    box-shadow :-5px 5px 10px #00000029;
+        border:0.5px solid #00000029;
+        height: 20rem;
+        width: 30rem;
+        box-shadow :-5px 5px 5px #00000029;
+        background-color: white;
+        position: fixed;
+        z-index: 4;
 }
 .cartTotal{
-color:#707070;
- font-weight: bold;
+        color:#707070;
+        font-weight: bold;
 }
 .btnCartTotal{
         border:1px solid #E1DEDE;
@@ -52,6 +59,12 @@ color:#707070;
         text-align: center;
         font-weight: bold;
         background-color: transparent;
-        width: 70%;
-        height: 100%;
+        width: 8rem;
+        height: 2rem;
+
+}
+.btnCartTotal:hover{
+        color:white;
+        background-color:#F29544;
+        font-weight: normal;
 }

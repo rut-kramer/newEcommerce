@@ -73,13 +73,17 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224088"
-                                                        onClick={() => props.addToCart(
-                                                            {
-                                                                "product": item,
-                                                                "amount": 1
-                                                            }
-                                                        )}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            debugger
+                                                            props.addToCart(
+                                                                {
+                                                                    "product": item,
+                                                                    "amount": 1
+                                                                }
+                                                            ); props.cartPanal_open()
 
+                                                        }}
                                                     >
                                                         <img alt="...."
                                                             src={cart}></img>
@@ -119,7 +123,7 @@ function Bullcommerce(props) {
 
                             </Row>
                         </Container>
-                        <button className="BtnGoToShop">GO TO SHOP</button>
+                        <button className="BtnGoToShop" onClick={props.cartPanal_open}>GO TO SHOP</button>
 
                     </div>
                 </div>
