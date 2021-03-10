@@ -38,6 +38,8 @@ import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
 import FooterOrange from "./footerOrange";
 
+import Carousel from 'react-elastic-carousel'
+
 
 //images
 import polo from "../../assets/img/polo.jpg";
@@ -56,6 +58,8 @@ import ia006 from "../../assets/img/xd/ia_300000006.png";
 import ia0010 from "../../assets/img/xd/ia_300000010.png";
 import ia008 from "../../assets/img/xd/ia_300000008.png";
 import cart from "../../assets/img/xd/cart.svg"
+
+
 function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
@@ -68,7 +72,7 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    // callPager()
+     callPager()
     let numPaper=(props.products.length/numOfPage);
     numPaper= Math.round(numPaper)+1+1
      pager2=new Array(numPaper)
@@ -83,41 +87,44 @@ function CategoryBullcommerce(props) {
     };
 
   }, []);
-
+  
+  const numOfPage=3
   const [arrPager, setArrPager] = useState([])
-  const [p1, setP1] = useState(1)
-  const [p2, setP2] = useState(1)
-const numOfPage=12
+  let arrTemp=[]
+  const [pa1, setP1] = useState(1)
+  const [pa2, setP2] = useState(numOfPage)
+  let p1=1
+  let p2=2
+
+
 function  callPager() 
 {
-  
   let numPaper=(props.products.length/numOfPage);
-  numPaper= Math.round(numPaper)+1
-  console.log(numPaper)
-  // let arrPager2=new Array(numPaper)
-
-  //  setArrPager({...arrPager2})
+  numPaper= Math.ceil(numPaper)
   for (let index = 0; index < numPaper; index++) 
   {
-    setP1((index) * numOfPage);
-    setP2((index+1) * numOfPage - 1);
+    let objec={
+      index:"",
+      list:""
+    }
+    p1=((index) * numOfPage);
+    p2=((index+1) * numOfPage);
    let list = props.products;
    list = list[0] ? list.slice(p1, p2) : [];
    console.log("list",index, list);
-   
-  //  arrPager[index]=list  
-  setArrPager({
-    ...arrPager,
-      list
-  })          
+   objec.index=index+1;
+   objec.list=list
+   arrTemp.push(objec)
+  }
+  setArrPager(
+    a => arrTemp
+  )          
   } 
-}
-  
-  const [degelBtn, setDegelBtn] = useState(1)
+  const [degelBtn, setDegelBtn] = useState(0)
   function changePageNum(num)
    {
           let PageNum=degelBtn;
-
+        
           if (num == "+")
                   PageNum++;
           else {
@@ -126,7 +133,9 @@ function  callPager()
                   else
                           PageNum = num;
           }
-          setDegelBtn(PageNum)               
+          setDegelBtn(PageNum)  
+          setP1(((PageNum) * numOfPage)+1)
+          setP2((PageNum+1) * numOfPage)             
         }
 
   return (
@@ -156,9 +165,9 @@ function  callPager()
                 <Col md="9">
                   <Row>
                   
-                  {/* {arrPager[degelBtn].map((item, index) => ( */}
+                  {arrPager[degelBtn]&&arrPager[degelBtn].list.map((item, index) => (
 
-                    {props.products.map((item, index) => (
+                   
                       <Col lg="4" md="6" sm="12" key={index}>
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView">
@@ -244,7 +253,7 @@ function  callPager()
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{p1}-{p2} of {props.products.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.products.length} Results</div>
                         </Col>
                         <Col md="6">
 
@@ -267,42 +276,21 @@ function  callPager()
                               </PaginationLink>
                             </PaginationItem>
 
-
-                             {pager2.map((item, index) => ( 
-                            <PaginationItem
+                             {arrPager&&arrPager.map((item, index) => ( 
+                 
+                       <PaginationItem
                              className={degelBtn == index ? "active" : ""}
                             >
                               <PaginationLink
                                 href="#pablo"
                                 onClick={(e) => {e.preventDefault();changePageNum(index)}}
                               >
-                                {item}
+                                {item.index}
                         </PaginationLink>
                             </PaginationItem>
-                    ))}  
-
-                            {/* <PaginationItem
-                             className={degelBtn == 2 ? "active" : ""}
-                            >
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => {e.preventDefault();changePageNum(2)}}
-                              >
-                                2
-                        </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem
-                              className={degelBtn == 3 ? "active" : ""}
-                            >
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => {e.preventDefault();changePageNum(3)}}
-                              >
-                                3
-                        </PaginationLink>
-                            </PaginationItem>*/}
+                
+                  ))}  
                             <PaginationItem 
-                            
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -321,9 +309,6 @@ function  callPager()
                           </Pagination>
                         </Col>
                       </Row> 
-
-
-
                     </Col>
                   </Row>
                 </Col>
