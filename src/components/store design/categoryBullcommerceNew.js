@@ -38,7 +38,6 @@ import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
 import FooterOrange from "./footerOrange";
 
-import Carousel from 'react-elastic-carousel'
 
 
 //images
@@ -140,7 +139,6 @@ function  callPager()
 
   return (
     <>
-    <button onClick={callPager}>call pager</button>
       <div className="wrapper">
         <EcommerceHeader />
         <div className="main">
