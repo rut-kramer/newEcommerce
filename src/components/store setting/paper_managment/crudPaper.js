@@ -15,13 +15,11 @@ function crudPaper(props) {
             <div className="data__row" >
               <div className="data__cell data__cell_xl">
                 <div className="data__main">
-                  <div className="data__effect mobile-hide"><label className="switch">
-                      {/* TODO */}
-                    <input className="switch__input" type="button" onClick={() => {props.deletePaper(item)  }} />
-                    <br></br>
-                    <strong>מחק</strong>
-                    <span className="switch__content">
-                    </span></label></div>
+                  <div className="data__effect mobile-hide">
+                  <button style={{ border: "none" }} onClick={() => {props.deletePaper(item)  }}>
+                    <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
+                      </i></button>
+                   </div>
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">

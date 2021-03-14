@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { actions } from '../../../redux/action'
 import createAttribute from './createAttribute';
 import '../product_management/crudProducts'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function CrudAttributes(props) {
@@ -20,7 +21,10 @@ function CrudAttributes(props) {
                                                 <div className="container__title crud_title title_md">Attribute</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
-                                                                <i className="la la-search "></i></button>
+                                                        <FontAwesomeIcon
+                                                             icon={['fas','search']}>
+                                                             </FontAwesomeIcon>
+                                                                </button>
                                                 </div>
                                                 {/* <div className="container__new new js-new">
                                                      
@@ -66,9 +70,22 @@ function CrudAttributes(props) {
                                                                                                 {props.attributesList && props.attributesList.map((item, index) => (
 
                                                                                                         <div className="data__item" key={index}>
-                                                                                                                <button className="accordion">
+                                                                                                                <button className="accordion" onClick={
+                                                                                                                
+                                                                                                                function (e) {
+                                                                                                                        e.target.classList.toggle("crud_active");
+                                                                                                                        var panel = e.target.nextElementSibling;
+                                                                                                                        if (panel.style.maxHeight) {
+                                                                                                                                panel.style.maxHeight = null;
+                                                                                                                        } else {
+                                                                                                                                panel.style.maxHeight = panel.scrollHeight + "px";
+                                                                                                                        }
+                                                                                                                }
+                                                                                                                          
+                                                                                                                
+                                                                                                        }>
 
-                                                                                                                        <div className="data__row" >
+                                                                                                                        <div className="data__row"  onClick={(e)=>{e.stopPropagation()}} >
                                                                                                                                 <div className="data__cell data__cell_xl">
                                                                                                                                         <div className="data__main">
                                                                                                                                                 <div className="data__effect mobile-hide"><label className="switch">
@@ -92,7 +109,9 @@ function CrudAttributes(props) {
                                                                                                                                 </div>
                                                                                                                                 <div className="data__cell data__cell_action">
                                                                                                                                         <button onClick={() => { props.setcomponnet("EditAttribute"); props.setCurrentAttribute(item) }} className="action action_stroke" >
-                                                                                                                                                <i className="la la-ellipsis-h "></i>
+                                                                                                                                        <FontAwesomeIcon
+                                                                                                                  icon={['fas','edit']}>
+                                                                                                              </FontAwesomeIcon>
                                                                                                                                         </button>
                                                                                                                                 </div>
                                                                                                                         </div>
