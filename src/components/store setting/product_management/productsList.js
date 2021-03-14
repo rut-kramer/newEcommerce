@@ -223,6 +223,33 @@ function (e) {
                                                                                                         {/* <div className="data__label">amount</div> */}
                                                                                                 </div>
                                                                                                 <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content">
+                                                                                        <input type="checkbox"
+                                                                              checked={item.isStock}
+                                                                              ></input> 
+                                                                                                </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content">
+                                                                                                <input type="checkbox"
+                                                                              checked={item.isDraft}
+                                                                              ></input>
+                                                                                                 </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.weight}</strong> </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.salePrice}</strong> </div>
+                                                                                </div>
+                                                                                {/* גלרית תמונות ווידיאו */}
+                                                                                {/* <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                </div> */}
+                                                                                                <div className="data__cell mobile-hide">
                                                                                                         <div className="data__content"><strong>{item.amount}</strong> </div>
                                                                                                 </div>
                                                                                                 <div className="data__cell mobile-hide">

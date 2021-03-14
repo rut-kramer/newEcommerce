@@ -10,7 +10,6 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  CardImg,
   Collapse,
   Label,
   FormGroup,
@@ -19,13 +18,11 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-
   InputGroupAddon,
   Row,
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 
@@ -37,6 +34,11 @@ import FilteredProducts from "../filteredProducts";
 import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
+
+
+
+//images
+
 //xd image
 import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg"
@@ -44,6 +46,7 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
+  let pager2=[];
   React.useEffect(() => {
 
     console.log("ssttrree", props.objectFields);
@@ -52,24 +55,59 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+     callPager()
+    let numPaper=(props.products.length/numOfPage);
+    numPaper= Math.round(numPaper)+1+1
+     pager2=new Array(numPaper)
+    for (let index = 0; index < pager2.length; index++) 
+    {
+     pager2[index]=index;
+      
+    }
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
-
-      let arr=new Array(7)
-      for (let index = 0; index < arr.length; index++) {
-       arr[index]
-        
-      }
-
     };
-  }, []);
-  const [numPager, setNumPager] = useState(props.products/12)
-  
-  const [degelBtn, setDegelBtn] = useState(1)
-  function changePageNum(num) {
-          let PageNum=degelBtn;
 
+  }, []);
+  
+  const numOfPage=3
+  const [arrPager, setArrPager] = useState([])
+  let arrTemp=[]
+  const [pa1, setP1] = useState(1)
+  const [pa2, setP2] = useState(numOfPage)
+  let p1=1
+  let p2=2
+
+
+function  callPager() 
+{
+  let numPaper=(props.products.length/numOfPage);
+  numPaper= Math.ceil(numPaper)
+  for (let index = 0; index < numPaper; index++) 
+  {
+    let objec={
+      index:"",
+      list:""
+    }
+    p1=((index) * numOfPage);
+    p2=((index+1) * numOfPage);
+   let list = props.filteredProducts;
+   list = list[0] ? list.slice(p1, p2) : [];
+   console.log("list",index, list);
+   objec.index=index+1;
+   objec.list=list
+   arrTemp.push(objec)
+  }
+  setArrPager(
+    a => arrTemp
+  )          
+  } 
+  const [degelBtn, setDegelBtn] = useState(0)
+  function changePageNum(num)
+   {
+          let PageNum=degelBtn;
+        
           if (num == "+")
                   PageNum++;
           else {
@@ -78,8 +116,10 @@ function CategoryBullcommerce(props) {
                   else
                           PageNum = num;
           }
-          setDegelBtn(PageNum)               
-  }
+          setDegelBtn(PageNum)  
+          setP1(((PageNum) * numOfPage)+1)
+          setP2((PageNum+1) * numOfPage)             
+        }
 
   return (
     <>
@@ -88,7 +128,7 @@ function CategoryBullcommerce(props) {
         <div className="main">
           <div className="section">
             <Container>
-              <Row className="mx-5 px-5">
+            <Row className="mx-5 px-5">
                 <Col md="12" className="row justify-content-between titleCategory">
                   <div className="section-title py-2">Active filters:  Clear all</div>
                   <div className="iconGridAndList py-2">
@@ -106,11 +146,13 @@ function CategoryBullcommerce(props) {
                 </Col>
                 <Col md="9">
                   <Row>
-                    {console.log("condition", (Array.isArray(props.filteredProducts) &&
-                      props.filteredProducts.length > 0))}
-                    {(Array.isArray(props.filteredProducts) &&
-                      props.filteredProducts.length > 0) &&
-                      props.filteredProducts.map((item, index) => (
+                  {arrPager[degelBtn]&&arrPager[degelBtn].list.map((item, index) => (
+
+                    // {console.log("condition", (Array.isArray(props.filteredProducts) &&
+                    //   props.filteredProducts.length > 0))}
+                    // {(Array.isArray(props.filteredProducts) &&
+                    //   props.filteredProducts.length > 0) &&
+                    //   props.filteredProducts.map((item, index) => (
 
                         <Col lg="4" md="6" sm="12" key={index}>
 
@@ -184,10 +226,11 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">1-48 of 323 Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.products.length} Results</div>
                         </Col>
                         <Col md="6">
-                          <Pagination
+
+                        <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
@@ -195,7 +238,7 @@ function CategoryBullcommerce(props) {
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={() => { changePageNum('-') }}
                               >
                                 <span aria-hidden={true}>
                                   <i
@@ -205,35 +248,28 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                            <PaginationItem>
+
+                             {arrPager&&arrPager.map((item, index) => ( 
+                 
+                       <PaginationItem
+                             className={degelBtn == index ? "active" : ""}
+                            >
                               <PaginationLink
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => {e.preventDefault();changePageNum(index)}}
                               >
-                                1
+                                {item.index}
                         </PaginationLink>
                             </PaginationItem>
-                            <PaginationItem className="active">
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                2
-                        </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => e.preventDefault()}
-                              >
-                                3
-                        </PaginationLink>
-                            </PaginationItem>
-                            <PaginationItem>
+                
+                  ))}  
+                            <PaginationItem 
+                            >
                               <PaginationLink
                                 aria-label="Next"
                                 href="#pablo"
-                                onClick={(e) => e.preventDefault()}
+                                onClick={(e) => {changePageNum('+')}}
+
                               >
                                 <span aria-hidden={true}>
                                   <i
@@ -244,13 +280,8 @@ function CategoryBullcommerce(props) {
                               </PaginationLink>
                             </PaginationItem>
                           </Pagination>
-
                         </Col>
-
-                      </Row>
-
-
-
+                      </Row> 
                     </Col>
                   </Row>
                 </Col>
@@ -271,7 +302,6 @@ export default connect(
       categories: state.categoriesReducer.categories,
       filteredProducts: state.filterReducer.filteredItems,
       objectFields: state.storeReducer.objectFields
-
     }
   },
   (dispatch) => {
