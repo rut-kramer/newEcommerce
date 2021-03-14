@@ -8,6 +8,7 @@ import './crudProducts.css';
 import ProductsList from './productsList';
 import ProductsGrid from './productsGrid'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link, withRouter } from 'react-router-dom';
 
 function CrudProducts(props) {
 
@@ -51,41 +52,7 @@ function CrudProducts(props) {
         //         // }
         // }
 
-        // let [pageNum, setNum] = useState(2)
-        //  let items= props.products
-        // let [items, setMyItems] = useState(props.filteredProducts)
-
-        //        function changePageNum(num)
-        //         {
-        //                  ;
-        //                 setNum(num);
-        //                 let p1=(pageNum - 1) * 6;
-        //                 let p2=pageNum * 6 - 1;
-        //                items=items.slice(p1, p2)
-        //        //   setItems(list.slice((pageNum - 1) * 6, pageNum * 6 - 1))
-        //                var list= items.slice((pageNum - 1) * 6, pageNum * 6 - 1)
-        //        // setMyItems({
-        //        //         ...items,
-        //        //       list
-        //        //       });
-
-        // useEffect(() => {
-                // var acc = document.getElementsByClassName("accordion");
-                // var i;
-
-                // for (i = 0; i < acc.length; i++) {
-                //         acc[i].addEventListener("click", function () {
-                //                 this.classList.toggle("crud_active");
-                //                 var panel = this.nextElementSibling;
-                //                 if (panel.style.maxHeight) {
-                //                         panel.style.maxHeight = null;
-                //                 } else {
-                //                         panel.style.maxHeight = panel.scrollHeight + "px";
-                //                 }
-                //         });
-                // }
-        // },props.products)
-
+       
 
 
         return (
@@ -95,14 +62,14 @@ function CrudProducts(props) {
                                         <div className="container__head">
                                                 <div className="container__title crud_title title_md">Products</div>
                                                 <div className="container__search search js-search mySearch">
-                                                        <button className="search__action action js-search-open" onClick={() => { props.setcomponnet("search") }}>
+                                                   <button className="search__action action js-search-open" onClick={() => { props.setcomponnet("search");}}>
                                                         <FontAwesomeIcon
                                                              icon={['fas','search']}>
                                                              </FontAwesomeIcon>
                                                                 </button>
                                                 </div>
                                                 <div className="container__new new js-new">
-                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddProduct") }}>
+                                                        <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddProduct") ;   props.history.push(`/productNew`)}}>
                                                              <FontAwesomeIcon
                                                              icon={['fas','plus-circle']}>
                                                              </FontAwesomeIcon>
@@ -154,5 +121,4 @@ export default connect(
                 }
         }
 
-)(CrudProducts);
-
+)(withRouter(CrudProducts));

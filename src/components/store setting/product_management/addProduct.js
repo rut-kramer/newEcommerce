@@ -41,7 +41,6 @@ function AddProduct(props) {
   }
 
   const Submit = async () => {
-    console.log(props.products)
     let r = props.productsList.filter(p => p.SKU == myValues.SKU)
     if (r.length == 0) {
       if (myValues.category != "")
@@ -98,7 +97,8 @@ function AddProduct(props) {
 
   return (
     <div className="form form_create">
-      <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
+      <div className="form__preview">
+        <input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
       <div className="form__row">
         <div className="form__col">
           <div className="field form__field">

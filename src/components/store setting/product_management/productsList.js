@@ -7,6 +7,7 @@ import { actions } from '../../../redux/action'
 // import productImg from '../assets/products/product-pic-7.png'
 // import cloneDeep from 'lodash/cloneDeep';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from 'react-router-dom';
 
 function ProductsList(props) {
 
@@ -241,7 +242,7 @@ function (e) {
 
                                                                                                 <div className="data__cell data__cell_action">
                                                                                                         <button className="action action_stroke"
-                                                                                                                onClick={(e) => {     e.stopPropagation(); props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }} >
+                                                                                                                onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push(`/productEdit`)}} >
                                                                                                              
                                                                                                              <FontAwesomeIcon
                                                                                                                   icon={['fas','edit']}>
@@ -300,5 +301,4 @@ export default connect(
                 }
         }
 
-)(ProductsList);
-
+)(withRouter(ProductsList));

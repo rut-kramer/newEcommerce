@@ -7,10 +7,8 @@ import Login from "./components/login"
 import Home from "./components/home";
 import OpenStore from "./components/openStore"
 import PrivateRoute from './PrivateRoute.js';
-import AddCategory from './components/store setting/category_managment/addCategory';
-import AddProduct from './components/store setting/product_management/addProduct';
-import EditProduct from './components/store setting/product_management/editProduct';
-import EditCategory from './components/store setting/category_managment/editCategory';
+import ProductNew from './components/store setting/product_management/newProduct';
+import ProductEdit from './components/store setting/product_management/productEdit';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import EditPaper  from './components/store setting/paper_managment/editPaper'
@@ -49,18 +47,13 @@ function App() {
               <QuickLook />
             </Route>
 
-            <Route exact path="/admin/category/add">
-              <AddCategory />
+            <Route exact path="/productNew">
+              <ProductNew />
             </Route>
-            <Route exact path="/admin/product/add">
-              <AddProduct />
+            <Route exact path="/productEdit">
+              <ProductEdit />
             </Route>
-            <Route exact path="/admin/product/edit">
-              <EditProduct />
-            </Route>
-            <Route exact path="/admin/category/edit">
-              <EditCategory />
-            </Route>
+            
             <Route exact path="/paper">
             <EditPaper></EditPaper>
             </Route>
