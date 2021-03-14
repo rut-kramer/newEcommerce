@@ -2,8 +2,8 @@ import produce from 'immer';
 import createReducer from './reducerUtils';
 
 const initialState = {
-        minPrice: 30,
-        maxPrice: 800,
+        minPrice: 0,
+        maxPrice: 0,
         filteredItems: []
 }
 

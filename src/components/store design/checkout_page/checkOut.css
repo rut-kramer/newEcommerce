@@ -1,0 +1,67 @@
+.check-out-tytle{
+    /* top: 254px;
+    left: 1048px;
+    width: 168px;
+    height: 35px; */
+    letter-spacing: var(--unnamed-character-spacing-0);
+    text-align: center;
+    letter-spacing: 0px;
+    color: #656464;
+    opacity: 1;
+    /* font-family:Roboto-Bold; */
+}
+.check-out-Col .check-out-Input{
+    /* width: 343px; */
+}
+.check-out-right{
+    /* left: 1119px */
+}
+.check-out-left{
+    /* left: 760px */
+}
+.check-out-Input{
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    opacity: 1;
+    /* height: 53px; */
+}
+.check-out-left .check-out-Label{
+    /* left: 769px; */
+}
+.check-out-right .check-out-Label{
+    /* left: 1128px; */
+}
+.check-out-Label{
+    font: var(--unnamed-font-style-normal) normal medium 16px/16px var(--unnamed-font-family-roboto);
+    text-align: left;
+    font: normal normal medium 16px/16px Roboto;
+    letter-spacing: 0.45px;
+    color: #8181A5;
+    text-transform: capitalize;
+    opacity: 1;
+    height: 19px;
+}
+.check-out-Button{
+    /* top: 1040px;
+    left: 760px;
+    width: 185px;
+    height: 44px; */
+    border: 1px solid var(--unnamed-color-707070);
+    border: 1px solid #707070;
+    border-radius: 8px;
+    opacity: 1;
+}
+.check-out-next{
+    /* top: 1051px;
+    left: 834px;
+    width: 39px;
+    height: 22px; */
+    font: var(--unnamed-font-style-normal) normal medium 18px/16px var(--unnamed-font-family-roboto);
+    color: var(--unnamed-color-f29544);
+    text-align: left;
+    font: normal normal medium 18px/16px Roboto;
+    letter-spacing: 0.5px;
+    color: #F29544;
+    text-transform: capitalize;
+    opacity: 1;
+}

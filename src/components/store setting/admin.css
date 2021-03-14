@@ -1,4 +1,4 @@
-body {font-family: Arial;}
+/* body {font-family: Arial;} */
 
 /* Style the tab */
 .tab {
@@ -25,7 +25,7 @@ body {font-family: Arial;}
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab button.crud_active {
   background-color: #ccc;
 }
 

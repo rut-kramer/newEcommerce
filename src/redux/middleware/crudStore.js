@@ -50,8 +50,6 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
 
 
-
-
             $.ajax({
                 url: "https://community.leader.codes/api/stores/newStore",
                 method: "post",
@@ -82,11 +80,11 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                             dispatch(actions.addNewProducts({
                                 "name": "DefaultProduct" + index,
                                 "description": "The Best Product ",
-                                "SKU": "Defuddt" + index + "v",
+                                "SKU": "DefultSKU_" + index + "m",
                                 "category": dataCategory._id,
                                 "store": data._id,
                                 "price": "123",
-                                "featured": true,
+                                "featured": true
                             }))
                         }
                     })

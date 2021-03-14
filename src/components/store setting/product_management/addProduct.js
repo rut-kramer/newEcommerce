@@ -1,4 +1,4 @@
-import React, { useState} from 'react' 
+import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 import { actions } from '../../../redux/action'
@@ -48,19 +48,34 @@ const update = (event) => {
              [event.target.name]:u
          }); }
 
-const Submit = async ()=>{
-console.log(props.products)
-  let r=props.productsList.filter(p=>p.SKU==myValues.SKU)
-  if(r.length==0)
-  {
-    if(myValues.category!="")
-     props.createNewProduct(myValues); 
-    else
-       alert("לא בחרת קטגוריה הוסף קטוגריה"); 
-  } 
-  else
-    alert("מספר מקט קיים כבר נא החלף מקט")
+  const Submit = async () => {
+    console.log(props.products)
+    let r = props.productsList.filter(p => p.SKU == myValues.SKU)
+    if (r.length == 0) {
+      if (myValues.category != "")
+        props.createNewProduct(myValues);
+      else
+        alert("לא בחרת קטגוריה הוסף קטוגריה");
     }
+    else
+      alert("מספר מקט קיים כבר נא החלף מקט")
+  }
+
+  function addAtt(id_attr) {
+    att.push(id_attr);
+    setMyValues({
+      ...myValues,
+      attributes: att
+    });
+  }
+  // function addExistAttributes(event) {
+  //   let k = props.attributesList.filter(p => p.name == event.target.value)
+  //   att.push(k[0]._id)
+  //   setMyValues({
+  //     ...myValues,
+  //     attributes: att
+  //   });
+  // }
 
 function reset()
 {
@@ -173,10 +188,7 @@ function AddExistAttributes(event)
 </>
 
   )
-  
 
-//    let k=props.attributesList.filter(p=>p.name==event.target.value)
-//  att.push(k[0]._id)
 
 }
 
@@ -187,8 +199,6 @@ function  removeAttr(item) {
    attributes:att
  });
 }
-
-
 
 
     return( 
@@ -361,32 +371,32 @@ function  removeAttr(item) {
 
 
 
-                <div className="form__foot">
-                <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
-                <button className="form__btn btn" onClick={reset}>reset</button>
-                
-                </div>
-                 
-              </div>
-    )
+      <div className="form__foot">
+        <button className="form__btn btn" onClick={Submit}>Add & Proceed</button>
+        <button className="form__btn btn" onClick={reset}>reset</button>
+
+      </div>
+
+    </div>
+  )
 }
-export default connect(    
-  (state)=>{
-          return { 
-                  storeCurrent:state.storeReducer.objectFields._id,
-                  categoryList:state.categoriesReducer.categories,
-                  attributesList:state.attributeReducer.attributes,
-                  currentAttribute:state.attributeReducer.currentAttribute,
-                  productsList: state.productReducer.products,
-          }
+export default connect(
+  (state) => {
+    return {
+      storeCurrent: state.storeReducer.objectFields._id,
+      categoryList: state.categoriesReducer.categories,
+      attributesList: state.attributeReducer.attributes,
+      currentAttribute: state.attributeReducer.currentAttribute,
+      productsList: state.productReducer.products,
+    }
   },
-  (dispatch)=>{
-          return {
-                  createNewProduct:(n)=>dispatch(actions.addNewProducts(n)),
-                  setcomponnet:(r)=>dispatch(actions.setCurrentComponent(r)),
-                  newAttributes:(a)=>dispatch(actions.addNewAttribute(a)),
-          }
-  }             
-  )(AddProduct);
+  (dispatch) => {
+    return {
+      createNewProduct: (n) => dispatch(actions.addNewProducts(n)),
+      setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
+      newAttributes: (a) => dispatch(actions.addNewAttribute(a)),
+    }
+  }
+)(AddProduct);
 
 

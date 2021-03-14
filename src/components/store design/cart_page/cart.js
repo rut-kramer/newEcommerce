@@ -48,7 +48,7 @@ function Cart(props) {
                 // props.setStore(props.currentStore)
                 let  str=props.storeCurrent;
                 let t = cookies[str];
-                if ((flag === 1) && (t !== "undefined")) {
+                if ((flag === 1) && (t)) {
                         props.setCart(t)
                         flag = 2
                 }
@@ -104,7 +104,6 @@ function Cart(props) {
 {/* <button onClick={save}>save</button>
 <button onClick={get}>get</button> */}
                                                 <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
-                                                {/* {console.log("if", Array.isArray(props.cart.products))} */}
 
                                                 {(Array.isArray(props.cart.products) && props.cart.products.length) ?
                                                         <>
@@ -138,11 +137,14 @@ function Cart(props) {
                                                                                                         </Button>
                                                                                                 </td>
                                                                                                 <td>{item.amount * item.product.price}$</td>
+                                                                                                {/******item.amount * item.product.price */}
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">
-                                                                                                                        <FontAwesomeIcon icon={['fas', 'pencil-alt']}>
-                                                                                                                        </FontAwesomeIcon>
+                                                                                                                        <Link to={{ pathname: `/${props.objectFields.storeName}/product/${item.product.SKU}`, state: { product: item.product } }} style={{ color: "#212529" }}>
+                                                                                                                                <FontAwesomeIcon className="clickIcon" icon={['fas', 'pencil-alt']} >
+                                                                                                                                </FontAwesomeIcon>
+                                                                                                                        </Link>
                                                                                                                 </Col>
                                                                                                         </Row>
                                                                                                         <Row>

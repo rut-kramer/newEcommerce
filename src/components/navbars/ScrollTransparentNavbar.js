@@ -1,27 +1,24 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
-import "./scrollNavbar.css"
+import "./scrollNavbar.css";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import DndNavbar from "./DndCategories"
 
 // reactstrap components
 import {
   Collapse,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarBrand,
   Navbar,
   Nav,
   Container,
   UncontrolledTooltip,
-  Row,
-  Col,
+  // Row,
+  // Col,
 } from "reactstrap";
 
 import { connect } from 'react-redux';
-
-
+import { actions } from '../../redux/action';
 
 function ScrollTransparentNavbar(props) {
   // const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -67,18 +64,21 @@ function ScrollTransparentNavbar(props) {
       <Navbar color="white" expand="lg">
         <Container className="d-flex justify-content-between">
           <div className="navbar-translate">
-            <NavbarBrand to="/" tag={Link} id="navbar-brand">
+            <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
-                src={props.objectFields.logo} className="logoHeader"></img>
+                src={props.objectFields.logo} className="logoHeader">
+              </img>
             </NavbarBrand>
             <UncontrolledTooltip target="navbar-brand">
               To Home Store Page
             </UncontrolledTooltip>
           </div>
           <Collapse
+            className="d-flex justify-content-between"
             // isOpen={collapseOpen}
             navbar>
-            <Nav className="mx-auto" id="ceva" navbar>
+            <DndNavbar></DndNavbar>
+            {/* <Nav className="mx-auto" id="ceva" navbar>
               {props.categories.filter(item => {
                 if (!item.masterCategory && item.masterCategory === null)
                   return item
@@ -99,10 +99,11 @@ function ScrollTransparentNavbar(props) {
                   </DropdownToggle>
 
                   <DropdownMenu aria-labelledby="navbarDropdownMenuLink" right>
+                    {console.log("iiiitem", item)}
                     {item.childrenCategory.map((child, index) => (
                       <DropdownItem key={index} to="/sections#contact-us" tag={Link}>
                         {/* <i className="now-ui-icons tech_mobile"></i> */}
-                        {child.categoryName}
+            {/* {child.categoryName}
                       </DropdownItem>
                     ))}
                   </DropdownMenu>
@@ -110,18 +111,21 @@ function ScrollTransparentNavbar(props) {
 
               ))}
             </Nav>
-            <Link to="/">
-              <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']}></FontAwesomeIcon>
-            </Link>
-            <div className="separatorStripe"></div>
-            <Link to={"/" + props.objectFields.storeName + "/cart"}>
-              <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
-            </Link>
+             */}
+            <div>
+              <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}>
+                <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']}></FontAwesomeIcon>
+              </Link>
+              <div className="separatorStripe mr-2 ml-2" style={{ float: "left" }}></div>
+              <Link to={"/" + props.objectFields.storeName + "/cart"} className="mr-2 ml-2" style={{ float: "left" }}>
+                <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+              </Link>
 
-            <Link to={"/" + props.objectFields.storeName + "/"}>
+              <Link to={"/" + props.objectFields.storeName + "/"} className="mr-2 ml-2" style={{ float: "left" }}>
 
-              <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
-            </Link>
+                <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
+              </Link>
+            </div>
           </Collapse>
         </Container>
       </Navbar>
@@ -136,5 +140,6 @@ const mapStateToProps = (state) => {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
+  setListMenu: (listMenu) => { dispatch(actions.setCategoryListMenu(listMenu)) },
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

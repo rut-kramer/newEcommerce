@@ -65,8 +65,18 @@ function OpenStore(props) {
     }
 
     function skip() {
+        props.setAllOrders([])
+        props.setCategories([])
+        props.setAttribute([])
+        props.setProducts([])
+
         props.createNewStore({ "store": storeDetails, "file": fileToUpload })
         history.push("/" + storeDetails.urlRoute);
+
+        // ;
+
+
+
     }
 
     return (
@@ -176,6 +186,11 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
-    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e))
+    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e)),
+    setAllOrders: (e) => dispatch(actions.setAllOrders(e)),
+    setCategories: (e) => dispatch(actions.setCategories(e)),
+    setAttribute: (e) => dispatch(actions.setAttribute(e)),
+    setProducts: (e) => dispatch(actions.setProducts(e))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);

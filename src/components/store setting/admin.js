@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 import StorePerUser from './storePerUser'
 import CrudAttributes from './attribute_management/crudAttribute'
-import NewPaper from './createNewPaper';
+import NewPaper from './paper_managment/createNewPaper';
 
 function Admin(props) {
 
@@ -20,22 +20,22 @@ function Admin(props) {
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].className = tablinks[i].className.replace(" crud_active", "");
     }
     document.getElementById(cityName).style.display = "block";
-    evt.currentTarget.className += " active";
+    evt.currentTarget.className += " crud_active";
   }
 
   return (
     <Provider store={store}>
 
       <div className="tab">
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Products</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'Product') }}>Product</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'Attributes') }}>Attributes</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
-        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>your Store</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>All Your Stores</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>New Paper</button>
       </div>
 
