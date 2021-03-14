@@ -43,4 +43,7 @@
   } 
   /* //// */
  
-  
+  .newsLetter{
+    background-color:transparent 0% 0% no-repeat padding-box;
+    height: 14rem;
+  }

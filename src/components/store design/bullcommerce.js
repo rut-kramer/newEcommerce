@@ -18,6 +18,7 @@ import {
 import { actions } from '../../redux/action';
 import { connect } from 'react-redux';
 import EcommerceHeader from "../headers/EcommerceHeader.js";
+import NewsLetter from "./newsLetter"
 import './bullcommerce.css'
 
 //xd image
@@ -127,6 +128,9 @@ function Bullcommerce(props) {
 
                     </div>
                 </div>
+                <Container fluid className="newsLetter">
+                    <NewsLetter />
+                </Container>
             </div >
         </>
     );

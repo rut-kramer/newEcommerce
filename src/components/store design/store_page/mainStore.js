@@ -11,6 +11,7 @@ import Cart from "../cart_page/cart";
 import CheckOut from "../checkout_page/checkOut";
 import QuickLook from '../quickLook'
 import UploadImages from "../upload_images/uploadImages"
+import CartPanel from "../cart_page/cart_panel"
 import { Table, Container, Row, Col, Button } from 'reactstrap';
 import '../quickLook.css'
 import { actions } from "../../../redux/action"
@@ -42,11 +43,11 @@ function MainStore(props) {
 
     return (
         <div className="MainStore" onClick={() => {
-            if(cartPanelOpen) 
-             cartPanal_close();
-            if(sideBarOpen)
-             w3_close()
-             }} >
+            if (cartPanelOpen)
+                cartPanal_close();
+            if (sideBarOpen)
+                w3_close()
+        }} >
             <div
                 className="w3-sidebar w3-bar-block w3-border-right"
                 style={{
@@ -55,67 +56,24 @@ function MainStore(props) {
                 }}
             >
                 {quickLookProduct ?
-                    <QuickLook 
-                        w3_close={w3_close}   
+                    <QuickLook
+                        w3_close={w3_close}
                         currentProduct={quickLookProduct}
                         cartPanal_open={cartPanal_open}
                     ></QuickLook> : ""}
             </div>
 
-            <div className="cartPanal ml-5 mt-5"
+            <div className="cartPanal"
                 style={{
                     display:
                         cartPanelOpen ? "block" : "none"
                 }}>
-                <Container>
+                <CartPanel></CartPanel>
 
-                    <Row>
-                        <Col sm="12"
-                            md={{ size: 10, offset: 1 }}
-                            className="onlyProduct"
-                        >
-
-                            {props.cart.products.map((item, index) => (
-                                <>
-                                    <Row md="12 borderToProduct mt-4 ">
-                                        <Col md="3" style={{ width: "18px" }}><img src={productInCart}></img></Col>
-                                        <Col md="3">{item.product.name}</Col>
-                                        <Col md="3">
-                                            <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }} onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
-                                                <FontAwesomeIcon icon={['fas', 'plus']}>
-                                                </FontAwesomeIcon>
-                                            </Button>{' '}
-                                            {item.amount}{' '}
-                                            <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
-                                                onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
-                                                <FontAwesomeIcon icon={['fas', 'minus']}>
-                                                </FontAwesomeIcon>
-                                            </Button>
-                                        </Col>
-                                        <Col md="3">{item.product.price * item.amount}</Col>
-                                    </Row>
-                                </>
-                            ))}
-
-
-                        </Col>
-                        <Col sm="12"
-                            md={{ size: 10, offset: 1 }}>
-                            <Row md="12 mt-4">
-                                <Col md="9" className="cartTotal">Total:
-                                     
-                                </Col>
-                                <Col md="3" className="pr-5">{props.cart.totalPrice}</Col>
-                            </Row>
-
-                            <Row md="12 mt-4 mb-2">
-                                <Col md="6"><Link to="/:storeName/cart"><button className="btnCartTotal ml-5" >view/edit bag</button></Link></Col>
-                                <Col md="6"><Link to="/:storeName/checkout"><button className="btnCartTotal mr-5" >checkout</button></Link></Col>
-                            </Row>
-                        </Col>
-                    </Row>
-                </Container>
             </div>
+
+
+
 
             <HeaderNavbar></HeaderNavbar>
             <Switch>
@@ -131,18 +89,17 @@ function MainStore(props) {
             <FooterOrange></FooterOrange>
         </div >
     )
-        }
+}
 
 
-// export default MainStore;
-const mapStateToProps= (state) => {
-        return {
-            cart: state.cartReducer.cart,
+const mapStateToProps = (state) => {
+    return {
+        cart: state.cartReducer.cart,
 
-        }
     }
-    const mapDispatchToProps = (dispatch) => ({
-        changeAmount: (e) => { dispatch(actions.changeAmount(e)) }
+}
+const mapDispatchToProps = (dispatch) => ({
+    changeAmount: (e) => { dispatch(actions.changeAmount(e)) }
 
-    })
-    export default connect(mapStateToProps, mapDispatchToProps)(MainStore);
+})
+export default connect(mapStateToProps, mapDispatchToProps)(MainStore);

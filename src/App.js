@@ -14,13 +14,14 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import CartPanel from "./components/store design/cart_page/cart_panel"
-
+// import loginHOme from "./components/loginHome"
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
 import "./assets/demo/demo.css";
 import "./assets/demo/react-demo.css";
 import "./assets/demo/nucleo-icons-page-styles.css";
+import LoginHome from './components/new login/loginHome';
 
 function App() {
   return (
@@ -49,7 +50,8 @@ function App() {
             </Route>
 
             <Route path="/login">
-              <Login />
+              {/* <Login /> */}
+              <LoginHome />
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />

@@ -14,6 +14,7 @@ import {
 // image
 import productInCart from "../../../assets/img/xd/631e3939-9988-41b6-a6fe-d60206ab0582@2x.png";
 import "./cart.css"
+import { Link } from 'react-router-dom';
 function CartPanel(props) {
     // const [cartPanelOpen, setCartPanelOpen] = useState(false)
     // function cartPanal_open() {
@@ -24,11 +25,6 @@ function CartPanel(props) {
     // }
     return (
 
-        <div className="cartPanal ml-5 mt-5"
-        style={{
-            display:
-                props.cartPanelOpen ? "block" : "none"
-        }}>
         <Container>
 
             <Row>
@@ -65,36 +61,18 @@ function CartPanel(props) {
                     md={{ size: 10, offset: 1 }}>
                     <Row md="12 mt-4">
                         <Col md="9" className="cartTotal">Total:
-                        
-                        </Col>
+
+                    </Col>
                         <Col md="3" className="pr-5">{props.cart.totalPrice}</Col>
                     </Row>
 
                     <Row md="12 mt-4 mb-2">
-                        <Col md="6">
-                            {/* <Link to="/:storeName/cart"> */}
-                                <button className="btnCartTotal ml-5" >view/edit bag</button>
-                                {/* </Link> */}
-                                </Col>
-                        <Col md="6">
-                            {/* <Link to="/:storeName/checkout"> */}
-                                <button className="btnCartTotal mr-5" >checkout</button>
-                                {/* </Link> */}
-                                </Col>
+                        <Col md="6"><Link to="/:storeName/cart"><button className="btnCartTotal ml-5" >view/edit bag</button></Link></Col>
+                        <Col md="6"><Link to="/:storeName/checkout"><button className="btnCartTotal mr-5" >checkout</button></Link></Col>
                     </Row>
                 </Col>
             </Row>
         </Container>
-    </div>
-
-    
-
-
-
-
-
-
-       
 
     )
 }

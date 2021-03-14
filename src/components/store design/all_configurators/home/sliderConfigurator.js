@@ -7,7 +7,8 @@ import {
     Container,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// 
+
+import "./sliderConfigurator.css"
 
 
 // align - left
@@ -16,11 +17,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function SliderConfigurator(props) {
     return (
         <>
-            <Container>
+            <Container fluid>
 
                 <Row>
                     <Col sm="12"
-                        md={{ size: 10, offset: 1 }}
                         className="tafritHomeConfig"
                     >
 
@@ -33,7 +33,13 @@ function SliderConfigurator(props) {
 
                         <Row md="12" className="mt-3">Title Setting </Row>
 
-                        <Row md="12" className="mt-3">Title Name</Row>
+                        <Row md="12" className="mt-3">Title Name
+                        <label className="switch">
+                                <input type="checkbox" />
+                                <span className="slider round"></span>
+                            </label>
+                        </Row>
+
                         <Row md="12" className="mt-3"><input value="Title 01"></input></Row>
                         <Row md="12" className="mt-3">Title Size</Row>
                         <Row md="12" className="mt-3"></Row>

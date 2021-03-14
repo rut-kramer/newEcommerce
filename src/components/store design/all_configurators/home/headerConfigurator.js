@@ -11,17 +11,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 function HeaderConfigurator(props) {
     return (
         <>
-            <Container>
+            <Container fluid >
 
                 <Row>
                     <Col sm="12"
-                        md={{ size: 10, offset: 1 }}
                         className="tafritHomeConfig"
                     >
                         <Row md="12" className="mt-3">Logo</Row>
                         <Row md="12" className="mt-3"><input type="file" className="inputLogo"></input></Row>
 
-                        <Row md="12" className="mt-3"><Col md="10" className="navigation">Navigation Title</Col>
+                        <Row md="12" className="mt-3"><Col md="10" className="HC-navigation">Navigation Title</Col>
                             <Col md="2"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                             </Col>
                         </Row>

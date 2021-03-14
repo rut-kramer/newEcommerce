@@ -1,0 +1,34 @@
+.tafritProductConfig{
+    color: #EBEAEA;
+}
+.lineTafritProduct{
+    width: 0.10rem;
+    height: 1.3rem;
+    background: transparent linear-gradient( 
+                100deg
+                , #FC894D 0%, #FE5196 100%)
+                 0% 0% no-repeat padding-box;
+}
+/* .dropDownExperience{
+    color :white !important;
+}
+.dropDownMenuEx{
+    background-color: transparent !important;
+
+} */
+
+.dropDownToggle-Product{
+    background-color: transparent !important;
+
+}
+.dropDownMenu-Product{
+    background-color: transparent !important;
+  
+}
+.dropdown-toggle::after{
+display: none !important;
+}
+.dropdown-menu:before{
+    display: none !important;
+
+}

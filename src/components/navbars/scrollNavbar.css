@@ -3,3 +3,7 @@
     height: 20px;
     background-color: black;
 }
+.cartHeader:hover{
+color: yellow;
+
+}

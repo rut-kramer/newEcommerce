@@ -72,7 +72,7 @@ function ScrollTransparentNavbar(props) {
             <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
                 src={props.objectFields.logo} className="logoHeader"
-                onClick={() => props.changeCurrentComponent("SliderConfigurator")}
+                onClick={() => props.changeCurrentComponent("Experience")}
 
               >
               </img>
@@ -124,7 +124,7 @@ function ScrollTransparentNavbar(props) {
             </Link>
             <div className="separatorStripe"></div>
             <Link to={"/" + props.objectFields.storeName + "/cart"}>
-              <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+              <FontAwesomeIcon className="cartHeader mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
             </Link>
             <Link to={"/" + props.objectFields.storeName + "/checkOut"}>
 

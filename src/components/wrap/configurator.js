@@ -13,7 +13,9 @@ import EditAttribute from '../store setting/attribute_management/editAttribute'
 import HomeConfigurator from "../store design/all_configurators/home/homeConfigurator"
 import HeaderConfigurator from "../store design/all_configurators/home/headerConfigurator"
 import SliderConfigurator from "../store design/all_configurators/home/sliderConfigurator"
+import ProductConfigurator from "../store design/all_configurators/product/productConfigurator"
 
+import Experience from "../store design/all_configurators/home/experience"
 function Configurator(props) {
     const [adminLink, setAdminLink] = useState(true)
     return (
@@ -39,7 +41,9 @@ function Configurator(props) {
                                     case "EditAttribute": return <EditAttribute />;
                                     case "HomeConfigurator": return <HomeConfigurator />;
                                     case "HeaderConfigurator": return <HeaderConfigurator />;
-                                    case "SliderConfigurator": return <SliderConfigurator />
+                                    case "SliderConfigurator": return <SliderConfigurator />;
+                                    case "ProductConfigurator": return <ProductConfigurator />;
+                                    case "Experience": return <Experience />;
                                 }
                             })() :
                                 <h3>No component was selected!</h3>

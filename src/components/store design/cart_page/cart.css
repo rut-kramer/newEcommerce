@@ -48,6 +48,8 @@
         background-color: white;
         position: fixed;
         z-index: 4;
+        margin-left: 36.8rem!important;
+        margin-top: 4.4rem;
 }
 .cartTotal{
         color:#707070;

@@ -113,7 +113,6 @@ function Product() {
     }, []);
     return (
         <>
-            {/* <ScrollTransparentNavbar /> */}
             <div className="wrapper">
                 <div className="main">
                     <div className="section" id="productDetails">
