@@ -58,7 +58,7 @@ function App() {
             <Route exact path="/admin/category/edit">
               <EditCategory />
             </Route>    
-            <Route exact path="/mediaGallery">
+            <Route path="/mediaGallery">
               <MediaGallery />
             </Route>
 
@@ -67,7 +67,7 @@ function App() {
             </Route>
             <PrivateRoute path="/openStore" component={OpenStore} />
             <PrivateRoute path="/home" component={Index} />
-            <PrivateRoute path="/:comp" component={Wrap} />
+            {/* <PrivateRoute path="/:comp" component={Wrap} /> */}
           </Switch>
           {/* </div> */}
           {/* <footer className="footer" data-background-color="transparent" style={{

@@ -5,5 +5,30 @@
     height: 40rem;
 }
 .side-bar-gallery-link{
+    padding: 0;
     display: block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    /* margin: 10% 3%; */
+    color: black;
+    width: 100%;
+}
+.side-bar-gallery-link-active{
+    background-color:#fdfcfc;
+    border-left: 2px #FC894D solid; 
+    color: black;
+}
+.side-bar-gallery-link:hover{
+    color: black;
+    text-decoration: none;
+    font-size: 15px;    
+}
+.side-bar-gallery-link-div{
+    width: 100%; 
+    padding:0;  
+    margin: 0; 
+}
+.side-bar-gallery-link-div:hover{
+    /* background-color:#fdfcfc;
+    border-left: 2px #FC894D solid;   */
 }

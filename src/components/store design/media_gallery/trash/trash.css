@@ -1,0 +1,48 @@
+.trash{
+    text-align: center;
+    margin-top: 15%;
+}
+.trash-img{
+    height: 40%;
+    width: 40%;
+}
+.trash-word{
+    font-weight: bold;
+    font-size: 1.7rem;
+}
+.trash-button{
+    background: #FD5195 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    display: inline-block;
+    border: 0px;
+    text-align: center;
+    padding: auto;
+    padding-bottom: 0px;
+    /* width: 4.6rem;
+    height: 3rem; */
+   
+    width: 12rem;
+    height: 3rem;
+    padding: 1.5% 4%;
+}
+.trash-button:hover{
+    background-color: #FC894D;
+    border: 0px;
+}
+
+.trash-button-div{
+    text-align: right;
+    margin-top: 10%;
+    margin-right: 10%;
+}
+.trash-button-word{
+    color: white;
+    display: inline-block;
+    font-size: 0.9rem;
+    letter-spacing: 0.4px;
+    padding-left: 0.4rem;
+}
+.icon-trash-button{
+    display: inline-block;
+    color: white;
+}
