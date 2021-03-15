@@ -1,8 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link, withRouter } from 'react-router-dom';
 import appleIcon from '../../assets/apple-touch-icon.png'
+import { actions } from '../../redux/action';
+import {logOut} from "../../services/firebase";
 // public/apple-touch-icon'
-function TopFrame({setFlagCon}) {
+function TopFrame(props,{setFlagCon}) {
+    
     return(
         <div
         position="fixed"
@@ -29,9 +33,24 @@ function TopFrame({setFlagCon}) {
                 <Link to="/home">
                     <img alt="logo" src={appleIcon} style={{maxWidth: "24%"}}></img>
                 </Link>
+                <button onClick={()=>{     
+                    // props.history.push(`/`) 
+                     logOut;
+                     props.setUser("");
+                }}>Sing Out</button>
+                <h6>{props.user&&props.user.username} </h6>
         </div>
     </div>
     )
 }
-export default TopFrame;
-// export default connect(mapStateToProps, mapDispatchToProps)(TopFooter);
+
+export default connect(
+    (state) => {
+            return {
+                    user: state.userReducer.user,
+            } },
+    (dispatch) => {
+            return {
+                setUser: (a) => dispatch(actions.setUserId(a)),
+            }  }
+)(withRouter(TopFrame));
