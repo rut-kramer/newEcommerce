@@ -49,7 +49,6 @@ const update = (event) => {
          }); }
 
   const Submit = async () => {
-    console.log(props.products)
     let r = props.productsList.filter(p => p.SKU == myValues.SKU)
     if (r.length == 0) {
       if (myValues.category != "")
@@ -61,13 +60,6 @@ const update = (event) => {
       alert("מספר מקט קיים כבר נא החלף מקט")
   }
 
-  function addAtt(id_attr) {
-    att.push(id_attr);
-    setMyValues({
-      ...myValues,
-      attributes: att
-    });
-  }
   // function addExistAttributes(event) {
   //   let k = props.attributesList.filter(p => p.name == event.target.value)
   //   att.push(k[0]._id)
@@ -102,7 +94,7 @@ setMyValues({
   att=[];
 }
 function addAtt(id_attr) {
-  let attNew={attribute,terms:[]}
+  let attNew={attribute:null,terms:[]}
   attNew.attribute.push(id_attr);
   att.push(attNew)
     setMyValues({
@@ -112,11 +104,9 @@ function addAtt(id_attr) {
 }
 const [flageOpen ,setFlageOpen]= useState(0)
 const [currentTerms ,setcurrentTerms]= useState([])
-
 function opemAddAttribute(params) {
   setFlageOpen(1)
 }
-
 function createCheckbox(label) {
 return (
   <>
@@ -158,7 +148,8 @@ function AddExistAttributes(event)
          ></input>  
         <label>{item.name}</label> 
          </>      
-         ))}
+         ))
+         }
 
           <div className="field__icon"><i className="la la-truck-loading "></i></div>
         </div>
@@ -191,7 +182,6 @@ function AddExistAttributes(event)
 
 
 }
-
 function  removeAttr(item) {
   att=att.filter(p=>p!=item)
    setMyValues({
@@ -199,8 +189,6 @@ function  removeAttr(item) {
    attributes:att
  });
 }
-
-
     return( 
             <div className="form form_create">
                 <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>

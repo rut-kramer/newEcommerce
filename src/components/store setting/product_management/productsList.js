@@ -6,6 +6,8 @@ import { actions } from '../../../redux/action'
 // import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
 // import cloneDeep from 'lodash/cloneDeep';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from 'react-router-dom';
 
 function ProductsList(props) {
 
@@ -197,10 +199,22 @@ function ProductsList(props) {
                                                         {props.products.map((item, index) => (
                                                                 index < (props.PageNum - 1) * 6 || index > props.PageNum * 6 - 1 ? "" :
 
-                                                                        <div className="data__item" key={index}>
-                                                                                <button className="accordion">
+                                                                        <div className="data__item" key={index} >
+                                                                                <button className="accordion" onClick={
 
-                                                                                        <div className="data__row" >
+function (e) {
+   
+        e.target.classList.toggle("crud_active");
+        var panel = e.target.nextElementSibling;
+        if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+        } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+}
+                                                                                }>
+
+                                                                                        <div className="data__row" onClick={(e)=>{e.stopPropagation()}}  >
                                                                                                 <div className="data__cell data__cell_xl">
                                                                                                         <Data_Main item={item} index={index}></Data_Main>
                                                                                                 </div>
@@ -249,14 +263,17 @@ function ProductsList(props) {
                                                                                                         <div className="data__content"><strong>${item.price}</strong></div>
                                                                                                 </div>
                                                                                                 {item.category && <div className="data__cell mobile-hide">
-                                                                                                        <div style={{ "backgroundColor": item.category.color }}
-                                                                                                                className="tag gray">{item.category.categoryName}</div>
+                                                                                                        <div style={{ "backgroundColor": item.color }}
+                                                                                                                className="tag gray">{item.categoryName}</div>
                                                                                                 </div>}
 
                                                                                                 <div className="data__cell data__cell_action">
                                                                                                         <button className="action action_stroke"
-                                                                                                                onClick={() => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }} >
-                                                                                                                <i className="la la-ellipsis-h "></i>
+                                                                                                                onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push(`/productEdit`)}} >
+                                                                                                             
+                                                                                                             <FontAwesomeIcon
+                                                                                                                  icon={['fas','edit']}>
+                                                                                                              </FontAwesomeIcon>
                                                                                                         </button>
                                                                                                 </div>
 
@@ -265,11 +282,16 @@ function ProductsList(props) {
                                                                                 <div className="panel1">
                                                                                         <div>
                                                                                                 <div className="data__content">
-                                                                                                        <h5>:תכונות</h5>
+                                                                                                        <h5><u>:תכונות</u></h5>
                                                                                                         {item.attributes && item.attributes.map((att, index) => (
                                                                                                                 att && <div>
                                                                                                                         {/* <h1>{att}</h1> */}
-                                                                                                                        <strong>{att.name}</strong>
+                                                                                                                        <strong>{att.attribute.name}</strong>
+                                                                                                                        <h5><u>:מונחים</u></h5>
+                                                                                                                        <ul>
+                                                                                                                    {att.terms && att.terms.map((term, i) => (
+                                                                                                                  <li>  <strong>{term.name}</strong></li> 
+                                                                                                                    ))}</ul>
                                                                                                                 </div>))}
 
                                                                                                 </div>  </div> </div>
@@ -280,7 +302,7 @@ function ProductsList(props) {
                                         </div>
                                 </div>
                         </div>
-                        {/* {a()} */}
+                        
                 </>
         )
 
@@ -306,5 +328,4 @@ export default connect(
                 }
         }
 
-)(ProductsList);
-
+)(withRouter(ProductsList));
