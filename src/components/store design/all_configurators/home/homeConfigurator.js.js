@@ -3,21 +3,14 @@ import Slider from "nouislider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
-    Button,
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
-    CardTitle,
     Collapse,
-    Label,
     FormGroup,
-    Input,
     Container,
-    InputGroupAddon,
     Row,
     Col,
-    UncontrolledTooltip,
 } from "reactstrap";
 import { connect } from "react-redux";
 import { actions } from "../../../../redux/action";
@@ -25,7 +18,7 @@ import { useHistory } from "react-router-dom";
 import "./homeConfigurator.css"
 import HeaderConfigurator from "./headerConfigurator"
 import SliderConfigurator from "./sliderConfigurator"
-function Experience(props) {
+function HomeConfigurator(props) {
     const [collapses, setCollapses] = React.useState([0]);
 
     const changeCollapse = (collapse) => {
@@ -53,7 +46,7 @@ function Experience(props) {
 
                 <Row>
                     <Col>
-                        <CardBody className="experience">
+                        <CardBody>
                             <Card className="card-refine card-plain mb-1">
                                 <CardHeader id="headingfour" role="tab">
                                     <h6 className="titleCollapse">
@@ -77,7 +70,7 @@ function Experience(props) {
                                     </h6>
                                 </CardHeader>
                                 <Collapse isOpen={collapses.includes(1)}>
-                                    <CardBody className="HC-padding">
+                                    <CardBody className="Configurator-padding">
                                         <FormGroup check >
                                             <HeaderConfigurator ></HeaderConfigurator>
 
@@ -108,7 +101,7 @@ function Experience(props) {
                                     </h6>
                                 </CardHeader>
                                 <Collapse isOpen={collapses.includes(2)}>
-                                    <CardBody className="HC-padding">
+                                    <CardBody className="Configurator-padding">
 
                                         <FormGroup check>
                                             <SliderConfigurator></SliderConfigurator>
@@ -221,6 +214,6 @@ export default connect(
             filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
             setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
         }
-    })(Experience);
+    })(HomeConfigurator);
 
 

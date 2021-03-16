@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
-import * as yup from 'yup'
+// import * as yup from 'yup'
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -27,11 +27,11 @@ const ByEmailAndPassword = (props) => {
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
 
-    const loginSchema = yup.object().shape({
-        email: yup.string().required('This field is required!').email('Invalid email!'),
-        password: yup.string().required('This field is required!')
+    // const loginSchema = yup.object().shape({
+    //     email: yup.string().required('This field is required!').email('Invalid email!'),
+    //     password: yup.string().required('This field is required!')
 
-    });
+    // });
 
 
 
@@ -50,8 +50,10 @@ const ByEmailAndPassword = (props) => {
     return (
         <div className="">
             <Formik
-                initialValues={{ email: '', password: '' }}
-            // validationSchema={loginSchema}
+            /* initialValues={{ email: '', password: '' }} */
+
+
+            /* // validationSchema={loginSchema} */
             >
                 <Form>
                     <div className="form-group">
@@ -61,13 +63,11 @@ const ByEmailAndPassword = (props) => {
                             placeholder="Email"
                             name="email"
                             id="emailInput"
-                            // innerRef={emailRef}
                             onFocus={disapearLoginMessage}
                             onChange={(e) => onChangeEmail(e)}
 
                         />
                         <i class="glyphicon glyphicon-eye-open"></i>
-                        {/* <ErrorMessage className="alert alert-danger" name="email" component="div" /> */}
                     </div>
 
                     <div className="form-group passwordInputDiv">
@@ -77,13 +77,13 @@ const ByEmailAndPassword = (props) => {
                             placeholder="Password"
                             name="password"
                             id="passwordInput"
-                            // innerRef={passwordRef}
                             onFocus={disapearLoginMessage}
                             onChange={(e) => onChangePassword(e)}
 
                         />
                     </div>
                 </Form>
+
             </Formik >
             <div className="forgtPasswordDiv">
                 {/* <Link id="forgotPasswordLink" onClick={resetUserPassword} style={{ fontSize: "15px" }}>Forgot password?</Link> */}

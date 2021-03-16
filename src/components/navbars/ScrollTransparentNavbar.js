@@ -72,7 +72,7 @@ function ScrollTransparentNavbar(props) {
             <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
                 src={props.objectFields.logo} className="logoHeader"
-                onClick={() => props.changeCurrentComponent("Experience")}
+                onClick={() => props.changeCurrentComponent("HomeConfigurator")}
 
               >
               </img>

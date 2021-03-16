@@ -10,12 +10,11 @@ import AddProduct from '../store setting/product_management/addProduct';
 import EditProduct from '../store setting/product_management/editProduct';
 import EditCategory from '../store setting/category_managment/editCategory';
 import EditAttribute from '../store setting/attribute_management/editAttribute'
-import HomeConfigurator from "../store design/all_configurators/home/homeConfigurator"
 import HeaderConfigurator from "../store design/all_configurators/home/headerConfigurator"
 import SliderConfigurator from "../store design/all_configurators/home/sliderConfigurator"
 import ProductConfigurator from "../store design/all_configurators/product/productConfigurator"
 
-import Experience from "../store design/all_configurators/home/experience"
+import HomeConfigurator from "../store design/all_configurators/home/homeConfigurator.js"
 function Configurator(props) {
     const [adminLink, setAdminLink] = useState(true)
     return (
@@ -39,11 +38,10 @@ function Configurator(props) {
                                     case "EditProduct": return <EditProduct />;
                                     case "EditCategory": return <EditCategory />;
                                     case "EditAttribute": return <EditAttribute />;
-                                    case "HomeConfigurator": return <HomeConfigurator />;
                                     case "HeaderConfigurator": return <HeaderConfigurator />;
                                     case "SliderConfigurator": return <SliderConfigurator />;
                                     case "ProductConfigurator": return <ProductConfigurator />;
-                                    case "Experience": return <Experience />;
+                                    case "HomeConfigurator": return <HomeConfigurator />;
                                 }
                             })() :
                                 <h3>No component was selected!</h3>

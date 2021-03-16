@@ -24,22 +24,23 @@ function SliderConfigurator(props) {
                         className="tafritHomeConfig"
                     >
 
-                        <Row md="12" className="mt-3"><Col md="10" className="navigation">Slider Image</Col>
-                            <Col md="2"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
+                        <Row md="12" className="mt-3"><Col md="9" className="navigation">Slider Image</Col>
+                            <Col md="3"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                             </Col>
                         </Row>
 
                         <Row md="12" className="mt-3"><input type="file"></input></Row>
 
                         <Row md="12" className="mt-3">Title Setting </Row>
-
-                        <Row md="12" className="mt-3">Title Name
-                        <label className="switch">
-                                <input type="checkbox" />
-                                <span className="slider round"></span>
-                            </label>
+                        <Row md="12" className="mt-3">
+                            <Col md="8">Title Name</Col>
+                            <Col md="4">
+                                <label className="sliderConfigSwitch">
+                                    <input type="checkbox" />
+                                    <span className="sliderConfigurator round"></span>
+                                </label>
+                            </Col>
                         </Row>
-
                         <Row md="12" className="mt-3"><input value="Title 01"></input></Row>
                         <Row md="12" className="mt-3">Title Size</Row>
                         <Row md="12" className="mt-3"></Row>
