@@ -45,3 +45,16 @@ height:100%;
 .as{
     text-decoration: underline overline
 }
+.Appr {
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .rec-carousel-item:focus {
+    outline: none;
+    box-shadow: inset 0 0 1px 0px rgb(238, 115, 0);
+  }
+  

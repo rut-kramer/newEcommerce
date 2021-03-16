@@ -263,8 +263,8 @@ function (e) {
                                                                                                         <div className="data__content"><strong>${item.price}</strong></div>
                                                                                                 </div>
                                                                                                 {item.category && <div className="data__cell mobile-hide">
-                                                                                                        <div style={{ "backgroundColor": item.color }}
-                                                                                                                className="tag gray">{item.categoryName}</div>
+                                                                                                        <div style={{ "backgroundColor": item.color?item.color:item.category.color }}
+                                                                                                                className="tag gray">{item.categoryName?item.categoryName:item.category.categoryName}</div>
                                                                                                 </div>}
 
                                                                                                 <div className="data__cell data__cell_action">
@@ -286,7 +286,7 @@ function (e) {
                                                                                                         {item.attributes && item.attributes.map((att, index) => (
                                                                                                                 att && <div>
                                                                                                                         {/* <h1>{att}</h1> */}
-                                                                                                                        <strong>{att.attribute.name}</strong>
+                                                                                                                     {att.attribute&&<strong>{att.attribute.name}</strong>}   
                                                                                                                         <h5><u>:מונחים</u></h5>
                                                                                                                         <ul>
                                                                                                                     {att.terms && att.terms.map((term, i) => (

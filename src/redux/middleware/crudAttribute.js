@@ -16,7 +16,7 @@ export const getAllAttributes = ({ dispatch, getState }) => next => action => {
 }
 //7
 export const newAttributes = ({ dispatch, getState }) => next => action => {
-    return new Promise((resolve, reject) => {
+    // return new Promise((resolve, reject) => {
     if (action.type === 'ADD_NEW_ATTRIBUTE') {
         var raw = JSON.stringify(action.payload)
         $.ajax({
@@ -25,19 +25,24 @@ export const newAttributes = ({ dispatch, getState }) => next => action => {
             dataType: "json",
             contentType: "application/json",
             data: raw,
-            success: function (data) {
+            success: function (data)
+             {
                 dispatch(actions.setCurrentAttribute(data))
-                resolve(data)
+                dispatch(actions.addNewAttributeReducer(data))
+                // resolve(data)
                 alert("התכונה נוצרה בהצלחה ")
                
             },
             error: function (err) {
-                reject(err)
+                // reject(err)
                 alert("הוספת התכונה נכשלה")
 
-            }}); }
+            }
+        });
+     }
     return next(action);
-})};
+// })
+};
 //10
 // export const addNewImageToProduct = ({ dispatch, getState }) => next => action => {
 

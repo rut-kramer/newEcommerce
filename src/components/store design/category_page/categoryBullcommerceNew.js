@@ -22,11 +22,12 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
+  // Carousel,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
-
-
+ import Carousel from 'react-elastic-carousel'
+ 
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
 import FilteredProducts from "../filteredProducts";
@@ -216,6 +217,9 @@ function  callPager()
                                   target="tooltip719224089"
                                 >
                                   To View
+
+
+   
                                                       </UncontrolledTooltip>
 
                               </CardFooter>
@@ -229,11 +233,11 @@ function  callPager()
                         <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.products.length} Results</div>
                         </Col>
                         <Col md="6">
-
+{/*                         
                         <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
-                          >
+                          > */}
                             <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
@@ -247,11 +251,12 @@ function  callPager()
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem>
-
+                            </PaginationItem> 
+                             <div className="Apprs"> 
+ <Carousel  itemsToShow={1}>
                              {arrPager&&arrPager.map((item, index) => ( 
-                 
-                       <PaginationItem
+                      <item key={index}> 
+                        <PaginationItem
                              className={degelBtn == index ? "active" : ""}
                             >
                               <PaginationLink
@@ -261,8 +266,10 @@ function  callPager()
                                 {item.index}
                         </PaginationLink>
                             </PaginationItem>
-                
+                            </item>
                   ))}  
+</Carousel>
+</div>
                             <PaginationItem 
                             >
                               <PaginationLink
@@ -279,7 +286,8 @@ function  callPager()
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                          </Pagination>
+                          {/* </Pagination> */}
+                          
                         </Col>
                       </Row> 
                     </Col>
@@ -288,7 +296,6 @@ function  callPager()
               </Row>
             </Container>
           </div>
-
         </div>
       </div >
     </>

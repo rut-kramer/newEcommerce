@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import Nis from "../../nis";
 
 // reactstrap components
 import {
@@ -85,6 +85,7 @@ function EcommerceHeader(props) {
   };
   return (
     <>
+{/* <Nis></Nis> */}
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         <CarouselIndicators
           items={items}

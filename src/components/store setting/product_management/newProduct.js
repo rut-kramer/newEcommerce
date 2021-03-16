@@ -54,55 +54,83 @@ const items = [
         },
 ];
 
-function newProduct(props) {
+function NewProduct(props) {
 
         const [product, setProduct] = useState({
-                name: '',
-                description: '',
-                SKU: '',
-                amount: '',
-                category: '',
-                price: '',
-                //לא עובד -צריך להביא תמונות מהשרת 
+                name:'',
+                description:'',
+                SKU:'',
+                amount:'', 
+                category:'',
+                 price:'', 
+                 //לא עובד -צריך להביא תמונות מהשרת 
                 //  images:'',
-                featured: false,
-                store: props.storeCurrent,
-                attributes: null
+                 featured:false,
+                 store:props.storeCurrent,
+                 attributes:null,
+                 salePrice:'',
+                 photoGallery:'',
+                 video:'',
+                 isStock:false,
+                 isDraft:false,
+                 weight:'',
               });
-              const update = (event) => {
-                var u;
-                if (event.target.name === "featured")
-                  u = event.target.checked;
-                else
-                  u = event.target.value
-                  setProduct({
-                  ...product,
-                  [event.target.name]: u
-                });
-              }
-              const updateCategory = (event) => {
-                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
-                setProduct({
-                  ...product,
-                  category: k[0]._id
-                });
-              }
+             
+const updateCategory = (event) => {
+        let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+        setProduct({
+           ...product,
+           category:k[0]._id
+         });
+       }
+const update = (event) => {
+        var u;
+           if(event.target.name==="featured"||event.target.name==="isStock"||event.target.name==="isDraft")          
+          u=event.target.checked;
+           else
+           u=event.target.value
+           setProduct({
+           ...product,
+           [event.target.name]:u
+       }); }
 
-              const Submit = async () => {
-                console.log(props.products)
-                let r = props.productsList.filter(p => p.SKU == product.SKU)
-                if (r.length == 0) {
-                  if (product.category != "")
-                    props.createNewProduct(product);
-                  else
-                    alert("לא בחרת קטגוריה הוסף קטוגריה");
-                }
-                else
-                  alert("מספר מקט קיים כבר נא החלף מקט")
-              }
-        console.log("pprr", product);
-        console.log("add", props.addToCart);
-        // carousel states and functions
+const Submit = async () => {
+  let r = props.productsList.filter(p => p.SKU == product.SKU)
+  if (r.length == 0) {
+    if (product.category != "")
+      props.createNewProduct(product);
+    else
+      alert("לא בחרת קטגוריה הוסף קטוגריה");
+  }
+  else
+    alert("מספר מקט קיים כבר נא החלף מקט")
+}
+function reset()
+{
+        setProduct({
+  ...product,
+  name:'',
+  description:'',
+  SKU:'',
+  amount:'', 
+  category:'',
+   price:'', 
+   //לא עובד -צריך להביא תמונות מהשרת 
+  //  images:'',
+   featured:false,
+   store:props.storeCurrent,
+   attributes:null,
+   salePrice:'',
+   photoGallery:'',
+   video:'',
+   isStock:false,
+   isDraft:false,
+   weight:'',
+  })
+//   att=[];
+}     
+
+
         const [activeIndex, setActiveIndex] = React.useState(0);
         const [animating, setAnimating] = React.useState(false);
 
@@ -245,15 +273,25 @@ function newProduct(props) {
                                                                  <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={product.sku} placeholder="SKU" />
                                                                  <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={product.amount} />
                                                                  <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={product.price} />
+                                                                 <input className="field__input" type="text" onChange={update} value={product.salePrice} name="salePrice" placeholder="salePrice" />
+                                                                 <input className="field__input" type="text" placeholder="weight" name="weight" id="description-in" onChange={update} value={product.weight}/>
+                                                                 <input type="checkbox" onClick={update}  name="isDraft"></input>isDraft<br></br>
+                                                                 <input type="checkbox" onClick={update}  name="isStock"></input>isStock<br></br>
+                                                                 <input type="checkbox" onClick={update}  name="featured"></input>featured<br></br>
+                                                                 <label className="field__input"  for="video">video</label>
+                                                                 <input id="video" className="field__input" type="file" onClick={update} name="video"/>
+                                                                 <label className="field__input"  for="photoGallery">photoGallery</label>
+                                                                 <input id="photoGallery" className="field__input" type="file" onClick={update} name="photoGallery" />
 
                                                                 </p>
-                                                                <select onChange={updateCategory} name="category" className="field__select" >
+                                                                <select onChange={updateCategory} name="category" className="field__input field__select" >
                                                                     <option>בחר</option>
                                                                         {props.categoryList.map((item, index) => (
                                                                      <option>{item.categoryName}</option>
                                                                        ))}
 
                                                                        </select>
+
                                                                 {(Array.isArray(product.attributes) &&
                                                                         product.attributes.length) ?
                                                                         product.attributes.map((item, index) => (
@@ -305,8 +343,10 @@ function newProduct(props) {
                                                                                         onClick={Submit}>
                                                                                         <FontAwesomeIcon icon={['fas', 'plus']}>
                                                                                         </FontAwesomeIcon>
-                        Add the product
-                        </Button>
+                                                                                            Add the product
+                                                                                              </Button>
+                                                                             <Button className="addToCart" onClick={reset}>reset</Button>
+
                                                         </Col>
                                                 </Row>
                                         </div>
@@ -483,7 +523,7 @@ export default connect(
                         createNewProduct: (n) => dispatch(actions.addNewProducts(n)),
                 }
         }
-)(newProduct);
+)(NewProduct);
 
 
 

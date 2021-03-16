@@ -56,30 +56,30 @@ const items = [
 
 function productEdit(props) {
 
-        
-  const update = (event) => {
-        var u;
-        if (event.target.name === "featured")
-          u = event.target.checked;
-        else
-          u = event.target.value
-        props.setCurrentProduct({
-          ...props.currentProduct,
-          [event.target.name]: u
-        });
-      }
-    
-          const updateCategory = (event) => {
-            let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
-            props.setCurrentProduct({
-              ...props.currentProduct,
-               category:k[0]._id
-             });
-           }
-
-              const Submit = ()=>{
-                props.editproduct(props.currentProduct);  
-            }
+        const update = (event) => {
+                var u;
+                if(event.target.name==="featured"||event.target.name==="isStock"||event.target.name==="isDraft")          
+            
+                  u = event.target.checked;
+                else
+                  u = event.target.value
+                props.setCurrentProduct({
+                  ...props.currentProduct,
+                  [event.target.name]: u
+                });
+              }
+            
+                  const updateCategory = (event) => {
+                    let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+                    props.setCurrentProduct({
+                      ...props.currentProduct,
+                       category:k[0]._id
+                     });
+                   }
+            
+                const Submit = ()=>{
+                    props.editproduct(props.currentProduct);  
+                }
        
         // carousel states and functions
         const [activeIndex, setActiveIndex] = React.useState(0);
@@ -223,6 +223,15 @@ function productEdit(props) {
                                                                  <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
                                                                  <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={props.currentProduct.amount} />
                                                                  <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={props.currentProduct.price} />
+                                                                 <input className="field__input" type="text" onChange={update} name="salePrice" placeholder="salePrice" value={props.currentProduct.salePrice}  />
+                                                                 <input className="field__input" type="text" placeholder="weight" name="weight" id="description-in" onChange={update} value={props.currentProduct.weight}/>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft}  name="isDraft"></input>isDraft<br></br>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.isStock}  name="isStock"></input>isStock<br></br>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.featured}  name="featured"></input>featured<br></br>
+                                                                 <label className="field__input"  for="video" >video</label>
+                                                                 <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video}/>
+                                                                 <label className="field__input"  for="photoGallery">photoGallery</label>
+                                                                 <input id="photoGallery" className="field__input" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
 
                                                                 </p>
                                                                 <select onChange={updateCategory} name="category" className="field__select" >
