@@ -57,3 +57,25 @@
   .sliderConfigurator.round:before {
     border-radius: 50%;
   }
+  .SC-input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid grey !important;
+    color: white;
+  }
+  .SC-alignment{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  .SC-alignmentIcons{
+    padding:0 !important
+  }
+  /* slider size */
+  .slidecontainer {
+    width: 100%;
+  }
+.slider-range{
+  height: 3px;
+}
+
+

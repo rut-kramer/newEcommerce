@@ -11,10 +11,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./sliderConfigurator.css"
 
 
-// align - left
-// 
-// 
 function SliderConfigurator(props) {
+
     return (
         <>
             <Container fluid>
@@ -40,27 +38,45 @@ function SliderConfigurator(props) {
                                     <span className="sliderConfigurator round"></span>
                                 </label>
                             </Col>
+                            <Row md="12" className="mt-3">
+                                <input className="SC-input"
+                                    placeholder="props.title"
+                                    onChange={(e) => props.setTitle(e.target.value)}
+
+                                ></input>
+
+                            </Row>
+
                         </Row>
-                        <Row md="12" className="mt-3"><input value="Title 01"></input></Row>
                         <Row md="12" className="mt-3">Title Size</Row>
+
+                        <div className="slidecontainer">
+                            <input className="slider-range" type="range" min="1" max="100" value="50" /></div>
+
                         <Row md="12" className="mt-3"></Row>
 
                         <Row md="12" className="mt-3 justify-content-between">
-                            <Col className="navigation">Alignment</Col>
-                            <Col>
-                                <FontAwesomeIcon icon={['fas', 'align-left']} className="mr-2"></FontAwesomeIcon>
-                                <FontAwesomeIcon icon={['fas', 'align-justify']} className="mr-2"></FontAwesomeIcon>
-                                <FontAwesomeIcon icon={['fas', 'align-right']} className="mr-2"></FontAwesomeIcon>
-
+                            <Col md="7" className="SC-alignment">Alignment</Col>
+                            <Col md="5" className="SC-alignmentIcons">
+                                <FontAwesomeIcon icon={['fas', 'align-left']} className="mr-2"
+                                    onClick={(e) => props.setAlignment('left')}
+                                ></FontAwesomeIcon>
+                                <FontAwesomeIcon icon={['fas', 'align-justify']} className="mr-2" onClick={(e) => props.setAlignment('center')}></FontAwesomeIcon>
+                                <FontAwesomeIcon icon={['fas', 'align-right']} className="mr-2" onClick={(e) => props.setAlignment('right')}></FontAwesomeIcon>
                             </Col>
                         </Row>
 
-
                         <Row md="12" className="mt-3">Title Fill</Row>
                         <Row md="12" className="mt-3">Sub Title</Row>
-                        <Row md="12" className="mt-3"><input value="Title 01"></input></Row>
+                        <Row md="12" className="mt-3">
+                            <input className="SC-input"
+                                placeholder="add"
+                            ></input>
+                        </Row>
                         <Row md="12" className="mt-3">Power Button</Row>
-                        <Row md="12" className="mt-3"><input value="Add Title"></input></Row>
+                        <Row md="12" className="mt-3"> <input className="SC-input"
+                            placeholder="add"
+                        ></input></Row>
                         <Row md="12" className="mt-3">Border Radius Button</Row>
                         <Row md="12"></Row>
 
@@ -72,9 +88,12 @@ function SliderConfigurator(props) {
 }
 const mapStateToProps = (state) => {
     return {
+        title: state.title
     }
 }
 const mapDispatchToProps = (dispatch) => ({
+    setTitle: (e) => dispatch(actions.setTitle(e)),
+    setAlignment: (side) => dispatch(actions.setAlignment(side))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(SliderConfigurator);
