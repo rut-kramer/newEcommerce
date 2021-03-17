@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // reactstrap components
@@ -53,7 +53,7 @@ function CategoryBullcommerce(props) {
 
 
   const [alerts, setAlerts] = useState([]);
-  const [filterObject, setFilterObject] = React.useState({
+  const [filterObject, setFilterObject] = useState({
     categories: [],
     attributes: []
   });
@@ -73,15 +73,14 @@ function CategoryBullcommerce(props) {
 
 
   let pager2 = [];
-  React.useEffect(() => {
+  useEffect(() => {
 
     document.body.classList.add("ecommerce-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    callPager()
-    let numPaper = (props.storeProducts.length / numOfPage);
+    let numPaper = (props.filterProducts.length / numOfPage);
     numPaper = Math.round(numPaper) + 1 + 1
     pager2 = new Array(numPaper)
     for (let index = 0; index < pager2.length; index++) {
@@ -94,7 +93,10 @@ function CategoryBullcommerce(props) {
     };
 
   }, []);
+useEffect(()=>{
+  callPager()
 
+},[props.filterProducts])
   const numOfPage = 3
   const [arrPager, setArrPager] = useState([])
   let arrTemp = []
@@ -105,7 +107,7 @@ function CategoryBullcommerce(props) {
 
 
   function callPager() {
-    let numPaper = (props.storeProducts.length / numOfPage);
+    let numPaper = (props.filterProducts.length / numOfPage);
     numPaper = Math.ceil(numPaper)
     for (let index = 0; index < numPaper; index++) {
       let objec = {
@@ -438,7 +440,7 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.storeProducts.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
 

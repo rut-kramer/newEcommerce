@@ -14,6 +14,7 @@ import cart from "../../../assets/img/xd/cart.svg"
 
 
 import {
+        Table,
         Button,
         Card,
         CardHeader,
