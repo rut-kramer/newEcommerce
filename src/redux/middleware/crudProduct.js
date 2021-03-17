@@ -5,7 +5,7 @@ import { actions } from '../action';
 
 export const getAllProducts = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PRODUCTS') {
-        axios.get('https://community.leader.codes/api/products')
+        axios.get('https://bullcommerce.shop/api/products')
             .then(res => {
                 dispatch(actions.setProducts(res.data))
                 dispatch(actions.setFilteredItems(res.data))
@@ -19,7 +19,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
             var raw = JSON.stringify(action.payload)
             console.log(raw)
             $.ajax({
-                url: "https://community.leader.codes/api/products/newProduct",
+                url: "https://bullcommerce.shop/api/products/newProduct",
                 method: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -53,7 +53,7 @@ export const addNewImageToProduct = ({ dispatch, getState }) => next => action =
 //11
 export const deleteProduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_PRODUCT') {
-        axios.post('https://community.leader.codes/api/products/deleteProduct/' + action.payload)
+        axios.post('https://bullcommerce.shop/api/products/deleteProduct/' + action.payload)
             .then(res => {
                 dispatch(actions.deleteOldProduct(action.payload))
                 dispatch(actions.setFilteredItems(getState().productReducer.products));
@@ -72,7 +72,7 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_PRODUCT') {
         var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
         $.ajax({
-            url: `https://community.leader.codes/api/products/editProduct/${action.payload._id}`,
+            url: `https://bullcommerce.shop/api/products/editProduct/${action.payload._id}`,
             method: "post",
             dataType: "json",
             contentType: "application/json",

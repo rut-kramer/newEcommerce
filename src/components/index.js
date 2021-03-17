@@ -8,8 +8,7 @@ function Home(props) {
 
         return (
                 <div>
-
-                        <img id="home-img" src={homeImg} style={{ float: "left" }} alt="home" />
+                        <img id="home-img" src={homeImg} style={{ float: "left",maxWidth:'50%' }} alt="home" />
                         <div style={{ float: "left" }}>
                                 <h1>Wellcome!!{props.user.username}  </h1>
                                 <h2>Do you want to create your shop?</h2>

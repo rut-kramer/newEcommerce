@@ -51,7 +51,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
 
             $.ajax({
-                url: "https://community.leader.codes/api/stores/newStore",
+                url: "https://bullcommerce.shop/api/stores/newStore",
                 method: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -105,7 +105,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 export const getStoreByUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_STORE_BY_USER') {
 
-        axios.get('https://community.leader.codes/api/users/getAllStores/' + action.payload)
+        axios.get('https://bullcommerce.shop/api/users/getAllStores/' + action.payload)
             .then(res => {
                 dispatch(actions.setStorePerUser(res.data))
             })
@@ -115,7 +115,7 @@ export const getStoreByUser = ({ dispatch, getState }) => next => action => {
 }
 export const deleteStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_STORE') {
-        axios.post('https://community.leader.codes/api/stores/deleteStore/' + action.payload)
+        axios.post('https://bullcommerce.shop/api/stores/deleteStore/' + action.payload)
             .then(res => {
                 dispatch(actions.deleteOldStore(action.payload))
             });

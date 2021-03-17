@@ -5,7 +5,7 @@ import axios from 'axios';
 //4
 // export const getAllCategories = ({ dispatch, getState }) => next => action => {
 //     if (action.type === 'GET_ALL_CATEGORIES') {
-//         axios.get('https://community.leader.codes/api/categories')
+//         axios.get('https://bullcommerce.shop/api/categories')
 //             .then(res => {
 //                 dispatch(actions.setCategories(res.data))
 //             }).catch(err => console.log("errrrrrrr", err));
@@ -33,12 +33,12 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                 // };
                 axios({
                         method: 'post',
-                        url: 'https://community.leader.codes/api/papers/newPaper',
+                        url: 'https://bullcommerce.shop/api/papers/newPaper',
                         data: {
                                 raw
                         }
                 })
-                        // axios.post("https://community.leader.codes/api/papers/newPaper", raw)
+                        // axios.post("https://bullcommerce.shop/api/papers/newPaper", raw)
                         .then(newPaper => {
                                 dispatch(actions.setPaper(newPaper.paper));
                         })
@@ -50,7 +50,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
 };
 // export const deleteCategory = ({ dispatch, getState }) => next => action => {
 //         if (action.type === 'DELETE_CATEGORY') {
-//                 axios.post('https://community.leader.codes/api/categories/deleteCategoty/' + action.payload)
+//                 axios.post('https://bullcommerce.shop/api/categories/deleteCategoty/' + action.payload)
 //                         .then(res => {
 //                                 dispatch(actions.deleteOldCategory(action.payload))
 //                         }).catch(console.log("error"))
@@ -62,7 +62,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
 //         if (action.type === 'EDIT_CATEGORY') {
 //                 var raw = JSON.stringify({ categoryName: action.payload.categoryName, color: action.payload.color });
 //                 $.ajax({
-//                         url: `https://community.leader.codes/api/categories/editCategoty/${action.payload.id}`,
+//                         url: `https://bullcommerce.shop/api/categories/editCategoty/${action.payload.id}`,
 //                         method: "post",
 //                         dataType: "json",
 //                         contentType: "application/json",
@@ -81,7 +81,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
 // export const getCategoriesByStore = ({ dispatch, getState }) => next => action => {
 //         if (action.type === 'GET_CATEGORIES_BY_STORE') {
 
-//                 axios.get('https://community.leader.codes/api/stores/storeCategories/' + action.payload)
+//                 axios.get('https://bullcommerce.shop/api/stores/storeCategories/' + action.payload)
 //                         .then(res => {
 //                                 dispatch(actions.setCategories(res.data))
 

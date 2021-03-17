@@ -20,7 +20,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
         const myFile = new FormData();
         myFile.append("file", action.payload);
         $.ajax({
-            "url": "https://community.leader.codes/api/uploadImage/" + getState().userReducer.user.uid,
+            "url": "https://bullcommerce.shop/api/uploadImage/" + getState().userReducer.user.uid,
             "method": "POST",
             "processData": false,
             "mimeType": "multipart/form-data",
