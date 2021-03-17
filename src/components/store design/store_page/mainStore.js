@@ -44,7 +44,6 @@ function MainStore() {
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
                 <Route path="/:storeName/checkOut" component={CheckOut}></Route>
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open}></Bullcommerce></Route>
-
             </Switch>
             <FooterOrange></FooterOrange>
         </div>

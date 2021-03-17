@@ -15,7 +15,7 @@ import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import EditPaper  from './components/store setting/paper_managment/editPaper'
 import ShowPaper  from './components/store setting/paper_managment/showPaper'
-
+import CheckOut from './components/store design/check_out/checkOut'
 import Upload from './components/modals/yeuditUploadImage';
 
 // import Product from "./components/store design/product_page/product";
@@ -67,7 +67,6 @@ function App() {
             <Route exact path="/showPaper">
             <ShowPaper></ShowPaper>
             </Route>
-
             <Route path="/login">
               <Login />
             </Route>

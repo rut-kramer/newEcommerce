@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
 import './stepper.css'
-export default function Stepper(props) {
+import { actions } from '../../../../redux/action';
+import { connect } from 'react-redux';
+function Stepper(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = React.Children.count(props.children);
     function pageComponent(pageIndex) {
         const child = React.Children.toArray(props.children)[pageIndex];
         return React.cloneElement(child);
+    }
+    function onSubmit() {
+        debugger
+        props.newOrder(props.cart)
     }
     return (
         <div className="app">
@@ -23,11 +29,28 @@ export default function Stepper(props) {
             </p>
 
             {pageComponent(currentPage)}
-            <button className="stepper-button d-flex justify-content-center align-item-center"
+            {/* <button className="stepper-button d-flex justify-content-center align-item-center"
                 disabled={currentPage >= numberOfPages - 1}
                 onClick={(e) => setCurrentPage(v => v + 1)}>
                 <p className="stepper-button-next">Next</p>
+            </button> */}
+            <button outline  className="stepper-button d-flex justify-content-center align-item-center"
+                onClick={onSubmit}>
+                    Next
+                {/* <p className="stepper-button-next">Next</p> */}
             </button>
         </div>
     )
 }
+export default connect(
+    (state) => {
+        return {
+            cart: state.cartReducer.cart
+        }
+    },
+    (dispatch) => {
+        return {
+            newOrder: (e) => { dispatch(actions.newOrder(e)) }
+        }
+    },
+)(Stepper);
