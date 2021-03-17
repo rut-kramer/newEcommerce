@@ -6,7 +6,7 @@ import { actions } from '../../../redux/action'
 // import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
 // import cloneDeep from 'lodash/cloneDeep';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withRouter } from 'react-router-dom';
 
 function ProductsList(props) {
@@ -158,11 +158,11 @@ function ProductsList(props) {
                                 <div className="data__effect mobile-hide"><label className="switch">
                                         <input className="switch__input" type="button" onClick={() => { askDeleteProduct(item._id); props.setSearchReasult(props.products); }} />
                                         <button style={{ border: "none" }}>
-                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
+                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
                                                 </i></button>
                                         {/* <span className="switch__content">
                                         </span> */}
-                                        </label></div>
+                                </label></div>
                                 <div className="data__preview">
                                         <label className="prdct_img" for={"fileInput" + index}>
                                                 {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
@@ -202,19 +202,19 @@ function ProductsList(props) {
                                                                         <div className="data__item" key={index} >
                                                                                 <button className="accordion" onClick={
 
-function (e) {
-   
-        e.target.classList.toggle("crud_active");
-        var panel = e.target.nextElementSibling;
-        if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-        } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-        }
-}
+                                                                                        function (e) {
+
+                                                                                                e.target.classList.toggle("crud_active");
+                                                                                                var panel = e.target.nextElementSibling;
+                                                                                                if (panel.style.maxHeight) {
+                                                                                                        panel.style.maxHeight = null;
+                                                                                                } else {
+                                                                                                        panel.style.maxHeight = panel.scrollHeight + "px";
+                                                                                                }
+                                                                                        }
                                                                                 }>
 
-                                                                                        <div className="data__row" onClick={(e)=>{e.stopPropagation()}}  >
+                                                                                        <div className="data__row" onClick={(e) => { e.stopPropagation() }}  >
                                                                                                 <div className="data__cell data__cell_xl">
                                                                                                         <Data_Main item={item} index={index}></Data_Main>
                                                                                                 </div>
@@ -223,27 +223,27 @@ function (e) {
                                                                                                         {/* <div className="data__label">amount</div> */}
                                                                                                 </div>
                                                                                                 <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content">
-                                                                                        <input type="checkbox"
-                                                                              checked={item.isStock}
-                                                                              ></input> 
+                                                                                                        <div className="data__content">
+                                                                                                                <input type="checkbox"
+                                                                                                                        checked={item.isStock}
+                                                                                                                ></input>
+                                                                                                        </div>
                                                                                                 </div>
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content">
-                                                                                                <input type="checkbox"
-                                                                              checked={item.isDraft}
-                                                                              ></input>
-                                                                                                 </div>
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>{item.weight}</strong> </div>
-                                                                                </div>
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>{item.salePrice}</strong> </div>
-                                                                                </div>
-                                                                                {/* גלרית תמונות ווידיאו */}
-                                                                                {/* <div className="data__cell mobile-hide">
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content">
+                                                                                                                <input type="checkbox"
+                                                                                                                        checked={item.isDraft}
+                                                                                                                ></input>
+                                                                                                        </div>
+                                                                                                </div>
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content"><strong>{item.weight}</strong> </div>
+                                                                                                </div>
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content"><strong>{item.salePrice}</strong> </div>
+                                                                                                </div>
+                                                                                                {/* גלרית תמונות ווידיאו */}
+                                                                                                {/* <div className="data__cell mobile-hide">
                                                                                         <div className="data__content"><strong>{item.amount}</strong> </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
@@ -269,11 +269,11 @@ function (e) {
 
                                                                                                 <div className="data__cell data__cell_action">
                                                                                                         <button className="action action_stroke"
-                                                                                                                onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push(`/productEdit`)}} >
-                                                                                                             
-                                                                                                             <FontAwesomeIcon
-                                                                                                                  icon={['fas','edit']}>
-                                                                                                              </FontAwesomeIcon>
+                                                                                                                onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push(`/productEdit`) }} >
+
+                                                                                                                <FontAwesomeIcon
+                                                                                                                        icon={['fas', 'edit']}>
+                                                                                                                </FontAwesomeIcon>
                                                                                                         </button>
                                                                                                 </div>
 
@@ -286,12 +286,12 @@ function (e) {
                                                                                                         {item.attributes && item.attributes.map((att, index) => (
                                                                                                                 att && <div>
                                                                                                                         {/* <h1>{att}</h1> */}
-                                                                                                                        <strong>{att.attribute.name}</strong>
+                                                                                                                        {att.attribute && <strong>{att.attribute.name}</strong>}
                                                                                                                         <h5><u>:מונחים</u></h5>
                                                                                                                         <ul>
-                                                                                                                    {att.terms && att.terms.map((term, i) => (
-                                                                                                                  <li>  <strong>{term.name}</strong></li> 
-                                                                                                                    ))}</ul>
+                                                                                                                                {att.terms && att.terms.map((term, i) => (
+                                                                                                                                        <li>  <strong>{term.name}</strong></li>
+                                                                                                                                ))}</ul>
                                                                                                                 </div>))}
 
                                                                                                 </div>  </div> </div>
@@ -302,7 +302,7 @@ function (e) {
                                         </div>
                                 </div>
                         </div>
-                        
+
                 </>
         )
 
