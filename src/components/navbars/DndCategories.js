@@ -68,7 +68,7 @@ function Dnd(props) {
         const getListStyle = isDraggingOver => ({
                 display: 'flex',
                 padding: '10',
-                overflow: 'auto',
+                overflow: 'hidden',
                 marginLeft: '80px',
                 enabled: 'false',
 

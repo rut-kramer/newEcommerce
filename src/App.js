@@ -11,8 +11,8 @@ import ProductNew from './components/store setting/product_management/newProduct
 import ProductEdit from './components/store setting/product_management/productEdit';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
-import EditPaper  from './components/store setting/paper_managment/editPaper'
-import ShowPaper  from './components/store setting/paper_managment/showPaper'
+import EditPaper from './components/store setting/paper_managment/editPaper'
+import ShowPaper from './components/store setting/paper_managment/showPaper'
 
 import Upload from './components/modals/yeuditUploadImage';
 
@@ -53,12 +53,12 @@ function App() {
             <Route exact path="/productEdit">
               <ProductEdit />
             </Route>
-            
+
             <Route exact path="/paper">
-            <EditPaper></EditPaper>
+              <EditPaper></EditPaper>
             </Route>
             <Route exact path="/showPaper">
-            <ShowPaper></ShowPaper>
+              <ShowPaper></ShowPaper>
             </Route>
 
             <Route path="/login">

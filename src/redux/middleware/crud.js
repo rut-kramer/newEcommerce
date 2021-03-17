@@ -48,5 +48,3 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     return next(action);
 }
 
-
-

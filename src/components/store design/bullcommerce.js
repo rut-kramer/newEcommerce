@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import React, { useState } from 'react';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,7 +36,7 @@ function Bullcommerce(props) {
     //     setSideBarOpen(true)
     //     setQuickLookProduct(item)
     // }
-    React.useEffect(() => {
+    useEffect(() => {
 
         document.body.classList.add("ecommerce-page");
         document.body.classList.add("sidebar-collapse");

@@ -10,7 +10,7 @@ import Product from "../product_page/product";
 import Cart from "../cart_page/cart";
 import CheckOut from "../checkout_page/checkOut";
 import QuickLook from '../quickLook'
-import UploadImages from "../upload_images/uploadImages"
+import UploadImages from "../upload_images/uploadImages";
 
 function MainStore() {
     const [sideBarOpen, setSideBarOpen] = useState(false)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../redux/action'
 import Modal from 'react-modal';
@@ -22,7 +22,7 @@ function CartModal(props) {
         // Modal.setAppElement('#yourAppElement')
 
         var subtitle;
-        const [modalIsOpen, setIsOpen] = React.useState(false);
+        const [modalIsOpen, setIsOpen] = useState(false);
         function openModal() {
                 setIsOpen(true);
         }

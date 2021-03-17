@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sofa from "../../../assets/img/ia_300000012.png";
 import sofaSide from "../../../assets/img/ia_300000013.png";
 import sofaBack from "../../../assets/img/ia_300000015.png";
@@ -54,7 +54,7 @@ const items = [
         },
 ];
 
-function newProduct(props) {
+function NewProduct(props) {
 
         const [product, setProduct] = useState({
                 name: '',
@@ -68,46 +68,46 @@ function newProduct(props) {
                 featured: false,
                 store: props.storeCurrent,
                 attributes: null
-              });
-              const update = (event) => {
+        });
+        const update = (event) => {
                 var u;
                 if (event.target.name === "featured")
-                  u = event.target.checked;
+                        u = event.target.checked;
                 else
-                  u = event.target.value
-                  setProduct({
-                  ...product,
-                  [event.target.name]: u
+                        u = event.target.value
+                setProduct({
+                        ...product,
+                        [event.target.name]: u
                 });
-              }
-              const updateCategory = (event) => {
+        }
+        const updateCategory = (event) => {
                 let k = props.categoryList.filter(p => p.categoryName == event.target.value)
                 setProduct({
-                  ...product,
-                  category: k[0]._id
+                        ...product,
+                        category: k[0]._id
                 });
-              }
+        }
 
-              const Submit = async () => {
+        const Submit = async () => {
                 console.log(props.products)
                 let r = props.productsList.filter(p => p.SKU == product.SKU)
                 if (r.length == 0) {
-                  if (product.category != "")
-                    props.createNewProduct(product);
-                  else
-                    alert("לא בחרת קטגוריה הוסף קטוגריה");
+                        if (product.category != "")
+                                props.createNewProduct(product);
+                        else
+                                alert("לא בחרת קטגוריה הוסף קטוגריה");
                 }
                 else
-                  alert("מספר מקט קיים כבר נא החלף מקט")
-              }
+                        alert("מספר מקט קיים כבר נא החלף מקט")
+        }
         console.log("pprr", product);
         console.log("add", props.addToCart);
         // carousel states and functions
-        const [activeIndex, setActiveIndex] = React.useState(0);
-        const [animating, setAnimating] = React.useState(false);
+        const [activeIndex, setActiveIndex] = useState(0);
+        const [animating, setAnimating] = useState(false);
 
 
-        const [orderAmount, setOrderAmount] = React.useState(1)
+        const [orderAmount, setOrderAmount] = useState(1)
 
         const onExiting = () => {
                 setAnimating(true);
@@ -130,7 +130,7 @@ function newProduct(props) {
                 setActiveIndex(newIndex);
         };
         // collapse states and functions
-        const [collapses, setCollapses] = React.useState([1]);
+        const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
                         setCollapses(collapses.filter((prop) => prop !== collapse));
@@ -139,10 +139,10 @@ function newProduct(props) {
                 }
         };
         // select states and functions
-        const [colorSelect, setColorSelect] = React.useState(null);
-        const [sizeSelect, setSizeSelect] = React.useState(null);
-       
-        React.useEffect(() => {
+        const [colorSelect, setColorSelect] = useState(null);
+        const [sizeSelect, setSizeSelect] = useState(null);
+
+        useEffect(() => {
                 document.body.classList.add("product-page");
                 document.body.classList.add("sidebar-collapse");
                 document.documentElement.classList.remove("nav-open");
@@ -155,7 +155,7 @@ function newProduct(props) {
         }, []);
         return (
                 <>
-                <h1>Add Product</h1>
+                        <h1>Add Product</h1>
 
                         {/* <Container className="p-0">
                                 <Row>
@@ -185,7 +185,7 @@ function newProduct(props) {
                                                                                                 onExited={onExited}
                                                                                                 key={item.src}
                                                                                         >
-       <input className="form__file" type="file" />
+                                                                                                <input className="form__file" type="file" />
                                                                                                 <img
                                                                                                         src={item.src}
                                                                                                         alt={item.altText}
@@ -239,21 +239,21 @@ function newProduct(props) {
 
                                                         </Col>
                                                         <Col md="6" sm="12" id="titleAndContent" >
-                                                                <p style={{ fontSize: "18px" }}>  
-                                                                <input className="field__input" type="text" onChange={update} value={product.name} name="name" placeholder="name" />
-                                                                <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={product.description} />
-                                                                 <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={product.sku} placeholder="SKU" />
-                                                                 <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={product.amount} />
-                                                                 <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={product.price} />
+                                                                <p style={{ fontSize: "18px" }}>
+                                                                        <input className="field__input" type="text" onChange={update} value={product.name} name="name" placeholder="name" />
+                                                                        <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={product.description} />
+                                                                        <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={product.sku} placeholder="SKU" />
+                                                                        <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={product.amount} />
+                                                                        <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={product.price} />
 
                                                                 </p>
                                                                 <select onChange={updateCategory} name="category" className="field__select" >
-                                                                    <option>בחר</option>
+                                                                        <option>בחר</option>
                                                                         {props.categoryList.map((item, index) => (
-                                                                     <option>{item.categoryName}</option>
-                                                                       ))}
+                                                                                <option>{item.categoryName}</option>
+                                                                        ))}
 
-                                                                       </select>
+                                                                </select>
                                                                 {(Array.isArray(product.attributes) &&
                                                                         product.attributes.length) ?
                                                                         product.attributes.map((item, index) => (
@@ -301,10 +301,10 @@ function newProduct(props) {
                                                                         <span><del>290$</del></span>
                                                                         <span>$ {product.price}</span>
                                                                 </div> */}
-                                                                                      <Button className="addToCart" outline size="sm"
-                                                                                        onClick={Submit}>
-                                                                                        <FontAwesomeIcon icon={['fas', 'plus']}>
-                                                                                        </FontAwesomeIcon>
+                                                                <Button className="addToCart" outline size="sm"
+                                                                        onClick={Submit}>
+                                                                        <FontAwesomeIcon icon={['fas', 'plus']}>
+                                                                        </FontAwesomeIcon>
                         Add the product
                         </Button>
                                                         </Col>
@@ -483,7 +483,7 @@ export default connect(
                         createNewProduct: (n) => dispatch(actions.addNewProducts(n)),
                 }
         }
-)(newProduct);
+)(NewProduct);
 
 
 
