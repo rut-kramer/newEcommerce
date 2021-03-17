@@ -10,7 +10,6 @@ import {
   CardBody,
   CardFooter,
   CardTitle,
-  CardImg,
   Collapse,
   Label,
   FormGroup,
@@ -19,13 +18,11 @@ import {
   Pagination,
   PaginationItem,
   PaginationLink,
-
   InputGroupAddon,
   Row,
   Col,
   UncontrolledTooltip,
 } from "reactstrap";
-// import Card from 'react-bootstrap/Card'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 
@@ -37,6 +34,11 @@ import FilteredProducts from "../filteredProducts";
 import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
+
+
+
+//images
+
 //xd image
 import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg";
@@ -70,6 +72,7 @@ function CategoryBullcommerce(props) {
 
 
 
+  let pager2 = [];
   React.useEffect(() => {
 
     document.body.classList.add("ecommerce-page");
@@ -77,11 +80,67 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
+    callPager()
+    let numPaper = (props.storeProducts.length / numOfPage);
+    numPaper = Math.round(numPaper) + 1 + 1
+    pager2 = new Array(numPaper)
+    for (let index = 0; index < pager2.length; index++) {
+      pager2[index] = index;
+
+    }
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
     };
+
   }, []);
+
+  const numOfPage = 3
+  const [arrPager, setArrPager] = useState([])
+  let arrTemp = []
+  const [pa1, setP1] = useState(1)
+  const [pa2, setP2] = useState(numOfPage)
+  let p1 = 1
+  let p2 = 2
+
+
+  function callPager() {
+    let numPaper = (props.storeProducts.length / numOfPage);
+    numPaper = Math.ceil(numPaper)
+    for (let index = 0; index < numPaper; index++) {
+      let objec = {
+        index: "",
+        list: ""
+      }
+      p1 = ((index) * numOfPage);
+      p2 = ((index + 1) * numOfPage);
+      let list = props.filterProducts;
+      list = list[0] ? list.slice(p1, p2) : [];
+      console.log("list", index, list);
+      objec.index = index + 1;
+      objec.list = list
+      arrTemp.push(objec)
+    }
+    setArrPager(
+      a => arrTemp
+    )
+  }
+  const [degelBtn, setDegelBtn] = useState(0)
+  function changePageNum(num) {
+    let PageNum = degelBtn;
+
+    if (num == "+")
+      PageNum++;
+    else {
+      if (num == "-")
+        PageNum--;
+      else
+        PageNum = num;
+    }
+    setDegelBtn(PageNum)
+    setP1(((PageNum) * numOfPage) + 1)
+    setP2((PageNum + 1) * numOfPage)
+  }
 
   const onFilter = (min, max) => {
 
@@ -299,154 +358,143 @@ function CategoryBullcommerce(props) {
                 </Col>
                 <Col md="9" className="pr-0">
                   <Row>
-                    {console.log("condition", (Array.isArray(props.filterProducts) &&
-                      props.filterProducts.length > 0))}
-                    {(Array.isArray(props.filterProducts) &&
-                      props.filterProducts.length > 0) &&
-                      props.filterProducts.map((item, index) => (
+                    {arrPager[degelBtn] && arrPager[degelBtn].list.map((item, index) => (
 
-                        <Col lg="4" md="6" sm="12" key={index}>
+                      // {console.log("condition", (Array.isArray(props.filteredProducts) &&
+                      //   props.filteredProducts.length > 0))}
+                      // {(Array.isArray(props.filteredProducts) &&
+                      //   props.filteredProducts.length > 0) &&
+                      //   props.filteredProducts.map((item, index) => (
 
-                          <Card className="card-product card-plain">
-                            <div className="card-image frameToProductView">
-                              <Link to={{ pathname: "/" + props.objectFields.storeName + "/product/" + item.SKU, state: { product: item } }}>
-                                <img className="imageProduct"
-                                  alt="..."
-                                  src={ia006}
-                                ></img>
-                              </Link>
-                            </div>
-                            <CardBody>
-                              <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
-                              <p className="card-description">
-                                {item.description}
-                              </p>
-                              <CardFooter>
-                                <div className="price-container">
-                                  <span className="price">$ {item.price}</span>
-                                </div>
-                                <Button
-                                  className="btn-neutral btn-icon btn-round pull-right"
-                                  color="danger"
-                                  data-placement="left"
-                                  id="tooltip719224088"
-                                  onClick={() => props.addToCart(
-                                    {
-                                      "product": item,
-                                      "amount": 1
-                                    }
-                                  )}
+                      <Col lg="4" md="6" sm="12" key={index}>
 
-                                >
-                                  {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
-                                  <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
-                                  <img alt="...."
-                                    src={cart}></img>
-                                </Button>
-                                <UncontrolledTooltip
-                                  delay={0}
-                                  placement="left"
-                                  target="tooltip719224088"
-                                >
-                                  Add To Cart
+                        <Card className="card-product card-plain">
+                          <div className="card-image frameToProductView">
+                            <Link to={{ pathname: "/" + props.objectFields.storeName + "/product/" + item.SKU, state: { product: item } }}>
+                              <img className="imageProduct"
+                                alt="..."
+                                src={ia006}
+                              ></img>
+                            </Link>
+                          </div>
+                          <CardBody>
+                            <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                            <p className="card-description">
+                              {item.description}
+                            </p>
+                            <CardFooter>
+                              <div className="price-container">
+                                <span className="price">$ {item.price}</span>
+                              </div>
+                              <Button
+                                className="btn-neutral btn-icon btn-round pull-right"
+                                color="danger"
+                                data-placement="left"
+                                id="tooltip719224088"
+                                onClick={() => props.addToCart(
+                                  {
+                                    "product": item,
+                                    "amount": 1
+                                  }
+                                )}
+
+                              >
+                                {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
+                                <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
+                                <img alt="...."
+                                  src={cart}></img>
+                              </Button>
+                              <UncontrolledTooltip
+                                delay={0}
+                                placement="left"
+                                target="tooltip719224088"
+                              >
+                                Add To Cart
         </UncontrolledTooltip>
-                                <Button
-                                  className="btn-neutral btn-icon btn-round pull-right"
-                                  color="danger"
-                                  data-placement="left"
-                                  id="tooltip719224089"
+                              <Button
+                                className="btn-neutral btn-icon btn-round pull-right"
+                                color="danger"
+                                data-placement="left"
+                                id="tooltip719224089"
 
-                                >
+                              >
 
-                                  <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
+                                <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
-                                </Button>
-                                <UncontrolledTooltip
-                                  delay={0}
-                                  placement="left"
-                                  target="tooltip719224089"
-                                >
-                                  To View
+                              </Button>
+                              <UncontrolledTooltip
+                                delay={0}
+                                placement="left"
+                                target="tooltip719224089"
+                              >
+                                To View
         </UncontrolledTooltip>
 
-                              </CardFooter>
-                            </CardBody>
-                          </Card>
-                        </Col>
-                      ))
-                    }
-                    {(Array.isArray(props.filterProducts) && props.filterProducts.length > 12) &&
-                      < Col md="12">
-                        <Row className="pagerCategory">
-                          <Col md="6" style={{ padding: 0 }}><div className="pt-3">1-48 of 323 Results</div>
-                          </Col>
-                          <Col md="6">
-                            <Pagination
-                              className="pagination pagination-info justify-content-end pt-2"
-                              listClassName="pagination-info justify-content-center"
-                            >
-                              <PaginationItem>
-                                <PaginationLink
-                                  aria-label="Previous"
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  <span aria-hidden={true}>
-                                    <i
-                                      aria-hidden={true}
-                                      className="fa fa-angle-double-left"
-                                    ></i>
-                                  </span>
-                                </PaginationLink>
-                              </PaginationItem>
-                              <PaginationItem>
-                                <PaginationLink
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  1
-        </PaginationLink>
-                              </PaginationItem>
-                              <PaginationItem className="active">
-                                <PaginationLink
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  2
-        </PaginationLink>
-                              </PaginationItem>
-                              <PaginationItem>
-                                <PaginationLink
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  3
-        </PaginationLink>
-                              </PaginationItem>
-                              <PaginationItem>
-                                <PaginationLink
-                                  aria-label="Next"
-                                  href="#pablo"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  <span aria-hidden={true}>
-                                    <i
-                                      aria-hidden={true}
-                                      className="fa fa-angle-double-right"
-                                    ></i>
-                                  </span>
-                                </PaginationLink>
-                              </PaginationItem>
-                            </Pagination>
-
-                          </Col>
-
-                        </Row>
-
-
-
+                            </CardFooter>
+                          </CardBody>
+                        </Card>
                       </Col>
+                    ))
                     }
+                    < Col md="12">
+                      <Row className="pagerCategory">
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.storeProducts.length} Results</div>
+                        </Col>
+                        <Col md="6">
+
+                          <Pagination
+                            className="pagination pagination-info justify-content-end pt-2"
+                            listClassName="pagination-info justify-content-center"
+                          >
+                            <PaginationItem>
+                              <PaginationLink
+                                aria-label="Previous"
+                                href="#pablo"
+                                onClick={() => { changePageNum('-') }}
+                              >
+                                <span aria-hidden={true}>
+                                  <i
+                                    aria-hidden={true}
+                                    className="fa fa-angle-double-left"
+                                  ></i>
+                                </span>
+                              </PaginationLink>
+                            </PaginationItem>
+
+                            {arrPager && arrPager.map((item, index) => (
+
+                              <PaginationItem
+                                className={degelBtn == index ? "active" : ""}
+                              >
+                                <PaginationLink
+                                  href="#pablo"
+                                  onClick={(e) => { e.preventDefault(); changePageNum(index) }}
+                                >
+                                  {item.index}
+                                </PaginationLink>
+                              </PaginationItem>
+
+                            ))}
+                            <PaginationItem
+                            >
+                              <PaginationLink
+                                aria-label="Next"
+                                href="#pablo"
+                                onClick={(e) => { changePageNum('+') }}
+
+                              >
+                                <span aria-hidden={true}>
+                                  <i
+                                    aria-hidden={true}
+                                    className="fa fa-angle-double-right"
+                                  ></i>
+                                </span>
+                              </PaginationLink>
+                            </PaginationItem>
+                          </Pagination>
+                        </Col>
+                      </Row>
+                    </Col>
                   </Row>
                 </Col>
               </Row>
@@ -468,7 +516,6 @@ export default connect(
       categories: state.categoriesReducer.categories,
       filterProducts: state.filterReducer.filteredItems,
       objectFields: state.storeReducer.objectFields
-
     }
   },
   (dispatch) => {

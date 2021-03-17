@@ -14,9 +14,6 @@ import Select from "react-select"
 
 import './product.css'
 
-import { actions } from '../../../redux/action';
-import { connect } from 'react-redux';
-
 // reactstrap components
 import {
         Button,
@@ -38,6 +35,18 @@ import {
 } from "reactstrap";
 
 // core components
+// import ScrollTransparentNavbar from "./scrollTransparentNavbar";
+// import ProductPageHeader from "./productPageHeader";
+import pp1 from "../../../assets/img/pp-1.jpg";
+import pp2 from "../../../assets/img/pp-2.jpg";
+import pp3 from "../../../assets/img/pp-3.jpg";
+import pp4 from "../../../assets/img/pp-4.jpg";
+import wooyoungmi from "../../../assets/img/wooyoungmi.jpg"
+import saintLaurent from "../../../assets/img/saint-laurent.jpg"
+import saintLaurent1 from "../../../assets/img/saint-laurent1.jpg"
+import gucci from "../../../assets/img/gucci.jpg"
+import { connect } from "react-redux";
+import { actions } from "../../../redux/action";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar";
 
 const items = [
@@ -470,17 +479,23 @@ function Product(props) {
         );
 }
 
-export default connect(
-        (state) => {
-                return {
 
-                }
-        },
-        (dispatch) => {
-                return {
-                        addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
-                }
-        }
+
+export default connect(
+    (state) => {
+            return {
+                products: state.productReducer.products,
+
+
+            }
+    },
+    (dispatch) => {
+            return {
+                 
+                addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
+                addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
+            }
+    },
 )(Product);
 
 
