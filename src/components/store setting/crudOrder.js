@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function CrudOrder(props) {
 
@@ -11,10 +12,13 @@ function CrudOrder(props) {
                                 </div>
                                 <div >
                                         <div className="container__head">
-                                                <div className="container__title title title_md">Order</div>
+                                                <div className="container__title crud_title title_md">Order</div>
                                                 <div className="container__search search js-search">
-                                                        <button className="search__action action js-search-open">
-                                                                <i className="la la-search" onClick={() => { props.setcomponnet("search") }}></i></button>
+                                                        <button className="search__action action js-search-open" onClick={() => { props.setcomponnet("search") }}>
+                                                        <FontAwesomeIcon
+                                                             icon={['fas','search']}>
+                                                             </FontAwesomeIcon>
+                                                                </button>
                                                         <div className="search__dropdown js-search-dropdown">
                                                                 <div className="search__field"><input className="search__input js-search-input" type="search" placeholder="Start typing…" />
                                                                         <div className="search__icon"><i className="la la-search "></i></div>
@@ -118,7 +122,7 @@ function CrudOrder(props) {
                                                                                 <div className="pager__list">
                                                                                         <a className="pager__link action" href="#">1</a>
                                                                                         <a className="pager__link action" href="#">2</a>
-                                                                                        <a className="pager__link action active" href="#">3</a>
+                                                                                        <a className="pager__link action crud_active" href="#">3</a>
                                                                                         <a className="pager__link action" href="#">4</a>
                                                                                         <a className="pager__link action" href="#">5</a>
                                                                                 </div>

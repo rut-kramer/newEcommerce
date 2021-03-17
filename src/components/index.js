@@ -19,7 +19,7 @@ function Home(props) {
                                 {/* <a href="/addUser">create user</a> */}
                         </div>
                         <div style={{ float: "right" }}>
-                                <StorePerUser ></StorePerUser>
+                                <StorePerUser  style={{marginBottom:"21px"}}></StorePerUser>
                         </div>
                 </div>
         )

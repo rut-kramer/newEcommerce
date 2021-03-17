@@ -40,14 +40,15 @@ export const deleteCategory = ({ dispatch, getState }) => next => action => {
             .then(res => {
                 dispatch(actions.deleteOldCategory(action.payload))
                 alert("הקטגוריה נמחקה בהצלחה")
-                
-              
-                }).catch(()=>{console.log("error");   alert("מחיקת הקטגוריה נכשלה")})}
+
+
+            }).catch(() => { console.log("error"); alert("מחיקת הקטגוריה נכשלה") })
+    }
     return next(action);
 };
 export const editCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_CATEGORY') {
-        var raw = JSON.stringify({ categoryName: action.payload.categoryName,masterCategory: action.payload.masterCategory, color: action.payload.color });
+        var raw = JSON.stringify({ categoryName: action.payload.categoryName, masterCategory: action.payload.masterCategory, color: action.payload.color });
         $.ajax({
             url: `https://bullcommerce.shop/api/categories/editCategoty/${action.payload._id}`,
             method: "post",
@@ -55,8 +56,8 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
             contentType: "application/json",
             data: raw,
             success: function (data) {
-              dispatch(actions.editOldCategory(data))
-              alert("הקטגוריה התעדכנה בהצלחה")
+                dispatch(actions.editOldCategory(data))
+                alert("הקטגוריה התעדכנה בהצלחה")
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
@@ -73,19 +74,16 @@ export const getCategoriesByStore = ({ dispatch, getState }) => next => action =
         axios.get('https://bullcommerce.shop/api/stores/storeCategories/' + action.payload)
             .then(res => {
                 dispatch(actions.setCategories(res.data))
-
+                let options = Object.assign({}, res.data[0].products[0], { "color":  res.data[0].color});
                 let list = [];
                 res.data.forEach(c => {
-                    c.products.forEach(p => {
-                        list.push(p)
-                    });
+                    c.products.forEach(p=>{
+                   let options = Object.assign({}, p, { "color": c.color,"categoryName":c.categoryName});
+                    list.push(options);
+                       })
                 });
                 dispatch(actions.setProducts(list))
                 dispatch(actions.setFilteredItems(list));
-
-
-
-
             })
             .catch(err => console.log("errrrrrrr", err));
     }

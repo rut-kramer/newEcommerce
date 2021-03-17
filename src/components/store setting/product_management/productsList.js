@@ -6,6 +6,8 @@ import { actions } from '../../../redux/action'
 // import $ from 'jquery'
 // import productImg from '../assets/products/product-pic-7.png'
 // import cloneDeep from 'lodash/cloneDeep';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { withRouter } from 'react-router-dom';
 
 function ProductsList(props) {
 
@@ -124,8 +126,8 @@ function ProductsList(props) {
         // }
         function askDeleteProduct(i) {
                 if (window.confirm("אם אתה בטוח שברצונך למחוק את המוצר"))
-                props.delete(i)
-              }
+                        props.delete(i)
+        }
         function DataHaed() {
                 return (
                         <div className="data__head">
@@ -150,48 +152,43 @@ function ProductsList(props) {
                                 </div>
                         </div>)
         }
-        function Data_Main({item,index}) {
-                return(
-                <div className="data__main">
-                        <div className="data__effect mobile-hide"><label className="switch">
-                                <input className="switch__input" type="button" onClick={() => { askDeleteProduct(item._id); props.setSearchReasult(props.products); }} />
-                                <span className="switch__content">
-                                </span></label></div>
-                        <div className="data__preview">
-                                <label className="prdct_img" for={"fileInput" + index}>
-                                        {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
-                                </label>
-                                <input ref={fileI}
-                                        name={index}
-                                        type={"file"}
-                                        id={"fileInput" + index}
-                                        htmlFor="myInput"
-                                        accept="image/*"
-                                        style={{
-                                                display: 'none',
-                                                cursor: 'pointer'
-                                        }}
-                                        onChange={onChangeHandlerImage} />
-                        </div>
-                        <div className="data__wrap">
-                                <div className="data__content">
-                                        <strong>{item.name}</strong></div>
-                                <div className="data__label">SKU {item.SKU}</div>
-                        </div>
-                </div>)
+        function Data_Main({ item, index }) {
+                return (
+                        <div className="data__main">
+                                <div className="data__effect mobile-hide"><label className="switch">
+                                        <input className="switch__input" type="button" onClick={() => { askDeleteProduct(item._id); props.setSearchReasult(props.products); }} />
+                                        <button style={{ border: "none" }}>
+                                                <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
+                                                </i></button>
+                                        {/* <span className="switch__content">
+                                        </span> */}
+                                        </label></div>
+                                <div className="data__preview">
+                                        <label className="prdct_img" for={"fileInput" + index}>
+                                                {/* <img alt="product image" src={item.images[0] ? item.images[0] : productImg} /> */}
+                                        </label>
+                                        <input ref={fileI}
+                                                name={index}
+                                                type={"file"}
+                                                id={"fileInput" + index}
+                                                htmlFor="myInput"
+                                                accept="image/*"
+                                                style={{
+                                                        display: 'none',
+                                                        cursor: 'pointer'
+                                                }}
+                                                onChange={onChangeHandlerImage} />
+                                </div>
+                                <div className="data__wrap">
+                                        <div className="data__content">
+                                                <strong>{item.name}</strong></div>
+                                        <div className="data__label">SKU {item.SKU}</div>
+                                </div>
+                        </div>)
         }
 
         return (
                 <>
-                        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet" />
-                        <link rel="stylesheet" media="all" href="css/app.css" />
-                        <link rel="stylesheet" media="all" href="app2.css" />
-                        <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png" />
-                        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png" />
-                        <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png" />
-                        <link rel="manifest" href="img/site.webmanifest" />
-                        <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#5bbad5" />
-
                         <div className="panel__tab js-panel-tab"
                                 style={{ display: 'block' }}>
                                 <div className="data data_list">
@@ -200,65 +197,112 @@ function ProductsList(props) {
                                                 <div className="data__body">
                                                         {/* TO DO FELTERADE */}
                                                         {props.products.map((item, index) => (
-                                                               index < (props.PageNum - 1) * 6||index>props.PageNum * 6 - 1?"":                                                             
-                                                               
-                                                               <div className="data__item" key={index}>
-                                                                                         <button className="accordion">
+                                                                index < (props.PageNum - 1) * 6 || index > props.PageNum * 6 - 1 ? "" :
 
-                                                                        <div className="data__row" >
-                                                                                <div className="data__cell data__cell_xl">
-                                                                                        <Data_Main item={item} index={index}></Data_Main>
+                                                                        <div className="data__item" key={index} >
+                                                                                <button className="accordion" onClick={
+
+function (e) {
+   
+        e.target.classList.toggle("crud_active");
+        var panel = e.target.nextElementSibling;
+        if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+        } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+}
+                                                                                }>
+
+                                                                                        <div className="data__row" onClick={(e)=>{e.stopPropagation()}}  >
+                                                                                                <div className="data__cell data__cell_xl">
+                                                                                                        <Data_Main item={item} index={index}></Data_Main>
+                                                                                                </div>
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content">{item.description}</div>
+                                                                                                        {/* <div className="data__label">amount</div> */}
+                                                                                                </div>
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content">
+                                                                                        <input type="checkbox"
+                                                                              checked={item.isStock}
+                                                                              ></input> 
+                                                                                                </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content">{item.description}</div>
-                                                                                        {/* <div className="data__label">amount</div> */}
+                                                                                        <div className="data__content">
+                                                                                                <input type="checkbox"
+                                                                              checked={item.isDraft}
+                                                                              ></input>
+                                                                                                 </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.weight}</strong> </div>
+                                                                                </div>
+                                                                                <div className="data__cell mobile-hide">
+                                                                                        <div className="data__content"><strong>{item.salePrice}</strong> </div>
+                                                                                </div>
+                                                                                {/* גלרית תמונות ווידיאו */}
+                                                                                {/* <div className="data__cell mobile-hide">
                                                                                         <div className="data__content"><strong>{item.amount}</strong> </div>
                                                                                 </div>
                                                                                 <div className="data__cell mobile-hide">
-                                                                                <div className="data__content">
-                                                                              <input type="checkbox"
-                                                                              checked={item.featured}
-                                                                              ></input></div>
+                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                </div> */}
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content"><strong>{item.amount}</strong> </div>
+                                                                                                </div>
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content">
+                                                                                                                <input type="checkbox"
+                                                                                                                        checked={item.featured}
+                                                                                                                ></input></div>
+                                                                                                </div>
+
+                                                                                                <div className="data__cell mobile-hide">
+                                                                                                        <div className="data__content"><strong>${item.price}</strong></div>
+                                                                                                </div>
+                                                                                                {item.category && <div className="data__cell mobile-hide">
+                                                                                                        <div style={{ "backgroundColor": item.color }}
+                                                                                                                className="tag gray">{item.categoryName}</div>
+                                                                                                </div>}
+
+                                                                                                <div className="data__cell data__cell_action">
+                                                                                                        <button className="action action_stroke"
+                                                                                                                onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push(`/productEdit`)}} >
+                                                                                                             
+                                                                                                             <FontAwesomeIcon
+                                                                                                                  icon={['fas','edit']}>
+                                                                                                              </FontAwesomeIcon>
+                                                                                                        </button>
+                                                                                                </div>
+
+                                                                                        </div>
+                                                                                </button>
+                                                                                <div className="panel1">
+                                                                                        <div>
+                                                                                                <div className="data__content">
+                                                                                                        <h5><u>:תכונות</u></h5>
+                                                                                                        {item.attributes && item.attributes.map((att, index) => (
+                                                                                                                att && <div>
+                                                                                                                        {/* <h1>{att}</h1> */}
+                                                                                                                        <strong>{att.attribute.name}</strong>
+                                                                                                                        <h5><u>:מונחים</u></h5>
+                                                                                                                        <ul>
+                                                                                                                    {att.terms && att.terms.map((term, i) => (
+                                                                                                                  <li>  <strong>{term.name}</strong></li> 
+                                                                                                                    ))}</ul>
+                                                                                                                </div>))}
+
+                                                                                                </div>  </div> </div>
                                                                         </div>
-                                                                        
-                                                                                <div className="data__cell mobile-hide">
-                                                                                        <div className="data__content"><strong>${item.price}</strong></div>
-                                                                                </div>
-                                                                                {item.category && <div className="data__cell mobile-hide">
-                                                                                        <div style={{ "backgroundColor": item.category.color }}
-                                                                                                className="tag gray">{item.category.categoryName}</div>
-                                                                                </div>}
 
-                                                                                <div className="data__cell data__cell_action">
-                                                                                        <button className="action action_stroke"
-                                                                                                onClick={() => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }} >
-                                                                                                <i className="la la-ellipsis-h "></i>
-                                                                                        </button>
-                                                                                </div>
-                                                                                
-                                                                        </div> 
-                                                                         </button>
-                                                                         <div className="panel1">
-                                                                         <div>
-                                                                         <div className="data__content">
-                                                                         <h5>:תכונות</h5> 
-                                                                         {item.attributes&&item.attributes.map((att, index) => (
-                                                                         att&&<div>
-                                                                                 {/* <h1>{att}</h1> */}
-                                                                                 <strong>{att.name}</strong>
-                                                                         </div>))}
-
-                                                                                 </div>  </div> </div>
-                                                                </div>
-                                                              
                                                         ))}
                                                 </div>
                                         </div>
                                 </div>
                         </div>
-{/* {a()} */}
+                        
                 </>
         )
 
@@ -284,5 +328,4 @@ export default connect(
                 }
         }
 
-)(ProductsList);
-
+)(withRouter(ProductsList));
