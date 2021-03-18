@@ -78,13 +78,11 @@ function TopFrame(props, { setFlagCon }) {
 
 export default connect(
     (state) => {
-        return {
-            user: state.userReducer.user,
-        }
-    },
+            return {
+                    user: state.userReducer.user,
+            } },
     (dispatch) => {
-        return {
-            setUser: (a) => dispatch(actions.setUserId(a)),
-        }
-    }
+            return {
+                setUser: (a) => dispatch(actions.setUserId(a)),
+            }  }
 )(withRouter(TopFrame));

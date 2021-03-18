@@ -14,26 +14,29 @@ export const getAllCategories = ({ dispatch, getState }) => next => action => {
 };
 export const createNewCategory = ({ dispatch, getState }) => next => action => {
     return new Promise((resolve, reject) => {
-    if (action.type === 'CREATE_NEW_CATEGORY') {
-        var raw = JSON.stringify({"store":action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color ,"masterCategory":action.payload.masterCategory});
-        $.ajax({
-            url: "https://bullcommerce.shop/api/categories/newCategoty",
-            method: "post",
-            dataType: "json",
-            contentType: "application/json",
-            data: raw,
-            success: function (data) {
-                dispatch(actions.addNewCategory(data));
-                resolve(data)
-                alert("הקטגוריה נוצרה בהצלחה")
-            },
-            error: function (err) {
-                console.log(err)
-                reject(err)
-                 alert("הוספת הקטגוריה נכשלה")
-            } });}
-    return next(action);
-})};
+        if (action.type === 'CREATE_NEW_CATEGORY') {
+            var raw = JSON.stringify({ "store": action.payload.store, "categoryName": action.payload.categoryName, "color": action.payload.color, "masterCategory": action.payload.masterCategory });
+            $.ajax({
+                url: "https://bullcommerce.shop/api/categories/newCategoty",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    dispatch(actions.addNewCategory(data));
+                    resolve(data)
+                    alert("הקטגוריה נוצרה בהצלחה")
+                },
+                error: function (err) {
+                    console.log(err)
+                    reject(err)
+                    alert("הוספת הקטגוריה נכשלה")
+                }
+            });
+        }
+        return next(action);
+    })
+};
 export const deleteCategory = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_CATEGORY') {
         axios.post('https://bullcommerce.shop/api/categories/deleteCategoty/' + action.payload)
@@ -70,7 +73,6 @@ export const editCategory = ({ dispatch, getState }) => next => action => {
 };
 export const getCategoriesByStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_CATEGORIES_BY_STORE') {
-
         axios.get('https://bullcommerce.shop/api/stores/storeCategories/' + action.payload)
             .then(res => {
                 dispatch(actions.setCategories(res.data))

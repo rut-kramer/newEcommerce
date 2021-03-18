@@ -214,7 +214,7 @@ function ProductsList(props) {
                                                                                         }
                                                                                 }>
 
-                                                                                        <div className="data__row" onClick={(e) => { e.stopPropagation() }}  >
+                                                                                        <div className="data__row" onClick={(e)=>{e.stopPropagation()}}  >
                                                                                                 <div className="data__cell data__cell_xl">
                                                                                                         <Data_Main item={item} index={index}></Data_Main>
                                                                                                 </div>
@@ -269,11 +269,11 @@ function ProductsList(props) {
 
                                                                                                 <div className="data__cell data__cell_action">
                                                                                                         <button className="action action_stroke"
-                                                                                                                onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push(`/productEdit`) }} >
-
-                                                                                                                <FontAwesomeIcon
-                                                                                                                        icon={['fas', 'edit']}>
-                                                                                                                </FontAwesomeIcon>
+                                                                                                                onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push(`/productEdit`)}} >
+                                                                                                             
+                                                                                                             <FontAwesomeIcon
+                                                                                                                  icon={['fas','edit']}>
+                                                                                                              </FontAwesomeIcon>
                                                                                                         </button>
                                                                                                 </div>
 
@@ -289,9 +289,9 @@ function ProductsList(props) {
                                                                                                                         {att.attribute && <strong>{att.attribute.name}</strong>}
                                                                                                                         <h5><u>:מונחים</u></h5>
                                                                                                                         <ul>
-                                                                                                                                {att.terms && att.terms.map((term, i) => (
-                                                                                                                                        <li>  <strong>{term.name}</strong></li>
-                                                                                                                                ))}</ul>
+                                                                                                                    {att.terms && att.terms.map((term, i) => (
+                                                                                                                  <li>  <strong>{term.name}</strong></li> 
+                                                                                                                    ))}</ul>
                                                                                                                 </div>))}
 
                                                                                                 </div>  </div> </div>
@@ -302,6 +302,7 @@ function ProductsList(props) {
                                         </div>
                                 </div>
                         </div>
+                        
                 </>
         )
 
