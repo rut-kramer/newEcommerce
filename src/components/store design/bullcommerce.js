@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+// import React, { useState } from 'react';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
@@ -25,8 +27,16 @@ import './bullcommerce.css'
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 import cart from "../../assets/img/xd/cart.svg"
 function Bullcommerce(props) {
-    //useEffect לבדוק האם למחוק את כל ה 
-    React.useEffect(() => {
+
+    // const [sideBarOpen, setSideBarOpen] = useState(false)
+
+    // const [quickLookProduct, setQuickLookProduct] = useState()
+
+    // function w3_open(item) {
+    //     setSideBarOpen(true)
+    //     setQuickLookProduct(item)
+    // }
+    useEffect(() => {
 
         document.body.classList.add("ecommerce-page");
         document.body.classList.add("sidebar-collapse");

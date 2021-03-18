@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sofa from "../../../assets/img/ia_300000012.png";
 import sofaSide from "../../../assets/img/ia_300000013.png";
 import sofaBack from "../../../assets/img/ia_300000015.png";
@@ -56,37 +56,37 @@ const items = [
 
 function ProductEdit(props) {
 
-        
-  const update = (event) => {
-        var u;
-        if (event.target.name === "featured")
-          u = event.target.checked;
-        else
-          u = event.target.value
-        props.setCurrentProduct({
-          ...props.currentProduct,
-          [event.target.name]: u
-        });
-      }
-    
-          const updateCategory = (event) => {
-            let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
-            props.setCurrentProduct({
-              ...props.currentProduct,
-               category:k[0]._id
-             });
-           }
 
-              const Submit = ()=>{
-                props.editproduct(props.currentProduct);  
-            }
-       
+        const update = (event) => {
+                var u;
+                if (event.target.name === "featured")
+                        u = event.target.checked;
+                else
+                        u = event.target.value
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        [event.target.name]: u
+                });
+        }
+
+        const updateCategory = (event) => {
+                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        category: k[0]._id
+                });
+        }
+
+        const Submit = () => {
+                props.editproduct(props.currentProduct);
+        }
+
         // carousel states and functions
-        const [activeIndex, setActiveIndex] = React.useState(0);
-        const [animating, setAnimating] = React.useState(false);
+        const [activeIndex, setActiveIndex] = useState(0);
+        const [animating, setAnimating] = useState(false);
 
 
-        const [orderAmount, setOrderAmount] = React.useState(1)
+        const [orderAmount, setOrderAmount] = useState(1)
 
         const onExiting = () => {
                 setAnimating(true);
@@ -109,7 +109,7 @@ function ProductEdit(props) {
                 setActiveIndex(newIndex);
         };
         // collapse states and functions
-        const [collapses, setCollapses] = React.useState([1]);
+        const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
                         setCollapses(collapses.filter((prop) => prop !== collapse));
@@ -118,10 +118,10 @@ function ProductEdit(props) {
                 }
         };
         // select states and functions
-        const [colorSelect, setColorSelect] = React.useState(null);
-        const [sizeSelect, setSizeSelect] = React.useState(null);
-       
-        React.useEffect(() => {
+        const [colorSelect, setColorSelect] = useState(null);
+        const [sizeSelect, setSizeSelect] = useState(null);
+
+        useEffect(() => {
                 document.body.classList.add("product-page");
                 document.body.classList.add("sidebar-collapse");
                 document.documentElement.classList.remove("nav-open");
@@ -134,7 +134,7 @@ function ProductEdit(props) {
         }, []);
         return (
                 <>
-                <h1>Edit Product</h1>
+                        <h1>Edit Product</h1>
                         {/* <Container className="p-0">
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
@@ -163,7 +163,7 @@ function ProductEdit(props) {
                                                                                                 onExited={onExited}
                                                                                                 key={item.src}
                                                                                         >
-       <input className="form__file" type="file" />
+                                                                                                <input className="form__file" type="file" />
                                                                                                 <img
                                                                                                         src={item.src}
                                                                                                         alt={item.altText}
@@ -216,35 +216,35 @@ function ProductEdit(props) {
                                                                 </Carousel>
 
                                                         </Col>
-                                                    {props.currentProduct &&    <Col md="6" sm="12" id="titleAndContent" >
-                                                                <p style={{ fontSize: "18px" }}>  
-                                                                <input className="field__input" type="text" onChange={update} value={props.currentProduct.name} name="name" placeholder="name" />
-                                                                <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={props.currentProduct.description} />
-                                                                 <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
-                                                                 <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={props.currentProduct.amount} />
-                                                                 <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={props.currentProduct.price} />
+                                                        {props.currentProduct && <Col md="6" sm="12" id="titleAndContent" >
+                                                                <p style={{ fontSize: "18px" }}>
+                                                                        <input className="field__input" type="text" onChange={update} value={props.currentProduct.name} name="name" placeholder="name" />
+                                                                        <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={props.currentProduct.description} />
+                                                                        <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
+                                                                        <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={props.currentProduct.amount} />
+                                                                        <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={props.currentProduct.price} />
 
                                                                 </p>
                                                                 <select onChange={updateCategory} name="category" className="field__select" >
-                                                                    <option>בחר</option>
+                                                                        <option>בחר</option>
                                                                         {props.categoryList.map((item, index) => (
-                                                                     <option>{item.categoryName}</option>
-                                                                       ))}
+                                                                                <option>{item.categoryName}</option>
+                                                                        ))}
 
-                                                                       </select>
-                                                         
+                                                                </select>
+
                                                                 {/* <div className="d productPrice">
                                                                         <h4><b>Price:</b></h4>
                                                                         <span><del>290$</del></span>
                                                                         <span>$ {product.price}</span>
                                                                 </div> */}
-                                                                                      <Button className="addToCart" outline size="sm"
-                                                                                        onClick={Submit}>
-                                                                                        <FontAwesomeIcon icon={['fas', 'edit']}>
-                                                                                        </FontAwesomeIcon>
+                                                                <Button className="addToCart" outline size="sm"
+                                                                        onClick={Submit}>
+                                                                        <FontAwesomeIcon icon={['fas', 'edit']}>
+                                                                        </FontAwesomeIcon>
                         Edit the product
                         </Button>
-                                                        </Col>} 
+                                                        </Col>}
                                                 </Row>
                                         </div>
                                         <div className="section" id="moreDetails">
@@ -408,8 +408,8 @@ function ProductEdit(props) {
 export default connect(
         (state) => {
                 return {
-                      
-                        categoryList: state.categoriesReducer.categories,            
+
+                        categoryList: state.categoriesReducer.categories,
                         currentProduct: state.productReducer.currentProduct
 
 

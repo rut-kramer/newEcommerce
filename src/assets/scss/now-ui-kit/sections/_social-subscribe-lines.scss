@@ -1,12 +1,12 @@
 .social-line-big-icons{
     [class*="col-"]{
         border-right: 1px solid $light-gray;
-
+        
         &:last-child{
             border: 0;
         }
     }
-
+    
     .btn{
         margin: 0;
         width: 100%;
@@ -14,7 +14,7 @@
         padding-bottom: 30px !important;
         height: auto;
         border: 0;
-
+        
         .fab{
             font-size: 25px;
         }
@@ -27,24 +27,24 @@
 
 .subscribe-line{
     padding: 15px * 2 0;
-
+    
     .card{
         margin-top: 54px;
-
+        
         .card-block{
             min-height: auto;
         }
     }
     &.subscribe-line-image{
         position: relative;
-
+        
         background-position: center center;
         background-size: cover;
-
+        
         .description{
             color: $opacity-8;
         }
-
+        
         .title{
             color: $white-color;
         }
@@ -59,7 +59,7 @@
             content: "";
             background-color: rgba(0,0,0,.66);
         }
-
+        
         .container{
             z-index: 2;
             position: relative;
@@ -74,7 +74,7 @@
 .social-line-black,
 .subscribe-line-black{
     background-color: $black-color;
-
+    
     [class*="col-"]{
         border-color: rgba(255, 255, 255, 0.1);
     }
@@ -85,7 +85,7 @@
         h1,h2,h3,h4,h5,h6{
             color: initial;
         }
-
+        
         .btn.btn-simple{
             border: 0;
         }
