@@ -36,7 +36,7 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
 
-
+import $ from 'jquery';
 
 //images
 
@@ -233,12 +233,15 @@ function  callPager()
                         <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.products.length} Results</div>
                         </Col>
                         <Col md="6">
-{/*                         
                         <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
-                          > */}
-                            <PaginationItem>
+                          >    
+                        <Pagination
+                            className="pagination pagination-info justify-content-end pt-2"
+                            listClassName="pagination-info justify-content-center"
+                          >
+                            {/* <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
@@ -251,9 +254,11 @@ function  callPager()
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem> 
-                             <div className="Apprs"> 
- <Carousel  itemsToShow={1}>
+                            </PaginationItem>  */}
+                           
+                             {/* <div className="Apprs">  */}
+ {/* <Carousel  itemsToShow={1}> */}
+ <div id="carousel" class="slider">
                              {arrPager&&arrPager.map((item, index) => ( 
                       <item key={index}> 
                         <PaginationItem
@@ -268,9 +273,10 @@ function  callPager()
                             </PaginationItem>
                             </item>
                   ))}  
-</Carousel>
-</div>
-                            <PaginationItem 
+                  </div>
+{/* </Carousel> */}
+{/* </div> */}
+                            {/* <PaginationItem 
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -286,8 +292,9 @@ function  callPager()
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                          {/* </Pagination> */}
-                          
+                        */}
+                          </Pagination>
+                            </Pagination>
                         </Col>
                       </Row> 
                     </Col>
