@@ -19,25 +19,28 @@
 .word-icon-upload-my-file{
     color: white;
 }
-.upload-my-file:hover{
-    background-color:  rgba(0, 0, 0, 0.5);
-}
-.upload-my-file-div{
-    /* border-bottom:3px #FE5196 solid; */
+.upload-my-file-div {
+    position: relative;
     width: 7rem;
     height:7rem;
     margin: 0;
-}
-.upload-my-file-div:hover{
-   /* opacity: .2;
-   filter: alpha(opacity=50);
-   background-color: rgba(0, 0, 0, 0.5);
-   transition: all 1s;
-   -webkit-transition: all 1s; */
-   /* background-color: black;
-   opacity:0.7; */
-   background:rgba(0,0,0,0.6);
-    opacity: 0.8;
-    /* z-index:10; */
-}
+  }
+  .upload-my-file-div img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.048);
+    z-index: 9999;
+    width: 7rem;
+    height:7rem;
+  }
+  .upload-my-file-div:hover .overlay{
+    display: block;
+  }
+
 

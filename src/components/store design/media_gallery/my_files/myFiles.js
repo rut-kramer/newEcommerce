@@ -33,6 +33,7 @@ function MyFiles(props) {
 
                             <div  className="upload-my-file-div" style={{ display: "inline-block"}} onClick={hideOrShow}>
                                 <img className="img-img" src={imgImg} style={{borderBottom: showWindow ? '3px #FE5196 solid' : null }}/>
+                                <div className="overlay" style={{backgroundColor: showWindow ? 'rgba(0, 0, 0, 0.281)' : null }}/>
                             </div>
                         </div>
                     </Col>
