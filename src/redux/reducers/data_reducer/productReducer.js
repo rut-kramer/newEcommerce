@@ -40,6 +40,9 @@ const product = {
 
         addNewProduct(state, action) {
                 state.products.push(action.payload);
+                if(action.payload.featured===true)
+                state.featuredProducts.push(action.payload)
+
         },
         deleteOldProduct(state, action) {
                 state.products = state.products.filter(x => x._id !== action.payload);
