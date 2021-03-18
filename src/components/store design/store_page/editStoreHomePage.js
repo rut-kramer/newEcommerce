@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { connect } from "react-redux";
 import { actions } from "../../../redux/action"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Carousel from 'react-elastic-carousel'
+// import Carousel from 'react-elastic-carousel'
 // import '../../App.css';
 import FitureProduct from './fitureProductToHomePage';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';

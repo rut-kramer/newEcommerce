@@ -26,7 +26,7 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
- import Carousel from 'react-elastic-carousel'
+//  import Carousel from 'reacst-elastic-carousel'
  
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
