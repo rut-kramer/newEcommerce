@@ -22,11 +22,12 @@ import {
   Row,
   Col,
   UncontrolledTooltip,
+  // Carousel,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
-
-
+//  import Carousel from 'reacst-elastic-carousel'
+ 
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
 import FilteredProducts from "../filteredProducts";
@@ -35,7 +36,7 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
 
-
+import $ from 'jquery';
 
 //images
 
@@ -471,12 +472,15 @@ function CategoryBullcommerce(props) {
                         <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
-
-                          <Pagination
+                        <Pagination
+                            className="pagination pagination-info justify-content-end pt-2"
+                            listClassName="pagination-info justify-content-center"
+                          >    
+                        <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
-                            <PaginationItem>
+                            {/* <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
@@ -489,23 +493,29 @@ function CategoryBullcommerce(props) {
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem>
-
-                            {arrPager && arrPager.map((item, index) => (
-
-                              <PaginationItem
-                                className={degelBtn == index ? "active" : ""}
+                            </PaginationItem>  */}
+                           
+                             {/* <div className="Apprs">  */}
+ {/* <Carousel  itemsToShow={1}> */}
+ {/* <div id="carousel" class="slider"> */}
+                             {arrPager&&arrPager.map((item, index) => ( 
+                      <item key={index}> 
+                        <PaginationItem
+                             className={degelBtn == index ? "active" : ""}
+                            >
+                              <PaginationLink
+                                href="#pablo"
+                                onClick={(e) => {e.preventDefault();changePageNum(index)}}
                               >
-                                <PaginationLink
-                                  href="#pablo"
-                                  onClick={(e) => { e.preventDefault(); changePageNum(index) }}
-                                >
-                                  {item.index}
-                                </PaginationLink>
-                              </PaginationItem>
-
-                            ))}
-                            <PaginationItem
+                                {item.index}
+                        </PaginationLink>
+                            </PaginationItem>
+                            </item>
+                  ))}  
+                  {/* </div> */}
+{/* </Carousel> */}
+{/* </div> */}
+                            {/* <PaginationItem 
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -521,7 +531,9 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
+                        */}
                           </Pagination>
+                            </Pagination>
                         </Col>
                       </Row>
                     </Col>
@@ -530,7 +542,6 @@ function CategoryBullcommerce(props) {
               </Row>
             </Container>
           </div>
-
         </div>
       </div >
     </>

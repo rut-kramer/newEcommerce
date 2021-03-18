@@ -56,31 +56,31 @@ const items = [
 
 function ProductEdit(props) {
 
-
         const update = (event) => {
                 var u;
-                if (event.target.name === "featured")
-                        u = event.target.checked;
+                if(event.target.name==="featured"||event.target.name==="isStock"||event.target.name==="isDraft")          
+            
+                  u = event.target.checked;
                 else
-                        u = event.target.value
+                  u = event.target.value
                 props.setCurrentProduct({
-                        ...props.currentProduct,
-                        [event.target.name]: u
+                  ...props.currentProduct,
+                  [event.target.name]: u
                 });
-        }
-
-        const updateCategory = (event) => {
-                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
-                props.setCurrentProduct({
-                        ...props.currentProduct,
-                        category: k[0]._id
-                });
-        }
-
-        const Submit = () => {
-                props.editproduct(props.currentProduct);
-        }
-
+              }
+            
+                  const updateCategory = (event) => {
+                    let k=props.categoryList.filter(p=>p.categoryName==event.target.value)
+                    props.setCurrentProduct({
+                      ...props.currentProduct,
+                       category:k[0]._id
+                     });
+                   }
+            
+                const Submit = ()=>{
+                    props.editproduct(props.currentProduct);  
+                }
+       
         // carousel states and functions
         const [activeIndex, setActiveIndex] = useState(0);
         const [animating, setAnimating] = useState(false);
@@ -216,13 +216,22 @@ function ProductEdit(props) {
                                                                 </Carousel>
 
                                                         </Col>
-                                                        {props.currentProduct && <Col md="6" sm="12" id="titleAndContent" >
-                                                                <p style={{ fontSize: "18px" }}>
-                                                                        <input className="field__input" type="text" onChange={update} value={props.currentProduct.name} name="name" placeholder="name" />
-                                                                        <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={props.currentProduct.description} />
-                                                                        <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
-                                                                        <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={props.currentProduct.amount} />
-                                                                        <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={props.currentProduct.price} />
+                                                    {props.currentProduct &&    <Col md="6" sm="12" id="titleAndContent" >
+                                                                <p style={{ fontSize: "18px" }}>  
+                                                                <input className="field__input" type="text" onChange={update} value={props.currentProduct.name} name="name" placeholder="name" />
+                                                                <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={props.currentProduct.description} />
+                                                                 <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
+                                                                 <input className="field__input" type="number" placeholder="amount" name="amount" id="amount-in" onChange={update} value={props.currentProduct.amount} />
+                                                                 <input className="field__input" type="text" placeholder="price" name="price" id="price-in" onChange={update} value={props.currentProduct.price} />
+                                                                 <input className="field__input" type="text" onChange={update} name="salePrice" placeholder="salePrice" value={props.currentProduct.salePrice}  />
+                                                                 <input className="field__input" type="text" placeholder="weight" name="weight" id="description-in" onChange={update} value={props.currentProduct.weight}/>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft}  name="isDraft"></input>isDraft<br></br>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.isStock}  name="isStock"></input>isStock<br></br>
+                                                                 <input type="checkbox" onClick={update} checked={props.currentProduct.featured}  name="featured"></input>featured<br></br>
+                                                                 <label className="field__input"  for="video" >video</label>
+                                                                 <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video}/>
+                                                                 <label className="field__input"  for="photoGallery">photoGallery</label>
+                                                                 <input id="photoGallery" className="field__input" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
 
                                                                 </p>
                                                                 <select onChange={updateCategory} name="category" className="field__select" >
@@ -247,160 +256,8 @@ function ProductEdit(props) {
                                                         </Col>}
                                                 </Row>
                                         </div>
-                                        <div className="section" id="moreDetails">
-                                                <h3><b>DIMANTIONS</b></h3>
-                                                <Row>
-                                                        <Col md={5}>
-                                                                <Table borderless>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Widht(cm)</th>
-                                                                                <td>198</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Depth(cm)</th>
-                                                                                <td>96</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Widht(cm)</th>
-                                                                                <td>198</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Depth(cm)</th>
-                                                                                <td>96</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                </Table>
-                                                        </Col>
-                                                        <Col md={7}>
-                                                                <img src={sofaD} alt="sofaD" />
-                                                        </Col>
-                                                </Row>
-                                        </div>
-                                        <div className="section">
-                                                <div id="titleSimilar">
-                                                        <h3><b>Similar Products</b></h3>
-                                                        <h4>Lorem ipsum dolor sit amet, consectetur sadipscing</h4>
-                                                        <div className="arrows">
-                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-left']}>
-                                                                </FontAwesomeIcon>{" "}|{" "}
-                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-right']}>
-                                                                </FontAwesomeIcon>
-                                                        </div>
-                                                        <Row>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa1}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
-                                                                                                </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
-
-                                                                        {/* <div className="similarImg">
-                                                                                <img src={sofa1} alt="sofa1" />
-                                                                        </div> */}
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa2}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
-                                                                                                </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
-
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa3}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
-                                                                                                </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
-
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12}>
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa4}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
-                                                                                                </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
-
-                                                                </Col>
-                                                        </Row>
-                                                </div>
-                                        </div>
                                 </div>
                         </div>
-                        {/* </Col>
-                                </Row>
-                        </Container> */}
                 </>
         );
 }
