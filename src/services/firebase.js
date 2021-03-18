@@ -33,7 +33,7 @@ export const signInWithEmailAndPassword = (email, password) => {
     // createUserWithEmailAndPassword
     auth.signInWithEmailAndPassword(email, password)
         .then((user) => {
-       })
+        })
         .catch((error) => {
             // var errorCode = error.code;
             var errorMessage = error.message;
@@ -53,10 +53,10 @@ export const createUserWithEmailAndPassword = (email, password) => {
 
 // ...
 // export const logOut = () => {
-export const logOut = auth.signOut()
+export const logOut = auth.signOut();
   // .then(()=> {
   //   console.log('logged out')
-  //   // window.location.href='https://community.leader.codes/login'
+  //   // window.location.href='https://bullcommerce.shop/login'
   // }).catch((error) => {
   //   console.log(error.message)
   // })

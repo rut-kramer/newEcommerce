@@ -8,7 +8,7 @@ function Home() {
 
     return (
         <div>
-            <img id="home-img" src={homeImg} alt="homeImg" style={{ float: "left" }} />
+            <img id="home-img" src={homeImg} alt="homeImg" style={{ float: "left",maxWidth:'50%' }} />
             <div style={{ float: "left" }}>
                 <h1>Wellcome!!</h1>
                 <h2>Do you want to create your shop?</h2>
