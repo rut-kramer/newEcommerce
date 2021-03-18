@@ -13,6 +13,7 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
+  Button,
   // Row,
   // Col,
 } from "reactstrap";
@@ -66,8 +67,14 @@ function ScrollTransparentNavbar(props) {
           <div className="navbar-translate">
             <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
               <img alt="..."
-                src={props.objectFields.logo} className="logoHeader">
+                src={props.objectFields.logo} className="logoHeader"
+                onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+
+              >
               </img>
+              {/* <Button
+
+              >tt</Button> */}
             </NavbarBrand>
             <UncontrolledTooltip target="navbar-brand">
               To Home Store Page
@@ -142,6 +149,6 @@ const mapStateToProps = (state) => {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  setListMenu: (listMenu) => { dispatch(actions.setCategoryListMenu(listMenu)) },
+  changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

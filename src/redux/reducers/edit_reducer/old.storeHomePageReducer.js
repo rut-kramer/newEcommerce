@@ -50,9 +50,6 @@ const initialState = {
             titleCategory: "",
             titleProduct: "",
             textIntoCategory: "",
-
-
-
         },
 
         titleTextSize: {

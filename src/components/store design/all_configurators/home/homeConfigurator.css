@@ -1,0 +1,27 @@
+.tafritHomeConfig{
+    color: #EBEAEA;
+}
+.titleCollapse{
+    font-weight: normal;
+    text-transform: none
+}
+.titleCollapse a{
+    color: white !important;
+
+}
+.lineTafritHome{
+    width: 0.10rem;
+    height: 1.3rem;
+    background: transparent linear-gradient( 
+                100deg
+                , #FC894D 0%, #FE5196 100%)
+                 0% 0% no-repeat padding-box;
+}
+
+
+.Configurator-padding{
+    padding-left: 0px!important;
+    padding-right: 0px!important;
+    padding-bottom: 1.25rem !important;
+    padding-top: 0px !important;
+}

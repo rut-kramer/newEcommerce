@@ -482,20 +482,20 @@ function Product(props) {
 
 
 export default connect(
-    (state) => {
-            return {
-                products: state.productReducer.products,
+        (state) => {
+                return {
+                        products: state.productReducer.products,
 
 
-            }
-    },
-    (dispatch) => {
-            return {
-                 
-                addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
-                addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
-            }
-    },
+                }
+        },
+        (dispatch) => {
+                return {
+
+                        addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
+                        addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
+                }
+        },
 )(Product);
 
 

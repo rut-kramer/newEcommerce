@@ -59,7 +59,8 @@ function OpenStore(props) {
 
     const onSubmitStoreDetails = async (event) => {
         event.preventDefault()
-        // props.setSaveAllDetailsStore(storeDetails)
+        props.setTitle(storeDetails.storeName)
+
         await props.createNewStore({ "store": storeDetails, "file": fileToUpload })
         history.push("/" + storeDetails.urlRoute);
     }
@@ -171,6 +172,8 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+
+
             <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
 
         </>
@@ -190,7 +193,8 @@ const mapDispatchToProps = (dispatch) => ({
     setAllOrders: (e) => dispatch(actions.setAllOrders(e)),
     setCategories: (e) => dispatch(actions.setCategories(e)),
     setAttribute: (e) => dispatch(actions.setAttribute(e)),
-    setProducts: (e) => dispatch(actions.setProducts(e))
+    setProducts: (e) => dispatch(actions.setProducts(e)),
+    setTitle: (e) => dispatch(actions.setTitle(e)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);

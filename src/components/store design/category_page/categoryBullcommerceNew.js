@@ -94,10 +94,10 @@ function CategoryBullcommerce(props) {
     };
 
   }, []);
-useEffect(()=>{
-  callPager()
+  useEffect(() => {
+    callPager()
 
-},[props.filterProducts])
+  }, [props.filterProducts])
   const numOfPage = 3
   const [arrPager, setArrPager] = useState([])
   let arrTemp = []
@@ -394,13 +394,14 @@ useEffect(()=>{
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": item,
-                                    "amount": 1
-                                  }
-                                )}
-
+                                onClick={() => {
+                                  props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    });
+                                  props.cartPanal_open()
+                                }}
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                 <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
@@ -419,10 +420,11 @@ useEffect(()=>{
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224089"
+                                onClick={() => props.w3_open(item)}
 
-                                >
+                              >
 
-                                  <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
+                                <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
                               </Button>
                               <UncontrolledTooltip
@@ -433,15 +435,15 @@ useEffect(()=>{
                                 To View
         </UncontrolledTooltip>
 
-                              </CardFooter>
-                            </CardBody>
-                          </Card>
-                        </Col>
-                      ))
+                            </CardFooter>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    ))
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
+                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
 
