@@ -28,12 +28,12 @@ function TopFrame(props,{setFlagCon}) {
 
     return(
         <div
-        position="fixed"
-        className="MuiAppBar-root MuiPaper-elevation4"
-        style={{ backgroundColor: '#fff', color: 'black' }}>
+            position="fixed"
+            className="MuiAppBar-root MuiPaper-elevation4"
+            style={{ backgroundColor: '#fff', color: 'black' }}>
 
-        <div className="row">
-            <button
+            <div className="row">
+                {/* <button
                 color="inherit"
                 aria-label="open drawer"
                 onClick={setFlagCon}
@@ -46,50 +46,50 @@ function TopFrame(props,{setFlagCon}) {
                     border: "none",
                     padding: "5px",
                     marginLeft: "10px"}}>
-                {/* <MenuIcon /> */}
                     <h2>=</h2> 
-                </button>
-                <Link to="/home">
-                    <img alt="logo" src={appleIcon} style={{maxWidth: "24%"}}></img>
-                </Link>
-                <button onClick={()=>{     
-                    // props.history.push(`/`) 
-                     logOut;
-                     props.setUser("");
-                }}>Sing Out</button>
-                <h6>{props.user&&props.user.username} </h6>
-                                                                                                                   <Select 
-                                                                                                                         width="160px"
+                </button> */}
 
-                                                                                                                        className="react-select selectStor"
-                                                                                                                        classNamePrefix="react-select"
-                                                                                                
-                                                                                                                        onChange={(e) => 
-                                                                                                                            {
-                                                                                                                            debugger;
-                                                                                                                            funcReset(e.value)}
-                                                                                                                        }
-                                                                                                                        options={
-                                                                                                                            
-                                                                                                                                props.stores.map((sto, index) => {
-                                                                                                                                    return { value: sto, label: sto.storeName }
-                                                                                                                                })
-                                                                                                                            //   ,  { value: "+", label:"create new..." }
-                                                                                                                              
-                                                                                                                            }
-                                                                                                                         placeholder={props.storeCurrent.storeName}
-                                                                                                                        // value={colorSelect}
-                                                                                                                >
-                                                                                                                </Select>
-    <div onClick={()=>{
-          props.history.push(`/openStore`)
-    }}>
-        <FontAwesomeIcon
-                                                                                                                  icon={['fas','plus']}>
-                                                                                                              </FontAwesomeIcon></div>
-                                                                                                                
+
+                <button
+                    // color="inherit"
+                    aria-label="open drawer"
+                    onClick={props.setFlagCon}
+                    //edge="end"
+                    style={{
+                        width: "64px",
+                        height: "50px",
+                        opacity: 1,
+                        backgroundColor: "#ffffff",
+                        border: "none",
+                        padding: "5px",
+                        marginLeft: "1%"
+                    }}>
+                    <FontAwesomeIcon style={{ fontSize: "25px" }} icon={['fas', 'bars']}></FontAwesomeIcon>
+                </button>
+
+
+                <Link to="/home">
+                    <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
+                </Link>
+
+                {/* <button onClick={() => {
+                    // props.history.push(`/`) 
+                    //  logOut;//
+                    props.setUser("");
+                }}>Sing Out</button> */}
+                <div style={{ marginLeft: "67%", fontSize: "24px" }}>
+                    {props.user && props.user.username} &nbsp;
+                <Link to="/" style={{ fontSize: "34px", color: 'black' }}
+                        className="tooltip-TF-LO"
+                        onClick={() => {
+                            props.setUser("");
+                        }}>
+                        <FontAwesomeIcon icon={['fas', 'user-circle']}></FontAwesomeIcon>
+                        <span className="tooltiptext">Sing Out</span>
+                    </Link>
+                </div>
+            </div>
         </div>
-    </div>
     )
 }
 

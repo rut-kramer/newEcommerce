@@ -142,330 +142,334 @@ function Product(props) {
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
                         <div className="wrapper">
                                 <div className="main">
-                                        <div className="section" id="productDetails">
-                                                <Row>
-                                                        <Col id="productImage" md="6" sm="12">
-                                                                <Carousel
-                                                                        activeIndex={activeIndex}
-                                                                        next={next}
-                                                                        previous={previous}
-                                                                        margin={0}
-                                                                        style={{ height: "100%", marginTop: 0 + "px !important" }}
+                                        <Row>
+                                                <Col sm="12" md={{ size: 10, offset: 1 }}>
+                                                        <div className="section" id="productDetails">
+                                                                <Row>
+                                                                        <Col id="productImage" md="6" sm="12">
+                                                                                <Carousel
+                                                                                        activeIndex={activeIndex}
+                                                                                        next={next}
+                                                                                        previous={previous}
+                                                                                        margin={0}
+                                                                                        style={{ height: "100%", marginTop: 0 + "px !important" }}
 
-                                                                >
-                                                                        <CarouselIndicators
-                                                                                items={items}
-                                                                                activeIndex={activeIndex}
-                                                                                onClickHandler={goToIndex}
-                                                                        />
-                                                                        {items.map((item) => {
-                                                                                return (
-                                                                                        <CarouselItem
-                                                                                                onExiting={onExiting}
-                                                                                                onExited={onExited}
-                                                                                                key={item.src}
+                                                                                >
+                                                                                        <CarouselIndicators
+                                                                                                items={items}
+                                                                                                activeIndex={activeIndex}
+                                                                                                onClickHandler={goToIndex}
+                                                                                        />
+                                                                                        {items.map((item) => {
+                                                                                                return (
+                                                                                                        <CarouselItem
+                                                                                                                onExiting={onExiting}
+                                                                                                                onExited={onExited}
+                                                                                                                key={item.src}
+                                                                                                        >
+
+                                                                                                                <img
+                                                                                                                        src={item.src}
+                                                                                                                        alt={item.altText}
+                                                                                                                        className="d-block img-raised"
+                                                                                                                />
+                                                                                                        </CarouselItem>
+                                                                                                );
+                                                                                        })}
+                                                                                        <a
+                                                                                                className="carousel-control-prev"
+                                                                                                data-slide="prev"
+                                                                                                href="#pablo"
+                                                                                                onClick={(e) => {
+                                                                                                        e.preventDefault();
+                                                                                                        previous();
+                                                                                                }}
+                                                                                                role="button"
                                                                                         >
+                                                                                                <Button
+                                                                                                        className="btn-icon btn-round"
+                                                                                                        name="button"
+                                                                                                        size="sm"
+                                                                                                        type="button"
+                                                                                                        backgroundColor="transparent"
+                                                                                                >
+                                                                                                        <FontAwesomeIcon icon={['fas', 'chevron-left']}>
+                                                                                                        </FontAwesomeIcon>
+                                                                                                </Button>
+                                                                                        </a>
+                                                                                        <a
+                                                                                                className="carousel-control-next"
+                                                                                                data-slide="next"
+                                                                                                href="#pablo"
+                                                                                                onClick={(e) => {
+                                                                                                        e.preventDefault();
+                                                                                                        next();
+                                                                                                }}
+                                                                                                role="button"
+                                                                                        >
+                                                                                                <Button
+                                                                                                        className="btn-icon btn-round"
+                                                                                                        name="button"
+                                                                                                        size="sm"
+                                                                                                        type="button"
+                                                                                                        backgroundColor="transparent"
+                                                                                                >
+                                                                                                        <FontAwesomeIcon icon={['fas', 'chevron-right']}>
+                                                                                                        </FontAwesomeIcon>                                                                                </Button>
+                                                                                        </a>
+                                                                                </Carousel>
 
-                                                                                                <img
-                                                                                                        src={item.src}
-                                                                                                        alt={item.altText}
-                                                                                                        className="d-block img-raised"
-                                                                                                />
-                                                                                        </CarouselItem>
-                                                                                );
-                                                                        })}
-                                                                        <a
-                                                                                className="carousel-control-prev"
-                                                                                data-slide="prev"
-                                                                                href="#pablo"
-                                                                                onClick={(e) => {
-                                                                                        e.preventDefault();
-                                                                                        previous();
-                                                                                }}
-                                                                                role="button"
-                                                                        >
-                                                                                <Button
-                                                                                        className="btn-icon btn-round"
-                                                                                        name="button"
-                                                                                        size="sm"
-                                                                                        type="button"
-                                                                                        backgroundColor="transparent"
-                                                                                >
-                                                                                        <FontAwesomeIcon icon={['fas', 'chevron-left']}>
-                                                                                        </FontAwesomeIcon>
-                                                                                </Button>
-                                                                        </a>
-                                                                        <a
-                                                                                className="carousel-control-next"
-                                                                                data-slide="next"
-                                                                                href="#pablo"
-                                                                                onClick={(e) => {
-                                                                                        e.preventDefault();
-                                                                                        next();
-                                                                                }}
-                                                                                role="button"
-                                                                        >
-                                                                                <Button
-                                                                                        className="btn-icon btn-round"
-                                                                                        name="button"
-                                                                                        size="sm"
-                                                                                        type="button"
-                                                                                        backgroundColor="transparent"
-                                                                                >
-                                                                                        <FontAwesomeIcon icon={['fas', 'chevron-right']}>
-                                                                                        </FontAwesomeIcon>                                                                                </Button>
-                                                                        </a>
-                                                                </Carousel>
-
-                                                        </Col>
-                                                        <Col md="6" sm="12" id="titleAndContent" >
-                                                                <h4>
-                                                                        <b>
-                                                                                {product.name}
-                                                                                {/* A two-seater sofa in a modern design upholstered
+                                                                        </Col>
+                                                                        <Col md="6" sm="12" id="titleAndContent" >
+                                                                                <h4>
+                                                                                        <b>
+                                                                                                {product.name}
+                                                                                                {/* A two-seater sofa in a modern design upholstered
                                                                                 in a velvec fubric on the Quito-mustard model */}
-                                                                        </b>
-                                                                </h4>
-                                                                <p style={{ fontSize: "18px" }}>
-                                                                        {product.description}
-                                                                        {/* Lorem Ipsum dolor sit amet, consectetur sadipscing elit, sed
+                                                                                        </b>
+                                                                                </h4>
+                                                                                <p style={{ fontSize: "18px" }}>
+                                                                                        {product.description}
+                                                                                        {/* Lorem Ipsum dolor sit amet, consectetur sadipscing elit, sed
                                                                         diam nonumy eirmod tempor invidunt ut labore et dolore
                                                                         magna aliquy erat, sed diam nonumy eirmod, At vero eos et. */}
-                                                                </p>
-                                                                {(Array.isArray(product.attributes) &&
-                                                                        product.attributes.length) ?
-                                                                        product.attributes.map((item, index) => (
+                                                                                </p>
+                                                                                {(Array.isArray(product.attributes) &&
+                                                                                        product.attributes.length) ?
+                                                                                        product.attributes.map((item, index) => (
 
-                                                                                <div key={index} className="d productColors">
-                                                                                        <h4><b>{item.attribute.name}:</b></h4>
-                                                                                        <div>
-                                                                                                {item.attribute.name === "Color" ?
-                                                                                                        <>
-                                                                                                                {item.terms.map((term, index) => (
-                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
-                                                                                                                ))}
-                                                                                                                <div className="color" ></div>
-                                                                                                        </> :
-                                                                                                        <>
-                                                                                                                <Select
-                                                                                                                        className="react-select"
-                                                                                                                        classNamePrefix="react-select"
-                                                                                                                        name=""
-                                                                                                                        // onChange={(e) => setColorSelect(e.target.value)}
-                                                                                                                        options={
-                                                                                                                                item.terms.map((term, index) => {
-                                                                                                                                        return { value: index + 1, label: term.name }
-                                                                                                                                })
-                                                                                                                        }
-                                                                                                                        placeholder="Select color"
-                                                                                                                        value={colorSelect}
-                                                                                                                ></Select>
+                                                                                                <div key={index} className="d productColors">
+                                                                                                        <h4><b>{item.attribute.name}:</b></h4>
+                                                                                                        <div>
+                                                                                                                {item.attribute.name === "Color" ?
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
+                                                                                                                                ))}
+                                                                                                                                <div className="color" ></div>
+                                                                                                                        </> :
+                                                                                                                        <>
+                                                                                                                                <Select
+                                                                                                                                        className="react-select"
+                                                                                                                                        classNamePrefix="react-select"
+                                                                                                                                        name=""
+                                                                                                                                        // onChange={(e) => setColorSelect(e.target.value)}
+                                                                                                                                        options={
+                                                                                                                                                item.terms.map((term, index) => {
+                                                                                                                                                        return { value: index + 1, label: term.name }
+                                                                                                                                                })
+                                                                                                                                        }
+                                                                                                                                        placeholder="Select color"
+                                                                                                                                        value={colorSelect}
+                                                                                                                                ></Select>
 
-                                                                                                                {/* <select onchange={e => { }}>
+                                                                                                                                {/* <select onchange={e => { }}>
                                                                                                                         {item.terms.map((term, index) => (
                                                                                                                                 <option value={term.name} key={index} className="termItem">{term.name}</option>
                                                                                                                         ))}
                                                                                                                         <option value={""} key={"lastTerm"} className="termItem"></option>
                                                                                                                 </select> */}
-                                                                                                        </>
-                                                                                                }
-                                                                                        </div>
-                                                                                </div>
+                                                                                                                        </>
+                                                                                                                }
+                                                                                                        </div>
+                                                                                                </div>
 
-                                                                        ))
-                                                                        : <></>}
-                                                                <div className="d productPrice">
-                                                                        <h4><b>Price:</b></h4>
-                                                                        <span><del>290$</del></span>
-                                                                        <span>$ {product.price}</span>
-                                                                </div>
-                                                                <div className="d">
-                                                                        <h4><b>Quantity:</b></h4>
-                                                                        <div>
-                                                                                <Button size="sm" onClick={() => { setOrderAmount(orderAmount + 1) }}>
-                                                                                        <FontAwesomeIcon icon={['fas', 'plus']}>
-                                                                                        </FontAwesomeIcon>
-                                                                                </Button>{' '}
-                                                                                {orderAmount}{' '}
-                                                                                <Button size="sm" onClick={() => {
-                                                                                        if (orderAmount > 1)
-                                                                                                setOrderAmount(orderAmount - 1);
-                                                                                        else
-                                                                                                setOrderAmount(orderAmount)
-                                                                                }}>
-                                                                                        <FontAwesomeIcon icon={['fas', 'minus']}>
-                                                                                        </FontAwesomeIcon>
-                                                                                </Button>
-                                                                                <Button className="addToCart" outline size="sm"
-                                                                                        onClick={() => {
-                                                                                                props.addToCart({
-                                                                                                        "product": product,
-                                                                                                        "amount": orderAmount
-                                                                                                })
-                                                                                        }}>
-                                                                                        <FontAwesomeIcon icon={['fas', 'shopping-cart']}>
-                                                                                        </FontAwesomeIcon>
+                                                                                        ))
+                                                                                        : <></>}
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>Price:</b></h4>
+                                                                                        <span><del>290$</del></span>
+                                                                                        <span>$ {product.price}</span>
+                                                                                </div>
+                                                                                <div className="d">
+                                                                                        <h4><b>Quantity:</b></h4>
+                                                                                        <div>
+                                                                                                <Button size="sm" onClick={() => { setOrderAmount(orderAmount + 1) }}>
+                                                                                                        <FontAwesomeIcon icon={['fas', 'plus']}>
+                                                                                                        </FontAwesomeIcon>
+                                                                                                </Button>{' '}
+                                                                                                {orderAmount}{' '}
+                                                                                                <Button size="sm" onClick={() => {
+                                                                                                        if (orderAmount > 1)
+                                                                                                                setOrderAmount(orderAmount - 1);
+                                                                                                        else
+                                                                                                                setOrderAmount(orderAmount)
+                                                                                                }}>
+                                                                                                        <FontAwesomeIcon icon={['fas', 'minus']}>
+                                                                                                        </FontAwesomeIcon>
+                                                                                                </Button>
+                                                                                                <Button className="addToCart" outline size="sm"
+                                                                                                        onClick={() => {
+                                                                                                                props.addToCart({
+                                                                                                                        "product": product,
+                                                                                                                        "amount": orderAmount
+                                                                                                                })
+                                                                                                        }}>
+                                                                                                        <FontAwesomeIcon icon={['fas', 'shopping-cart']}>
+                                                                                                        </FontAwesomeIcon>
                         Add to cart
                         </Button>{' '}
-                                                                        </div>
-                                                                </div>
-                                                                <div className="d">
-                                                                        <b>
-                                                                                Dimantions
-                                                                        </b>
-                                                                </div>
-                                                        </Col>
-                                                </Row>
-                                        </div>
-                                        <div className="section" id="moreDetails">
-                                                <h3><b>DIMANTIONS</b></h3>
-                                                <Row>
-                                                        <Col md={5}>
-                                                                <Table borderless>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Widht(cm)</th>
-                                                                                <td>198</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Depth(cm)</th>
-                                                                                <td>96</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Widht(cm)</th>
-                                                                                <td>198</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Depth(cm)</th>
-                                                                                <td>96</td>
-                                                                        </tr>
-                                                                        <tr>
-                                                                                <th>Height(cm)</th>
-                                                                                <td>80</td>
-                                                                        </tr>
-                                                                </Table>
-                                                        </Col>
-                                                        <Col md={7}>
-                                                                <img src={sofaD} alt="sofaD" />
-                                                        </Col>
-                                                </Row>
-                                        </div>
-                                        <div className="section">
-                                                <div id="titleSimilar">
-                                                        <h3><b>Similar Products</b></h3>
-                                                        <h4>Lorem ipsum dolor sit amet, consectetur sadipscing</h4>
-                                                        <div className="arrows">
-                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-left']}>
-                                                                </FontAwesomeIcon>{" "}|{" "}
-                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-right']}>
-                                                                </FontAwesomeIcon>
-                                                        </div>
-                                                        <Row>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa1}
-                                                                                                ></img>
-                                                                                        </a>
+                                                                                        </div>
                                                                                 </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
+                                                                                <div className="d">
+                                                                                        <b>
+                                                                                                Dimantions
+                                                                        </b>
+                                                                                </div>
+                                                                        </Col>
+                                                                </Row>
+                                                        </div>
+                                                        <div className="section" id="moreDetails">
+                                                                <h3><b>DIMANTIONS</b></h3>
+                                                                <Row>
+                                                                        <Col md={5}>
+                                                                                <Table borderless>
+                                                                                        <tr>
+                                                                                                <th>Height(cm)</th>
+                                                                                                <td>80</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Widht(cm)</th>
+                                                                                                <td>198</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Depth(cm)</th>
+                                                                                                <td>96</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Height(cm)</th>
+                                                                                                <td>80</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Widht(cm)</th>
+                                                                                                <td>198</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Depth(cm)</th>
+                                                                                                <td>96</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                                <th>Height(cm)</th>
+                                                                                                <td>80</td>
+                                                                                        </tr>
+                                                                                </Table>
+                                                                        </Col>
+                                                                        <Col md={7}>
+                                                                                <img src={sofaD} alt="sofaD" />
+                                                                        </Col>
+                                                                </Row>
+                                                        </div>
+                                                        <div className="section">
+                                                                <div id="titleSimilar">
+                                                                        <h3><b>Similar Products</b></h3>
+                                                                        <h4>Lorem ipsum dolor sit amet, consectetur sadipscing</h4>
+                                                                        <div className="arrows">
+                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-left']}>
+                                                                                </FontAwesomeIcon>{" "}|{" "}
+                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-right']}>
+                                                                                </FontAwesomeIcon>
+                                                                        </div>
+                                                                        <Row>
+                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                        <Card className="card-product card-plain">
+                                                                                                <div className="card-image" className="similarImg">
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <img
+                                                                                                                        alt="..."
+                                                                                                                        src={sofa1}
+                                                                                                                ></img>
+                                                                                                        </a>
                                                                                                 </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
+                                                                                                <CardBody>
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                        </a>
+                                                                                                        <CardFooter>
+                                                                                                                <div className="price-container">
+                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                </div>
+                                                                                                        </CardFooter>
+                                                                                                </CardBody>
+                                                                                        </Card>
 
-                                                                        {/* <div className="similarImg">
+                                                                                        {/* <div className="similarImg">
                                                                                 <img src={sofa1} alt="sofa1" />
                                                                         </div> */}
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa2}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
+                                                                                </Col>
+                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                        <Card className="card-product card-plain">
+                                                                                                <div className="card-image" className="similarImg">
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <img
+                                                                                                                        alt="..."
+                                                                                                                        src={sofa2}
+                                                                                                                ></img>
+                                                                                                        </a>
                                                                                                 </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
+                                                                                                <CardBody>
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                        </a>
+                                                                                                        <CardFooter>
+                                                                                                                <div className="price-container">
+                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                </div>
+                                                                                                        </CardFooter>
+                                                                                                </CardBody>
+                                                                                        </Card>
 
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12} >
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa3}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
+                                                                                </Col>
+                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                        <Card className="card-product card-plain">
+                                                                                                <div className="card-image" className="similarImg">
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <img
+                                                                                                                        alt="..."
+                                                                                                                        src={sofa3}
+                                                                                                                ></img>
+                                                                                                        </a>
                                                                                                 </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
+                                                                                                <CardBody>
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                        </a>
+                                                                                                        <CardFooter>
+                                                                                                                <div className="price-container">
+                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                </div>
+                                                                                                        </CardFooter>
+                                                                                                </CardBody>
+                                                                                        </Card>
 
-                                                                </Col>
-                                                                <Col lg={3} md={2} sm={12}>
-                                                                        <Card className="card-product card-plain">
-                                                                                <div className="card-image" className="similarImg">
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <img
-                                                                                                        alt="..."
-                                                                                                        src={sofa4}
-                                                                                                ></img>
-                                                                                        </a>
-                                                                                </div>
-                                                                                <CardBody>
-                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                        </a>
-                                                                                        <CardFooter>
-                                                                                                <div className="price-container">
-                                                                                                        <span className="price">$ 150</span>
+                                                                                </Col>
+                                                                                <Col lg={3} md={2} sm={12}>
+                                                                                        <Card className="card-product card-plain">
+                                                                                                <div className="card-image" className="similarImg">
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <img
+                                                                                                                        alt="..."
+                                                                                                                        src={sofa4}
+                                                                                                                ></img>
+                                                                                                        </a>
                                                                                                 </div>
-                                                                                        </CardFooter>
-                                                                                </CardBody>
-                                                                        </Card>
+                                                                                                <CardBody>
+                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                        </a>
+                                                                                                        <CardFooter>
+                                                                                                                <div className="price-container">
+                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                </div>
+                                                                                                        </CardFooter>
+                                                                                                </CardBody>
+                                                                                        </Card>
 
-                                                                </Col>
-                                                        </Row>
-                                                </div>
-                                        </div>
+                                                                                </Col>
+                                                                        </Row>
+                                                                </div>
+                                                        </div>
+                                                </Col>
+                                        </Row>
                                 </div>
                         </div>
                         {/* </Col>
@@ -478,20 +482,20 @@ function Product(props) {
 
 
 export default connect(
-    (state) => {
-            return {
-                products: state.productReducer.products,
+        (state) => {
+                return {
+                        products: state.productReducer.products,
 
 
-            }
-    },
-    (dispatch) => {
-            return {
-                 
-                addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
-                addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
-            }
-    },
+                }
+        },
+        (dispatch) => {
+                return {
+
+                        addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
+                        addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
+                }
+        },
 )(Product);
 
 

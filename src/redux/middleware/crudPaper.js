@@ -6,7 +6,7 @@ import $ from 'jquery';
 //4
 export const getAllPaper = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_PAPER') {
-         axios.get('https://community.leader.codes/api/papers/getAllPapersOfStore/'+action.payload)
+         axios.get('https://bullcommerce.shop/api/papers/getAllPapersOfStore/'+action.payload)
             .then(res => {
                  dispatch(actions.setPapers(res.data))
             }).catch(err => console.log("errrrrrrr", err));
@@ -27,7 +27,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
                    
                     });
                 $.ajax({
-                    url: "https://community.leader.codes/api/papers/newPaper",
+                    url: "https://bullcommerce.shop/api/papers/newPaper",
                     method: "post",
                     dataType: "json",
                     contentType: "application/json",
@@ -48,7 +48,7 @@ export const createNewPaper = ({ dispatch, getState }) => next => action => {
 
 export const deletePaper = ({ dispatch, getState }) => next => action => {
         if (action.type === 'DELETE_PAPER') {
-                axios.post('https://community.leader.codes/api/papers/deletePaper/' + action.payload)
+                axios.post('https://bullcommerce.shop/api/papers/deletePaper/' + action.payload)
                         .then(res => {
                             //סרוטטטט
                              dispatch(actions.deleteOldPaper(action.payload))
@@ -61,7 +61,7 @@ export const editPaper= ({ dispatch, getState }) => next => action => {
         if (action.type === 'EDIT_PAPER') {
                 var raw = JSON.stringify(action.payload);
                 $.ajax({
-                        url: `https://community.leader.codes/api/papers/editPaper/${action.payload._id}`,
+                        url: `https://bullcommerce.shop/api/papers/editPaper/${action.payload._id}`,
                         method: "post",
                         dataType: "json",
                         contentType: "application/json",
@@ -79,7 +79,7 @@ export const editPaper= ({ dispatch, getState }) => next => action => {
 // export const getCategoriesByStore = ({ dispatch, getState }) => next => action => {
 //         if (action.type === 'GET_CATEGORIES_BY_STORE') {
 
-//                 axios.get('https://community.leader.codes/api/stores/storeCategories/' + action.payload)
+//                 axios.get('https://bullcommerce.shop/api/stores/storeCategories/' + action.payload)
 //                         .then(res => {
 //                                 dispatch(actions.setCategories(res.data))
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Nis from "../../nis";
+// import Nis from "../../nis";
 
 // reactstrap components
 import {
@@ -12,7 +12,10 @@ import {
   CarouselIndicators,
 } from "reactstrap";
 
+import "./ecommerceHeader.css"
+import { actions } from "../../redux/action";
 import { connect } from "react-redux";
+
 
 
 //img xd
@@ -27,17 +30,63 @@ function EcommerceHeader(props) {
   const [items,setItem]= useState ([
     {
 
-      src: "url(" + img3  + ")",
+      src: "url(" +  img3  + ")",
+
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto" md="8">
+            <input
+              className="title-EcommerceHeader-input"
+              value={props.title ? props.title : "Defults"}
+              onChange={(e) => props.setTitle(e.target.value)}
+              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+              style={{
+                textAlign: props.alignment ? props.alignment : 'left',
+              }}
+            ></input>
+
+          </Col>
+        </Row>
+      ),
       altText: "",
       caption: "",
     },
     {
       src: "url( " + props.homeStoreDesign.image + ")",
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto text-center" md="8">
+            <input
+              className="title-EcommerceHeader-input"
+              value={props.title ? props.title : "Defults"}
+              onChange={(e) => props.setTitle(e.target.value)}
+              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+              style={{
+                textAlign: props.alignment ? props.alignment : 'left',
+              }}
+            ></input>
+          </Col>
+        </Row>
+      ),
       altText: "",
       caption: "",
     },
     {
       src: "url(" + interior + ")",
+      content: (
+        <Row>
+          <Col className="ml-auto mr-auto" md="8">
+            <input
+              className="title-EcommerceHeader-input"
+              value={props.title ? props.title : "Defults"}
+              onChange={(e) => props.setTitle(e.target.value)}
+              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+              style={{
+                textAlign: props.alignment ? props.alignment : 'center',
+              }}
+            ></input>          </Col>
+        </Row>
+      ),
       altText: "",
       caption: "",
     },
@@ -180,9 +229,14 @@ function EcommerceHeader(props) {
 const mapStateToProps = (state) => {
   return {
     objectFields: state.storeReducer.objectFields,
-    homeStoreDesign: state.storeHomeReducer.homeStoreDesign
+    homeStoreDesign: state.storeHomeReducer.homeStoreDesign,
+    title: state.bullPageEditReducer.title,
+    alignment: state.bullPageEditReducer.alignment
   }
 }
 const mapDispatchToProps = (dispatch) => ({
+  setTitle: (e) => dispatch(actions.setTitle(e)),
+  changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);
