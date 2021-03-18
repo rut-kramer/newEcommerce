@@ -60,16 +60,17 @@ function TopFrame(props, { setFlagCon }) {
                     //  logOut;//
                     props.setUser("");
                 }}>Sing Out</button> */}
-                <Link to="/ooooo" style={{ fontSize: "34px", marginLeft: "70%" }}
-                onClick={() => {
-                    // props.history.push(`/`) 
-                    //  logOut;//
-                    props.setUser("");
-                }}>Sing Out
+                <div style={{ marginLeft: "67%",fontSize: "24px"}}>
+                {props.user && props.user.username} &nbsp;
+                <Link to="/" style={{ fontSize: "34px", color:'black'}}
+                className="tooltip-TF-LO"
+                    onClick={() => {
+                        props.setUser("");
+                    }}>
                     <FontAwesomeIcon icon={['fas', 'user-circle']}></FontAwesomeIcon>
+                    <span className="tooltiptext">Sing Out</span>
                 </Link>
-
-                <h6>{props.user && props.user.username} </h6>
+                </div>
             </div>
         </div>
     )
