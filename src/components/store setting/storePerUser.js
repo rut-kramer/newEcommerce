@@ -7,9 +7,10 @@ import categoryReducer from '../../redux/reducers/data_reducer/categoryReducer';
 function StorePerUser(props) {
 
   function funcReset(item) {
-    props.setSoreCurrent(item);
+    props.setCurrentStore(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
+    props.getAllPaper(item._id)
     props.getAllAttributes(item._id)
   }
 
@@ -38,17 +39,17 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide"><label className="switch">
                     <input style={{ backgroundColor: 'black' }} className="switch__input" type="button" onClick={() => { deleteSto(itemy._id); }} />
                     <br></br>
-                    <button style={{ border: "none"}}>
+                    <button style={{ border: "none" }}>
                       <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
                       </i></button>
-                      <br/>
+                    <br />
                     <strong>מחק</strong>
                     {/* <span className="switch__content"></span> */}
-                    </label></div>
+                  </label></div>
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to={"/" + props.objectFields.urlRoute}>
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.storeName}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -82,12 +83,12 @@ export default connect(
     return {
       getStoreByUser: (id) => { dispatch(actions.getStoreByUser(id)) },
       setFilteredItems: (i) => { dispatch(actions.setFilteredItems(i)) },
-      setSoreCurrent: (i) => { ; dispatch(actions.setSaveAllStoreDetails(i)) },
+      setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
-      getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
+      getCategoriesByStore: (i) => {debugger; dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
-      getAllAttributes: (y) => dispatch(actions.getAllAttributes(y))
-
+      getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
+      getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
     }
   }
 

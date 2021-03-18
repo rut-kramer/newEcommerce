@@ -53,7 +53,8 @@ function Bullcommerce(props) {
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
                                         <Card className="card-product card-plain">
-                                            <Link to={"/" + props.objectFields.urlRoute + "/product/" + item.SKU}>
+                                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+
                                                 <div className="card-image Aheight">
                                                     <img
                                                         alt="..."
@@ -76,7 +77,6 @@ function Bullcommerce(props) {
                                                         id="tooltip719224088"
                                                         onClick={(e) => {
                                                             e.stopPropagation()
-                                                            debugger
                                                             props.addToCart(
                                                                 {
                                                                     "product": item,

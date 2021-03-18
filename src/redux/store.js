@@ -3,14 +3,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import { getAllCategories, createNewCategory, deleteCategory, editCategory, getCategoriesByStore } from './middleware/crudCategory'
 import { checkPermission, onAuthStateChanged, setUserId } from './middleware/crudLogin'
 import { newOrder, getOrdersByStore } from './middleware/crudOrder'
-import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct } from './middleware/crudProduct'
+import { getAllProducts, newProduct, addNewImageToProduct, deleteProduct, editproduct, oneProduct } from './middleware/crudProduct'
 import { createNewStore, getStoreByUser, deleteStore } from './middleware/crudStore'
 import { getTheLastUpdatedStorePerUser } from './middleware/crudUser'
-import { createNewPaper } from './middleware/crudPaper'
+import { createNewPaper, getAllPaper, deletePaper, editPaper } from './middleware/crudPaper'
 import { getAllAttributes, newAttributes, deleteAttributes, editAttribute } from './middleware/crudAttribute'
 import { uploadImage } from './middleware/crud'
 import productReducer from './reducers/data_reducer/productReducer';
-import paperReducer from './reducers/data_reducer/paperReducer'
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
 import cartReducer from './reducers/cartReducer';
 import ordersReducer from './reducers/data_reducer/ordersReducer';
@@ -27,13 +26,13 @@ import { addToCart, changeProductAmount } from "./middleware/crudCart"
 import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import { deleteTerms, newTerm } from './middleware/crudTerm';
-
+import quillReducer from './reducers/data_reducer/quillReducer';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
-        coinsReducer, storeReducer, wrapReducer, filterReducer, paperReducer,
+        coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
         attributeReducer, bullPageEditReducer
     })
 
@@ -64,6 +63,7 @@ const store = createStore(
             addNewImageToProduct,
             deleteProduct,
             editproduct,
+            oneProduct,
             //crudStore - פונקציות מ 
 
             createNewStore,
@@ -73,7 +73,7 @@ const store = createStore(
             //crudUser - פונקציות מ
             getTheLastUpdatedStorePerUser,
             deleteStore,
-            createNewPaper,
+            createNewPaper, getAllPaper, deletePaper, editPaper,
             addToCart,
             changeProductAmount,
             deleteAttributes, newAttributes, getAllAttributes, editAttribute,
@@ -83,5 +83,6 @@ const store = createStore(
 window.store = store;
 
 store.dispatch(actions.onAuthStateChanged());
+store.dispatch(actions.oneProduct())
 
 export default store;

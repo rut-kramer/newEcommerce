@@ -51,7 +51,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 
 
             $.ajax({
-                url: "https://community.leader.codes/api/stores/newStore",
+                url: "https://bullcommerce.shop/api/stores/newStore",
                 method: "post",
                 dataType: "json",
                 contentType: "application/json",
@@ -62,31 +62,32 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                     console.log(data)
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory1",
+                        "categoryName": "Default66Category1",
                         "color": "red", "masterCategory": null
                     }))
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory2",
+                        "categoryName": "Defaul66Category2",
                         "color": "green", "masterCategory": null
                     }))
                     dispatch(actions.createNewCategory({
                         "store": data._id,
-                        "categoryName": "DefaultCategory3",
+                        "categoryName": "Default66Category3",
                         "color": "blue", "masterCategory": null
-                    })).then((dataCategory) => {
-                        for (let index = 1; index < 9; index++) {
-                            dispatch(actions.addNewProducts({
-                                "name": "DefaultProduct" + index,
-                                "description": "The Best Product ",
-                                "SKU": "DefultSKU_" + index + "q",
-                                "category": dataCategory._id,
-                                "store": data._id,
-                                "price": "123",
-                                "featured": true
-                            }))
-                        }
-                    })
+                    }))
+                        .then((dataCategory) => {
+                            for (let index = 1; index < 3; index++) {
+                                dispatch(actions.addNewProducts({
+                                    "name": "DefaultProduct" + index,
+                                    "description": "The Best Product ",
+                                    "SKU": "DefultSKU_" + index + "q",
+                                    "category": dataCategory._id,
+                                    "store": data._id,
+                                    "price": "123",
+                                    "featured": true
+                                }))
+                            }
+                        })
                 },
 
 
@@ -105,7 +106,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
 export const getStoreByUser = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_STORE_BY_USER') {
 
-        axios.get('https://community.leader.codes/api/users/getAllStores/' + action.payload)
+        axios.get('https://bullcommerce.shop/api/users/getAllStores/' + action.payload)
             .then(res => {
                 dispatch(actions.setStorePerUser(res.data))
             })
@@ -115,7 +116,7 @@ export const getStoreByUser = ({ dispatch, getState }) => next => action => {
 }
 export const deleteStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_STORE') {
-        axios.post('https://community.leader.codes/api/stores/deleteStore/' + action.payload)
+        axios.post('https://bullcommerce.shop/api/stores/deleteStore/' + action.payload)
             .then(res => {
                 dispatch(actions.deleteOldStore(action.payload))
             });

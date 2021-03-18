@@ -57,7 +57,7 @@ const cartReducer = {
     state.cart.products = productsCart;
     // dispatch(actions.callcTotalPrice());
     // this.callcTotalPrice(state)
-    state.cart.totalPrice += action.payload.product.price;
+    state.cart.totalPrice += (action.payload.product.price * action.payload.amount);
 
   },
   pluseAmount(state, action) {

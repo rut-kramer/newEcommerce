@@ -3,6 +3,9 @@ import { Switch, Route, Link } from "react-router-dom";
 import Bullcommerce from '../store design/bullcommerce';
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
+// import Cart from '../store design/cart';
+import Product from '../store design/product_page/product';
+import Dnd from '../navbars/DndCategories'
 import Cart from '../store design/cart_page/cart';
 
 import { connect } from 'react-redux';
@@ -15,6 +18,15 @@ function Content(props) {
     return (
         <div className="Content">
             <Switch>
+                <Route path="/dnd" component={Dnd} />
+
+                {/* <Route path="/filter-category" component={CategoryByFilter} />
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <Route path="/:storeName/cart" component={Cart} />
+                <Route path="/:storeName/product" component={Product} />
+                <Route path="/:storeName" component={Temporary} /> */}
+
+                {/* <Switch> */}
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
             </Switch>

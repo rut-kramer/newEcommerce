@@ -83,11 +83,9 @@ function LoginPage(props) {
                     <div className="page-header header-filter" filter-color="blue">
                         <div
                             className="page-header-image"
-                            style={{
-                                backgroundImage: "url(" + background + ")",
-                            }}
                         ></div>
                         <div className="content" style={{ margin: 0 }}>
+
                             <Container>
                                 <Row>
                                     <Col className="ml-auto mr-auto" md="5">

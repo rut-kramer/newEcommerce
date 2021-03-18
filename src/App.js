@@ -2,19 +2,26 @@ import React from 'react';
 import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/login"
-import Home from "./components/home";
-import OpenStore from "./components/openStore"
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+// import Login from "./components/login"
+// import Home from "./components/home";
+// import OpenStore from "./components/openStore"
 import PrivateRoute from './PrivateRoute.js';
-import AddCategory from './components/store setting/category_managment/addCategory';
-import AddProduct from './components/store setting/product_management/addProduct';
-import EditProduct from './components/store setting/product_management/editProduct';
-import EditCategory from './components/store setting/category_managment/editCategory';
+import ProductNew from './components/store setting/product_management/newProduct';
+import ProductEdit from './components/store setting/product_management/productEdit';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import CartPanel from "./components/store design/cart_page/cart_panel"
 import Welcome from "./components/welcome"
+import EditPaper from './components/store setting/paper_managment/editPaper'
+import ShowPaper from './components/store setting/paper_managment/showPaper'
+
+import Upload from './components/modals/yeuditUploadImage';
+
+// import Product from "./components/store design/product_page/product";
+// import Cart from "./components/store design/cart";
+import QuickLook from './components/store design/quickLook'
+
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
@@ -35,23 +42,23 @@ function App() {
             </Route>
  */}
             <Route exact path="/">
-              <LoginHome />
-
               {/* <Home /> */}
+              <LoginHome />
             </Route>
             <Route path="/cartPanal"><CartPanel /></Route>
 
-            <Route exact path="/admin/category/add">
-              <AddCategory />
+            <Route exact path="/productNew">
+              <ProductNew />
             </Route>
-            <Route exact path="/admin/product/add">
-              <AddProduct />
+            <Route exact path="/productEdit">
+              <ProductEdit />
             </Route>
-            <Route exact path="/admin/product/edit">
-              <EditProduct />
+
+            <Route exact path="/paper">
+              <EditPaper></EditPaper>
             </Route>
-            <Route exact path="/admin/category/edit">
-              <EditCategory />
+            <Route exact path="/showPaper">
+              <ShowPaper></ShowPaper>
             </Route>
 
             <Route path="/login">
@@ -63,7 +70,6 @@ function App() {
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
-
         </div>
       </Router>
     </Provider >);

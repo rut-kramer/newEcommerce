@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { actions } from '../../../redux/action'
 import createAttribute from '../attribute_management/createAttribute';
 import '../product_management/crudProducts'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function CrudCategory(props) {
@@ -28,12 +29,20 @@ function CrudCategory(props) {
                                                 <div className="container__title crud_title title_md">Category</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
-                                                                <i className="la la-search "></i></button>
+                                                        <FontAwesomeIcon
+                                                             icon={['fas','search']}>
+                                                             </FontAwesomeIcon>
+                                                            
+                                                                </button>
                                                 </div>
                                                 <div className="container__new new js-new">
                                                      
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddCategory") }}>
-                                                                <i className="la la-plus-circle "></i>
+                                                   
+                                                             <FontAwesomeIcon
+                                                             icon={['fas','plus-circle']}>
+                                                             </FontAwesomeIcon>
+                                                               
                                                         </button>
                                                 </div>
                                         </div>
@@ -109,7 +118,9 @@ function CrudCategory(props) {
                                                                                                                         </div>
                                                                                                                         <div className="data__cell data__cell_action">
                                                                                                                                 <button onClick={() => { props.setcomponnet("EditCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
-                                                                                                                                        <i className="la la-ellipsis-h "></i>
+                                                                                                                                <FontAwesomeIcon
+                                                                                                                  icon={['fas','edit']}>
+                                                                                                              </FontAwesomeIcon>
                                                                                                                                 </button>
                                                                                                                         </div>
                                                                                                                 </div>
