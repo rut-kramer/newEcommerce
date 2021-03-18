@@ -150,6 +150,5 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

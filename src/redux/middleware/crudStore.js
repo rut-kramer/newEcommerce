@@ -80,7 +80,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                                 dispatch(actions.addNewProducts({
                                     "name": "DefaultProduct" + index,
                                     "description": "The Best Product ",
-                                    "SKU": "DefultSKU_" + index + "q",
+                                    "SKU": "DefultSKU_" + index + "m",
                                     "category": dataCategory._id,
                                     "store": data._id,
                                     "price": "123",
