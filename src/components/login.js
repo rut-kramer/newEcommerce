@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/img/now-logo.png";
-import background from "../assets/img/login.jpg";
 import googleIcon from "../assets/img/google.png";
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -33,9 +32,9 @@ function LoginPage(props) {
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
 
-    const [firstFocus, setFirstFocus] = React.useState(false);
-    const [lastFocus, setLastFocus] = React.useState(false);
-    React.useEffect(() => {
+    const [firstFocus, setFirstFocus] = useState(false);
+    const [lastFocus, setLastFocus] = useState(false);
+    useEffect(() => {
         document.body.classList.add("login-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");

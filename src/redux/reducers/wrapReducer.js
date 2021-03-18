@@ -7,6 +7,7 @@ const initialState = {
         currentPage: ""
     },
     currentComponent: "",
+    mainWidth: 0
 
 }
 
@@ -21,6 +22,9 @@ const wrapFunctions = {
     setCurrentComponent(state, action) {
         state.currentComponent = action.payload
     },
+    setMainWidth(state, action) {
+        state.mainWidth = action.payload
+    }
 
 }
 

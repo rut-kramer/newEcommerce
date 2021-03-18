@@ -21,7 +21,6 @@ const filter = {
                 state.minPrice = action.payload;
         },
         setFilterObject(state, action) {
-                debugger
                 state.filterObject.categories = action.payload.categories;
                 state.filterObject.attributes = action.payload.attributes;
         },

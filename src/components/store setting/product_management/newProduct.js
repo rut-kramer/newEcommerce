@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import sofa from "../../../assets/img/ia_300000012.png";
 import sofaSide from "../../../assets/img/ia_300000013.png";
 import sofaBack from "../../../assets/img/ia_300000015.png";
@@ -135,7 +135,7 @@ function reset()
         const [animating, setAnimating] = React.useState(false);
 
 
-        const [orderAmount, setOrderAmount] = React.useState(1)
+        const [orderAmount, setOrderAmount] = useState(1)
 
         const onExiting = () => {
                 setAnimating(true);
@@ -158,7 +158,7 @@ function reset()
                 setActiveIndex(newIndex);
         };
         // collapse states and functions
-        const [collapses, setCollapses] = React.useState([1]);
+        const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
                         setCollapses(collapses.filter((prop) => prop !== collapse));
@@ -167,10 +167,10 @@ function reset()
                 }
         };
         // select states and functions
-        const [colorSelect, setColorSelect] = React.useState(null);
-        const [sizeSelect, setSizeSelect] = React.useState(null);
-       
-        React.useEffect(() => {
+        const [colorSelect, setColorSelect] = useState(null);
+        const [sizeSelect, setSizeSelect] = useState(null);
+
+        useEffect(() => {
                 document.body.classList.add("product-page");
                 document.body.classList.add("sidebar-collapse");
                 document.documentElement.classList.remove("nav-open");
@@ -183,7 +183,7 @@ function reset()
         }, []);
         return (
                 <>
-                <h1>Add Product</h1>
+                        <h1>Add Product</h1>
 
                         {/* <Container className="p-0">
                                 <Row>
@@ -213,7 +213,7 @@ function reset()
                                                                                                 onExited={onExited}
                                                                                                 key={item.src}
                                                                                         >
-       <input className="form__file" type="file" />
+                                                                                                <input className="form__file" type="file" />
                                                                                                 <img
                                                                                                         src={item.src}
                                                                                                         alt={item.altText}
@@ -288,11 +288,10 @@ function reset()
                                                                 <select onChange={updateCategory} name="category" className="field__input field__select" >
                                                                     <option>בחר</option>
                                                                         {props.categoryList.map((item, index) => (
-                                                                     <option>{item.categoryName}</option>
-                                                                       ))}
+                                                                                <option>{item.categoryName}</option>
+                                                                        ))}
 
-                                                                       </select>
-
+                                                                </select>
                                                                 {(Array.isArray(product.attributes) &&
                                                                         product.attributes.length) ?
                                                                         product.attributes.map((item, index) => (

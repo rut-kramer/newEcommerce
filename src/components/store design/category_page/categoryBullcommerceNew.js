@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // reactstrap components
@@ -45,7 +45,7 @@ import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg";
 
 import { Alert } from 'reactstrap';
-import "../../alerts/alert.css";
+import "../../reactstrapComponents/alert.css";
 
 function CategoryBullcommerce(props) {
   // const item = {
@@ -59,16 +59,28 @@ function CategoryBullcommerce(props) {
     attributes: []
   });
 
-  const [visible, setVisible] = useState(true);
+
+  const [visibles, setVisibles] = useState([1]);
+
+  const changeVisible = (v) => {
+    if (visibles.includes(v)) {
+      setVisibles(visibles.filter((prop) => prop !== v));
+    } else {
+      setVisibles([...visibles, v]);
+    }
+  };
+
+  // const [visible, setVisible] = useState(true);
 
   const onDismiss = (alert) => {
     setVisible(false);
     let a;
     a = alerts;
-    let index = alerts.indexOf(alert);
+    let index = alerts.indexOf(x => x.alertContent === alert.alertContent);
     if (index > -1)
       a.splice(index, 1);
     setAlerts(a);
+
   };
 
 
@@ -95,11 +107,9 @@ function CategoryBullcommerce(props) {
     };
 
   }, []);
-  useEffect(() => {
-    callPager()
 
-  }, [props.filterProducts])
-  const numOfPage = 3
+  useEffect(() => { callPager() }, [props.filterProducts])
+  const numOfPage = 6
   const [arrPager, setArrPager] = useState([])
   let arrTemp = []
   const [pa1, setP1] = useState(1)
@@ -169,7 +179,6 @@ function CategoryBullcommerce(props) {
     else filteredProducts = props.storeProducts;
     //filter the filtered array by categories
     let filterByCategories = [];
-    debugger
     if (Array.isArray(filterObject.categories) && filterObject.categories.length > 0) {
       filterObject.categories.forEach(c => {
         filteredProducts.filter(p => {
@@ -187,6 +196,16 @@ function CategoryBullcommerce(props) {
       if (p.price >= min && p.price <= max)
         return p;
     });
+
+    let tempAlerts = alerts;
+    let length = tempAlerts.length;
+    changeVisible(length);
+    tempAlerts.splice(tempAlerts.findIndex(v => v.alertType === "price"), 1);
+
+    tempAlerts.push({ alertContent: "$" + min + " - $" + max, alertType: "price" });
+    console.log("alerts", tempAlerts);
+    setAlerts(tempAlerts);
+    // }
     // if (Array.isArray(filterProductsByPrice) && filterProductsByPrice.length > 0)
     filteredProducts = filterProductsByPrice;
     props.setFilteredProducts(filteredProducts);
@@ -202,7 +221,9 @@ function CategoryBullcommerce(props) {
       let ctgr = filterObject.categories;
       setFilterObject({ attributes: a, categories: ctgr });
       let tempAlerts = alerts;
-      tempAlerts.push(term.name);
+      let length = tempAlerts.length;
+      changeVisible(length);
+      tempAlerts.push({ alertContent: term.name, alertType: attribute });
       setAlerts(tempAlerts);
       console.log("a", alerts);
 
@@ -211,7 +232,7 @@ function CategoryBullcommerce(props) {
     }
     else {
       let a = filterObject.attributes;
-      a.splice(a.findIndex(v => v.term._d === term._d), 1);
+      a.splice(a.findIndex(v => v.term._id === term._id), 1);
 
       // const index = a.indexOf({ "attribute": attribute, "term": term });
       // if (index > -1)
@@ -220,7 +241,9 @@ function CategoryBullcommerce(props) {
       setFilterObject({ attributes: a, categories: ctgr });
 
       let tempAlerts = alerts;
-      tempAlerts.splice(tempAlerts.findIndex(v => v === term.name), 1);
+      let i = tempAlerts.findIndex(v => v.alertContent === term.name);
+      changeVisible(i + 1);
+      tempAlerts.splice(i, 1);
 
       setAlerts(tempAlerts);
       console.log("a", alerts);
@@ -238,7 +261,9 @@ function CategoryBullcommerce(props) {
       setFilterObject({ attributes: attrb, categories: c });
 
       let tempAlerts = alerts;
-      tempAlerts.push(category.categoryName);
+      let length = tempAlerts.length;
+      changeVisible(length);
+      tempAlerts.push({ alertContent: category.categoryName, alertType: category });
       setAlerts(tempAlerts);
       console.log("a", alerts);
       // props.setCategoriesFilterObject(c);
@@ -246,13 +271,14 @@ function CategoryBullcommerce(props) {
     else {
       let c = filterObject.categories;
       const index = c.indexOf(category);
+      changeVisible(index + 1);
       if (index > -1)
         c.splice(index, 1);
       let attrb = filterObject.attributes;
       setFilterObject({ attributes: attrb, categories: c });
 
       let tempAlerts = alerts;
-      tempAlerts.splice(tempAlerts.findIndex(v => v === category.categoryName), 1);
+      tempAlerts.splice(tempAlerts.findIndex(v => v.alertContent === category.categoryName), 1);
 
       setAlerts(tempAlerts);
       console.log("a", alerts);
@@ -327,8 +353,8 @@ function CategoryBullcommerce(props) {
                     <span style={{ float: "left" }} className="mr-2">Active filters:</span>
                     <div>
                       {alerts.map((item, index) => (
-                        <Alert key={index} className="alert__bullcommerce mr-2 mb-0 pb-0 pt-0 d-flex justify-content-center" color="#F5F5F5" isOpen={visible} toggle={() => onDismiss(item)}>
-                          {item}
+                        <Alert key={index} className="alert__bullcommerce mr-2 mb-0 pb-0 pt-0 d-flex justify-content-center" color="#F5F5F5" isOpen={visibles.includes(index + 1)} toggle={() => { changeVisible(index + 1) }}>
+                          {item.alertContent}
                         </Alert>
                       ))}
                     </div>
@@ -395,17 +421,16 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => {
-                                  props.addToCart(
-                                    {
-                                      "product": item,
-                                      "amount": 1
-                                    });
-                                  props.cartPanal_open()
-                                }}
+                                onClick={() => props.addToCart(
+                                  {
+                                    "product": item,
+                                    "amount": 1
+                                  }
+                                )}
+
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
-                                <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon>
+                                {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}
                                 <img alt="...."
                                   src={cart}></img>
                               </Button>
@@ -472,7 +497,7 @@ function CategoryBullcommerce(props) {
                            
                              {/* <div className="Apprs">  */}
  {/* <Carousel  itemsToShow={1}> */}
- <div id="carousel" class="slider">
+ {/* <div id="carousel" class="slider"> */}
                              {arrPager&&arrPager.map((item, index) => ( 
                       <item key={index}> 
                         <PaginationItem
@@ -487,7 +512,7 @@ function CategoryBullcommerce(props) {
                             </PaginationItem>
                             </item>
                   ))}  
-                  </div>
+                  {/* </div> */}
 {/* </Carousel> */}
 {/* </div> */}
                             {/* <PaginationItem 
