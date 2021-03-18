@@ -7,7 +7,7 @@ export const getTheLastUpdatedStorePerUser = ({ dispatch, getState }) => next =>
                 if (action.type === 'LAST_UPDATED_STORE') {
                          
                         $.ajax({
-                                url: "https://community.leader.codes/api/users/latestStoreOfUser/" + action.payload,
+                                url: "https://bullcommerce.shop/api/users/latestStoreOfUser/" + action.payload,
                                 method: "get",
                                 dataType: "json",
                                 contentType: "application/json",
@@ -32,7 +32,7 @@ export const getTheLastUpdatedStorePerUser = ({ dispatch, getState }) => next =>
 
 
 //                 $.ajax({
-//                         url: "https://community.leader.codes/api/users/getAllStores/" + action.payload,
+//                         url: "https://bullcommerce.shop/api/users/getAllStores/" + action.payload,
 //                         method: "get",
 //                         dataType: "json",
 //                         contentType: "application/json",
@@ -46,7 +46,7 @@ export const getTheLastUpdatedStorePerUser = ({ dispatch, getState }) => next =>
 //                         // }
 //                 });
 
-//                 // axios.get('https://community.leader.codes/api/users/getAllStores/' + action.payload)
+//                 // axios.get('https://bullcommerce.shop/api/users/getAllStores/' + action.payload)
 //                 //         .then(res => {
 //                 //                 console.log("gjhjet ", res.data);
 //                 //                 dispatch(actions.setStorePerUser(res.data))

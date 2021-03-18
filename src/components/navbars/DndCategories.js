@@ -69,7 +69,7 @@ function Dnd(props) {
                 display: 'flex',
                 padding: '10',
                 overflow: 'auto',
-                marginLeft: '80px',
+                // marginLeft: '80px',שמתי בהערה כי נראה מ יותר ומעוות את השורה
                 enabled: 'false',
 
         });

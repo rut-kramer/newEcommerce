@@ -3,16 +3,19 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './redux/store'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from "./components/login"
-import Home from "./components/home";
-import OpenStore from "./components/openStore"
+// import Login from "./components/login"
+// import Home from "./components/home";
+// import OpenStore from "./components/openStore"
 import PrivateRoute from './PrivateRoute.js';
-import AddCategory from './components/store setting/category_managment/addCategory';
-import AddProduct from './components/store setting/product_management/addProduct';
-import EditProduct from './components/store setting/product_management/editProduct';
-import EditCategory from './components/store setting/category_managment/editCategory';
+import ProductNew from './components/store setting/product_management/newProduct';
+import ProductEdit from './components/store setting/product_management/productEdit';
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
+import CartPanel from "./components/store design/cart_page/cart_panel"
+import Welcome from "./components/welcome"
+import EditPaper from './components/store setting/paper_managment/editPaper'
+import ShowPaper from './components/store setting/paper_managment/showPaper'
+
 import Upload from './components/modals/yeuditUploadImage';
 import MediaGallery from './components/store design/media_gallery/mediaGallery'
 // import Product from "./components/store design/product_page/product";
@@ -26,71 +29,54 @@ import "./assets/demo/demo.css";
 import "./assets/demo/react-demo.css";
 import "./assets/demo/nucleo-icons-page-styles.css";
 import { uploadImage } from './redux/middleware/crud';
+import LoginHome from './components/new login/loginHome';
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <div className="App">
+          {/* <div className="outFooter"> */}
           <Switch>
-
-            <Route path="/upload" component={Upload} />
-
-            {/* <Route exact path="/cart">
-              <Cart />
-            </Route> */}
+            {/* <Route exact path="/">
+              <Welcome />
+            </Route>
+ */}
             <Route exact path="/">
-              <Home />
+              {/* <Home /> */}
+              <LoginHome />
             </Route>
-            <Route path="/quickLook">
-              <QuickLook />
+            <Route path="/cartPanal"><CartPanel /></Route>
+
+            <Route exact path="/productNew">
+              <ProductNew />
+            </Route>
+            <Route exact path="/productEdit">
+              <ProductEdit />
             </Route>
 
-            <Route exact path="/admin/category/add">
-              <AddCategory />
+            <Route exact path="/paper">
+              <EditPaper></EditPaper>
             </Route>
-            <Route exact path="/admin/product/add">
-              <AddProduct />
-            </Route>
-            <Route exact path="/admin/product/edit">
-              <EditProduct />
-            </Route>
-            <Route exact path="/admin/category/edit">
+            {/* <Route exact path="/admin/category/edit">
               <EditCategory />
-            </Route>    
+            </Route>     */}
             <Route path="/mediaGallery">
               <MediaGallery />
+              </Route>
+            <Route exact path="/showPaper">
+              <ShowPaper></ShowPaper>
             </Route>
 
             <Route path="/login">
-              <Login />
+              {/* <Login /> */}
+              <LoginHome />
             </Route>
-            <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/openStore" component={Welcome} />
+            {/* <PrivateRoute path="/openStore" component={OpenStore} /> */}
             <PrivateRoute path="/home" component={Index} />
-            {/* <PrivateRoute path="/:comp" component={Wrap} /> */}
+            <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
-          {/* </div> */}
-          {/* <footer className="footer" data-background-color="transparent" style={{
-            // bottom: 0,
-            // position: "fixed", width: "100%", 
-            padding: 0
-          }}>
-            <a>ggg</a>
-          </footer> */}
-
-          {/* <footer className="footer" data-background-color="black" 
-          style={{zIndex: 2237,width: "100%",position: "sticky",padding: "0px"}}>
-        <div className="container"></div></footer> */}
-          {/* position:sticky
-להוריד פדינגים פנימיים בקישורים */}
-
-          {/* position:fixed 
-        bottom: 0,
-      */}
-
-
-          {/* import TopFooter from './components/topFooter' */}
-          {/* <TopFooter></TopFooter> */}
         </div>
       </Router>
     </Provider >);

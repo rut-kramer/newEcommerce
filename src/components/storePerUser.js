@@ -26,7 +26,7 @@
 
 //             <div className="data__body">
 //                 {props.stores.map((itemy, index) => (
-//                     <Link to="/0" onClick={() => { funcReset(itemy) }} key={index}>
+//                     <Link to={"/" + props.objectFields.urlRoute} onClick={() => { funcReset(itemy) }} key={index}>
 //                         <div className="data__item">
 //                             <div className="data__row" >
 //                                 <div className="data__cell data__cell_xl">
@@ -62,8 +62,9 @@
 // export default connect(
 //     (state) => {
 //         return {
-//             stores: state.openStoreReducer.stores,
+//             stores: state.userReducer.storesOfUser,
 //             user: state.userReducer.user,
+//             objectFields: state.storeReducer.objectFields
 //         }
 //     },
 //     (dispatch) => {
@@ -75,9 +76,9 @@
 //             setCategories: (i) => { dispatch(actions.setCategories(i)) },
 //             setAllOrders: (i) => { dispatch(actions.setAllOrders(i)) },
 //             setCurrentStore: (i) => { dispatch(actions.setCurrentStore(i)) },
-//             // setCategoryListMenu: (i) => { dispatch(actions.setCategoryListMenu(i)) },
 //         }
 //     }
+
 
 // )(StorePerUser);
 
