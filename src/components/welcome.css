@@ -1,4 +1,64 @@
 .welcome{
     background: transparent linear-gradient(94deg, #FC894D 0%, #FE5196 100%) 0% 0% no-repeat padding-box;;
-height: 100vh;
+    height: 100vh;
+}
+.welcomeDiv{
+    margin-left: 40%;
+}
+.welcomeCOl{
+    /* margin-left: 40%; */
+}
+.welcomeInputName{
+    background-color: transparent;
+    height: 5rem;
+    width: 17rem;
+    border-radius: 20rem;
+    font-size: 25px;
+    text-align: center;
+}
+.welcomeAllInput{
+    background-color: transparent;
+    height: 2rem;
+    width: 9rem;
+    border-radius: 20rem;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 0.4rem;
+}
+.welcome-btn{
+    background-color: #FC894D;
+    border-radius: 20rem;
+    border:none;
+    height: 3rem;
+    width: 9rem;
+
+}
+.welcomeLogoPlace{
+    text-align: center;
+    margin-left: 8.5%;
+}
+.welcomeButtonNext{
+    margin-left: 10%;
+    background-color: #FC894D;
+    border-radius: 20rem;
+    height: 3rem;
+    width: 9rem;
+}
+
+.welcomeChecboxInput{
+margin-left: 2rem;
+}
+.welcome-Currency{
+    margin-left: 3rem;
+}
+.welcome-CurrencySelect{
+    margin-left: -4rem;
+    background-color: transparent;
+    height: 2rem;
+    width: 18rem;
+    border-radius: 20rem;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 0.4rem;
+
 }

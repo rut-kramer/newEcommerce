@@ -4,7 +4,7 @@ import createReducer from "../reducerUtils";
 const initialState = {
     //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     title: "",
-    alignment: ""
+    alignment: "center"
 }
 
 const bullPageEdit = {

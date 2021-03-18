@@ -30,13 +30,15 @@ function App() {
         <div className="App">
           {/* <div className="outFooter"> */}
           <Switch>
-            <Route exact path="/">
+            {/* <Route exact path="/">
               <Welcome />
             </Route>
+ */}
+            <Route exact path="/">
+              <LoginHome />
 
-            {/* <Route exact path="/">
-              <Home />
-            </Route> */}
+              {/* <Home /> */}
+            </Route>
             <Route path="/cartPanal"><CartPanel /></Route>
 
             <Route exact path="/admin/category/add">
@@ -56,7 +58,8 @@ function App() {
               {/* <Login /> */}
               <LoginHome />
             </Route>
-            <PrivateRoute path="/openStore" component={OpenStore} />
+            <PrivateRoute path="/openStore" component={Welcome} />
+            {/* <PrivateRoute path="/openStore" component={OpenStore} /> */}
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>

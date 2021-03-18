@@ -172,6 +172,8 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+
+
             <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
 
         </>
