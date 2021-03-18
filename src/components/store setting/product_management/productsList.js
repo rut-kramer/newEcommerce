@@ -302,7 +302,6 @@ function ProductsList(props) {
                                         </div>
                                 </div>
                         </div>
-
                 </>
         )
 

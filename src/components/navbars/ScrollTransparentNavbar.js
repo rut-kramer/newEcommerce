@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import "./scrollNavbar.css";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import DndNavbar from "./DndCategories";
+import DndNavbar from "./DndCategories"
 
 // reactstrap components
 import {
@@ -143,6 +143,5 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   setListMenu: (listMenu) => { dispatch(actions.setCategoryListMenu(listMenu)) },
-  setUserId: (id) => { dispatch(actions.setUserId(id)) }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

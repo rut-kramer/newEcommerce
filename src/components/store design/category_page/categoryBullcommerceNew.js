@@ -75,6 +75,7 @@ function CategoryBullcommerce(props) {
   let pager2 = [];
   useEffect(() => {
 
+    console.log("ssttrree", props.objectFields);
     document.body.classList.add("ecommerce-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
@@ -419,9 +420,9 @@ useEffect(()=>{
                                 data-placement="left"
                                 id="tooltip719224089"
 
-                              >
+                                >
 
-                                <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
+                                  <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
                               </Button>
                               <UncontrolledTooltip
@@ -432,11 +433,11 @@ useEffect(()=>{
                                 To View
         </UncontrolledTooltip>
 
-                            </CardFooter>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                    ))
+                              </CardFooter>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      ))
                     }
                     < Col md="12">
                       <Row className="pagerCategory">

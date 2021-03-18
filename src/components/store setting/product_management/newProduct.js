@@ -54,7 +54,7 @@ const items = [
         },
 ];
 
-function newProduct(props) {
+function NewProduct(props) {
 
         const [product, setProduct] = useState({
                 name: '',
@@ -483,7 +483,7 @@ export default connect(
                         createNewProduct: (n) => dispatch(actions.addNewProducts(n)),
                 }
         }
-)(newProduct);
+)(NewProduct);
 
 
 
