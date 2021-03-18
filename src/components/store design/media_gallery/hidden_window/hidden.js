@@ -16,7 +16,8 @@ export default function Hidden(props) {
                 </div>
                 <div className="icons-hidden-win">
                     {/* <a href="imgA" */}
-                    <a className="icon-hidden-win-download" href="../../../../assets/media-gallery/interior-with-white-sofa.png"
+                    <a className="icon-hidden-win-download" href="../../../../assets/text.odt"
+                    // <a className="icon-hidden-win-download" href="../../../../assets/media-gallery/interior-with-white-sofa.png"
                         download>
                         <FontAwesomeIcon className="icon-hidden-win"
                             icon={['fas', 'download']}

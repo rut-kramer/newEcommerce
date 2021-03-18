@@ -6,6 +6,7 @@
 }
 .side-bar-gallery-link{
     padding: 0;
+    padding-left: 10%;
     display: block;
     margin-top: 10%;
     margin-bottom: 10%;
@@ -14,8 +15,10 @@
     width: 100%;
 }
 .side-bar-gallery-link-active{
+    padding: 3%;
+    padding-left: 10%;
     background-color:#fdfcfc;
-    border-left: 2px #FC894D solid; 
+    border-left:0.3rem #FC894D solid; 
     color: black;
 }
 .side-bar-gallery-link:hover{
@@ -24,8 +27,10 @@
     font-size: 15px;    
 }
 .side-bar-gallery-link-div{
-    width: 100%; 
-    padding:0;  
+    width: 100%;
+    padding: 0 !important; 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     margin: 0; 
 }
 .side-bar-gallery-link-div:hover{

@@ -8,9 +8,9 @@ import {
     Col,
     Container
 } from "reactstrap";
-// import imgImg from '../../../../assets/interior-with-white-sofa.png'
 import imgImg from '../../../../assets/media-gallery/interior-with-white-sofa.png'
 import './myFiles.css'
+// import { borderRadius } from 'react-select/src/theme';
 function MyFiles(props) {
     const [showWindow, setShowWindow] = useState(false)
     function hideOrShow() {
@@ -22,7 +22,7 @@ function MyFiles(props) {
                 <Row md="12">
                     <Col md="9" className="">
                         <div className="my-file" style={{ display: "flex" }}>
-                            <Link to="/uploudImage">
+                            <Link to={"/mediaGallery/uploudImage"}>
                                 <div className="upload-my-file" style={{ display: "inline-block" }}>
                                     <FontAwesomeIcon className="icon-upload-my-file"
                                         icon={['fas', 'plus']}>
@@ -30,13 +30,14 @@ function MyFiles(props) {
                                     <div><p className="word-icon-upload-my-file">Upload</p></div>
                                 </div>
                             </Link>
-                            <div className="upload-my-file-div" style={{ display: "inline-block" }} onClick={hideOrShow}>
-                                <img className="img-img" src={imgImg} alt="imgImg" />
+
+                            <div  className="upload-my-file-div" style={{ display: "inline-block"}} onClick={hideOrShow}>
+                                <img className="img-img" src={imgImg} style={{borderBottom: showWindow ? '3px #FE5196 solid' : null }}/>
                             </div>
                         </div>
                     </Col>
                     <Col md="3">
-                        {showWindow ? <Hidden imgA="imgImg" name="interior-with-white-sofa.png"></Hidden> : null}
+                        {showWindow ? <Hidden imgA={imgImg} name="interior-with-white-sofa.png"></Hidden> : null}
                     </Col>
                 </Row>
             </Container>

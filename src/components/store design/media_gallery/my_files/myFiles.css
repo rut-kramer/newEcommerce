@@ -10,7 +10,7 @@
     width: 7rem;
     height:7rem;
     text-align: center;
-    padding-top: 3%;
+    padding-top: 20%;
 }
 .icon-upload-my-file{
     color: white;
@@ -23,7 +23,7 @@
     background-color:  rgba(0, 0, 0, 0.5);
 }
 .upload-my-file-div{
-    
+    /* border-bottom:3px #FE5196 solid; */
     width: 7rem;
     height:7rem;
     margin: 0;
@@ -34,8 +34,10 @@
    background-color: rgba(0, 0, 0, 0.5);
    transition: all 1s;
    -webkit-transition: all 1s; */
-   background-color: black;
-   opacity:0.7;
+   /* background-color: black;
+   opacity:0.7; */
+   background:rgba(0,0,0,0.6);
+    opacity: 0.8;
     /* z-index:10; */
 }
 
