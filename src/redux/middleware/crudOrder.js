@@ -12,7 +12,7 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
             body: raw,
             redirect: 'follow'
         };     
-          fetch("https://community.leader.codes/api/orders/newOrder", requestOptions)
+          fetch("https://bullcommerce.shop/api/orders/newOrder", requestOptions)
             .then(createOrder => {
                 alert("הזמנתך נקלטה במערכת")
 

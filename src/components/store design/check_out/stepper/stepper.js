@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './stepper.css'
 import { actions } from '../../../../redux/action';
 import { connect } from 'react-redux';
+import userReducer from '../../../../redux/reducers/userReducer';
 function Stepper(props) {
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = React.Children.count(props.children);
@@ -11,7 +12,18 @@ function Stepper(props) {
     }
     function onSubmit() {
         debugger
-        props.newOrder(props.cart)
+        let obj = {
+            trackingID: "00987866",//חובה
+            user: props.user,
+            userAddress: "Or Hachaim 80",
+            date: new Date(),//-ברירת מחדל- היוםחובה
+            status: "waiting...",//חובה- בברירת מחדל יהיה בהמתנה
+            store: props.store,//חובה
+            products: props.cart.products,//חובה בהזמנה לפחות מוצר אחד
+            //מתחשבן אוטומטי ביצירת הזמנה ע"י חישוב של מחיר מוצר כפול כמות- עבור כל המוצרים
+            totalPrice: props.cart.totalPrice
+        }
+        props.newOrder(obj)
     }
     return (
         <div className="app">
@@ -34,9 +46,9 @@ function Stepper(props) {
                 onClick={(e) => setCurrentPage(v => v + 1)}>
                 <p className="stepper-button-next">Next</p>
             </button> */}
-            <button outline  className="stepper-button d-flex justify-content-center align-item-center"
+            <button outline className="stepper-button d-flex justify-content-center align-item-center"
                 onClick={onSubmit}>
-                    Next
+                Next
                 {/* <p className="stepper-button-next">Next</p> */}
             </button>
         </div>
@@ -45,7 +57,9 @@ function Stepper(props) {
 export default connect(
     (state) => {
         return {
-            cart: state.cartReducer.cart
+            cart: state.cartReducer.cart,
+            user: state.userReducer.user,
+            store: state.storeReducer.objectFields
         }
     },
     (dispatch) => {

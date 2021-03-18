@@ -13,6 +13,7 @@ const storeReducer = {
         state.objectFields = action.payload
     },
     setCurrentStore(state, action) {
+        debugger
         state.currentStore = action.payload
     }
 }
