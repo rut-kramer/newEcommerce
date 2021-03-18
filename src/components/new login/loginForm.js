@@ -8,7 +8,7 @@ export default function LoginForm() {
             <div className="loginForm">
                 <SignInWithGoogle />
                 <hr className="hr"></hr>
-                <ByEmailAndPassword />
+                {/* <ByEmailAndPassword /> */}
                 {/* <Password /> */}
             </div>
         </div>

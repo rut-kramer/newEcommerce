@@ -14,7 +14,7 @@ import EditCategory from './components/store setting/category_managment/editCate
 import Index from './components/index';
 import Wrap from './components/wrap/wrap';
 import CartPanel from "./components/store design/cart_page/cart_panel"
-// import loginHOme from "./components/loginHome"
+import Welcome from "./components/welcome"
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
@@ -30,10 +30,13 @@ function App() {
         <div className="App">
           {/* <div className="outFooter"> */}
           <Switch>
-
             <Route exact path="/">
-              <Home />
+              <Welcome />
             </Route>
+
+            {/* <Route exact path="/">
+              <Home />
+            </Route> */}
             <Route path="/cartPanal"><CartPanel /></Route>
 
             <Route exact path="/admin/category/add">
@@ -57,28 +60,7 @@ function App() {
             <PrivateRoute path="/home" component={Index} />
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
-          {/* </div> */}
-          {/* <footer className="footer" data-background-color="transparent" style={{
-            // bottom: 0,
-            // position: "fixed", width: "100%", 
-            padding: 0
-          }}>
-            <a>ggg</a>
-          </footer> */}
 
-          {/* <footer className="footer" data-background-color="black" 
-          style={{zIndex: 2237,width: "100%",position: "sticky",padding: "0px"}}>
-        <div className="container"></div></footer> */}
-          {/* position:sticky
-להוריד פדינגים פנימיים בקישורים */}
-
-          {/* position:fixed 
-        bottom: 0,
-      */}
-
-
-          {/* import TopFooter from './components/topFooter' */}
-          {/* <TopFooter></TopFooter> */}
         </div>
       </Router>
     </Provider >);

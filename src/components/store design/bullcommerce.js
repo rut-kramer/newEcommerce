@@ -124,7 +124,6 @@ function Bullcommerce(props) {
 
                             </Row>
                         </Container>
-                        <button className="BtnGoToShop" onClick={props.cartPanal_open}>GO TO SHOP</button>
 
                     </div>
                 </div>

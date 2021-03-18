@@ -51,7 +51,7 @@ function SliderConfigurator(props) {
                         <Row md="12" className="mt-3">Title Size</Row>
 
                         <div className="slidecontainer">
-                            <input className="slider-range" type="range" min="1" max="100" value="50" /></div>
+                            <input className="slider-range" type="range" min="1" max="100" /></div>
 
                         <Row md="12" className="mt-3"></Row>
 
