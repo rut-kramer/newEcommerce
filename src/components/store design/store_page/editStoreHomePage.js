@@ -183,6 +183,8 @@ function editStoreHomePage(props) {
                                     ))
                                 }
                             </Carousel>
+
+
                         </div>
                     </div>
                 </div>

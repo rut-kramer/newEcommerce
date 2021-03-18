@@ -3,7 +3,10 @@
     height: 20px;
     background-color: black;
 }
+.cartHeader:hover{
+color: yellow;
 
+}
 #dropdown{
     
     background-color: transparent;

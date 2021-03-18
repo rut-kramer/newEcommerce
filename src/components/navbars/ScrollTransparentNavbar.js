@@ -15,7 +15,7 @@ import {
   Nav,
   Container,
   UncontrolledTooltip,
-  Button, Modal, ModalHeader, ModalBody, ModalFooter, Input
+  Button,
   // Row,
   // Col,
 } from "reactstrap";
@@ -122,22 +122,28 @@ function ScrollTransparentNavbar(props) {
       {/* className={"fixed-top" + navbarColor} */}
       <Navbar id="store_main_navbar" color="white" expand="lg" style={{ maxWidth: props.mainWidth }}>
         <Container className="d-flex justify-content-between">
-          {/* <div className="navbar-translate"> */}
-          <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
-            <img alt="..."
-              src={props.objectFields.logo} className="logoHeader">
-            </img>
-          </NavbarBrand>
-          <UncontrolledTooltip target="navbar-brand">
-            To Home Store Page
+          <div className="navbar-translate">
+            <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
+              <img alt="..."
+                src={props.objectFields.logo} className="logoHeader"
+                onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+
+              >
+              </img>
+              {/* <Button
+
+              >tt</Button> */}
+            </NavbarBrand>
+            <UncontrolledTooltip target="navbar-brand">
+              To Home Store Page
             </UncontrolledTooltip>
-          {/* </div> */}
-          <Collapse
-            className="d-flex justify-content-between"
-            // isOpen={collapseOpen}
-            navbar>
-            <DndNavbar></DndNavbar>
-            {/* <Nav className="mx-auto" id="ceva" navbar>
+            {/* </div> */}
+            <Collapse
+              className="d-flex justify-content-between"
+              // isOpen={collapseOpen}
+              navbar>
+              <DndNavbar></DndNavbar>
+              {/* <Nav className="mx-auto" id="ceva" navbar>
             {props.categories.filter(item => {
               if (!item.masterCategory && item.masterCategory === null)
               return item
@@ -162,7 +168,7 @@ function ScrollTransparentNavbar(props) {
               {item.childrenCategory.map((child, index) => (
                 <DropdownItem key={index} to="/sections#contact-us" tag={Link}>
                 {/* <i className="now-ui-icons tech_mobile"></i> */}
-            {/* {child.categoryName}
+              {/* {child.categoryName}
                 </DropdownItem>
                 ))}
                 </DropdownMenu>
@@ -171,24 +177,25 @@ function ScrollTransparentNavbar(props) {
                 ))}
                 </Nav>
               */}
-            <div>
-              <div className="mr-2 ml-2" style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
-                {/* <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}> */}
-                <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']} ></FontAwesomeIcon>
-                {/* </Link> */}
+              <div>
+                <div className="mr-2 ml-2" style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
+                  {/* <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}> */}
+                  <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']} ></FontAwesomeIcon>
+                  {/* </Link> */}
+                </div>
+                <div className="separatorStripe mr-2 ml-2" style={{ float: "left" }}></div>
+                <Link to={"/" + props.objectFields.storeName + "/cart"} className="mr-2 ml-2" style={{ float: "left" }}>
+                  <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+                  <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
+                </Link>
+
+                <Link to={"/" + props.objectFields.storeName + "/"} className="mr-2 ml-2" style={{ float: "left" }}>
+
+                  <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
+                </Link>
               </div>
-              <div className="separatorStripe mr-2 ml-2" style={{ float: "left" }}></div>
-              <Link to={"/" + props.objectFields.storeName + "/cart"} className="mr-2 ml-2" style={{ float: "left" }}>
-                <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
-                <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
-              </Link>
-
-              <Link to={"/" + props.objectFields.storeName + "/"} className="mr-2 ml-2" style={{ float: "left" }}>
-
-                <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
-              </Link>
-            </div>
-          </Collapse>
+            </Collapse>
+          </div>
         </Container>
       </Navbar>
       {/* <Modal isOpen={modal} toggle={toggle} className="jijij">
@@ -216,5 +223,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
   setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
+  changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

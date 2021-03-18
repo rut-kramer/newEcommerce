@@ -136,7 +136,7 @@ function EditProduct(props) {
                     <div className="field form__field">
                       <div className="field__label">salePrice</div>
                       <div className="field__wrap">
-                          <input className="field__input" type="text" onChange={update} value={myValues.name} name="salePrice" placeholder="Start typing…" />
+                          <input className="field__input" type="text" onChange={update} value={props.currentProduct.salePrice} name="salePrice" placeholder="Start typing…" />
                         <div className="field__icon"><i className="la la-truck-loading "></i></div>
                       </div>
                     </div>
@@ -145,7 +145,7 @@ function EditProduct(props) {
                     <div className="field form__field">
                       <div className="field__label">weight</div>
                       <div className="field__wrap">
-                          <input className="field__input" type="text" placeholder="Start typing…" name="weight" id="description-in" onChange={update} value={myValues.weight}/>
+                          <input className="field__input" type="text" placeholder="Start typing…" name="weight" id="description-in" onChange={update} value={props.currentProduct.weight}/>
                         <div className="field__icon"><i className="la la-warehouse "></i></div>
                       </div>
                     </div>

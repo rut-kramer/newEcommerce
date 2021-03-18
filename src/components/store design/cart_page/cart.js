@@ -14,6 +14,7 @@ import cart from "../../../assets/img/xd/cart.svg"
 
 
 import {
+        Table,
         Button,
         Card,
         CardHeader,
@@ -32,7 +33,7 @@ import {
         Row,
         Col,
         UncontrolledTooltip,
-      } from "reactstrap";
+} from "reactstrap";
 
 
 
@@ -46,7 +47,7 @@ function Cart(props) {
         useEffect(() => {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
-                let  str=props.storeCurrent;
+                let str = props.storeCurrent;
                 let t = cookies[str];
                 if ((flag === 1) && (t)) {
                         props.setCart(t)
@@ -69,9 +70,9 @@ function Cart(props) {
                 //                  path: "/"
                 //         });     
                 // }
-                setCookie(props.storeCurrent,props.cart, {
+                setCookie(props.storeCurrent, props.cart, {
                         path: "/"
-                      }); 
+                });
 
         });
         // function  save() {
@@ -101,7 +102,7 @@ function Cart(props) {
                         <div className="wrapper">
                                 <div className="main">
                                         <div className="section cart">
-{/* <button onClick={save}>save</button>
+                                                {/* <button onClick={save}>save</button>
 <button onClick={get}>get</button> */}
                                                 <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
 
@@ -136,8 +137,7 @@ function Cart(props) {
                                                                                                                 </FontAwesomeIcon>
                                                                                                         </Button>
                                                                                                 </td>
-                                                                                                <td>{item.amount * item.product.price}$</td>
-                                                                                                {/******item.amount * item.product.price */}
+                                                                                                <td>{(item.amount * item.product.price).toFixed(2)}$</td>
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">
@@ -158,6 +158,8 @@ function Cart(props) {
                                                                                 ))}
                                                                         </tbody>
                                                                 </Table>
+
+
                                                                 <Container>
                                                                         <Row>
                                                                                 <Col md="4">
@@ -198,39 +200,39 @@ function Cart(props) {
 
                                         </div>
                                         <div className="section viewedProducts">
-                 <h3 style={{ textAlign: 'center' }}>
-                         <b>Products you viewed</b></h3>
-                         <div>
-                         <Row>
-                         {props.treeProduct.map((item, index) => (
-                         <Col lg="4" md="6" sm="12" key={index}>
-                         <Card className="card-product card-plain">
-                          <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                              <img className="imageProduct"
-                                alt="..."
-                                src={ia006}
-                              ></img>
-                            </Link>
-                          </div>
+                                                <h3 style={{ textAlign: 'center' }}>
+                                                        <b>Products you viewed</b></h3>
+                                                <div>
+                                                        <Row>
+                                                                {props.treeProduct.map((item, index) => (
+                                                                        <Col lg="4" md="6" sm="12" key={index}>
+                                                                                <Card className="card-product card-plain">
+                                                                                        <div className="card-image frameToProductView">
+                                                                                                <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                                                                                                        <img className="imageProduct"
+                                                                                                                alt="..."
+                                                                                                                src={ia006}
+                                                                                                        ></img>
+                                                                                                </Link>
+                                                                                        </div>
 
-                           <CardBody>
-                                   <br></br>
-                            <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
-                            <CardFooter>
-                              <div className="price-container">
-                                <span className="price">$ {item.price}</span>
-                              </div>
-                            </CardFooter>
-                          </CardBody>
+                                                                                        <CardBody>
+                                                                                                <br></br>
+                                                                                                <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                                                                                                <CardFooter>
+                                                                                                        <div className="price-container">
+                                                                                                                <span className="price">$ {item.price}</span>
+                                                                                                        </div>
+                                                                                                </CardFooter>
+                                                                                        </CardBody>
 
-                            </Card>
-                            </Col>
-                             ))  }</Row></div>
+                                                                                </Card>
+                                                                        </Col>
+                                                                ))}</Row></div>
 
-                
-                      
-                     
+
+
+
 
 
                                         </div>
@@ -248,8 +250,8 @@ export default connect(
                         user: state.userReducer.user,
                         currentStore: state.storeReducer.currentStore,
                         objectFields: state.storeReducer.objectFields,
-                        storeCurrent:state.storeReducer.objectFields._id,
-                        treeProduct:state.productReducer.treeProduct,
+                        storeCurrent: state.storeReducer.objectFields._id,
+                        treeProduct: state.productReducer.treeProduct,
                 }
         },
         (dispatch) => {

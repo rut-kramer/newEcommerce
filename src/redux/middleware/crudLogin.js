@@ -8,7 +8,7 @@ let username = "";
 export const setUserId = ({ dispatch, getState }) => next => action => {
     if (action.type === 'SET_ID') {
         $.ajax({
-            url: `https://community.leader.codes/api/userByUid/${action.payload}`,
+            url: `https://bullcommerce.shop/api/userByUid/${action.payload}`,
             method: "get",
             dataType: "json",
             contentType: "application/json",
@@ -36,7 +36,7 @@ export const checkPermission = ({ dispatch, getState }) => next => action => {
             token: TokenToString,
         };
         $.ajax({
-            url: "https://community.leader.codes/api/checkPremission/" + username,
+            url: "https://bullcommerce.shop/api/checkPremission/" + username,
             headers: {
                 Authorization: TokenToString
             },
@@ -69,7 +69,7 @@ export const onAuthStateChanged = ({ dispatch, getState }) => next => action => 
                     .currentUser.getIdToken(true)
                     .then((firebaseToken) => {
                         $.ajax({
-                            url: "https://community.leader.codes/api/getAccessToken",
+                            url: "https://bullcommerce.shop/api/getAccessToken",
                             method: "post",
                             dataType: "json",
                             contentType: "application/json",

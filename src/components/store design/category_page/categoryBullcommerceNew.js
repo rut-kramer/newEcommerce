@@ -87,12 +87,12 @@ function CategoryBullcommerce(props) {
   let pager2 = [];
   useEffect(() => {
 
+    console.log("ssttrree", props.objectFields);
     document.body.classList.add("ecommerce-page");
     document.body.classList.add("sidebar-collapse");
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-
     let numPaper = (props.filterProducts.length / numOfPage);
     numPaper = Math.round(numPaper) + 1 + 1
     pager2 = new Array(numPaper)
@@ -445,6 +445,7 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224089"
+                                onClick={() => props.w3_open(item)}
 
                               >
 
@@ -467,7 +468,7 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
+                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
 
