@@ -80,7 +80,7 @@ function LoginPage(props) {
                 //     }, [props.lastUpdatedUserStore]);
                     
 
-        return props.isUpdate?props.hasStores?<Redirect to={"/"+props.lastUpdatedUserStore[0].storeName} />:<Redirect to="/openstore"/>: 
+        return props.isUpdate?props.hasStores?<Redirect to={"/"+props.lastUpdatedUserStore[0].urlRoute} />:<Redirect to="/openstore"/>: 
     <div className="page-header header-filter" filter-color="blue">
         <div
             className="page-header-image"

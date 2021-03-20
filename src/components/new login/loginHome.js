@@ -34,7 +34,7 @@ function LoginHome(props) {
         useEffect(() => {
             props.lastUpdatedUserStore[0] && funcReset(props.lastUpdatedUserStore[0])
         }, [props.lastUpdatedUserStore])
-        return props.isUpdate ? props.hasStores ? <Redirect to={"/" + props.lastUpdatedUserStore[0].storeName} /> : <Redirect to="/openstore" /> :
+        return props.isUpdate ? props.hasStores ? <Redirect to={"/" + props.lastUpdatedUserStore[0].urlRoute} /> : <Redirect to="/openstore" /> :
             <div className="page-header header-filter" filter-color="grey">
                 <div className="content" style={{ margin: "30vh" }}>
                     <h1><strong> ...loading</strong></h1>
