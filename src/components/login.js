@@ -80,7 +80,7 @@ function LoginPage(props) {
                 //     }, [props.lastUpdatedUserStore]);
                     
 
-        return props.isUpdate?<Redirect to={"/"+props.lastUpdatedUserStore[0].storeName} />: 
+        return props.isUpdate?props.hasStores?<Redirect to={"/"+props.lastUpdatedUserStore[0].storeName} />:<Redirect to="/openstore"/>: 
     <div className="page-header header-filter" filter-color="blue">
         <div
             className="page-header-image"
@@ -247,7 +247,8 @@ export default connect(
         return {
             user: state.userReducer.user,
             lastUpdatedUserStore: state.userReducer.lastUpdatedUserStore,           
-            isUpdate: state.userReducer.isUpdate            
+            hasStores: state.userReducer.hasStores,
+            isUpdate: state.userReducer.isUpdate
         }
     },
     (dispatch) => {
