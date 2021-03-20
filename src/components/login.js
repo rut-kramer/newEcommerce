@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "../assets/img/now-logo.png";
-import background from "../assets/img/login.jpg";
 import googleIcon from "../assets/img/google.png";
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from '../redux/action';
 import { useCookies } from "react-cookie";
-import { signInWithGoogle, signInWithEmailAndPassword } from '../services/firebase';
+import { signInWithGoogle, signInWithEmailAndPassword, createUserWithEmailAndPassword } from '../services/firebase';
 
 
 // reactstrap components
@@ -27,13 +26,11 @@ import {
 } from "reactstrap";
 
 // core components
-import Footer from "./footer/footer.js";
 
 function LoginPage(props) {
 
     const [email, setEmail] = useState(0);
     const [password, setPassword] = useState(0);
-    
     const [firstFocus, setFirstFocus] = useState(false);
     const [lastFocus, setLastFocus] = useState(false);
     useEffect(() => {
@@ -59,11 +56,14 @@ function LoginPage(props) {
     const onChangeUsername = (e) => {
         props.setUsername(e.target.value)
     }
-    
-    
-    const onSubmitForm = (e) => {
+
+
+    const onSubmitForm = (e, sign) => {
         e.preventDefault()
-        signInWithEmailAndPassword(email, password);
+        if (sign === "signIn")
+            signInWithEmailAndPassword(email, password);
+        else
+            createUserWithEmailAndPassword(email, password);
     }
     
     function AfterLogin({props}) {
@@ -102,11 +102,9 @@ function LoginPage(props) {
                     <div className="page-header header-filter" filter-color="blue">
                         <div
                             className="page-header-image"
-                            style={{
-                                backgroundImage: "url(" + background + ")",
-                            }}
                         ></div>
                         <div className="content" style={{ margin: 0 }}>
+
                             <Container>
                                 <Row>
                                     <Col className="ml-auto mr-auto" md="5">
@@ -187,7 +185,7 @@ function LoginPage(props) {
                                                                 className="btn-round"
                                                                 color="info"
                                                                 href="#"
-                                                                onClick={(e) => onSubmitForm(e)}
+                                                                onClick={(e) => onSubmitForm(e, "signIn")}
                                                                 size="lg"
                                                             >
                                                                 Get Started
@@ -213,10 +211,10 @@ function LoginPage(props) {
                                                     <h6>
                                                         <p
                                                             className="link footer-link"
-                                                            onClick={(e) => e.preventDefault()}
+                                                            onClick={(e) => onSubmitForm(e, "signUp")}
                                                         >
                                                             Create Account
-            </p>
+                                                        </p>
                                                     </h6>
                                                 </div>
                                                 <div className="pull-right">
@@ -234,9 +232,8 @@ function LoginPage(props) {
                                     </Col>
                                 </Row>
                             </Container>
-                        </div>
-                        <Footer />
-                    </div>
+                        </div >
+                    </div >
                 </>
             )
     );

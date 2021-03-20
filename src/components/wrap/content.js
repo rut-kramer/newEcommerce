@@ -1,24 +1,45 @@
 import React from 'react';
-import { Switch, Route } from "react-router-dom";
-
+import { Switch, Route, Link } from "react-router-dom";
+import Bullcommerce from '../store design/bullcommerce';
 import './wrap-component.css'
+import AdminCurd from '../store setting/admin'
+// import Cart from '../store design/cart';
+import Product from '../store design/product_page/product';
+import Dnd from '../navbars/DndCategories'
+import Cart from '../store design/cart_page/cart';
+
+import { connect } from 'react-redux';
+import { Container } from 'reactstrap';
+import MainStoreRoutes from "../store design/store_page/mainStore"
+
+function Content(props) {
 
 
-function Content() {
-    function Temporary() {
-        return <h3>לשים במקומי קומפוננטה</h3>
-    }
-    function Admin() {
-        return <h3>לשים במקומי קומפוננטה אדמין</h3>
-    }
     return (
         <div className="Content">
-                <Switch>
-                    <Route path="/:storeName" component={Temporary} />
-                    <Route path="/:storeName/admin" component={Admin} />
-                </Switch>
-            </div>
-        )
+            <Switch>
+                <Route path="/dnd" component={Dnd} />
+
+                {/* <Route path="/filter-category" component={CategoryByFilter} />
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <Route path="/:storeName/cart" component={Cart} />
+                <Route path="/:storeName/product" component={Product} />
+                <Route path="/:storeName" component={Temporary} /> */}
+
+                {/* <Switch> */}
+                <Route path="/:storeName/admin" component={AdminCurd} />
+                <MainStoreRoutes></MainStoreRoutes>
+            </Switch>
+        </div>
+    )
 }
 
-export default Content;
+
+const mapStateToProps = (state) => {
+    return {
+    }
+}
+const mapDispatchToProps = (dispatch) => ({
+})
+export default connect(mapStateToProps, mapDispatchToProps)
+    (Content);

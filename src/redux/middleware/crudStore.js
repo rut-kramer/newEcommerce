@@ -1,62 +1,127 @@
 import { actions } from '../action';
-
+import axios from 'axios';
+import $ from 'jquery';
 //6
-export const newStore = ({ dispatch, getState }) => next => action => {
+// export const newStore = ({ dispatch, getState }) => next => action => {
 
-    if (action.type === 'ADD_NEW_STORE') {
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
+//     if (action.type === 'ADD_NEW_STORE') {
+//         var myHeaders = new Headers();
+//         myHeaders.append("Content-Type", "application/json");
 
-        var raw = JSON.stringify({ "storeName": action.payload.storeName, "storeDescription": action.payload.storeDescription, "storeManager": action.payload.storeManager });
+//         var raw = JSON.stringify({ "storeName": action.payload.storeName, "storeDescription": action.payload.storeDescription, "storeManager": action.payload.storeManager });
 
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
+//         var requestOptions = {
+//             method: 'POST',
+//             headers: myHeaders,
+//             body: raw,
+//             redirect: 'follow'
+//         };
 
-        fetch("http://localhost:3000/register/addStore", requestOptions)
-            .then(response => response.json())
-            .then(result => { dispatch(actions.setStore(result)) })
-            .catch(error => console.log('error', error));
-    }
+//         fetch("http://localhost:3000/register/addStore", requestOptions)
+//             .then(response => response.json())
+//             .then(result => { dispatch(actions.setStore(result)) })
+//             .catch(error => console.log('error', error));
+//     }
 
-    return next(action);
+//     return next(action);
+// };
+
+
+export const createNewStore = ({ dispatch, getState }) => next => action => {
+
+    return new Promise((resolve, reject) => {
+        if (action.type === 'CREATE_NEW_STORE') {
+            var raw = JSON.stringify({
+                "storeName": action.payload.store.storeName,
+                "urlRoute": action.payload.store.urlRoute,
+                "storeDescription": action.payload.store.storeDescription,
+                "logo": action.payload.store.logo,
+                "address": action.payload.store.address,
+                "tel": action.payload.store.tel,
+                "email": action.payload.store.email,
+                "colorDominates": action.payload.store.colorDominates,
+                "storeManager": getState().userReducer.user._id,
+                "currency": action.payload.store.currency,
+                "policy": action.payload.store.policy,
+                "checkInventoryManagement": action.payload.store.checkInventoryManagement,
+                "checkoneProductPurchase": action.payload.store.checkoneProductPurchase
+
+            });
+
+
+
+            $.ajax({
+                url: "https://bullcommerce.shop/api/stores/newStore",
+                method: "post",
+                dataType: "json",
+                contentType: "application/json",
+                data: raw,
+                success: function (data) {
+                    dispatch(actions.setSaveAllStoreDetails(data));
+                    resolve(data)
+                    console.log(data)
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "Default66Category1",
+                        "color": "red", "masterCategory": null
+                    }))
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "Defaul66Category2",
+                        "color": "green", "masterCategory": null
+                    }))
+                    dispatch(actions.createNewCategory({
+                        "store": data._id,
+                        "categoryName": "Default66Category3",
+                        "color": "blue", "masterCategory": null
+                    }))
+                        .then((dataCategory) => {
+                            for (let index = 1; index < 3; index++) {
+                                dispatch(actions.addNewProducts({
+                                    "name": "DefaultProduct" + index,
+                                    "description": "The Best Product ",
+                                    "SKU": "DefultSKU_" + index + "m",
+                                    "category": dataCategory._id,
+                                    "store": data._id,
+                                    "price": "123",
+                                    "featured": true
+                                }))
+                            }
+                        })
+                },
+
+
+                error: function (err) {
+                    reject(err)
+                }
+            })
+        }
+        return next(action);
+    })
 };
 
-//16
-////יצירת חנות שרי
-export const createNewStore = ({ dispatch, getState }) => next => action => {
-    //שם הפונקציה בקומפוננטה צריכה להיות כמו השם הזה רק עם אותיות גדולות מפרידות בין מילה למילה
-    if (action.type === 'CREATE_NEW_STORE') {
-        // var storeManager = getState().userReducer.user._id;
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/json");
-        //בקומפוננטה צריך לשלוח לפונ' את האוביקט שעוטף את כל שדות החנות
-        var raw = JSON.stringify({
-            "storeName": action.payload.nameStore,
-            "storeDescription": action.payload.descriptionStore,
-            "logo": action.payload.logoStore,
-            "address": action.payload.addressStore,
-            "tel": action.payload.phoneStore,
-            "email": action.payload.emailStore,
-            "colorDominates": action.payload.colorStore,
-            "storeManager": getState().userReducer.user._id,
-            "currency": action.payload.currency,
-            "policy": action.payload.policy
-        });
-        var requestOptions = {
-            method: 'POST',
-            headers: myHeaders,
-            body: raw,
-            redirect: 'follow'
-        };
-        fetch("https://community.leader.codes/api/stores/newStore", requestOptions)
-            .then(response => { console.log(response); response.json() })
-            //.then(result => { dispatch(actions.setStore(result))})
-            .catch(error => console.log('error', error));
+
+
+//19
+export const getStoreByUser = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'GET_STORE_BY_USER') {
+
+        axios.get('https://bullcommerce.shop/api/users/getAllStores/' + action.payload)
+            .then(res => {
+                dispatch(actions.setStorePerUser(res.data))
+            })
+            .catch(err => console.log("errrrrrrr", err));
     }
+    return next(action);
+}
+export const deleteStore = ({ dispatch, getState }) => next => action => {
+    if (action.type === 'DELETE_STORE') {
+        axios.post('https://bullcommerce.shop/api/stores/deleteStore/' + action.payload)
+            .then(res => {
+                dispatch(actions.deleteOldStore(action.payload))
+            });
+    }
+
 
     return next(action);
 };

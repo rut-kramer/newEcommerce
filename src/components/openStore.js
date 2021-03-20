@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { actions } from "../redux/action";
 import { useHistory } from "react-router-dom";
+import logoo from "../assets/img/xd/Image.jpeg"
 
 function OpenStore(props) {
 
@@ -9,62 +10,158 @@ function OpenStore(props) {
 
     const [fileToUpload, setFileToUpload] = useState(null);
 
-    const handlerLogo = (event) => {
+    const [storeDetails, setStoreDetails] = useState({
+        storeName: "MY STORE",
+        urlRoute: "MY_STORE",
+        storeDescription: "THE BEST STORE IN THE WORLD",
+        address: "JERUSALEM",
+        tel: "02:6277134",
+        email: "MYSTORE@GMAIL.COM",
+        colorDominates: "RED",
+        policy: "",
+        currency: "",
+        logo: logoo,
+        checkInventoryManagement: false,
+        checkoneProductPurchase: false
+
+
+    });
+    function changeStoreDetails(event) {
+        setAllStoreDetails(event.target.name, event.target.value)
+    }
+    function setAllStoreDetails(name, value) {
+        setStoreDetails({
+            ...storeDetails,
+            [name]: value
+        }
+        )
+    }
+
+    function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.setLogoStore(reader.result)
+                setAllStoreDetails("logo", reader.result)
             }
             reader.readAsDataURL(event)
             setFileToUpload(event);
         }
     }
-
-    const convertSpacesToUnderlines = (event) => {
-
-        let str = event.target.value;
+    function convertSpacesToUnderlines(event) {
+        let str = event.target.value
         let hasSpace = str.indexOf(' ');
         if (hasSpace > -1)
-            str = str.replace(/\s/g, '_');
-
-        props.setUrlRoute(str);
+            str = str.replace(/\s/g, '_')
+        setAllStoreDetails("urlRoute", str)
     }
 
-    const onSubmitStoreDetails = (event) => {
 
+
+    const onSubmitStoreDetails = async (event) => {
         event.preventDefault()
-        props.createNewStore({ "store": props.objectFields, "file": fileToUpload })
-        history.push("/" + props.objectFields.urlRoute)
+        props.setTitle(storeDetails.storeName)
+
+        await props.createNewStore({ "store": storeDetails, "file": fileToUpload })
+        history.push("/" + storeDetails.urlRoute);
+    }
+
+    function skip() {
+        props.setAllOrders([])
+        props.setCategories([])
+        props.setAttribute([])
+        props.setProducts([])
+
+        props.createNewStore({ "store": storeDetails, "file": fileToUpload })
+        history.push("/" + storeDetails.urlRoute);
+
+        // ;
+
+
+
     }
 
     return (
         <>
             <h1>Please, Fill your store details...</h1><br></br>
             <form onSubmit={onSubmitStoreDetails}>
-                <input required placeholder="הכנס שם חנות" type="text" id="fname"
-                    onBlur={convertSpacesToUnderlines} onChange={props.setNameStore}></input><br></br>
-                <input placeholder="הכנס תאור לחנות" onChange={props.setDescriptionStore}></input><br></br>
-                <input placeholder="הכנס כתובת החנות" onChange={props.setAddressStore}></input><br></br>
-                <input type={"tel"} placeholder="הכנס טלפון" onChange={props.setPhoneStore}></input><br></br>
-                <input type={"email"} placeholder="הכנס אימיל" onChange={props.setEmailStore}></input><br></br>
+                <input
+                    required
+                    placeholder="הכנס שם חנות"
+                    type="text"
+                    name="storeName"
+                    id="fname"
+                    onBlur={convertSpacesToUnderlines}
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <input
+                    placeholder="הכנס תאור לחנות"
+                    name="storeDescription"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <input
+                    placeholder="הכנס כתובת החנות"
+                    name="address"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <input
+                    type={"tel"}
+                    placeholder="הכנס טלפון"
+                    name="tel"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <input
+                    type={"email"}
+                    placeholder="הכנס אימיל"
+                    name="email"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
                 <label>בחר צבע ראשי לחנות</label><br></br>
-                <input type={"color"} placeholder="  בחר צבע ראשי לחנות   " onChange={props.setColorStore}></input><br></br>
-                <input placeholder="הכנס מדיניות" onChange={props.setPolicyStore}></input><br></br>
-                <label>בחר מטבע</label>
-                <select onChange={(e) => props.setCurrencyStore(e.target.value)}>
+                <input
+                    type={"color"}
+                    placeholder="  בחר צבע ראשי לחנות   "
+                    name="colorDominates"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <input
+                    placeholder="הכנס מדיניות"
+                    name="policy"
+                    onChange={changeStoreDetails}
+                ></input><br></br>
+                <label htmlFor="myCheck">ניהול מלאי</label><br></br>
+                <input id="myCheck"
+                    name="checkInventoryManagement"
+                    type="checkbox"
+                    checked={storeDetails.checkInventoryManagement}
+                    onChange={(e) => setAllStoreDetails("checkInventoryManagement", e.target.checked)}
+                />
+                <br></br>
+                <label htmlFor="myCheck">קניה חד מוצרית</label><br></br>
+                <input id="myCheck"
+                    name="checkoneProductPurchase"
+                    type="checkbox"
+                    checked={storeDetails.checkoneProductPurchase}
+                    onChange={(e) => setAllStoreDetails("checkoneProductPurchase", e.target.checked)}
+                />
+                <br></br>
+                <br></br>
+                <label>בחר מטבע</label><br></br>
+                <select
+                    onChange={e => setAllStoreDetails("currency", e.target.value)}>
                     {props.coins.map((item, index) => (
                         <option key={index} value={item.name}>{item.name}:{item.country}</option>
                     ))}
                 </select>
                 <div>
                     <label htmlFor="logoS">
-                        <img className="logoC" alt="הכנס לוגו של החנות" src={props.objectFields.logoStore}></img>
+                        <img className="logoC" alt="הכנס לוגו של החנות"
+                            src={storeDetails.logo}
+                        ></img>
                     </label>
                     <input
                         type={"file"}
                         id="logoS"
-                        // htmlFor="myInput"
                         accept="image/*"
+                        name="logo"
                         style={{
                             display: "none"
                         }}
@@ -75,6 +172,10 @@ function OpenStore(props) {
                 <input type="submit" value="עבור לחנות שלך לדוגמא"></input>
 
             </form>
+
+
+            <button onClick={skip}>דלג על הזנת פרטים ועבור לחנות דמו</button>
+
         </>
     )
 
@@ -83,23 +184,17 @@ function OpenStore(props) {
 const mapStateToProps = (state) => {
     return {
 
-        objectFields: state.openStoreReducer.objectFields,
-        storeId: state.openStoreReducer.storeId,
         coins: state.coinsReducer.coins
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
-    setUrlRoute: (e) => dispatch(actions.setUrlRoute(e)),
-    setDescriptionStore: (e) => dispatch(actions.setDescriptionStore(e.target.value)),
-    setAddressStore: (e) => dispatch(actions.setAddressStore(e.target.value)),
-    setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),
-    setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
-    setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
-    setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e)),
-    setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
-    setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
     createNewStore: (objectFields) => dispatch(actions.createNewStore(objectFields)),
-    uploadImage: (x) => dispatch(actions.uploadImage(x)),
+    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e)),
+    setAllOrders: (e) => dispatch(actions.setAllOrders(e)),
+    setCategories: (e) => dispatch(actions.setCategories(e)),
+    setAttribute: (e) => dispatch(actions.setAttribute(e)),
+    setProducts: (e) => dispatch(actions.setProducts(e)),
+    setTitle: (e) => dispatch(actions.setTitle(e)),
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(OpenStore);

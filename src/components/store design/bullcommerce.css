@@ -1,0 +1,49 @@
+.heightViewProduct{
+    height: 47vh;
+    border-image:1px red solid ;
+  
+  }
+  .Aheight a img{
+    height: 47vh;
+    border-image:1px red solid ;
+    background-size: contain;
+  }
+  .eye{
+    color: #707070;
+  }
+/* הידר תמונת פתיחה */
+
+  .arrowIcon{
+    color:black;
+    height: 40px;
+    width:40px
+  
+  }
+
+  /* // פוטר דף הבית */
+.colorFooter{
+    background-color:#F29544 ;
+    color: #FFFFFF;
+    height: 40vh;
+  }
+  .size{
+  font-size: 0.800em !important;
+  }
+  
+ /* //////// */
+ .BtnGoToShop{
+    border: 1px solid #707070;
+    color:black;
+    background-color:transparent;
+    height: 30px;
+    width:11%;
+    margin-left: 45%;
+    font-weight: bold;
+    font-size: 0.870em;
+  } 
+  /* //// */
+ 
+  .newsLetter{
+    background-color:transparent 0% 0% no-repeat padding-box;
+    height: 14rem;
+  }

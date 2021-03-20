@@ -36,7 +36,7 @@
     .card-title,
     .category,
     .card-description{
-        text-align: center;
+        // text-align: center;
     }
     .category{
         margin-bottom: 0;
@@ -46,8 +46,10 @@
     }
 
     .price{
-        font-size: 16px;
-        color: $default-color;
+        font-size: 14px;
+        color:#666666;
+        // font-weight: bold;
+
     }
     .price-old{
         text-decoration: line-through;

@@ -1,106 +1,73 @@
-// import React, { useEffect, useState } from 'react'
-// import $ from 'jquery'
-// import './admin.css'
-// import CrudCategory from './crudCategory'
-// import CrudOrder from './crudOrder'
-// import StoreSettingsManagement from './storeSettingsManagement'
-// import CrudProducts from './crudProducts'
-// import { Provider } from 'react-redux';
-// import store from '../redux/store';
-// import Yeudit from './yeudit'
-// import { Tabs, Tab } from 'react-bootstrap';
-// import { AddAlarm } from '@material-ui/icons'
+import React, { useEffect } from 'react'
+import './admin.css'
+import CrudCategory from './category_managment/crudCategory'
+import CrudOrder from './crudOrder'
+import StoreSettingsManagement from './storeSettingsManagement'
+import CrudProducts from './product_management/crudProducts'
+import { Provider } from 'react-redux';
+import store from '../../redux/store';
+import StorePerUser from './storePerUser'
+import CrudAttributes from './attribute_management/crudAttribute'
+import NewPaper from './paper_managment/createNewPaper';
 
-// // import Carousel from 'react-bootstrap/Carousel'  
-// // import ReactBootstrapCarousel from "react-bootstrap-carousel";
-// // import "bootstrap/dist/css/bootstrap.css";
-// // import EditHomeStore from './editHomeStore'
-// // import EditCart from './editCart'
-// // import EditCategory from './editCategory'
-// // import EditProduct from './editProduct'
-// // import EditCheckout from './editCheckout'
+function Admin(props) {
 
-// function Admin(props) {
+  
+  function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+      tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+      tablinks[i].className = tablinks[i].className.replace(" crud_active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " crud_active";
+  }
 
-//         const [key, setKey] = useState("products")
+  return (
+    <Provider store={store}>
 
-//         useEffect(() => {
-//                 // $('#myTab a').on('click', function (e) {
-//                 //          ;
-//                 //         e.preventDefault()
-//                 //         $('#myTab .active').removeClass('active')
-//                 //         $(this).addClass('active')
-//                 //         $('#myTabContent .show active').removeClass('show active');
-//                 //         $('#profile').addClass('show active')
-//                 // })
-//                 $('.show').removeClass('fade');
-//         }, [])
+      <div className="tab">
+        <button className="tablinks crud_active" onClick={(event) => { openCity(event, 'Product') }}>Products</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Categories') }}>Categories</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Orders') }}>Orders</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'Attributes') }}>Attributes</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>All Your Stores</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>All Pages</button>
+      </div>
 
-//         const aaa = (key) => {
-//                 setKey(key);
-//                 $('.show').removeClass('fade');
-//         }
+      <div id="Categories" className="tabcontent">
+        <CrudCategory></CrudCategory>
+      </div>
 
-//         return (
-//                 <Provider store={store}>
-//                         {/* <div>
-//                         <ul className="nav nav-tabs" id="myTab" role="tablist" style={{ fontSize: 1.7 + "rem" }}>
-//                         <li className="nav-item">
-//                         <a className="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Categories</a>
-//                         </li>
-//                         <li className="nav-item">
-//                         <a className="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Products</a>
-//                         </li>
-//                         <li className="nav-item">
-//                         <a className="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Sales</a>
-//                         </li>
-//                         </ul>
-//                         <div className="tab-content" id="myTabContent">
-//                         <div className="tab-pane" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div id="Product" style={{display:"block"}} className="tabcontent">
+        <CrudProducts></CrudProducts>
+      </div>
 
-//                         </div>
-//                         <div className="tab-pane show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-//                         <CrudProducts /> 
-//                         <Yeudit />
-//                         <CrudCategory />
-//                         </div>
-//                         <div className="tab-pane" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-//                         </div>
-//                 </div> */}
-//                         <Tabs
-//                                 id="controlled-tab-example"
-//                                 activeKey={key}
-//                                 onSelect={(key) => {  aaa(key) }}
-//                         // defaultActiveKey={props.currentTable ? props.currentTable.name : ""}
-//                         >
-//                                 <Tab
-//                                         eventKey="products"
-//                                         title="Products">
-//                                         <Yeudit />
-//                                         {/* <CrudProducts />  */}
+      <div id="Orders" className="tabcontent">
+        <CrudOrder></CrudOrder>
+      </div>
 
-//                                 </Tab>
-//                                 <Tab
-//                                         eventKey="categories"
-//                                         title="Categories">
-//                                         <CrudCategory />
+      <div id="StoreSettingsManagement" className="tabcontent">
+        <StoreSettingsManagement></StoreSettingsManagement>
+      </div>
+      <div id="StorePerUser" className="tabcontent">
+        <StorePerUser></StorePerUser>
+      </div>
+      <div id="Attributes" className="tabcontent">
+        <CrudAttributes></CrudAttributes>
+      </div>
+      <div id="NewPaper" className="tabcontent">
+        <NewPaper></NewPaper>
+      </div>
+    
+    </Provider>
+  )
+}
+export default Admin;
 
-//                                 </Tab>
-//                                 <Tab
-//                                         eventKey="order"
-//                                         title="Order">
 
-//                                         <CrudOrder/>
-//                                 </Tab>
-//                                 <Tab
-//                                         eventKey="StoreManagement"
-//                                         title="Store management">
-//                                         <StoreSettingsManagement />
-//                                 </Tab>
-//                         </Tabs>
-//                 </Provider>
-//         )
-
-// }
-
-// export default Admin;

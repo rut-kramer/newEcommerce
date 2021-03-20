@@ -1,120 +1,147 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { actions } from "../../redux/action"
-//בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function StoreSettingsManagement(props) {
-    //פונקציה שטוענת את הלוגו
+
+    useEffect(() => {
+        setStoreDetails(props.objectFields)
+    }, [])
+
+    const [storeDetails, setStoreDetails] = useState({
+        storeName: "",
+        urlRoute: "",
+        storeDescription: "",
+        address: "",
+        tel: "",
+        email: "",
+        colorDominates: "",
+        policy: "",
+        currency: "",
+        logo: "",
+        inventoryManagement: "",
+        oneProductPurchase: "",
+
+    });
+
+    function changeStoreDetails(event) {
+        setAllStoreDetails(event.target.name, event.target.value)
+    }
+    function setAllStoreDetails(name, value) {
+        setStoreDetails({
+            ...storeDetails,
+            [name]: value
+        }
+        )
+    }
     function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.setLogoStore(reader.result)
+                setAllStoreDetails("logo", reader.result)
             }
             reader.readAsDataURL(event)
         }
     }
-    // checkbox -  פונקציה ל
-    function checkBoxFunc() {
-        let checkBox = document.getElementById("myCheck");
-        let text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            // ? true האם אני יוכלה להציב במשתנה בריקס את 
-            //במקום כל האוביקט המוזר שהוא מציב
-            props.setInventoryManagement("true")
-            console.log(props.objectFields.inventoryManagement)
-        }
-        else {
-            props.setInventoryManagement("false")
-        }
-    }
 
 
-    // checkbox -  פונקציה ל
-    function checkBoxFunc2() {
-        let checkBox = document.getElementById("myCheckBuy");
-        let text = document.getElementById("text");
-        if (checkBox.checked == true) {
-            props.setOneProductPurchase("true")
-        }
-        else {
-            props.setOneProductPurchase("false")
-        }
-    }
-
-
-    // setUrlRoute פונ ששולחת את הערך של האינפוט ל
     function funcSendValue(event) {
-        props.setUrlRoute(event.target.value)
+        setAllStoreDetails("urlRoute", event.target.value)
+
     }
 
-    //פונקציה תקינות קלט לכתובת הניתוב 
     function convertSpacesToUnderlines(event) {
         let str = event.target.value
-        //תנאי שרק כאשר יש רווח יכנס להמרה
         let hasSpace = str.indexOf(' ');
-        if (hasSpace >= 0) {
+        if (hasSpace >= 0)
             str = str.replace(/\s/g, '_')
-            //הצבת המחרוזת במשתנה ברידקס
-            props.setUrlRoute(str)
-        }
-        else {
-            console.log("has not space!!!")
-        }
+        setAllStoreDetails("urlRoute", str)
     }
-    //שמירת הטופס צריך לעשות פה ניתוב לאיפה שרותי תגיד
     function saveForm(event) {
         alert("save changes!")
-        //פונקציה שתמנע את השרשור לכתובת האתר
         event.preventDefault()
+        props.setSaveAllStoreDetails(storeDetails)
+
     }
 
     return (
         <div>
             <h1>welcome to setting!!!!!</h1>
             <div>
-                {/* תיהיה מתאימה ל2 השדותcheckbox  צריך לעשות שהפונקציה  */}
                 <form onSubmit={saveForm}>
-                    <label for="a">עדכן שם חנות</label><br></br>
-                    <input required id="a" value={props.objectFields.nameStore ? props.objectFields.nameStore : ""} onChange={props.setNameStore}></input><br></br>
+                    <label htmlFor="a">עדכן שם חנות</label><br></br>
+                    <input id="a"
+                        required
+                        name="storeName"
+                        value={storeDetails.storeName ? storeDetails.storeName : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
-                    <label for="b">עדכן תאור לחנות</label><br></br>
-                    <input id="b" value={props.objectFields.descriptionStore ? props.objectFields.descriptionStore : ""} onChange={props.setDescriptionStore}></input><br></br>
+                    <label htmlFor="b">עדכן תאור לחנות</label><br></br>
+                    <input
+                        id="b"
+                        name="storeDescription"
+                        value={storeDetails.storeDescription ? storeDetails.storeDescription : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
+                    <label htmlFor="c">עדכן כתובת החנות</label><br></br>
+                    <input
+                        id="c"
+                        name="address"
+                        required
+                        value={storeDetails.address ? storeDetails.address : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
-                    <label for="c">עדכן כתובת החנות</label><br></br>
-                    <input required id="c" value={props.objectFields.addressStore ? props.objectFields.addressStore : ""} onChange={props.setAddressStore}></input><br></br>
+                    <label htmlFor="d">עדכן טלפון החנות</label><br></br>
+                    <input
+                        required
+                        id="d"
+                        name="tel"
+                        value={storeDetails.tel ? storeDetails.tel : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
-                    <label for="d">עדכן טלפון החנות</label><br></br>
-                    <input required id="d" value={props.objectFields.phoneStore ? props.objectFields.phoneStore : ""} onChange={props.setPhoneStore}></input><br></br>
+                    <label htmlFor="e">עדכן אימיל החנות</label><br></br>
+                    <input
+                        id="e"
+                        name="email"
+                        required
+                        value={storeDetails.email ? storeDetails.email : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
-                    <label for="e">עדכן אימיל החנות</label><br></br>
-                    <input required id="e" value={props.objectFields.emailStore ? props.objectFields.emailStore : ""} onChange={props.setEmailStore} type="email"></input><br></br>
-
-                    <label for="f">עדכן כתובת ניתוב החנות</label><br></br>
-                    <input required type="text" id="f"
+                    <label htmlFor="f">עדכן כתובת ניתוב החנות</label><br></br>
+                    <input
+                        required
+                        type="text"
+                        id="f"
+                        value={storeDetails.urlRoute ? storeDetails.urlRoute : ""}
                         onBlur={convertSpacesToUnderlines}
-                        value={props.objectFields.urlRoute ? props.objectFields.urlRoute : ""}
-                        onChange={funcSendValue}></input><br></br>
+                        onChange={funcSendValue}
 
-                    <label for="g">עדכן צבע ראשי לחנות</label><br></br>
-                    <input id="g" value={props.objectFields.colorStore ? props.objectFields.colorStore : ""} onChange={props.setColorStore}></input><br></br>
+                    ></input><br></br>
 
-                    <label for="h">עדכן מדיניות לחנות</label><br></br>
-                    <input id="h" value={props.objectFields.policy ? props.objectFields.policy : ""} onChange={props.setPolicyStore}></input><br></br>
+                    <label htmlFor="g">עדכן צבע ראשי לחנות</label><br></br>
+                    <input
+                        id="g"
+                        value={storeDetails.colorDominates ? storeDetails.colorDominates : ""}
+                        onChange={changeStoreDetails}
+                    ></input><br></br>
 
-                    <label for="myCheck">ניהול מלאי</label><br></br>
-                    <input type="checkbox" id="myCheck"
-                        onClick={checkBoxFunc}
-                        onChange={props.setInventoryManagement}
-                    /><br></br>
+                    <label htmlFor="h">עדכן מדיניות לחנות</label><br></br>
+                    <input
+                        id="h"
+                        name="policy"
+                        value={storeDetails.policy ? storeDetails.policy : ""}
+                        onChange={changeStoreDetails}
 
-                    <label for="myCheckBuy">קניה חד מוצרית</label><br></br>
-                    <input type="checkbox" id="myCheckBuy"
-                        onClick={checkBoxFunc2}
-                        onChange={props.setOneProductPurchase}
-                    /><br></br>
+                    ></input><br></br>
 
-                    <lable>בחר מטבע</lable>
-                    <select onChange={(e) => props.setCurrencyStore(e.target.value)}>
+
+                    <label>בחר מטבע</label>
+                    <select
+                        onChange={e => setAllStoreDetails("currency", e.target.value)}
+                    >
                         {props.coins.map((item, index) => (
                             <option key={index} value={item.name}>{item.name}:{item.country}</option>
                         ))
@@ -122,8 +149,9 @@ function StoreSettingsManagement(props) {
                     </select>
 
                     <div>
-                        <label for="j">עדכן לוגו של החנות
-                <img className="logoC" alt="" src={props.objectFields.logoStore ? props.objectFields.logoStore : ""}></img>
+                        <label htmlFor="j">עדכן לוגו של החנות
+                <img className="logoC" alt=""
+                                src={storeDetails.logo ? storeDetails.logo : ""}></img>
                         </label>
                         <input
                             type={"file"}
@@ -141,27 +169,16 @@ function StoreSettingsManagement(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        objectFields: state.openStoreReducer.objectFields,
+        objectFields: state.storeReducer.objectFields,
         coins: state.coinsReducer.coins
 
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setNameStore: (e) => dispatch(actions.setNameStore(e.target.value)),
-    setDescriptionStore: (e) => dispatch(actions.setDescriptionStore(e.target.value)),
-    setAddressStore: (e) => dispatch(actions.setAddressStore(e.target.value)),
-    setPhoneStore: (e) => dispatch(actions.setPhoneStore(e.target.value)),
-    setPolicyStore: (e) => dispatch(actions.setPolicyStore(e.target.value)),
-    setEmailStore: (e) => dispatch(actions.setEmailStore(e.target.value)),
-    setUrlRoute: (e) => dispatch(actions.setUrlRoute(e)),
-    setCurrencyStore: (e) => dispatch(actions.setCurrencyStore(e)),
-    setLogoStore: (e) => dispatch(actions.setLogoStore(e)),
-    setColorStore: (e) => dispatch(actions.setColorStore(e.target.value)),
-    setInventoryManagement: (e) => dispatch(actions.setInventoryManagement(e)),//ניהול מלאי
-    setOneProductPurchase: (e) => dispatch(actions.setOneProductPurchase(e)),//קניה חד מוצרית
+    setSaveAllStoreDetails: (e) => dispatch(actions.setSaveAllStoreDetails(e))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(StoreSettingsManagement);
-/////////////////////////////
 
 
 
