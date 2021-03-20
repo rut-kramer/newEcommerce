@@ -60,7 +60,7 @@ function TopFrame(props) {
                     //  logOut;//
                     props.setUser("");
                 }}>Sing Out</button> */}
-                <div style={{ marginLeft: "67%", fontSize: "24px" }}>
+                <div className="ml-auto" style={{ marginRight: "3vw", fontSize: "24px" }}>
                     {props.user && props.user.username} &nbsp;
                 <Link to="/" style={{ fontSize: "34px", color: 'black' }}
                         className="tooltip-TF-LO"
