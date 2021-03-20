@@ -263,8 +263,8 @@ function ProductsList(props) {
                                                                                                         <div className="data__content"><strong>${item.price}</strong></div>
                                                                                                 </div>
                                                                                                 {item.category && <div className="data__cell mobile-hide">
-                                                                                                        <div style={{ "backgroundColor": item.color }}
-                                                                                                                className="tag gray">{item.categoryName}</div>
+                                                                                                        <div style={{ "backgroundColor": item.color?item.color:item.category.color }}
+                                                                                                                className="tag gray">{item.categoryName?item.categoryName:item.category.categoryName}</div>
                                                                                                 </div>}
 
                                                                                                 <div className="data__cell data__cell_action">
