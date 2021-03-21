@@ -10,19 +10,21 @@ import AddProduct from '../store setting/product_management/addProduct';
 import EditProduct from '../store setting/product_management/editProduct';
 import EditCategory from '../store setting/category_managment/editCategory';
 import EditAttribute from '../store setting/attribute_management/editAttribute'
+import HeaderConfigurator from "../store design/all_configurators/home/headerConfigurator"
+import SliderConfigurator from "../store design/all_configurators/home/sliderConfigurator"
+import ProductConfigurator from "../store design/all_configurators/product/productConfigurator"
 
-
+import HomeConfigurator from "../store design/all_configurators/home/homeConfigurator.js"
 function Configurator(props) {
-    const [adminLink,setAdminLink]=useState(true)
+    const [adminLink, setAdminLink] = useState(true)
     return (
         <>
             {
-                // props.flag&&
                 <div className="Configurator-configurator-28 Configurator-configuratorOpen-29" style={{ width: props.flag ? "17%" : "0" }}>
                     <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50" style={{ transform: props.flag ? "translate(0px)" : "translate(-100%)" }}>
                         <div className="con-title">
-                                Home Page
-                            <Link to={'/' + props.objectFields.urlRoute +(adminLink? '/admin':'') } onClick={()=>{setAdminLink(!adminLink)}}>
+                            Home Page
+                            <Link to={'/' + props.objectFields.urlRoute + (adminLink ? '/admin' : '')} onClick={() => { setAdminLink(!adminLink) }}>
                                 <span className="material-icons pointer">settings</span>
                             </Link>
                         </div>
@@ -35,8 +37,12 @@ function Configurator(props) {
                                     case "AddProduct": return <AddProduct />;
                                     case "EditProduct": return <EditProduct />;
                                     case "EditCategory": return <EditCategory />;
-                                    case "EditAttribute": return <EditAttribute/>;
-                                        }
+                                    case "EditAttribute": return <EditAttribute />;
+                                    case "HeaderConfigurator": return <HeaderConfigurator />;
+                                    case "SliderConfigurator": return <SliderConfigurator />;
+                                    case "ProductConfigurator": return <ProductConfigurator />;
+                                    case "HomeConfigurator": return <HomeConfigurator />;
+                                }
                             })() :
                                 <h3>No component was selected!</h3>
                         }

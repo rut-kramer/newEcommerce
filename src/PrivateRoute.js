@@ -13,8 +13,8 @@ const PrivateRoute = ({ component: RouteComponent, rest, user }) => {
                     <RouteComponent {...routeProps} />
                 }
             />) : (
-                <Redirect to={"/login"} />
-            )
+            <Redirect to={"/"} />
+        )
     );
 };
 export default connect((state) => {

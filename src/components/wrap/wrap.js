@@ -12,10 +12,7 @@ function Wrap(props) {
             display: "flex",
             position: "relative"
         }}>
-
-
-
-            <TopFrame setFlagCon={()=>setFlagCon(!flagCon)}></TopFrame>
+            <TopFrame setFlagCon={() => setFlagCon(!flagCon)}></TopFrame>
             <Configurator state={props} flag={flagCon} />
             <main className="withRouter(Wrap)-content-13">
                 <Content />

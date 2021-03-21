@@ -24,7 +24,7 @@ export const newOrder = ({ dispatch, getState }) => next => action => {
 
 export const getAllOrders = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_ORDERS') {
-        axios.get('https://community.leader.codes/api/orders')
+        axios.get('https://bullcommerce.shop/api/orders')
             .then(res => {
                 dispatch(actions.setAllOrders(res.data))
             })
@@ -35,7 +35,7 @@ export const getAllOrders = ({ dispatch, getState }) => next => action => {
 export const getOrdersByStore = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ORDERS_BY_STORE') {
 
-        axios.get('https://community.leader.codes/api/stores/storeOrders/' + action.payload)
+        axios.get('https://bullcommerce.shop/api/stores/storeOrders/' + action.payload)
             .then(res => {
                 dispatch(actions.setAllOrders(res.data))
             })

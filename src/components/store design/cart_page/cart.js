@@ -3,7 +3,8 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+// import { Link, useHistory } from 'react-router-dom';
 // import { Table, Container, Row, Col, Button,  Card, } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
@@ -12,6 +13,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg"
 import CheckOut from '../check_out/checkOut'
+
+
 import {
         Table,
         Button,
@@ -42,7 +45,7 @@ let flag = 1;
 function Cart(props) {
 
         const [cookies, setCookie] = useCookies(["order"]);
-        let history = useHistory();
+        // let history = useHistory();
         useEffect(() => {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
@@ -84,10 +87,21 @@ function Cart(props) {
         //       let t = cookies[str];
         // }
 
-        const onSubmit = () => {
-                let path =   `/${props.objectFields.urlRoute}/checkOut`;     
-                history.push(path);
-        }
+        // });
+        // function  save() {
+        //         setCookie(props.storeCurrent,props.cart, {
+        //                 path: "/"
+        //               }); 
+        // }
+        // function  get() {
+        //       let  str=props.storeCurrent;
+        //       let t = cookies[str];
+        // }
+
+        // const onSubmit = () => {
+        //         let path =   `/${props.objectFields.urlRoute}/checkOut`;     
+        //         history.push(path);
+        // }
 
         function calcTotalPrice() {
                 var totalPrice = 0;
@@ -103,7 +117,7 @@ function Cart(props) {
                                 <div className="main">
                                         <div className="section cart">
                                                 {/* <button onClick={save}>save</button>
-                                                <button onClick={get}>get</button> */}
+<button onClick={get}>get</button> */}
                                                 <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
 
                                                 {(Array.isArray(props.cart.products) && props.cart.products.length) ?
@@ -137,8 +151,7 @@ function Cart(props) {
                                                                                                                 </FontAwesomeIcon>
                                                                                                         </Button>
                                                                                                 </td>
-                                                                                                <td>{item.amount * item.product.price}$</td>
-                                                                                                {/******item.amount * item.product.price */}
+                                                                                                <td>{(item.amount * item.product.price).toFixed(2)}$</td>
                                                                                                 <td>
                                                                                                         <Row>
                                                                                                                 <Col md="12">
@@ -159,6 +172,8 @@ function Cart(props) {
                                                                                 ))}
                                                                         </tbody>
                                                                 </Table>
+
+
                                                                 <Container>
                                                                         <Row>
                                                                                 <Col md="4">
@@ -203,33 +218,33 @@ function Cart(props) {
                                         <div className="section viewedProducts">
                                                 <h3 style={{ textAlign: 'center' }}>
                                                         <b>Products you viewed</b></h3>
-                                                {/* <div>
-                         <Row>
-                         {props.treeProduct.map((item, index) => (
-                         <Col lg="4" md="6" sm="12" key={index}>
-                         <Card className="card-product card-plain">
-                          <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                              <img className="imageProduct"
-                                alt="..."
-                                src={ia006}
-                              ></img>
-                            </Link>
-                          </div>
+                                                <div>
+                                                        <Row>
+                                                                {props.treeProduct.map((item, index) => (
+                                                                        <Col lg="4" md="6" sm="12" key={index}>
+                                                                                <Card className="card-product card-plain">
+                                                                                        <div className="card-image frameToProductView">
+                                                                                                <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                                                                                                        <img className="imageProduct"
+                                                                                                                alt="..."
+                                                                                                                src={ia006}
+                                                                                                        ></img>
+                                                                                                </Link>
+                                                                                        </div>
 
-                           <CardBody>
-                                   <br></br>
-                            <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
-                            <CardFooter>
-                              <div className="price-container">
-                                <span className="price">$ {item.price}</span>
-                              </div>
-                            </CardFooter>
-                          </CardBody>
+                                                                                        <CardBody>
+                                                                                                <br></br>
+                                                                                                <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                                                                                                <CardFooter>
+                                                                                                        <div className="price-container">
+                                                                                                                <span className="price">$ {item.price}</span>
+                                                                                                        </div>
+                                                                                                </CardFooter>
+                                                                                        </CardBody>
 
-                            </Card>
-                            </Col>
-                             ))  }</Row></div> */}
+                                                                                </Card>
+                                                                        </Col>
+                                                                ))}</Row></div>
 
 
 

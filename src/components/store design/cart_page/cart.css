@@ -32,4 +32,41 @@
 .cart Table{
         border-bottom: 2px solid #707070;
 }
+ .borderToProduct{
+        border-bottom: 1px solid #707070;
+        text-align: center;
+} 
+.onlyProduct{
+        height: 13rem;
+        overflow-y:auto;
+}
+.cartPanal{
+        border:0.5px solid #00000029;
+        height: 20rem;
+        width: 30rem;
+        box-shadow :-5px 5px 5px #00000029;
+        background-color: white;
+        position: fixed;
+        z-index: 4;
+        margin-left: 36.8rem!important;
+        margin-top: 4.4rem;
+}
+.cartTotal{
+        color:#707070;
+        font-weight: bold;
+}
+.btnCartTotal{
+        border:1px solid #E1DEDE;
+        color:#F29544;
+        text-align: center;
+        font-weight: bold;
+        background-color: transparent;
+        width: 8rem;
+        height: 2rem;
 
+}
+.btnCartTotal:hover{
+        color:white;
+        background-color:#F29544;
+        font-weight: normal;
+}

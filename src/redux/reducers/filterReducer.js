@@ -10,7 +10,7 @@ const initialState = {
 const filter = {
 
         setFilteredItems(state, action) {
-
+                debugger
                 state.filteredItems = action.payload;
 
         },
@@ -19,6 +19,17 @@ const filter = {
         },
         setMinPrice(state, action) {
                 state.minPrice = action.payload;
+        },
+        setFilterObject(state, action) {
+                debugger
+                state.filterObject.categories = action.payload.categories;
+                state.filterObject.attributes = action.payload.attributes;
+        },
+        setAttributesFilterObject(state, action) {
+                state.filterObject.attributes = action.payload;
+        },
+        setCategoriesFilterObject(state, action) {
+                state.filterObject.categories = action.payload;
         }
 
 }
