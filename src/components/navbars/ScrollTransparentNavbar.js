@@ -119,6 +119,7 @@ function ScrollTransparentNavbar(props) {
               <div className="separatorStripe mr-2 ml-2" style={{ float: "left" }}></div>
               <Link to={"/" + props.objectFields.storeName + "/cart"} className="mr-2 ml-2" style={{ float: "left" }}>
                 <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+                <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
               </Link>
 
               <Link to={"/" + props.objectFields.storeName + "/"} className="mr-2 ml-2" style={{ float: "left" }}>
@@ -135,6 +136,7 @@ function ScrollTransparentNavbar(props) {
 
 const mapStateToProps = (state) => {
   return {
+    cartProducts: state.cartReducer.cart.products,
     objectFields: state.storeReducer.objectFields,
     categories: state.categoriesReducer.categories
   }

@@ -8,7 +8,7 @@ export const newTerm = ({ dispatch, getState }) => next => action => {
     if (action.type === 'NEW_TERM') {
         var raw = JSON.stringify(action.payload)
         $.ajax({
-            url: "https://community.leader.codes/api/terms/newTerm",
+            url: "https://bullcommerce.shop/api/terms/newTerm",
             method: "post",
             dataType: "json",
             contentType: "application/json",
@@ -28,7 +28,7 @@ export const newTerm = ({ dispatch, getState }) => next => action => {
 
 export const deleteTerms = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_TERMS') {
-        axios.post('https://community.leader.codes/api/terms/delete/' + action.payload)
+        axios.post('https://bullcommerce.shop/api/terms/delete/' + action.payload)
             .then(res => { 
         }).catch(()=>{console.log("error");
         alert("מחיקת המונח נכשלה")

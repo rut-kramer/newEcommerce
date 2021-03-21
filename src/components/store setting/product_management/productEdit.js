@@ -54,7 +54,7 @@ const items = [
         },
 ];
 
-function productEdit(props) {
+function ProductEdit(props) {
 
         const update = (event) => {
                 var u;
@@ -430,7 +430,7 @@ export default connect(
                         setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e))
                 }
         }
-)(productEdit);
+)(ProductEdit);
 
 
 

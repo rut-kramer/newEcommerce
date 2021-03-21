@@ -6,9 +6,9 @@ import { actions } from '../action';
 //5 
 export const getAllAttributes = ({ dispatch, getState }) => next => action => {
     if (action.type === 'GET_ALL_ATTRIBUTES') {
-         axios.get('https://community.leader.codes/api/stores/storeAttributes/'+action.payload)
+         axios.get('https://bullcommerce.shop/api/stores/storeAttributes/'+action.payload)
      
-       // axios.get('https://community.leader.codes/api/attributes/')
+       // axios.get('https://bullcommerce.shop/api/attributes/')
             .then(res => {
                 dispatch(actions.setAttribute(res.data))
             }).catch(console.log("error")) }
@@ -20,7 +20,7 @@ export const newAttributes = ({ dispatch, getState }) => next => action => {
     if (action.type === 'ADD_NEW_ATTRIBUTE') {
         var raw = JSON.stringify(action.payload)
         $.ajax({
-            url: "https://community.leader.codes/api/attributes/newAttribute",
+            url: "https://bullcommerce.shop/api/attributes/newAttribute",
             method: "post",
             dataType: "json",
             contentType: "application/json",
@@ -57,7 +57,7 @@ export const newAttributes = ({ dispatch, getState }) => next => action => {
 //11
 export const deleteAttributes = ({ dispatch, getState }) => next => action => {
     if (action.type === 'DELETE_ATTRIBUTES') {
-        axios.post('https://community.leader.codes/api/attributes/deleteAttribute/' + action.payload)
+        axios.post('https://bullcommerce.shop/api/attributes/deleteAttribute/' + action.payload)
             .then(res => { 
                 dispatch(actions.deleteOldAttribute(action.payload))
                 alert("התכונה נמחקה בהצלחה ")
@@ -72,7 +72,7 @@ export const editAttribute = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_ATTRIBUTE') {
         var raw = JSON.stringify(action.payload);
         $.ajax({
-            url: `https://community.leader.codes/api/attributes/editAttribute/${action.payload._id}`,
+            url: `https://bullcommerce.shop/api/attributes/editAttribute/${action.payload._id}`,
             method: "post",
             dataType: "json",
             contentType: "application/json",
