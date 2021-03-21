@@ -3,18 +3,20 @@ import { connect } from 'react-redux';
 import { actions } from '../../redux/action';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./scrollNavbar.css";
 
 
 function CategoryWithDropdown(props) {
+        const history = useHistory();
+
         const { category } = props;
         const [dropdownOpen, setDropdownOpen] = useState(false);
 
         const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
                 <Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ backgroundColor: "transparent" }} nav>
-                        <DropdownToggle caret id="dropdown">
+                        <DropdownToggle caret id="dropdown" onClick={() => { history.push(`/${props.storeName}/category`) }}>
                                 {category.categoryName}
                         </DropdownToggle>
                         {(Array.isArray(category.childrenCategory) && category.childrenCategory.length) &&
@@ -118,6 +120,7 @@ export default connect(
                 return {
                         // ObjCategory: state.createCategoryReducer.ObjCreateCategory,
                         categories: state.categoriesReducer.categoryListMenu,
+                        storeName: state.storeReducer.objectFields.urlRoute
                         // postData: state.createPostReducer.postData
                 }
         },
