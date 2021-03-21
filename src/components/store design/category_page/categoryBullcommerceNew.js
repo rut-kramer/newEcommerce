@@ -400,7 +400,7 @@ function CategoryBullcommerce(props) {
 
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + props.objectFields.storeName + "/product/" + item.SKU, state: { product: item } }}>
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
                               <img className="imageProduct"
                                 alt="..."
                                 src={ia006}

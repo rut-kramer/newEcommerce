@@ -30,7 +30,7 @@ function EcommerceHeader(props) {
   const [items,setItem]= useState ([
     {
 
-      src: "url(" +  img3  + ")",
+      src: "url(" +  interior  + ")",
 
       content: (
         <Row>
@@ -72,7 +72,7 @@ function EcommerceHeader(props) {
       caption: "",
     },
     {
-      src: "url(" + interior + ")",
+      src: "url(" + img3 + ")",
       content: (
         <Row>
           <Col className="ml-auto mr-auto" md="8">
