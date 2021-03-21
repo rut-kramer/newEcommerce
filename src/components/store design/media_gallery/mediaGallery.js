@@ -23,19 +23,22 @@ function MediaGallery(props) {
                 </Col>
                 <Col md="10">
                     <Switch>
-                        <Route exact path="/mediaGallery/uploudImage">
+                        <Route exact path="/:storeName/admin/mediaGallery/uploudImage">
                             <UploadImages></UploadImages>
                         </Route>
-                        <Route path="/mediaGallery/myFiles">
+                        <Route path="/:storeName/admin/mediaGallery/myFiles">
                             <MyFiles></MyFiles>
                         </Route>
                         {/* <Route exact path="/gallery">
                                 <Gallery></Gallery>
                             </Route> */}
-                        <Route exact path="/mediaGallery/trash">
+                        <Route exact path="/:storeName/admin/mediaGallery/trash">
                             <Trash></Trash>
                         </Route>
-                        <Route exact path="/mediaGallery/">
+                        <Route exact path="/:storeName/admin/mediaGallery/">
+                            <UploadImages></UploadImages>
+                        </Route>
+                        <Route exact path="/:storeName/admin/">
                             <UploadImages></UploadImages>
                         </Route>
                     </Switch>

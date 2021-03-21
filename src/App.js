@@ -21,7 +21,7 @@ import MediaGallery from './components/store design/media_gallery/mediaGallery'
 // import Product from "./components/store design/product_page/product";
 // import Cart from "./components/store design/cart";
 import QuickLook from './components/store design/quickLook'
-
+// import Upload from './components/modals/yeuditUploadImage'
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
@@ -61,9 +61,11 @@ function App() {
             {/* <Route exact path="/admin/category/edit">
               <EditCategory />
             </Route>     */}
+
             <Route path="/mediaGallery">
               <MediaGallery />
-              </Route>
+            </Route>
+
             <Route exact path="/showPaper">
               <ShowPaper></ShowPaper>
             </Route>
