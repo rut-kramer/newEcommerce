@@ -6,20 +6,20 @@ import { Container } from "reactstrap";
 //בתוכ הסוגריים של הפונקציה מקבלים את הפרופס
 function TopFooter(props) {
   return (
-    <footer className="footer" data-background-color="black" style={{
-      bottom: 0,
-      position: "fixed", width: "100%", padding: 0
-      , zIndex: 2237
-    }}>
-      <Container>
-        <nav>
-          <ul style={{ lineHeight: 1.4 }}>
-            <li>
-              <a
-                href="https://www.creative-tim.com?ref=nuk-pro-react-footer-black"
-                target="_blank"
-              >
-                Creative Tim
+      <footer className="footer" data-background-color="black" style={{
+        // bottom: 0,
+        // position: "fixed", width: "100%", padding: 0
+        // ,zIndex: 2237
+      }}>
+        <Container>
+          <nav>
+            <ul style={{ lineHeight: 1.4 }}>
+              <li>
+                <a
+                  href="https://www.creative-tim.com?ref=nuk-pro-react-footer-black"
+                  target="_blank"
+                >
+                  Creative Tim
                   </a>
             </li>
             <li>

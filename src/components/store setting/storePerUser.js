@@ -49,7 +49,7 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.storeName}>
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.urlRoute}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
