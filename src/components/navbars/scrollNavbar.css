@@ -4,8 +4,8 @@
     background-color: black;
 }
 .cartHeader:hover{
-color: yellow;
-
+    color: yellow;
+    
 }
 #dropdown{
     
@@ -18,4 +18,4 @@ color: yellow;
     padding:0;
     width:100%;
 }
-.navbar-translate{width: 100%;}
+/* .navbar-translate{width: 100%;} */

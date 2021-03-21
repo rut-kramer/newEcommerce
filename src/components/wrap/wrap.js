@@ -21,7 +21,7 @@ function Wrap(props) {
         }}>
             <TopFrame setFlagCon={() => setFlagCon(!flagCon)}></TopFrame>
             <Configurator state={props} flag={flagCon} />
-            <main className="withRouter(Wrap)-content-13" style={{ paddingBottom: "0 !important" }}>
+            <main className="withRouter(Wrap)-content-13" style={{ paddingBottom: "0 !important", marginTop: "80px " }}>
                 <Content />
 
             </main>
