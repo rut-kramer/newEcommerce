@@ -286,7 +286,7 @@ function ProductsList(props) {
                                                                                                         {item.attributes && item.attributes.map((att, index) => (
                                                                                                                 att && <div>
                                                                                                                         {/* <h1>{att}</h1> */}
-                                                                                                                     {att.attribute&&<strong>{att.attribute.name}</strong>}   
+                                                                                                                        {att.attribute && <strong>{att.attribute.name}</strong>}
                                                                                                                         <h5><u>:מונחים</u></h5>
                                                                                                                         <ul>
                                                                                                                     {att.terms && att.terms.map((term, i) => (

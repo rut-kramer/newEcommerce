@@ -49,7 +49,7 @@ function StorePerUser(props) {
                   <div className="data__effect mobile-hide">
                     <label className="switch"></label></div>
                   <div className="data__cell mobile-hide">
-                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.storeName}>
+                    <Link onClick={() => { funcReset(itemy) }} to={"/" + itemy.urlRoute}>
                       <div className="data__content">
                         <strong>{itemy.storeName}</strong>
                       </div></Link>
@@ -85,7 +85,7 @@ export default connect(
       setFilteredItems: (i) => { dispatch(actions.setFilteredItems(i)) },
       setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
       deleteStore: (i) => { dispatch(actions.deleteStore(i)) },
-      getCategoriesByStore: (i) => {debugger; dispatch(actions.getCategoriesByStore(i)) },
+      getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
       getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
       getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },

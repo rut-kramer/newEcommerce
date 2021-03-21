@@ -264,7 +264,9 @@ function  removeAttr(item) {
                   <div className="form__col">
                     <div className="field form__field">
                       <div className="field__label">?מוצר מקודם</div>
+                      
                     <br></br>
+               
                       <div className="field__wrap">
                       <input type="checkbox" onClick={update}  name="featured"></input>
                         <div className="field__icon"><i className="la la-wallet "></i></div>
