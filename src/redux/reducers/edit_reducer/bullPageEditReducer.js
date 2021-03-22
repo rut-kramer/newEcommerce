@@ -8,11 +8,12 @@ const initialState = {
 }
 
 const bullPageEdit = {
-    //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setTitle(state, action) {
+        debugger
         state.title = action.payload
     },
     setAlignment(state, action) {
+        debugger
         state.alignment = action.payload
     },
 

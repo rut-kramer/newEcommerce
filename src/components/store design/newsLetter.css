@@ -1,5 +1,6 @@
 .newsLetter-all{
     color: white;
+    background-image: url("../../assets/img/xd/newsLetter.png");
 }
 .newsLetter-Title{
     font-size: 20px;
