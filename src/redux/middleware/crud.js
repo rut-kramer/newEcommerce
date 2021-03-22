@@ -22,6 +22,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             return;
         }
         const myFile = new FormData();
+        alert("fdsg")
         myFile.append("file", action.payload);
         $.ajax({
             "url": "https://bullcommerce.shop/api/uploadImage/D2uxGNcpVGPw3MLWQaadsO3kmAh1",
@@ -37,6 +38,8 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "data": myFile,
             "async": false,
             success: function (data1) {
+        alert("fdsg")
+
                 dispatch(actions.setPicture(data1))
             },
             error: function (err) {

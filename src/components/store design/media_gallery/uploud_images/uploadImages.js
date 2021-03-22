@@ -2,24 +2,31 @@ import React from 'react'
 import './uploadImages.css'
 import { actions } from "../../../../redux/action"
 import { connect } from 'react-redux';
-import {
-    Row,
-    Col,
-    Container
-} from "reactstrap";
 import uploadImg from '../../../../assets/uploadImg.svg'
 
 function UploadImages(props) {
+    const handlerLogo = (e) => {
+        debugger
+        props.uploadImage(e);
+    }
     return (
         <>
             <div className="uploud-image">
                 <div className="uploud-image-middle">
+                    <label for="files">
+                       
+                    </label>
                     <div> <img className="upload-img" src={uploadImg} alt="uploadImg" /></div>
                     <div><p className="upload-image-word mt-2 mb-1">Drop Image Here</p></div>
                     <div><p className="upload-image-word pl-5 ml-3 mt-0">Or</p></div>
                     <div className="uploud-image-choose-file-div ml-2">
-                        <label for="files" className="uploud-image-choose-file">Choose Files</label>
-                        <input id="files" style={{ visibility: "hidden" }} type="file" />
+                        <label htmlFor="files" className="uploud-image-choose-file" >
+                            Choose Files
+                            <img className="logoC"
+                                src={props.url}
+                            ></img>
+                        </label>
+                        <input id="files" style={{ visibility: "hidden" }} type="file" onChange={(e) => handlerLogo(e.target.files[0])} />
                     </div>
                 </div>
             </div>
@@ -28,10 +35,11 @@ function UploadImages(props) {
 }
 const mapStateToProps = (state) => {
     return {
+        url: state.coinsReducer.picture
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-
+    uploadImage: (x) => dispatch(actions.uploadImage(x)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(UploadImages);
 
