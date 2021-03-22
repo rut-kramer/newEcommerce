@@ -22,6 +22,7 @@ import coinsReducer from "./reducers/coinsReducer";
 import filterReducer from "./reducers/filterReducer";
 import wrapReducer from "./reducers/wrapReducer";
 import bullPageEditReducer from "./reducers/edit_reducer/bullPageEditReducer";
+import carouselImgReducer from "./reducers/data_reducer/carouselPictureReducer"
 import { addToCart, changeProductAmount } from "./middleware/crudCart"
 import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
@@ -33,7 +34,7 @@ const reducers =
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer
+        attributeReducer, bullPageEditReducer, carouselImgReducer
     })
 
 const store = createStore(

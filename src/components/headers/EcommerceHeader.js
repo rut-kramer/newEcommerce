@@ -10,6 +10,7 @@ import {
   Carousel,
   CarouselItem,
   CarouselIndicators,
+  Container,
 } from "reactstrap";
 
 import "./ecommerceHeader.css"
@@ -25,8 +26,6 @@ import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
-
-
   const [items, setItem] = useState([
     {
 
@@ -66,18 +65,20 @@ function EcommerceHeader(props) {
   };
   const next = () => {
     if (animating) return;
-    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    const nextIndex = activeIndex === props.ImagesArr.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
   const previous = () => {
     if (animating) return;
-    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    const nextIndex = activeIndex === 0 ? props.ImagesArr.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
+
+  // הוספת תמונה
   const addImg = () => {
     let img =
     {
@@ -85,29 +86,27 @@ function EcommerceHeader(props) {
       altText: "",
       caption: "",
     }
-    setItem([...items, img])
 
+    setItem([...items, img])
   }
   return (
-    <>
-      {/* <Nis></Nis> */}
+    <div className="carouelImgHover">
       <button onClick={addImg}>add img</button>
-      <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+      <Carousel activeIndex={activeIndex} next={next} previous={previous}
+      >
         <CarouselIndicators
-          items={items}
+          items={props.ImagesArr}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
         />
-        {items.map((item) => {
+        {props.ImagesArr.map((item) => {
           return (
             <CarouselItem
               onExiting={onExiting}
               onExited={onExited}
               key={item.src}
+
             >
-
-
-
               <div className="page-header header-filter">
                 <div
                   className="page-header-image"
@@ -115,7 +114,7 @@ function EcommerceHeader(props) {
                     backgroundImage: item.src,
                   }}
                 ></div>
-                <div className="content-center text-center">
+                {/* <div className="content-center text-center">
                   <Row>
                     <Col className="ml-auto mr-auto" md="8">
                       <input
@@ -130,10 +129,12 @@ function EcommerceHeader(props) {
                     </Col>
                   </Row>
                 </div>
+              */}
               </div>
             </CarouselItem>
           );
         })}
+        {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
         <a
           className="left carousel-control carousel-control-prev"
           data-slide="prev"
@@ -177,8 +178,7 @@ function EcommerceHeader(props) {
             </FontAwesomeIcon>                                                                                </Button>
         </a>
       </Carousel>
-    </>
-  );
+    </div>);
 }
 
 const mapStateToProps = (state) => {
@@ -186,7 +186,8 @@ const mapStateToProps = (state) => {
     objectFields: state.storeReducer.objectFields,
     homeStoreDesign: state.storeHomeReducer.homeStoreDesign,
     title: state.bullPageEditReducer.title,
-    alignment: state.bullPageEditReducer.alignment
+    alignment: state.bullPageEditReducer.alignment,
+    ImagesArr: state.carouselImgReducer.ImagesArr
   }
 }
 const mapDispatchToProps = (dispatch) => ({
