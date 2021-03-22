@@ -189,7 +189,7 @@ function ScrollTransparentNavbar(props) {
                 <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
               </Link>
 
-              <Link to={"/" + props.objectFields.storeName + "/"} className="mr-2 ml-2" style={{ float: "left" }}>
+              <Link to={"/" + props.objectFields.storeName + "/checkOut"} className="mr-2 ml-2" style={{ float: "left" }}>
 
                 <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
               </Link>
