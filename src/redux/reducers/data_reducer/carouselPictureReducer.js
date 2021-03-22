@@ -11,14 +11,18 @@ const initialState = {
     },
     {
         src: "url(" + img3 + ")",
+    },
+    {
+        src: "url(" + interior + ")",
+    }, {
+        src: "url(" + img3 + ")",
     }
     ],
 
 }
 
 const carouselImages = {
-    setTitle(state, action) {
-        debugger
+    setImagesArr(state, action) {
         state.title = action.payload
     },
 

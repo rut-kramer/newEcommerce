@@ -55,6 +55,7 @@ function Bullcommerce(props) {
             <div className="wrapper">
                 <Container fluid>
                     <EcommerceHeader />
+
                 </Container>
                 <div className="main">
                     <div className="section">

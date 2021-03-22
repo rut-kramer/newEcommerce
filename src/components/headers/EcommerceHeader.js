@@ -26,35 +26,38 @@ import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
-  const [items, setItem] = useState([
-    {
+  // const [items, setItem] = useState([
+  //   {
 
-      src: "url(" + interior + ")",
-      altText: "",
-      caption: "",
-    },
-    {
-      src: "url( " + props.homeStoreDesign.image + ")",
-      altText: "",
-      caption: "",
-    },
-    {
-      src: "url(" + img3 + ")",
-      altText: "",
-      caption: "",
-    },
-    {
-      src: "url(" + interior + ")",
-      altText: "",
-      caption: "",
-    },
-    {
-      src: "url(" + interior + ")",
-      altText: "",
-      caption: "",
-    },
+  //     src: "url(" + interior + ")",
+  //     altText: "",
+  //     caption: "",
+  //   },
+  //   {
+  //     src: "url( " + props.homeStoreDesign.image + ")",
+  //     altText: "",
+  //     caption: "",
+  //   },
+  //   {
+  //     src: "url(" + img3 + ")",
+  //     altText: "",
+  //     caption: "",
+  //   },
+  //   {
+  //     src: "url(" + interior + ")",
+  //     altText: "",
+  //     caption: "",
+  //   },
+  //   {
+  //     src: "url(" + interior + ")",
+  //     altText: "",
+  //     caption: "",
+  //   },
 
-  ]);
+  // ]);
+
+
+
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -77,22 +80,31 @@ function EcommerceHeader(props) {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-
   // הוספת תמונה
   const addImg = () => {
     let img =
     {
       src: "url(" + aa + ")",
-      altText: "",
-      caption: "",
     }
-
-    setItem([...items, img])
+    props.setImagesArr(img)
+    // setItem([...items, img])
   }
   return (
     <div className="carouelImgHover">
       <button onClick={addImg}>add img</button>
+      <div className="bullcommerceTitle">
+        <input className="bullcommerceTitleInput"
+          value={props.title ? props.title : props.objectFields.storeName}
+          onChange={(e) => props.setTitle(e.target.value)}
+          onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+          style={{
+            textAlign: props.alignment ? props.alignment : 'center',
+          }}
+        ></input>
+      </div>
+
       <Carousel activeIndex={activeIndex} next={next} previous={previous}
+
       >
         <CarouselIndicators
           items={props.ImagesArr}
@@ -114,22 +126,7 @@ function EcommerceHeader(props) {
                     backgroundImage: item.src,
                   }}
                 ></div>
-                {/* <div className="content-center text-center">
-                  <Row>
-                    <Col className="ml-auto mr-auto" md="8">
-                      <input
-                        className="title-EcommerceHeader-input"
-                        value={props.title ? props.title : props.objectFields.storeName}
-                        onChange={(e) => props.setTitle(e.target.value)}
-                        onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-                        style={{
-                          textAlign: props.alignment ? props.alignment : 'center',
-                        }}
-                      ></input>
-                    </Col>
-                  </Row>
-                </div>
-              */}
+
               </div>
             </CarouselItem>
           );
@@ -193,6 +190,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-
+  setImagesArr: (img) => dispatch(actions.setImagesArr(img))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);
