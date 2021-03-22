@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux';
+import { actions } from "../../../../redux/action"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Link} from 'react-router-dom'
 import Hidden from '../hidden_window/hidden'
 import {
     Row,
@@ -22,7 +23,7 @@ function MyFiles(props) {
                 <Row md="12">
                     <Col md="9" className="">
                         <div className="my-file" style={{ display: "flex" }}>
-                            <Link to={"/mediaGallery/uploudImage"}>
+                            <Link to={"/:storeName/admin/mediaGallery/uploudImage"} onClick={() => props.setTitleBySideBar('Uploud Images')}>
                                 <div className="upload-my-file" style={{ display: "inline-block" }}>
                                     <FontAwesomeIcon className="icon-upload-my-file"
                                         icon={['fas', 'plus']}>
@@ -50,7 +51,7 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-
+    setTitleBySideBar: (e) => dispatch(actions.setTitleBySideBar(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MyFiles);
 
