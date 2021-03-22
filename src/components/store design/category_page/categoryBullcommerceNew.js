@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // reactstrap components
@@ -45,6 +45,7 @@ import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg";
 
 import { Alert } from 'reactstrap';
+import "../../alerts/alert.css";
 import "../../reactstrapComponents/alert.css";
 
 function CategoryBullcommerce(props) {
@@ -461,26 +462,23 @@ function CategoryBullcommerce(props) {
                                 To View
         </UncontrolledTooltip>
 
-                            </CardFooter>
-                          </CardBody>
-                        </Card>
-                      </Col>
-                    ))
+                              </CardFooter>
+                            </CardBody>
+                          </Card>
+                        </Col>
+                      ))
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
-                        <Pagination
+
+                          <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
-                          >    
-                        <Pagination
-                            className="pagination pagination-info justify-content-end pt-2"
-                            listClassName="pagination-info justify-content-center"
-                          >
-                            {/* <PaginationItem>
+                          > 
+                            <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
@@ -493,11 +491,9 @@ function CategoryBullcommerce(props) {
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem>  */}
-                           
+                            </PaginationItem> 
                              {/* <div className="Apprs">  */}
  {/* <Carousel  itemsToShow={1}> */}
- {/* <div id="carousel" class="slider"> */}
                              {arrPager&&arrPager.map((item, index) => ( 
                       <item key={index}> 
                         <PaginationItem
@@ -512,10 +508,9 @@ function CategoryBullcommerce(props) {
                             </PaginationItem>
                             </item>
                   ))}  
-                  {/* </div> */}
 {/* </Carousel> */}
 {/* </div> */}
-                            {/* <PaginationItem 
+                            <PaginationItem 
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -531,9 +526,8 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                        */}
                           </Pagination>
-                            </Pagination>
+                          
                         </Col>
                       </Row>
                     </Col>

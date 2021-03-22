@@ -3,18 +3,20 @@ import { connect } from 'react-redux';
 import { actions } from '../../redux/action';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./scrollNavbar.css";
 
 
 function CategoryWithDropdown(props) {
+        const history = useHistory();
+
         const { category } = props;
         const [dropdownOpen, setDropdownOpen] = useState(false);
 
         const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
                 <Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ backgroundColor: "transparent" }} nav>
-                        <DropdownToggle caret id="dropdown">
+                        <DropdownToggle caret id="dropdown" onClick={() => { history.push(`/${props.storeName}/category`) }}>
                                 {category.categoryName}
                         </DropdownToggle>
                         {(Array.isArray(category.childrenCategory) && category.childrenCategory.length) &&
@@ -68,8 +70,8 @@ function Dnd(props) {
         const getListStyle = isDraggingOver => ({
                 display: 'flex',
                 padding: '10',
-                overflow: 'hidden',
-                marginLeft: '80px',
+                overflow: 'auto',
+                // marginLeft: '80px',שמתי בהערה כי נראה מ יותר ומעוות את השורה
                 enabled: 'false',
 
         });
@@ -118,6 +120,7 @@ export default connect(
                 return {
                         // ObjCategory: state.createCategoryReducer.ObjCreateCategory,
                         categories: state.categoriesReducer.categoryListMenu,
+                        storeName: state.storeReducer.objectFields.urlRoute
                         // postData: state.createPostReducer.postData
                 }
         },

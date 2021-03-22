@@ -92,12 +92,3 @@ export default function CheckOut(props) {
         </>
     )
 }
-// const mapStateToProps = (state) => {
-//     return {
-
-//     }
-// }
-// const mapDispatchToProps = (dispatch) => ({
-
-// })
-// export default connect(mapStateToProps, mapDispatchToProps)(CheckOut);
