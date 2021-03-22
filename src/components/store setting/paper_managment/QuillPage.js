@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Component } from 'react'
 import 'react-quill/dist/quill.snow.css';
 import ReactQuill, { Quill, Mixin, Toolbar } from 'react-quill';
 import ReactDOM from 'react-dom'
@@ -12,7 +12,7 @@ function insertStar() {
   this.quill.insertText(cursorPosition, "★");
   this.quill.setSelection(cursorPosition + 1);
 }
-class Editor extends React.Component {
+class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = { editorHtml: "", kkk: "", file: "", file2: "" };
@@ -46,19 +46,19 @@ class Editor extends React.Component {
   render() {
     return (
       <>
-      <div style={{ marginTop: "-4.8%", width: "86%", marginLeft: "auto", marginRight: "auto" }}>
-        <div>{this.CustomToolbar()}</div>
-        <ReactQuill
-          placeholder={this.props.placeholder}
-          id="reactQuill"
-          modules={Editor.modules}
-          formats={Editor.formats}
-          theme={"snow"}
-          value={this.props.quote ? this.props.quote.quillStyle ? this.props.quote.quillStyle : "" : ""}
-          onChange={this.handleChange}
-        />
-      </div>
-</>
+        <div style={{ marginTop: "-4.8%", width: "86%", marginLeft: "auto", marginRight: "auto" }}>
+          <div>{this.CustomToolbar()}</div>
+          <ReactQuill
+            placeholder={this.props.placeholder}
+            id="reactQuill"
+            modules={Editor.modules}
+            formats={Editor.formats}
+            theme={"snow"}
+            value={this.props.quote ? this.props.quote.quillStyle ? this.props.quote.quillStyle : "" : ""}
+            onChange={this.handleChange}
+          />
+        </div>
+      </>
 
     );
   }
@@ -109,6 +109,6 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  changeQuillStyle: (q) =>  {dispatch(actions.setQuillStyle(q))},
+  changeQuillStyle: (q) => { dispatch(actions.setQuillStyle(q)) },
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Editor);

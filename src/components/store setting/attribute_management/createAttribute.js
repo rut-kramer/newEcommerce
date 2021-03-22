@@ -37,9 +37,11 @@ async function  SaveAttribute ()
      if(r.length==0)
      {
         props.newAttributes(attribute)
-              //id_attr=props.currentAttribute._id;
-      // att.push(id_attr);
-     props.addAtt("000")
+           
+              // setTimeout(()=>{ props.addAtt(props.currentAttribute)},3000)
+              //  props.addAtt()
+                 //id_attr=props.currentAttribute._id;
+     //props.addAtt("000")
      document.getElementById('id01').style.display='none'
       }
          else
@@ -117,6 +119,8 @@ export default connect(
           return { 
             storeCurrent:state.storeReducer.objectFields._id,
             attributesList:state.attributeReducer.attributes,
+            currentAttribute:state.attributeReducer.currentAttribute,
+
           }
   },
   (dispatch)=>{

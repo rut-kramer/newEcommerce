@@ -15,7 +15,8 @@ const initialState = {
     },
     storesOfUser: [],
     lastUpdatedUserStore: [],
-    hasStores: true
+    hasStores: true,
+    isUpdate:false
 }
 
 const user = {
@@ -48,6 +49,7 @@ const user = {
         if (action.payload === null || action.payload === [] || action.payload.length === 0)
             state.hasStores = false;
         state.lastUpdatedUserStore = action.payload;
+        state.isUpdate=true;
     },
     deleteOldStore(state, action) {
         ;
