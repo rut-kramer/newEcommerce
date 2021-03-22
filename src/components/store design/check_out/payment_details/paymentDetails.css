@@ -1,0 +1,40 @@
+.aa{
+    display:inline-block;
+}
+.credit-card-radio-label{
+
+}
+.credit-card-radio-input{
+    border-radius: 10px;
+}
+/* input[type='radio']:checked:after {
+    color: orange;
+} */
+
+.radio-payment input[type='radio'] {
+    color: orange;
+}
+.radio-payment input[type='radio']:checked{
+    background-color: orange;
+}
+.radio-payment input[type='radio']:before {
+    /*styles outer circle*/
+    /* content: " ";
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    margin: 0 5px 0 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 11px;
+    border: 2px solid orange; */
+    background-color: orange;
+  }
+.radio-payment input[type='radio']:after {
+    background-color: orange;
+    border: 2px solid rgb(126, 123, 123);
+}
+input[type='radio']:after {
+    background-color: orange;
+    border: 2px solid rgb(126, 123, 123);
+}

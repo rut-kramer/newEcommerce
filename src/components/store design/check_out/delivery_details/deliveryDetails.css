@@ -1,0 +1,29 @@
+.check-out-input{
+    background: #F8F8F8 0% 0% no-repeat padding-box;
+    border-radius: 8px;
+    border: 0px;
+    width: 100%;
+    height: 2rem;
+    /* margin-top: 1rem;
+    margin-left: 1rem; */
+}
+.check-out-input:hover{
+    border: 1px solid #e0e0e0;
+}
+.check-out-label{
+    margin-bottom: 0vh;
+    margin-top: 1rem;
+    font: var(--unnamed-font-style-normal) normal medium 16px/16px var(--unnamed-font-family-roboto);
+    text-align: left;
+    font: normal normal medium 16px/16px Roboto;
+    letter-spacing: 0.45px;
+    color: #89898f;
+    text-transform: capitalize;
+    opacity: 1;
+    margin-left: 0.5rem;
+    font-size:x-small;    
+    font-weight: bold;
+}
+.check-out-form{
+ margin: 3% 25%;
+}

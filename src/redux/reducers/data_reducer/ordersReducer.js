@@ -2,7 +2,8 @@ import produce from 'immer';
 import createReducer from '../reducerUtils';
 
 const initialState = {
-  orders: []
+  orders: [],
+  
 }
 const ordersReducer = {
   setAllOrders(state, action) {

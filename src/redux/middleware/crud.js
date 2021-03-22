@@ -22,10 +22,10 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             return;
         }
         const myFile = new FormData();
-        alert("fdsg")
+        
         myFile.append("file", action.payload);
         $.ajax({
-            "url": "https://bullcommerce.shop/api/uploadImage/D2uxGNcpVGPw3MLWQaadsO3kmAh1",
+            "url": `https://files.codes/api/Yeudit%20Shapira/upload`,
             // + getState().userReducer.user.uid,
             "method": "POST",
             "processData": false,
@@ -38,9 +38,11 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "data": myFile,
             "async": false,
             success: function (data1) {
-        alert("fdsg")
+        
 
                 dispatch(actions.setPicture(data1))
+                console.log("picture", data1.data);
+                // dispatch(actions.setPicture(data1))
             },
             error: function (err) {
                 console.log("err upload", err)
@@ -50,6 +52,4 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
-
-
 

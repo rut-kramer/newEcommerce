@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,7 @@ import { useHistory } from "react-router-dom";
 
 function FilteredProducts(props) {
 
-        const [collapses, setCollapses] = React.useState([1]);
+        const [collapses, setCollapses] = useState([1]);
 
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
@@ -45,7 +45,7 @@ function FilteredProducts(props) {
         const [minView, setMinView] = useState(0);
         const [maxView, setMaxView] = useState(0);
 
-        React.useEffect(() => {
+        useEffect(() => {
                 let min, max;
                 if (Array.isArray(props.storeProducts) && props.storeProducts.length > 0) {
                         min = props.storeProducts[0].price;
@@ -81,7 +81,7 @@ function FilteredProducts(props) {
 
         const { addTermToFilterObject, addCategoryToFilterObject, onFilter } = props;
 
-        // const [filterObject, setFilterObject] = React.useState({
+        // const [filterObject, setFilterObject] = useState({
         //         categories: [],
         //         attributes: []
         // });

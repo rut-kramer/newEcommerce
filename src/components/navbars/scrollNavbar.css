@@ -4,11 +4,18 @@
     background-color: black;
 }
 .cartHeader:hover{
-color: yellow;
-
+    color: yellow;
+    
 }
 #dropdown{
     
     background-color: transparent;
     color: black;
 }
+#store_main_navbar{
+    position: fixed;
+    z-index: 1000;
+    padding:0;
+    width:100%;
+}
+/* .navbar-translate{width: 100%;} */

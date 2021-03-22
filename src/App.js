@@ -15,7 +15,7 @@ import CartPanel from "./components/store design/cart_page/cart_panel"
 import Welcome from "./components/welcome"
 import EditPaper from './components/store setting/paper_managment/editPaper'
 import ShowPaper from './components/store setting/paper_managment/showPaper'
-
+import CheckOut from './components/store design/check_out/checkOut'
 import Upload from './components/modals/yeuditUploadImage';
 import MediaGallery from './components/store design/media_gallery/mediaGallery'
 // import Product from "./components/store design/product_page/product";
@@ -69,7 +69,6 @@ function App() {
             <Route exact path="/showPaper">
               <ShowPaper></ShowPaper>
             </Route>
-
             <Route path="/login">
               {/* <Login /> */}
               <LoginHome />
@@ -77,6 +76,7 @@ function App() {
             <PrivateRoute path="/openStore" component={Welcome} />
             {/* <PrivateRoute path="/openStore" component={OpenStore} /> */}
             <PrivateRoute path="/home" component={Index} />
+            {/* <Route path="/:comp" component={Wrap} /> */}
             <PrivateRoute path="/:comp" component={Wrap} />
           </Switch>
         </div>

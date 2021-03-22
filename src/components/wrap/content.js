@@ -11,6 +11,7 @@ import Cart from '../store design/cart_page/cart';
 import { connect } from 'react-redux';
 import { Container } from 'reactstrap';
 import MainStoreRoutes from "../store design/store_page/mainStore"
+import TopFooter from "../topFooter"
 
 function Content(props) {
 
@@ -30,6 +31,7 @@ function Content(props) {
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
             </Switch>
+<TopFooter></TopFooter>
         </div>
     )
 }

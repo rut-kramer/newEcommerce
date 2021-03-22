@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import sofa from "../../../assets/img/ia_300000012.png";
 import sofaSide from "../../../assets/img/ia_300000013.png";
 import sofaBack from "../../../assets/img/ia_300000015.png";
@@ -73,8 +73,8 @@ function Product(props) {
         console.log("pprr", product);
         console.log("add", props.addToCart);
         // carousel states and functions
-        const [activeIndex, setActiveIndex] = React.useState(0);
-        const [animating, setAnimating] = React.useState(false);
+        const [activeIndex, setActiveIndex] = useState(0);
+        const [animating, setAnimating] = useState(false);
 
         // let productWithVariations = {
         //         "amount": product.amount,
@@ -90,7 +90,7 @@ function Product(props) {
         //         "attributes": [],
         // }
 
-        const [orderAmount, setOrderAmount] = React.useState(1)
+        const [orderAmount, setOrderAmount] = useState(1)
 
         const onExiting = () => {
                 setAnimating(true);
@@ -113,7 +113,7 @@ function Product(props) {
                 setActiveIndex(newIndex);
         };
         // collapse states and functions
-        const [collapses, setCollapses] = React.useState([1]);
+        const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
                         setCollapses(collapses.filter((prop) => prop !== collapse));
@@ -122,9 +122,9 @@ function Product(props) {
                 }
         };
         // select states and functions
-        const [colorSelect, setColorSelect] = React.useState(null);
-        const [sizeSelect, setSizeSelect] = React.useState(null);
-        React.useEffect(() => {
+        const [colorSelect, setColorSelect] = useState(null);
+        const [sizeSelect, setSizeSelect] = useState(null);
+        useEffect(() => {
                 document.body.classList.add("product-page");
                 document.body.classList.add("sidebar-collapse");
                 document.documentElement.classList.remove("nav-open");

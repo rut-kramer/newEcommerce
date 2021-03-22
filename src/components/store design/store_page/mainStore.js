@@ -1,6 +1,5 @@
 // import React, { Component } from 'react';
 import React, { useEffect, useState } from 'react';
-
 import { Switch, Route, Link } from "react-router-dom";
 import HeaderNavbar from "../../navbars/ScrollTransparentNavbar"
 import FooterOrange from "../header_and_footer/footerOrange"
@@ -8,7 +7,7 @@ import Bullcommerce from '../bullcommerce';
 import CategoryBullcommerce from "../category_page/categoryBullcommerceNew"
 import Product from "../product_page/product";
 import Cart from "../cart_page/cart";
-import CheckOut from "../checkout_page/checkOut";
+import CheckOut from "../check_out/checkOut";
 import QuickLook from '../quickLook'
 import MediaGallery from "../media_gallery/mediaGallery"
 // import UploadImages from "../upload_images/uploadImages"

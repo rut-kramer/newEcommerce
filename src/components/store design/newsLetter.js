@@ -7,6 +7,7 @@ import {
     Container,
     Button
 } from "reactstrap";
+import newsLetterImg from '../../assets/img/xd/newsLetter.png'
 import "./newsLetter.css"
 import homeImage from '../../assets/home.png';
 function NewsLetter(props) {

@@ -26,6 +26,20 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
                 data: raw,
                 success: function (data) {
                     alert("add the product")
+                    
+                //     let options = Object.assign({}, res.data[0].products[0], { "color":  res.data[0].color});
+                //     let p 
+                   
+                //         data.forEach(p=>{
+                //        let options = Object.assign({}, p, { "color": data.color,"categoryName":c.categoryName});
+                //         list.push(options);
+                //            })
+                //     });
+                //     dispatch(actions.setProducts(list))
+                //     dispatch(actions.setFilteredItems(list));
+                // })
+                  
+                  
                     dispatch(actions.addNewProduct(data));
                     dispatch(actions.setFilteredItems(getState().productReducer.products));
                     resolve(data)
@@ -70,7 +84,7 @@ export const deleteProduct = ({ dispatch, getState }) => next => action => {
 //13
 export const editproduct = ({ dispatch, getState }) => next => action => {
     if (action.type === 'EDIT_PRODUCT') {
-        var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
+        var raw = JSON.stringify(action.payload);
         $.ajax({
             url: `https://bullcommerce.shop/api/products/editProduct/${action.payload._id}`,
             method: "post",
@@ -86,27 +100,6 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown);
                 alert("העדכון נכשל")
-            }
-        });
-    };
-    return next(action);
-};
-//14
-export const oneProduct = ({ dispatch, getState }) => next => action => {
-    if (action.type === 'ONE_PRODUCT') {
-        // var raw = JSON.stringify({ SKU: action.payload.sku, category: action.payload.category, price: action.payload.price, name: action.payload.name, description: action.payload.description, amount: action.payload.amount });
-        $.ajax({
-            url: `https://community.leader.codes/api/products/6036035c3a092220599e2894`,
-            method: "get",
-            dataType: "json",
-            contentType: "application/json",
-            // data: raw,
-            success: function (data) {
-                console.log("product1", data);
-                dispatch(actions.setCurrentProduct(data))
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
             }
         });
     };

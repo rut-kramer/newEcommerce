@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { Input } from 'reactstrap';
 import { actions } from '../../../redux/action'
@@ -60,15 +60,6 @@ const update = (event) => {
       alert("מספר מקט קיים כבר נא החלף מקט")
   }
 
-  // function addExistAttributes(event) {
-  //   let k = props.attributesList.filter(p => p.name == event.target.value)
-  //   att.push(k[0]._id)
-  //   setMyValues({
-  //     ...myValues,
-  //     attributes: att
-  //   });
-  // }
-
 function reset()
 {
 setMyValues({
@@ -93,14 +84,25 @@ setMyValues({
   })
   att=[];
 }
-function addAtt(id_attr) {
-  let attNew={attribute:null,terms:[]}
-  attNew.attribute.push(id_attr);
+
+useEffect(()=>{
+  console.log("arrive1")
+  if(props.currentAttribute.name) addAtt() 
+},[props.currentAttribute])
+
+function addAtt() {
+  console.log("--"+props.currentAttribute._id)
+
+ let attNew={attribute:{},terms:[]}
+  attNew.attribute=props.currentAttribute;
+  attNew.terms=props.currentAttribute.terms;
   att.push(attNew)
     setMyValues({
     ...myValues,
     attributes:att
   });
+  console.log("myValues"+myValues.attributes)
+  console.log(att)
 }
 const [flageOpen ,setFlageOpen]= useState(0)
 const [currentTerms ,setcurrentTerms]= useState([])
@@ -262,7 +264,9 @@ function  removeAttr(item) {
                   <div className="form__col">
                     <div className="field form__field">
                       <div className="field__label">?מוצר מקודם</div>
+                      
                     <br></br>
+               
                       <div className="field__wrap">
                       <input type="checkbox" onClick={update}  name="featured"></input>
                         <div className="field__icon"><i className="la la-wallet "></i></div>
@@ -284,7 +288,6 @@ function  removeAttr(item) {
                        ))}
                        </div>         
                         ))}
-                {/* <button className="form__btn btn" onClick={Submit}>mpv </button> */}
                     </div>
                   </div>
               
@@ -347,11 +350,15 @@ function  removeAttr(item) {
                  <div className="form__row">
                   <div className="form__col">
                   <div className="field__label">photoGallery</div>
-                <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
+                <div className="form__preview">
+                  <input className="form__file" type="file" />
+                  <i className="la la-user-plus "></i></div>
                   </div>
                   <div className="form__col">
                   <div className="field__label">video</div>
-                <div className="form__preview"><input className="form__file" type="file" /><i className="la la-user-plus "></i></div>
+                <div className="form__preview">
+                  <input className="form__file" type="file" />
+                  <i className="la la-user-plus "></i></div>
                   </div>
              </div>
                
@@ -376,6 +383,7 @@ export default connect(
       attributesList: state.attributeReducer.attributes,
       currentAttribute: state.attributeReducer.currentAttribute,
       productsList: state.productReducer.products,
+      
     }
   },
   (dispatch) => {

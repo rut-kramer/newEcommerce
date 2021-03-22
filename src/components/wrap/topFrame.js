@@ -1,15 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
+import Select from "react-select"
 import appleIcon from '../../assets/apple-touch-icon.png'
 import { actions } from '../../redux/action';
-import { logOut } from "../../services/firebase";
+import {logOut} from "../../services/firebase";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 // public/apple-touch-icon'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+function TopFrame(props,{setFlagCon}) {
+    
+    function funcReset(item) {
+        props.setCurrentStore(item);
+        props.getOrdersByStore(item._id)
+        props.getCategoriesByStore(item._id)
+        props.getAllPaper(item._id)
+        props.getAllAttributes(item._id)
+        props.history.push(`/`+props.objectFields)
+      }
 
-function TopFrame(props) {
+//       useEffect(()=>{
+// props.stores
+// {storeName}
+        
+//       })
 
-    return (
+    return(
         <div
             position="fixed"
             className="MuiAppBar-root MuiPaper-elevation4"
@@ -60,7 +77,7 @@ function TopFrame(props) {
                     //  logOut;//
                     props.setUser("");
                 }}>Sing Out</button> */}
-                <div style={{ marginLeft: "67%", fontSize: "24px" }}>
+                <div className="ml-auto" style={{ marginRight: "3vw", fontSize: "24px" }}>
                     {props.user && props.user.username} &nbsp;
                 <Link to="/" style={{ fontSize: "34px", color: 'black' }}
                         className="tooltip-TF-LO"
@@ -78,13 +95,20 @@ function TopFrame(props) {
 
 export default connect(
     (state) => {
-        return {
-            user: state.userReducer.user,
-        }
-    },
+            return {
+    objectFields: state.storeReducer.objectFields,
+                    user: state.userReducer.user,
+                    stores: state.userReducer.storesOfUser,
+                    storeCurrent:state.storeReducer.objectFields,
+            } },
     (dispatch) => {
-        return {
-            setUser: (a) => dispatch(actions.setUserId(a)),
-        }
-    }
+            return {
+                setUser: (a) => dispatch(actions.setUserId(a)),
+                getCategoriesByStore: (i) => {debugger; dispatch(actions.getCategoriesByStore(i)) },
+                getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
+                getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
+                getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
+      setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
+
+            }  }
 )(withRouter(TopFrame));
