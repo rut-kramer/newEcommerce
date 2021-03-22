@@ -25,91 +25,36 @@ import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
-  
-  
-  const [items,setItem]= useState ([
+
+
+  const [items, setItem] = useState([
     {
 
-      src: "url(" +  interior  + ")",
-
-      content: (
-        <Row>
-          <Col className="ml-auto mr-auto" md="8">
-            <input
-              className="title-EcommerceHeader-input"
-              value={props.title ? props.title : "Defults"}
-              onChange={(e) => props.setTitle(e.target.value)}
-              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-              style={{
-                textAlign: props.alignment ? props.alignment : 'left',
-              }}
-            ></input>
-
-          </Col>
-        </Row>
-      ),
+      src: "url(" + interior + ")",
       altText: "",
       caption: "",
     },
     {
       src: "url( " + props.homeStoreDesign.image + ")",
-      content: (
-        <Row>
-          <Col className="ml-auto mr-auto text-center" md="8">
-            <input
-              className="title-EcommerceHeader-input"
-              value={props.title ? props.title : "Defults"}
-              onChange={(e) => props.setTitle(e.target.value)}
-              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-              style={{
-                textAlign: props.alignment ? props.alignment : 'left',
-              }}
-            ></input>
-          </Col>
-        </Row>
-      ),
       altText: "",
       caption: "",
     },
     {
       src: "url(" + img3 + ")",
-      content: (
-        <Row>
-          <Col className="ml-auto mr-auto" md="8">
-            <input
-              className="title-EcommerceHeader-input"
-              value={props.title ? props.title : "Defults"}
-              onChange={(e) => props.setTitle(e.target.value)}
-              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-              style={{
-                textAlign: props.alignment ? props.alignment : 'center',
-              }}
-            ></input>          </Col>
-        </Row>
-      ),
       altText: "",
       caption: "",
     },
     {
-      src: "url(" + aa + ")",
+      src: "url(" + interior + ")",
       altText: "",
       caption: "",
     },
     {
-      src: "url(" + aa + ")",
+      src: "url(" + interior + ")",
       altText: "",
       caption: "",
     },
-    {
-      src: "url(" + aa + ")",
-      altText: "",
-      caption: "",
-    },
-    {
-      src: "url(" + aa + ")",
-      altText: "",
-      caption: "",
-    },
+
   ]);
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
@@ -133,21 +78,20 @@ function EcommerceHeader(props) {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-  const addImg=()=>
-  {
-    let img=
+  const addImg = () => {
+    let img =
     {
       src: "url(" + aa + ")",
       altText: "",
       caption: "",
     }
-    setItem(  [...items, img] )
+    setItem([...items, img])
 
   }
   return (
     <>
-{/* <Nis></Nis> */}
-<button onClick={addImg}>add img</button>
+      {/* <Nis></Nis> */}
+      <button onClick={addImg}>add img</button>
       <Carousel activeIndex={activeIndex} next={next} previous={previous}>
         <CarouselIndicators
           items={items}
@@ -161,6 +105,9 @@ function EcommerceHeader(props) {
               onExited={onExited}
               key={item.src}
             >
+
+
+
               <div className="page-header header-filter">
                 <div
                   className="page-header-image"
@@ -169,12 +116,20 @@ function EcommerceHeader(props) {
                   }}
                 ></div>
                 <div className="content-center text-center">
-                <Row>
-          <Col className="ml-auto mr-auto" md="8">
-            <h1 className="title">{props.objectFields.storeName}</h1>
-          </Col>
-        </Row>
-                  </div>
+                  <Row>
+                    <Col className="ml-auto mr-auto" md="8">
+                      <input
+                        className="title-EcommerceHeader-input"
+                        value={props.title ? props.title : props.objectFields.storeName}
+                        onChange={(e) => props.setTitle(e.target.value)}
+                        onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+                        style={{
+                          textAlign: props.alignment ? props.alignment : 'center',
+                        }}
+                      ></input>
+                    </Col>
+                  </Row>
+                </div>
               </div>
             </CarouselItem>
           );
