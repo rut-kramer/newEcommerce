@@ -217,7 +217,8 @@ function ProductEdit(props) {
 
                                                         </Col>
                                                     {props.currentProduct &&    <Col md="6" sm="12" id="titleAndContent" >
-                                                                <p style={{ fontSize: "18px" }}>  
+                                                               <p style={{ fontSize: "18px" }}>  
+                                                              
                                                                 <input className="field__input" type="text" onChange={update} value={props.currentProduct.name} name="name" placeholder="name" />
                                                                 <input className="field__input" type="text" placeholder="description" name="description" id="description-in" onChange={update} value={props.currentProduct.description} />
                                                                  <input className="field__input" type="text" name="SKU" id="sku-in" onChange={update} value={props.currentProduct.SKU} placeholder="SKU" />
@@ -231,22 +232,40 @@ function ProductEdit(props) {
                                                                  <label className="field__input"  for="video" >video</label>
                                                                  <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video}/>
                                                                  <label className="field__input"  for="photoGallery">photoGallery</label>
-                                                                 <input id="photoGallery" className="field__input" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
+                                                                 <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
 
                                                                 </p>
                                                                 <select onChange={updateCategory} name="category" className="field__select" >
-                                                                        <option>בחר</option>
+                                                                        <option>בחר קטגוריה </option>
                                                                         {props.categoryList.map((item, index) => (
                                                                                 <option>{item.categoryName}</option>
                                                                         ))}
 
                                                                 </select>
+                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                                        props.currentProduct.attributes.length) ?
+                                                                                        props.currentProduct.attributes.map((item, index) => (
 
-                                                                {/* <div className="d productPrice">
-                                                                        <h4><b>Price:</b></h4>
-                                                                        <span><del>290$</del></span>
-                                                                        <span>$ {product.price}</span>
-                                                                </div> */}
+                                                                                                item.attribute&&<div key={index} className=" productColors">
+                                                                                                        <h4><b>{item.attribute.name}:</b></h4>
+                                                                                                        <div>
+                                                                                                                {item.attribute.name === "Color" ?
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
+                                                                                                                                ))}
+                                                                                                                        </> :
+                                                                                                                        <>
+                                                                                                                               {item.terms.map((term, index) => (
+                                                                                                                                                <label key={index} >{index!=0&&','} {term.name} </label>
+                                                                                                                                ))}  
+                                                                                                                        </>
+                                                                                                                }
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                        ))
+                                                                                        : <></>}
                                                                 <Button className="addToCart" outline size="sm"
                                                                         onClick={Submit}>
                                                                         <FontAwesomeIcon icon={['fas', 'edit']}>

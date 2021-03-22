@@ -27,6 +27,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 //  import Carousel from 'reacst-elastic-carousel'
+import { withRouter } from 'react-router-dom';
  
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
@@ -400,8 +401,12 @@ function CategoryBullcommerce(props) {
                       <Col lg="4" md="6" sm="12" key={index}>
 
                         <Card className="card-product card-plain">
-                          <div className="card-image frameToProductView">
+                          <div className="card-image frameToProductView"
+                            onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push( "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU)}} 
+                          >
                             <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                            {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
+                            
                               <img className="imageProduct"
                                 alt="..."
                                 src={ia006}
@@ -559,11 +564,13 @@ export default connect(
       // setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
       // setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
       setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
-      addToCart: (product) => { dispatch(actions.addToCart(product)) }
+      addToCart: (product) => { dispatch(actions.addToCart(product)) },
+      setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
+       setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
 
     }
   }
-)(CategoryBullcommerce);
+)(withRouter(CategoryBullcommerce));
 
 
 
