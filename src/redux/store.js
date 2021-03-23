@@ -35,9 +35,16 @@ const reducers =
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
         attributeReducer, bullPageEditReducer
     })
-
+    
+    const rootReducer = (state, action) => {
+        if (action.payload === 'USER_LOGOUT') 
+        {
+          state = undefined
+        }
+        return reducers(state, action)
+    }
 const store = createStore(
-    reducers,
+    rootReducer,
 
     composeWithDevTools(
         applyMiddleware(

@@ -5,7 +5,6 @@ function Upload(props) {
         const [image, setImage] = useState(null)
 
         const handlerLogo = (e) => {
-                debugger
                 props.uploadImage(e);
         }
 

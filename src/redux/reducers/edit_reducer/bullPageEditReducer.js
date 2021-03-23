@@ -9,11 +9,9 @@ const initialState = {
 
 const bullPageEdit = {
     setTitle(state, action) {
-        debugger
         state.title = action.payload
     },
     setAlignment(state, action) {
-        debugger
         state.alignment = action.payload
     },
 
