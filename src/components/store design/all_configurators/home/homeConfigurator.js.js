@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "nouislider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -20,6 +20,11 @@ import HeaderConfigurator from "./headerConfigurator"
 import SliderConfigurator from "./sliderConfigurator"
 function HomeConfigurator(props) {
     const [collapses, setCollapses] = React.useState([0]);
+    useEffect(() => {
+        debugger
+        changeCollapse(props.collapseOfRedux)
+    }, [props.collapseOfRedux])
+
 
     const changeCollapse = (collapse) => {
         if (collapses.includes(collapse)) {
@@ -51,13 +56,13 @@ function HomeConfigurator(props) {
                                 <CardHeader id="headingfour" role="tab">
                                     <h6 className="titleCollapse">
                                         <a
-                                            aria-expanded={collapses.includes(1)}
+                                            aria-expanded={collapses.includes("header")}
                                             data-toggle="collapse"
                                             data-parent="#accordion"
                                             href="#pablo"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                changeCollapse(1);
+                                                changeCollapse("header");
                                             }}
                                         >
                                             <Row md="12">
@@ -69,7 +74,7 @@ function HomeConfigurator(props) {
                                         </a>
                                     </h6>
                                 </CardHeader>
-                                <Collapse isOpen={collapses.includes(1)}>
+                                <Collapse isOpen={collapses.includes("header")}>
                                     <CardBody className="Configurator-padding">
                                         <FormGroup check >
                                             <HeaderConfigurator ></HeaderConfigurator>
@@ -84,13 +89,13 @@ function HomeConfigurator(props) {
                                         <a
                                             style={{ color: "white !important" }}
                                             // className="text-info"
-                                            aria-expanded={collapses.includes(2)}
+                                            aria-expanded={collapses.includes("slider")}
                                             data-toggle="collapse"
                                             data-parent="#accordion"
                                             href="#pablo"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                changeCollapse(2);
+                                                changeCollapse("slider");
                                             }}
                                         >
                                             <Row md="12">
@@ -100,7 +105,7 @@ function HomeConfigurator(props) {
                                         </a>
                                     </h6>
                                 </CardHeader>
-                                <Collapse isOpen={collapses.includes(2)}>
+                                <Collapse isOpen={collapses.includes("slider")}>
                                     <CardBody className="Configurator-padding">
 
                                         <FormGroup check>
@@ -207,12 +212,14 @@ export default connect(
         return {
             slideMin: state.filterReducer.minPrice,
             slideMax: state.filterReducer.maxPrice,
+            collapseOfRedux: state.bullPageEditReducer.collapse
         }
     },
     (dispatch) => {
         return {
             filteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
-            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) }
+            setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
+            setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
         }
     })(HomeConfigurator);
 

@@ -77,5 +77,15 @@
 .slider-range{
   height: 3px;
 }
+.SC-inputFile{
+  background-color: white;
+  border:1px solid #707070;
+  height: 4rem;
+  width: 5.5rem;
+}
+.tafritSliderConfig{
+  padding-left: 0.25rem;
+  color: #EBEAEA;
 
+}
 

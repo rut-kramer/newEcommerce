@@ -11,21 +11,17 @@ const initialState = {
     },
     {
         src: "url(" + img3 + ")",
-    },
-    {
-        src: "url(" + interior + ")",
-    }, {
-        src: "url(" + img3 + ")",
     }
     ],
-
 }
-
 const carouselImages = {
     setImagesArr(state, action) {
-        state.title = action.payload
+        if (state.ImagesArr[0].src == "url(" + interior + ")")
+            state.ImagesArr = []
+        state.ImagesArr.push({
+            src: "url(" + action.payload + ")",
+        })
     },
-
 
 }
 

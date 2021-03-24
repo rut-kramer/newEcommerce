@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import Nis from "../../nis";
+import MediaGallery from '../store design/media_gallery/mediaGallery'
+import { Link } from 'react-router-dom'
 
 // reactstrap components
 import {
@@ -12,6 +13,7 @@ import {
   CarouselIndicators,
   Container,
 } from "reactstrap";
+import { useHistory } from "react-router-dom";
 
 import "./ecommerceHeader.css"
 import { actions } from "../../redux/action";
@@ -26,6 +28,8 @@ import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
+  const history = useHistory();
+
   // const [items, setItem] = useState([
   //   {
 
@@ -57,7 +61,11 @@ function EcommerceHeader(props) {
   // ]);
 
 
+  function openMediaGallery() {
+    debugger
+    history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
 
+  }
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -96,7 +104,12 @@ function EcommerceHeader(props) {
         <input className="bullcommerceTitleInput"
           value={props.title ? props.title : props.objectFields.storeName}
           onChange={(e) => props.setTitle(e.target.value)}
-          onClick={() => props.changeCurrentComponent("HomeConfigurator")}
+          onClick={(e) => { props.changeCurrentComponent("HomeConfigurator"); openMediaGallery() }}
+          // onClick={() => {
+          //   props.changeCurrentComponent("HomeConfigurator");
+          //   props.setCollapse("slider")
+          // }}
+
           style={{
             textAlign: props.alignment ? props.alignment : 'center',
           }}
@@ -110,6 +123,7 @@ function EcommerceHeader(props) {
           items={props.ImagesArr}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
+
         />
         {props.ImagesArr.map((item) => {
           return (
@@ -117,18 +131,18 @@ function EcommerceHeader(props) {
               onExiting={onExiting}
               onExited={onExited}
               key={item.src}
-
             >
               <div className="page-header header-filter">
                 <div
                   className="page-header-image"
                   style={{
-                    backgroundImage: item.src,
+                    backgroundImage: item.src
                   }}
                 ></div>
 
               </div>
             </CarouselItem>
+
           );
         })}
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
@@ -175,6 +189,9 @@ function EcommerceHeader(props) {
             </FontAwesomeIcon>                                                                                </Button>
         </a>
       </Carousel>
+      {/* <img alt="..."
+        src={props.ImagesArr[2]} className="logoHeader">
+      </img> */}
     </div>);
 }
 
@@ -184,12 +201,16 @@ const mapStateToProps = (state) => {
     homeStoreDesign: state.storeHomeReducer.homeStoreDesign,
     title: state.bullPageEditReducer.title,
     alignment: state.bullPageEditReducer.alignment,
-    ImagesArr: state.carouselImgReducer.ImagesArr
+    ImagesArr: state.carouselImgReducer.ImagesArr,
+    collapseOfRedux: state.bullPageEditReducer.collapse
+
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-  setImagesArr: (img) => dispatch(actions.setImagesArr(img))
+  setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
+  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from "../../../../redux/action";
 import {
@@ -12,14 +12,30 @@ import "./sliderConfigurator.css"
 
 
 function SliderConfigurator(props) {
+    const [fileToUpload, setFileToUpload] = useState(null);
+
+    function handlerLogo(event) {
+        if (event) {
+            let reader = new FileReader();
+            console.log(props.ImagesArr)
+            reader.onloadend = () => {
+                props.setImagesArr(reader.result)
+                console.log(props.ImagesArr)
+
+            }
+            reader.readAsDataURL(event)
+            setFileToUpload(event);
+        }
+    }
 
     return (
+
         <>
             <Container fluid>
 
                 <Row>
-                    <Col sm="12"
-                        className="tafritHomeConfig"
+                    <Col
+                        className="tafritSliderConfig"
                     >
 
                         <Row md="12" className="mt-3"><Col md="9" className="navigation">Slider Image</Col>
@@ -27,11 +43,14 @@ function SliderConfigurator(props) {
                             </Col>
                         </Row>
 
-                        <Row md="12" className="mt-3"><input type="file"></input></Row>
+                        <Row md="12" className="mt-3">
+                            {/* <input type="file"></input> */}
+                            <input id="files" className="SC-inputFile" type="file" onChange={(e) => handlerLogo(e.target.files[0])} />
+                        </Row>
 
                         <Row md="12" className="mt-3">Title Setting </Row>
                         <Row md="12" className="mt-3">
-                            <Col md="8">Title Name</Col>
+                            <Col md="8" className="p-0">Title Name</Col>
                             <Col md="4">
                                 <label className="sliderConfigSwitch">
                                     <input type="checkbox" />
@@ -40,12 +59,17 @@ function SliderConfigurator(props) {
                             </Col>
                             <Row md="12" className="mt-3">
                                 <input className="SC-input"
-                                    placeholder="props.title"
+                                    // placeholder={props.objectFields.storeName}
+                                    // value={props.objectFields.storeName
+                                    // }
+                                    value={props.title ? props.title : props.objectFields.storeName}
+
                                     onChange={(e) => props.setTitle(e.target.value)}
 
                                 ></input>
 
                             </Row>
+
 
                         </Row>
                         <Row md="12" className="mt-3">Title Size</Row>
@@ -88,12 +112,16 @@ function SliderConfigurator(props) {
 }
 const mapStateToProps = (state) => {
     return {
-        title: state.title
+        title: state.bullPageEditReducer.title,
+        objectFields: state.storeReducer.objectFields,
+
     }
 }
 const mapDispatchToProps = (dispatch) => ({
     setTitle: (e) => dispatch(actions.setTitle(e)),
-    setAlignment: (side) => dispatch(actions.setAlignment(side))
+    setAlignment: (side) => dispatch(actions.setAlignment(side)),
+    setImagesArr: (img) => dispatch(actions.setImagesArr(img))
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(SliderConfigurator);

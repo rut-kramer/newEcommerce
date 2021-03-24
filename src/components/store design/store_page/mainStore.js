@@ -84,6 +84,7 @@ function MainStore(props) {
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}
                 ></Bullcommerce></Route>
+                <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
 
             </Switch>
             <FooterOrange></FooterOrange>

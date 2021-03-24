@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { actions } from "../redux/action";
 
 import { Col, Container, Row } from 'reactstrap';
-import ligiBullcommerce from '../assets/apple-touch-icon.png'
+import logoFurnitureShop from '../assets/media-gallery/modern-luxury-living-room-interior-black-sofa-with-dark-concrete-wall.png'
+import logoAppBullcommerce from '../assets/apple-touch-icon.png'
 import "./welcome.css"
 
 function Welcome(props) {
@@ -22,7 +23,7 @@ function Welcome(props) {
         colorDominates: "RED",
         policy: "",
         currency: "",
-        logo: ligiBullcommerce,
+        logo: logoFurnitureShop,
         checkInventoryManagement: false,
         checkoneProductPurchase: false
 
@@ -76,7 +77,6 @@ function Welcome(props) {
 
     function next(e) {
         e.preventDefault()
-        debugger
         let f = document.getElementById("fname").value
         if (f != "") {
             let a = document.getElementById("welcomeStep1")
@@ -94,7 +94,7 @@ function Welcome(props) {
                     <form onSubmit={onSubmitStoreDetails}>
                         <div id="welcomeStep1" style={{ display: "block" }}>
                             <Row>
-                                <img className="welcomeLogoPlace mt-3" src={ligiBullcommerce} ></img>
+                                <img className="welcomeLogoPlace mt-3" src={logoAppBullcommerce} ></img>
 
                             </Row>
                             <Row md="12">
