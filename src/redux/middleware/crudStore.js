@@ -58,36 +58,41 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 data: raw,
                 success: function (data) {
                     dispatch(actions.setSaveAllStoreDetails(data));
+                    dispatch(actions.getOrdersByStore(data._id));
+                    dispatch(actions.getCategoriesByStore(data._id));
+                    dispatch(actions.getAllPaper(data._id));
+                    dispatch(actions.getAllAttributes(data._id));
+                  
                     resolve(data)
-                    console.log(data)
-                    dispatch(actions.createNewCategory({
-                        "store": data._id,
-                        "categoryName": "Default66Category1",
-                        "color": "red", "masterCategory": null
-                    }))
-                    dispatch(actions.createNewCategory({
-                        "store": data._id,
-                        "categoryName": "Defaul66Category2",
-                        "color": "green", "masterCategory": null
-                    }))
-                    dispatch(actions.createNewCategory({
-                        "store": data._id,
-                        "categoryName": "Default66Category3",
-                        "color": "blue", "masterCategory": null
-                    }))
-                        .then((dataCategory) => {
-                            for (let index = 1; index < 13; index++) {
-                                dispatch(actions.addNewProducts({
-                                    "name": "DefaultProduct" + index,
-                                    "description": "The Best Product ",
-                                    "SKU": "DefultSKU_" + index + "m",
-                                    "category": dataCategory._id,
-                                    "store": data._id,
-                                    "price": "123",
-                                    "featured": true
-                                }))
-                            }
-                        })
+
+                    // dispatch(actions.createNewCategory({
+                    //     "store": data._id,
+                    //     "categoryName": "Default66Category1",
+                    //     "color": "red", "masterCategory": null
+                    // }))
+                    // dispatch(actions.createNewCategory({
+                    //     "store": data._id,
+                    //     "categoryName": "Defaul66Category2",
+                    //     "color": "green", "masterCategory": null
+                    // }))
+                    // dispatch(actions.createNewCategory({
+                    //     "store": data._id,
+                    //     "categoryName": "Default66Category3",
+                    //     "color": "blue", "masterCategory": null
+                    // }))
+                    //     .then((dataCategory) => {
+                    //         for (let index = 1; index < 13; index++) {
+                    //             dispatch(actions.addNewProducts({
+                    //                 "name": "DefaultProduct" + index,
+                    //                 "description": "The Best Product ",
+                    //                 "SKU": "DefultSKU_" + index + "m",
+                    //                 "category": dataCategory._id,
+                    //                 "store": data._id,
+                    //                 "price": "123",
+                    //                 "featured": true
+                    //             }))
+                    //         }
+                        // })
                 },
 
 
