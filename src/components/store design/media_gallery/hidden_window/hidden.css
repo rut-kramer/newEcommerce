@@ -1,0 +1,35 @@
+.hidden-win{
+    margin: 0;
+    height: 40rem;
+    width: 100%;
+    border-left: 1px rgb(63, 63, 63) solid;
+    /* background-color: rgb(151, 150, 150); */
+     padding-top: 35%;
+    /*padding-left: 1%; */
+}
+.hidden-win-p{
+    margin: 0;
+    font-size: small;
+}
+.hidden-win-p-div{
+    /* margin: 20% 28%; */
+}
+.fff .upload-my-file-div{
+    
+
+}
+.frame-hidden-win{
+    margin-left: 15%;
+    border-bottom: 1px rgb(63, 63, 63) solid;
+    padding-bottom: 10%;
+}
+.icons-hidden-win{
+    margin-left: 15%;
+}
+.icon-hidden-win{
+    margin-top: 10%;
+    margin-right: 10%;
+}
+.icon-hidden-win-download{
+    color: black;
+}

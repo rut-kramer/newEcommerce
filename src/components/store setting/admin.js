@@ -9,10 +9,9 @@ import store from '../../redux/store';
 import StorePerUser from './storePerUser'
 import CrudAttributes from './attribute_management/crudAttribute'
 import NewPaper from './paper_managment/createNewPaper';
+import MediaGallery from '../store design/media_gallery/mediaGallery'
 
 function Admin(props) {
-
-  
   function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
@@ -38,6 +37,7 @@ function Admin(props) {
         <button className="tablinks" onClick={(event) => { openCity(event, 'StoreSettingsManagement') }}>Store Settings</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'StorePerUser') }}>All Your Stores</button>
         <button className="tablinks" onClick={(event) => { openCity(event, 'NewPaper') }}>All Pages</button>
+        <button className="tablinks" onClick={(event) => { openCity(event, 'MediaGallery') }}>Media Gallery</button>
       </div>
 
       <div id="Categories" className="tabcontent">
@@ -64,7 +64,9 @@ function Admin(props) {
       <div id="NewPaper" className="tabcontent">
         <NewPaper></NewPaper>
       </div>
-    
+      <div id="MediaGallery" className="tabcontent">
+        <MediaGallery></MediaGallery>
+      </div>
     </Provider>
   )
 }

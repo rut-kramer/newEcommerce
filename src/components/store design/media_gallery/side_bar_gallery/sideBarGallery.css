@@ -1,0 +1,39 @@
+.side-bar-gallery{
+    background: #F0F0F0 0% 0% no-repeat padding-box;
+    border-radius: 0px 0px 0px 20px;
+    width: 100%;
+    height: 40rem;
+}
+.side-bar-gallery-link{
+    padding: 0;
+    padding-left: 10%;
+    display: block;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    /* margin: 10% 3%; */
+    color: black;
+    width: 100%;
+}
+.side-bar-gallery-link-active{
+    padding: 3%;
+    padding-left: 10%;
+    background-color:#fdfcfc;
+    border-left:0.3rem #FC894D solid; 
+    color: black;
+}
+.side-bar-gallery-link:hover{
+    color: black;
+    text-decoration: none;
+    font-size: 15px;    
+}
+.side-bar-gallery-link-div{
+    width: 100%;
+    padding: 0 !important; 
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin: 0; 
+}
+.side-bar-gallery-link-div:hover{
+    /* background-color:#fdfcfc;
+    border-left: 2px #FC894D solid;   */
+}
