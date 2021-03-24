@@ -26,11 +26,11 @@ function TopFrame(props, { setFlagCon }) {
             props.setCart(t)
             flag = 2
         }
-
-
-
         props.history.push(`/` + props.objectFields)
     }
+useEffect(()=>{
+      props.getStoreByUser(props.user._id);   
+})
 
 
     window.addEventListener("beforeunload", (ev) => {
@@ -131,6 +131,7 @@ function TopFrame(props, { setFlagCon }) {
                         funcReset(JSON.parse(e.target.value))
                     }}
                         className="field__select" >
+                            <option>בחר חנות</option>
                         {props.stores.map((item, index) => (
                             <option value={JSON.stringify(item)} >{item.storeName}</option>
                         ))}
@@ -180,7 +181,7 @@ export default connect(
         return {
             setUser: (a) => dispatch(actions.setUserId(a)),
             userLogout: (j) => dispatch(actions.userLogout(j)),
-
+            getStoreByUser: (id) => { dispatch(actions.getStoreByUser(id)) },
             getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
             getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
             getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
