@@ -5,21 +5,28 @@ import {
     Row,
     Col,
     Container,
-    Button
 } from "reactstrap";
+import ImageNewsLetter from '../../assets/homeNewsLetter.png'
 import "./newsLetter.css"
 function NewsLetter(props) {
     return (
-        <Container className="newsLetter-all">
-            <Row md="12" className="newsLetter-Title pt-5">NewsLetter</Row>
-            <Row md="12" className="mt-2"><p className="newsLetter-SubTitle">
+        <Container fluid className="newsLetter-all" >
+            <div style={{ backgroundImage: `url(${ImageNewsLetter})` }}>
+            <Row md="12" className="newsLetter-Title pt-5 d-flex justify-content-center">NewsLetter</Row>
+            <Row md="12" className="mt-2 d-flex justify-content-center"><p className="newsLetter-SubTitle ">
                 Sign up to receive news and updates along with 15% off your first order</p></Row>
-            <Row md="12">
-                <Col md="8"><input value="Enter your email"></input></Col>
-                <Col md="4" className="mb-2"><button>Subscribe</button></Col>
+            <Row md="12" >
+                <Col md="3"></Col>  
+                <Col md="4" className="p-0">
+                    <input className="newsLetter-input mb-4" value="Enter your email" style={{ position: "relative" }} />
+                </Col>
+                <Col md="2" className="p-0">
+                    <button type="submit" className="newsLetter-button" style={{ position: "absolute" }}>Subscribe</button>
+                </Col> 
+                <Col md="3"></Col>
             </Row>
-
-        </Container >
+            </div>
+        </Container>
     )
 }
 const mapStateToProps = (state) => {

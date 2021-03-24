@@ -3,9 +3,25 @@
 }
 .newsLetter-Title{
     font-size: 20px;
-    padding-left: 46%;
 }
 .newsLetter-SubTitle{
     font-size: 14px;
-    padding-left: 22%
+}
+.newsLetter-input{
+    background-color: rgba(255, 255, 255, 0.4);
+    color: white;
+    border: none;
+    width: 100%;
+    height: 2rem;
+    padding-left: 2rem;
+    border-radius: 3px 0 0 3px;
+
+}
+.newsLetter-button{
+    background-color: rgba(255, 255, 255, 0.6);
+    color:white;
+    border: none;
+    border-radius:0 3px 3px 0;
+    width: 100%;
+    height: 2rem;
 }
