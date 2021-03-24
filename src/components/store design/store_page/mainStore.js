@@ -9,7 +9,7 @@ import Product from "../product_page/product";
 import Cart from "../cart_page/cart";
 import CheckOut from "../check_out/checkOut";
 import QuickLook from '../quickLook'
-// import MediaGallery from "../media_gallery/mediaGallery"
+import MediaGallery from "../media_gallery/mediaGallery"
 // import UploadImages from "../upload_images/uploadImages"
 import CartPanel from "../cart_page/cart_panel"
 import { Table, Container, Row, Col, Button } from 'reactstrap';
@@ -78,7 +78,7 @@ function MainStore(props) {
             <HeaderNavbar></HeaderNavbar>
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
-                {/* <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route> */}
+                <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
