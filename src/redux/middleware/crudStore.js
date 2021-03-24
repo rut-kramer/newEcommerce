@@ -58,8 +58,13 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                 data: raw,
                 success: function (data) {
                     dispatch(actions.setSaveAllStoreDetails(data));
+                    dispatch(actions.getOrdersByStore(data._id));
+                    dispatch(actions.getCategoriesByStore(data._id));
+                    dispatch(actions.getAllPaper(data._id));
+                    dispatch(actions.getAllAttributes(data._id));
+                  
                     resolve(data)
-                    console.log(data)
+
                     // dispatch(actions.createNewCategory({
                     //     "store": data._id,
                     //     "categoryName": "Default66Category1",
