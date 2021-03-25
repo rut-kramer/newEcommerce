@@ -26,7 +26,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                        >
+                                    >
 
                                         {props.objectFields.storeName}
                                     </a>
@@ -36,7 +36,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                        >
+                                    >
                                         {props.objectFields.tel}
                                     </a>
                                 </li>
@@ -45,7 +45,7 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                        >
+                                    >
                                         {props.objectFields.email}
                                     </a>
                                 </li>
@@ -54,65 +54,65 @@ function FooterOrange(props) {
                                         className="text-muted"
                                         href="#pablo"
                                         onClick={(e) => e.preventDefault()}
-                                        >
+                                    >
                                         {props.objectFields.address}
                                     </a>
                                 </li>
                             </ul>
                         </Col>
                         <Col >
-                            <Link to={"/" + props.objectFields.urlRoute + "/category/"}>
+                            <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/category/allCategories"}>
 
                                 <h5>Categories</h5>
-                                        </Link>
-                                <ul className="mt-2 links-vertical size">
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            About Us
+                            </Link>
+                            <ul className="mt-2 links-vertical size">
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        About Us
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            How to Register
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        How to Register
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Sell Goods
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Sell Goods
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Receive Payment
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Receive Payment
                     </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="text-muted"
-                                            href="#pablo"
-                                            onClick={(e) => e.preventDefault()}
-                                        >
-                                            Transactions
+                                </li>
+                                <li>
+                                    <a
+                                        className="text-muted"
+                                        href="#pablo"
+                                        onClick={(e) => e.preventDefault()}
+                                    >
+                                        Transactions
                     </a>
-                                    </li>
+                                </li>
 
-                                </ul>
+                            </ul>
                         </Col>
                         <Col>
                             <h5>Element</h5>

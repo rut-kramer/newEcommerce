@@ -1,36 +1,68 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { Link, useHistory } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./scrollNavbar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 
 
 function CategoryWithDropdown(props) {
-        const history = useHistory();
 
         const { category } = props;
-        const [dropdownOpen, setDropdownOpen] = useState(false);
+        const location = useLocation();
+        const [activeCategory, setActiveCategory] = useState("");
 
-        const toggle = () => setDropdownOpen(prevState => !prevState);
+
+        useEffect(() => {
+
+                let splitedPathname = location.pathname.split("/");
+                if (splitedPathname[2] === "category")
+                        setActiveCategory(splitedPathname[3]);
+                else
+                        setActiveCategory("");
+
+        })
+        // const [dropdownOpen, setDropdownOpen] = useState(false);
+
+        // const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
-                <Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ backgroundColor: "transparent" }} nav>
-                        <DropdownToggle caret id="dropdown" onClick={() => { history.push(`/${props.storeName}/category`) }}>
-                                {category.categoryName}
-                        </DropdownToggle>
-                        {(Array.isArray(category.childrenCategory) && category.childrenCategory.length) &&
-                                <DropdownMenu>
-                                        {category.childrenCategory.map((item, index) => (
-                                                <DropdownItem key={index}>{item.categoryName}</DropdownItem>
+                <Link to={`/${props.storeName}/category/${category.categoryName}`} style={{ color: (activeCategory === category.categoryName && '#F29544') }}>
+                        {category.categoryName}
+                </Link>
+                //         <Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ backgroundColor: "transparent" }} nav>
+                //                 <DropdownToggle caret id="dropdown" onClick={() => { history.push(`/${props.storeName}/category`) }}>
+                //                         {category.categoryName}
+                //                 </DropdownToggle>
+                //                 {(Array.isArray(category.childrenCategory) && category.childrenCategory.length) &&
+                //                         <DropdownMenu>
+                //                                 {category.childrenCategory.map((item, index) => (
+                //                                         <DropdownItem key={index}>{item.categoryName}</DropdownItem>
 
-                                        ))}
-                                </DropdownMenu>}
-                </Dropdown>
+                //                                 ))}
+                //                         </DropdownMenu>}
+                //         </Dropdown>
         )
 }
 
 function Dnd(props) {
+
+        const location = useLocation();
+
+        const [activeHome, setActiveHome] = useState("");
+
+
+        useEffect(() => {
+
+                let splitedPathname = location.pathname.split("/");
+                if (splitedPathname[1] === props.storeName && splitedPathname[2] === undefined)
+                        setActiveHome("Home");
+                else
+                        setActiveHome("");
+
+        })
 
         const onDragEnd = (result) => {
                 if (!result.destination) {
@@ -76,43 +108,74 @@ function Dnd(props) {
 
         });
         return (
+                <>
+                        <Link to={`/${props.storeName}`} style={{ color: (activeHome === "Home" && '#F29544'), fontWeight: 900 }}>
+                                Home
+                        </Link>
+                        <DragDropContext onDragEnd={onDragEnd}>
+                                <Droppable droppableId="droppable" direction="horizontal">
+                                        {(provided, snapshot) => (
+                                                <div
+                                                        className="d-flex justify-content-center"
+                                                        ref={provided.innerRef}
+                                                        style={getListStyle(snapshot.isDraggingOver)}
+                                                        {...provided.droppableProps}
+                                                >
+                                                        {/* <Draggable
+                                                        key={0} draggableId={0} index={0}>
+                                                        {(provided, snapshot) => (
+                                                                <div
+                                                                        className="drag_category"
+                                                                        id={0}
+                                                                        ref={provided.innerRef}
+                                                                        {...provided.draggableProps}
+                                                                        {...provided.dragHandleProps}
+                                                                        style={getItemStyle(
+                                                                                snapshot.isDragging,
+                                                                                provided.draggableProps.style,
 
-                <DragDropContext onDragEnd={onDragEnd}>
-                        <Droppable droppableId="droppable" direction="horizontal">
-                                {(provided, snapshot) => (
-                                        <div
+                                                                        )}
+                                                                >
+                                                                        {/* arrows-alt */}
+                                                        {/* <FontAwesomeIcon className="drag_icon_category mr-2" icon={['fas', 'grip-vertical']}></FontAwesomeIcon>
+                                                                        <Link to={`/${props.storeName}/`}>
+                                                                                Home
+                                                                        </Link>                                                                        </div>
+                                                        )}
+                                                </Draggable> */}
 
-                                                ref={provided.innerRef}
-                                                style={getListStyle(snapshot.isDraggingOver)}
-                                                {...provided.droppableProps}
-                                        >
-                                                {props.categories.filter(item => {
-                                                        if (!item.masterCategory && item.masterCategory === null)
-                                                                return item
-                                                }).map((item, index) => (
-                                                        <Draggable key={index} draggableId={`${index}`} index={index}>
-                                                                {(provided, snapshot) => (
-                                                                        <div
-                                                                                id={index}
-                                                                                ref={provided.innerRef}
-                                                                                {...provided.draggableProps}
-                                                                                {...provided.dragHandleProps}
-                                                                                style={getItemStyle(
-                                                                                        snapshot.isDragging,
-                                                                                        provided.draggableProps.style,
+                                                        {props.categories.filter(item => {
+                                                                if (!item.masterCategory && item.masterCategory === null)
+                                                                        return item
+                                                        }).map((item, index) => (
+                                                                <Draggable
+                                                                        key={index} draggableId={`${index}`} index={index}>
+                                                                        {(provided, snapshot) => (
+                                                                                <div
+                                                                                        className="drag_category"
+                                                                                        id={index}
+                                                                                        ref={provided.innerRef}
+                                                                                        {...provided.draggableProps}
+                                                                                        {...provided.dragHandleProps}
+                                                                                        style={getItemStyle(
+                                                                                                snapshot.isDragging,
+                                                                                                provided.draggableProps.style,
 
-                                                                                )}
-                                                                        >
-                                                                                <CategoryWithDropdown style={{ backgroundColor: "transparent" }} category={item}></CategoryWithDropdown>
-                                                                        </div>
-                                                                )}
-                                                        </Draggable>
-                                                ))}
-                                                {provided.placeholder}
-                                        </div>
-                                )}
-                        </Droppable>
-                </DragDropContext>
+                                                                                        )}
+                                                                                >
+                                                                                        {/* arrows-alt */}
+                                                                                        <FontAwesomeIcon className="drag_icon_category mr-2" icon={['fas', 'grip-vertical']}></FontAwesomeIcon>
+                                                                                        <CategoryWithDropdown style={{ backgroundColor: "transparent" }} category={item}></CategoryWithDropdown>
+                                                                                </div>
+                                                                        )}
+                                                                </Draggable>
+                                                        ))}
+                                                        {provided.placeholder}
+                                                </div>
+                                        )}
+                                </Droppable>
+                        </DragDropContext>
+                </>
         );
 }
 export default connect(
@@ -120,7 +183,9 @@ export default connect(
                 return {
                         // ObjCategory: state.createCategoryReducer.ObjCreateCategory,
                         categories: state.categoriesReducer.categoryListMenu,
-                        storeName: state.storeReducer.objectFields.urlRoute
+                        storeName: state.storeReducer.objectFields.urlRoute ?
+                                state.storeReducer.objectFields.urlRoute :
+                                state.storeReducer.objectFields.storeName
                         // postData: state.createPostReducer.postData
                 }
         },

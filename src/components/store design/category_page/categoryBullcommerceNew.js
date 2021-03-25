@@ -28,7 +28,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 //  import Carousel from 'reacst-elastic-carousel'
 import { withRouter } from 'react-router-dom';
- 
+
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
 import FilteredProducts from "../filteredProducts";
@@ -414,17 +414,17 @@ function CategoryBullcommerce(props) {
                       //   props.filteredProducts.length > 0))}
                       // {(Array.isArray(props.filteredProducts) &&
                       //   props.filteredProducts.length > 0) &&
-                      //   props.filteredProducts.map((item, index) => (
+                      //   props.filteredProducts.map((it 
 
                       <Col lg="4" md="6" sm="12" key={index}>
 
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView"
-                            onClick={(e) => {props.setcomponnet("EditProduct"); props.setCurrentProduct(item) ; props.history.push( "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU)}} 
+                            onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push("/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU) }}
                           >
                             <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                            {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
-                            
+                              {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
+
                               <img className="imageProduct"
                                 alt="..."
                                 src={ia006}
@@ -485,11 +485,11 @@ function CategoryBullcommerce(props) {
                                 To View
         </UncontrolledTooltip>
 
-                              </CardFooter>
-                            </CardBody>
-                          </Card>
-                        </Col>
-                      ))
+                            </CardFooter>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    ))
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
@@ -500,7 +500,7 @@ function CategoryBullcommerce(props) {
                           <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
-                          > 
+                          >
                             <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
@@ -514,26 +514,26 @@ function CategoryBullcommerce(props) {
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem> 
-                             {/* <div className="Apprs">  */}
- {/* <Carousel  itemsToShow={1}> */}
-                             {arrPager&&arrPager.map((item, index) => ( 
-                      <item key={index}> 
-                        <PaginationItem
-                             className={degelBtn == index ? "active" : ""}
-                            >
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => {e.preventDefault();changePageNum(index)}}
-                              >
-                                {item.index}
-                        </PaginationLink>
                             </PaginationItem>
-                            </item>
-                  ))}  
-{/* </Carousel> */}
-{/* </div> */}
-                            <PaginationItem 
+                            {/* <div className="Apprs">  */}
+                            {/* <Carousel  itemsToShow={1}> */}
+                            {arrPager && arrPager.map((item, index) => (
+                              <item key={index}>
+                                <PaginationItem
+                                  className={degelBtn == index ? "active" : ""}
+                                >
+                                  <PaginationLink
+                                    href="#pablo"
+                                    onClick={(e) => { e.preventDefault(); changePageNum(index) }}
+                                  >
+                                    {item.index}
+                                  </PaginationLink>
+                                </PaginationItem>
+                              </item>
+                            ))}
+                            {/* </Carousel> */}
+                            {/* </div> */}
+                            <PaginationItem
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -550,7 +550,7 @@ function CategoryBullcommerce(props) {
                               </PaginationLink>
                             </PaginationItem>
                           </Pagination>
-                          
+
                         </Col>
                       </Row>
                     </Col>
@@ -584,7 +584,7 @@ export default connect(
       setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
       addToCart: (product) => { dispatch(actions.addToCart(product)) },
       setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
-       setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
+      setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
 
     }
   }

@@ -24,7 +24,7 @@ function Configurator(props) {
                     <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50" style={{ transform: props.flag ? "translate(0px)" : "translate(-100%)" }}>
                         <div className="con-title">
                             Home Page
-                            <Link to={'/' + props.objectFields.urlRoute + (adminLink ? '/admin' : '')} onClick={() => { setAdminLink(!adminLink) }}>
+                            <Link to={'/' + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + (adminLink ? '/admin' : '')} onClick={() => { setAdminLink(!adminLink) }}>
                                 <span className="material-icons pointer">settings</span>
                             </Link>
                         </div>

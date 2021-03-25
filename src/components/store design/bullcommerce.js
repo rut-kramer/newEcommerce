@@ -63,7 +63,7 @@ function Bullcommerce(props) {
                                 {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
                                     <Col md="3" key={index}>
                                         <Card className="card-product card-plain">
-                                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                                            <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
 
                                                 <div className="card-image Aheight">
                                                     <img
