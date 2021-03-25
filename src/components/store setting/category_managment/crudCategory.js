@@ -4,23 +4,22 @@ import { Link } from 'react-router-dom';
 import { actions } from '../../../redux/action'
 import createAttribute from '../attribute_management/createAttribute';
 import '../product_management/crudProducts'
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 function CrudCategory(props) {
-        function categoryNameFromId(categoryId)
-        {
-             let y=props.categoryList.filter(f=>f._id==categoryId)
-          if(y[0])
-             return y[0].categoryName;
-             else
-             return "אין"
+        function categoryNameFromId(categoryId) {
+                let y = props.categoryList.filter(f => f._id == categoryId)
+                if (y[0])
+                        return y[0].categoryName;
+                else
+                        return "אין"
         }
         function askDeleteCategory(i) {
                 if (window.confirm("אם אתה בטוח שברצונך למחוק את הקטגוריה"))
-                props.deleteCategory(i)
-              }
-              
+                        props.deleteCategory(i)
+        }
+
         return (
                 <>
                         <div className="page">
@@ -29,20 +28,20 @@ function CrudCategory(props) {
                                                 <div className="container__title crud_title title_md">Category</div>
                                                 <div className="container__search search js-search mySearch">
                                                         <button className="search__action action js-search-open">
-                                                        <FontAwesomeIcon
-                                                             icon={['fas','search']}>
-                                                             </FontAwesomeIcon>
-                                                            
-                                                                </button>
+                                                                <FontAwesomeIcon
+                                                                        icon={['fas', 'search']}>
+                                                                </FontAwesomeIcon>
+
+                                                        </button>
                                                 </div>
                                                 <div className="container__new new js-new">
-                                                     
+
                                                         <button className="new__action action js-new-open" onClick={() => { props.setcomponnet("AddCategory") }}>
-                                                   
-                                                             <FontAwesomeIcon
-                                                             icon={['fas','plus-circle']}>
-                                                             </FontAwesomeIcon>
-                                                               
+
+                                                                <FontAwesomeIcon
+                                                                        icon={['fas', 'plus-circle']}>
+                                                                </FontAwesomeIcon>
+
                                                         </button>
                                                 </div>
                                         </div>
@@ -58,28 +57,28 @@ function CrudCategory(props) {
                                                                         <div className="data data_list">
                                                                                 <div className="data__container">
 
-                                                                                <div className="data__head">
-                                <div className="data__row">
-                                        <div className="data__cell data__cell_xl" >
-                                                <div className="data__filter" >מחיקה</div>
-                                        </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter">צבע קטגוריה</div>
-                                        </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter" >שם קטגוריה</div>
-                                        </div>
+                                                                                        <div className="data__head">
+                                                                                                <div className="data__row">
+                                                                                                        <div className="data__cell data__cell_xl" >
+                                                                                                                <div className="data__filter" >מחיקה</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">צבע קטגוריה</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter" >שם קטגוריה</div>
+                                                                                                        </div>
 
-                                        <div className="data__cell">
-                                                <div className="data__filter">קטגורית על</div>
-                                        </div>
-                                        <div className="data__cell">
-                                                <div className="data__filter">עריכת קטגוריה</div>
-                                        </div>
-                                        <div className="data__cell data__cell_action"></div>
-                                </div>
-                        </div>
-      
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">קטגורית על</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell">
+                                                                                                                <div className="data__filter">עריכת קטגוריה</div>
+                                                                                                        </div>
+                                                                                                        <div className="data__cell data__cell_action"></div>
+                                                                                                </div>
+                                                                                        </div>
+
 
                                                                                         <div className="data__body">
                                                                                                 {props.categoryList.map((item, index) => (
@@ -88,29 +87,29 @@ function CrudCategory(props) {
                                                                                                                         <div className="data__cell data__cell_xl">
                                                                                                                                 <div className="data__main">
                                                                                                                                         <div className="data__effect mobile-hide"><label className="switch">
-                                                                                                                                                <input className="switch__input" type="button" onClick={ () => { askDeleteCategory(item._id)}} />
+                                                                                                                                                <input className="switch__input" type="button" onClick={() => { askDeleteCategory(item._id) }} />
                                                                                                                                                 <button style={{ border: "none" }}>
-                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem"}}>
+                                                                                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
                                                                                                                                                         </i></button>
                                                                                                                                                 {/* <span className="switch__content"></span> */}
-                                                                                                                                                </label></div>
+                                                                                                                                        </label></div>
                                                                                                                                         <div className="data__preview" style={{ "backgroundColor": item.color }}>
                                                                                                                                         </div>
-                                                                                                                                        <div className="data__cell mobile-hide"> 
-                                                                                                                                         <div className="data__wrap">
-                                                                                                                                                   <div className="data__content">
-                                                                                                                                                        <strong>{item.categoryName}</strong></div>
+                                                                                                                                        <div className="data__cell mobile-hide">
+                                                                                                                                                <div className="data__wrap">
+                                                                                                                                                        <div className="data__content">
+                                                                                                                                                                <strong>{item.categoryName}</strong></div>
+                                                                                                                                                </div>
                                                                                                                                         </div>
-                                                                                                                                        </div>
-                                                                                                                                       
-                                                                                                                                        <div className="data__cell mobile-hide"> 
-                                                                                                                                    
-                                                                                                                                        <div className="data__wrap">
-                                                                                                                                                <div className="data__content">
-                                                                                                                                                        <strong>{categoryNameFromId(item.masterCategory)}</strong>
-                                                                                               
-                                                                                                                                                        {/* <strong>{item.masterCategory}</strong> */}</div>
-                                                                                                                                        </div></div>
+
+                                                                                                                                        <div className="data__cell mobile-hide">
+
+                                                                                                                                                <div className="data__wrap">
+                                                                                                                                                        <div className="data__content">
+                                                                                                                                                                <strong>{categoryNameFromId(item.masterCategory)}</strong>
+
+                                                                                                                                                                {/* <strong>{item.masterCategory}</strong> */}</div>
+                                                                                                                                                </div></div>
                                                                                                                                 </div>
                                                                                                                         </div>
                                                                                                                         <div className="data__cell mobile-hide">
@@ -118,9 +117,9 @@ function CrudCategory(props) {
                                                                                                                         </div>
                                                                                                                         <div className="data__cell data__cell_action">
                                                                                                                                 <button onClick={() => { props.setcomponnet("EditCategory"); props.setCurrentCategory(item) }} className="action action_stroke" >
-                                                                                                                                <FontAwesomeIcon
-                                                                                                                  icon={['fas','edit']}>
-                                                                                                              </FontAwesomeIcon>
+                                                                                                                                        <FontAwesomeIcon
+                                                                                                                                                icon={['fas', 'edit']}>
+                                                                                                                                        </FontAwesomeIcon>
                                                                                                                                 </button>
                                                                                                                         </div>
                                                                                                                 </div>
@@ -128,8 +127,8 @@ function CrudCategory(props) {
                                                                                                 ))}
                                                                                         </div>
                                                                                 </div>
-            
-                                                               
+
+
                                                                         </div>
                                                                 </div>
                                                                 <div className="panel__foot">

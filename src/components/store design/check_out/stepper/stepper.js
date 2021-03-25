@@ -11,7 +11,6 @@ function Stepper(props) {
         return React.cloneElement(child);
     }
     function onSubmit() {
-        debugger
         let obj = {
             trackingID: "00987866",//חובה
             user: props.user,

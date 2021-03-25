@@ -17,17 +17,18 @@ import EditPaper from './components/store setting/paper_managment/editPaper'
 import ShowPaper from './components/store setting/paper_managment/showPaper'
 import CheckOut from './components/store design/check_out/checkOut'
 import Upload from './components/modals/yeuditUploadImage';
-
+import MediaGallery from './components/store design/media_gallery/mediaGallery'
 // import Product from "./components/store design/product_page/product";
 // import Cart from "./components/store design/cart";
 import QuickLook from './components/store design/quickLook'
-
+// import Upload from './components/modals/yeuditUploadImage'
 //styles
 import "./assets/css/bootstrap.min.css";
 import "./assets/scss/now-ui-kit.scss";
 import "./assets/demo/demo.css";
 import "./assets/demo/react-demo.css";
 import "./assets/demo/nucleo-icons-page-styles.css";
+import { uploadImage } from './redux/middleware/crud';
 import LoginHome from './components/new login/loginHome';
 
 function App() {
@@ -57,6 +58,14 @@ function App() {
             <Route exact path="/paper">
               <EditPaper></EditPaper>
             </Route>
+            {/* <Route exact path="/admin/category/edit">
+              <EditCategory />
+            </Route>     */}
+
+            <Route path="/mediaGallery">
+              <MediaGallery />
+            </Route>
+
             <Route exact path="/showPaper">
               <ShowPaper></ShowPaper>
             </Route>

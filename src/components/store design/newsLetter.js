@@ -8,6 +8,7 @@ import {
 } from "reactstrap";
 import ImageNewsLetter from '../../assets/homeNewsLetter.png'
 import "./newsLetter.css"
+import homeImage from '../../assets/home.png';
 function NewsLetter(props) {
     return (
         <Container fluid className="newsLetter-all" >

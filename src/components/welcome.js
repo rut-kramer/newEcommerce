@@ -76,7 +76,6 @@ function Welcome(props) {
 
     function next(e) {
         e.preventDefault()
-        debugger
         let f = document.getElementById("fname").value
         if (f != "") {
             let a = document.getElementById("welcomeStep1")

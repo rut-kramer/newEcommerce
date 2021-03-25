@@ -8,7 +8,6 @@ const initialState = {
 }
 
 const bullPageEdit = {
-    //כל הפונקציות שישנו נתונים שהכנסתי לסטייט
     setTitle(state, action) {
         state.title = action.payload
     },

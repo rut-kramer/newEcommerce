@@ -27,17 +27,25 @@ import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import { deleteTerms, newTerm } from './middleware/crudTerm';
 import quillReducer from './reducers/data_reducer/quillReducer';
+import mediaGalleryReducer from './reducers/mediaGalleryReducer'
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer
+        attributeReducer, bullPageEditReducer,mediaGalleryReducer
     })
-
+    
+    const rootReducer = (state, action) => {
+        if (action.payload === 'USER_LOGOUT') 
+        {
+          state = undefined
+        }
+        return reducers(state, action)
+    }
 const store = createStore(
-    reducers,
+    rootReducer,
 
     composeWithDevTools(
         applyMiddleware(

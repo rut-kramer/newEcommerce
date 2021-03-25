@@ -24,7 +24,6 @@ function LoginHome(props) {
         //     }, [props.lastUpdatedUserStore]);
         function funcReset() {
             let item=props.lastUpdatedUserStore[0];
-            debugger
             props.setCurrentStore(item);
             props.getOrdersByStore(item._id)
             props.getCategoriesByStore(item._id)

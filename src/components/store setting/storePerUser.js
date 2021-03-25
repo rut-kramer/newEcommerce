@@ -7,7 +7,6 @@ import categoryReducer from '../../redux/reducers/data_reducer/categoryReducer';
 function StorePerUser(props) {
 
   function funcReset(item) {
-    debugger
     props.setCurrentStore(item);
     props.getOrdersByStore(item._id)
     props.getCategoriesByStore(item._id)
