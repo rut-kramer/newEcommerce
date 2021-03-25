@@ -266,7 +266,7 @@ function FilteredProducts(props) {
                                                         </h6>
                                                 </CardHeader>
                                                 <Collapse isOpen={collapses.includes(2)}>
-                                                        <CardBody className="pl-0">
+                                                        <CardBody className="pl-0 pr-0">
                                                                 {(Array.isArray(props.categories) &&
                                                                         props.categories.length) &&
                                                                         props.categories.map((item, index) => (
@@ -312,7 +312,7 @@ function FilteredProducts(props) {
                                                                         </h6>
                                                                 </CardHeader>
                                                                 <Collapse isOpen={collapses.includes(index + 3)}>
-                                                                        <CardBody className="pl-0">
+                                                                        <CardBody className="pl-0 pr-0">
                                                                                 {
                                                                                         // (Array.isArray(att.terms) && 
                                                                                         //         props.categories.length) &&

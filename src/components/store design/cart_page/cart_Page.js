@@ -95,7 +95,7 @@ function CartPage(props) {
                         <input name="address" value={props.cart.address} onChange={props.updateSetOrder}></input>
                         <br></br><br></br>
                         <button onClick={funcSubmit}>שלח</button>
-                        <Link to={"/" + props.objectFields.urlRoute}> חזרה לחנות</Link>
+                        <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}> חזרה לחנות</Link>
                 </>
         )
 }
