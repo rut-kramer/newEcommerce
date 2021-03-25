@@ -1,7 +1,7 @@
 import React from 'react'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
-import { Route,  Switch } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import {
     Row,
     Col,
@@ -23,7 +23,7 @@ function MediaGallery(props) {
                 </Col>
                 <Col md="10">
                     <Switch>
-                        <Route exact path="/:storeName/admin/mediaGallery/uploudImage">
+                        <Route exact path="/:storeName/mediaGallery/uploudImage">
                             <UploadImages></UploadImages>
                         </Route>
                         <Route path="/:storeName/admin/mediaGallery/myFiles">

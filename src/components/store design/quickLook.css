@@ -1,14 +1,15 @@
  /* //מבט מהיר */
- .sideBar{
+ /* .sideBar{
   display: block;
   margin-top: 10%;
   /* box-shadow: 10px 0 5px -2px #888; */
   /* https://stackoverflow.com/questions/5115427/how-can-i-add-a-box-shadow-on-one-side-of-an-element */
-}
+/* } */ 
 .imageProductQLook{
   display: block;
   margin: auto;
  width: 75%; 
+ margin-top: 4rem;
 }
 .detailsProduct{
    width: 55%; 
@@ -39,8 +40,8 @@ margin-bottom: 8vh;
 } 
  /* החלק של סיידבר שנפתח ונסגר מבט מהיר */
  .w3-sidebar{
-  top: 0;
-  height:100vh;
+  /* top: 0; */
+  height:81vh;
     width:24%;
     background-color:#fff;
     display: flex;

@@ -21,13 +21,13 @@ function QuickLook(props) {
     const [orderAmount, setOrderAmount] = useState(1)
     return (
 
-        <div className="sideBar">
+        <div>
             <button
                 onClick={props.w3_close}
                 className="">&times;
                     </button>
 
-            <img alt="...." className="imageProductQLook mt-4"
+            <img alt="...." className="imageProductQLook"
                 src={ia006}>
             </img>
             <div className="detailsProduct mt-2">

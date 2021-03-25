@@ -54,7 +54,11 @@ function Bullcommerce(props) {
         <>
             <div className="wrapper">
                 <Container fluid>
-                    <EcommerceHeader />
+                    {
+                        props.ifDisplaySlider ?
+                            <EcommerceHeader />
+                            : ""
+                    }
                 </Container>
                 <div className="main">
                     <div className="section">
@@ -151,7 +155,9 @@ export default connect(
             products: state.productReducer.products,
             categories: state.categoriesReducer.categories,
             featuredProducts: state.productReducer.featuredProducts,
-            objectFields: state.storeReducer.objectFields
+            objectFields: state.storeReducer.objectFields,
+            ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+
         }
     },
     (dispatch) => {

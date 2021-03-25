@@ -127,8 +127,7 @@ function ScrollTransparentNavbar(props) {
           <NavbarBrand to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)} tag={Link} id="navbar-brand">
             <img alt="..."
               src={props.objectFields.logo} className="logoHeader"
-              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-
+              onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("header") }}
             >
             </img>
             {/* <Button
@@ -215,11 +214,15 @@ const mapStateToProps = (state) => {
     objectFields: state.storeReducer.objectFields,
     cartProducts: state.cartReducer.cart.products,
     products: state.productReducer.products,
-    mainWidth: state.wrapReducer.mainWidth
+    mainWidth: state.wrapReducer.mainWidth,
+    collapseOfRedux: state.bullPageEditReducer.collapse
+
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)
