@@ -110,10 +110,23 @@ function Cart(props) {
                 })
                 props.setTotalPrice(totalPrice);
         }
-
         return (
                 <>
                         <div className="wrapper">
+                        <div>  
+
+
+<br></br>
+<br></br>
+<br></br>
+ <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
+  Home Page  
+</Link>
+<label>/</label>
+<label color="inherit" >
+    My Cart  
+</label>
+</div>
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}>
                                                 <div className="main">
