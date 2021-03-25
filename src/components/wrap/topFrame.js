@@ -7,7 +7,8 @@ import { actions } from '../../redux/action';
 import { logOut } from "../../services/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
-import { combineReducers } from 'redux';
+
+
 
 // public/apple-touch-icon'
 function TopFrame(props, { setFlagCon }) {
@@ -122,6 +123,7 @@ useEffect(()=>{
                     <FontAwesomeIcon style={{ fontSize: "25px" }} icon={['fas', 'bars']}></FontAwesomeIcon>
                 </button>
 
+
                 <Link to="/home">
                     <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
                 </Link>
@@ -136,10 +138,10 @@ useEffect(()=>{
                             <option value={JSON.stringify(item)} >{item.storeName}</option>
                         ))}
                     </select>
-
+{/* 
                     <label>{props.objectFields.urlRoute}</label>
                     <button onClick={save}>save</button>
-                    <button onClick={get}>get</button>
+                    <button onClick={get}>get</button> */}
                 </div>
                 {/* <button onClick={() => {
                     // props.history.push(`/`) 
