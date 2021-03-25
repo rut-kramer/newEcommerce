@@ -27,7 +27,7 @@ function QuickLook(props) {
                 className="">&times;
                     </button>
 
-            <img alt="...." className="imageProductQLook mt-4"
+            <img alt="...." className="imageProductQLook"
                 src={ia006}>
             </img>
             <div className="detailsProduct mt-2">
