@@ -10,7 +10,6 @@ const initialState = {
 const filter = {
 
         setFilteredItems(state, action) {
-                debugger
                 state.filteredItems = action.payload;
 
         },

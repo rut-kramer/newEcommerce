@@ -211,6 +211,7 @@ function ScrollTransparentNavbar(props) {
 
 const mapStateToProps = (state) => {
   return {
+    cartProducts: state.cartReducer.cart.products,
     objectFields: state.storeReducer.objectFields,
     cartProducts: state.cartReducer.cart.products,
     products: state.productReducer.products,

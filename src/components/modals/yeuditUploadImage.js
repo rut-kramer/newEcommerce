@@ -1,24 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { actions } from '../../redux/action'
-
-
-
-
 function Upload(props) {
-
         const [image, setImage] = useState(null)
 
         const handlerLogo = (e) => {
-                debugger
                 props.uploadImage(e);
-
         }
 
         return (
                 <>
                         <form >
-
                                 <div>
                                         <label htmlFor="logoS">
                                                 <img className="logoC" alt="הכנס לוגו של החנות"
@@ -36,11 +28,8 @@ function Upload(props) {
                                                 onChange={(e) => handlerLogo(e.target.files[0])}
                                         />
                                 </div><br></br>
-
                                 {/* <input type="submit" value="עבור לחנות שלך לדוגמא"></input> */}
-
                         </form>
-
                 </>
         );
 }
@@ -59,6 +48,4 @@ export default connect(
                         changeProfile: (x) => dispatch(actions.setProfilePicture(x))
                 }
         }
-
 )(Upload);
-

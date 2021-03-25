@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
 import { Link } from 'react-router-dom';
+// import { Link, useHistory } from 'react-router-dom';
 // import { Table, Container, Row, Col, Button,  Card, } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
@@ -11,6 +12,7 @@ import './cart.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg"
+import CheckOut from '../check_out/checkOut'
 
 
 import {
@@ -43,7 +45,7 @@ let flag = 1;
 function Cart(props) {
 
         const [cookies, setCookie] = useCookies(["order"]);
-
+        // let history = useHistory();
         useEffect(() => {
                 // props.setUser(props.user._id);
                 // props.setStore(props.currentStore)
@@ -85,8 +87,20 @@ function Cart(props) {
         //       let t = cookies[str];
         // }
 
+        // });
+        // function  save() {
+        //         setCookie(props.storeCurrent,props.cart, {
+        //                 path: "/"
+        //               }); 
+        // }
+        // function  get() {
+        //       let  str=props.storeCurrent;
+        //       let t = cookies[str];
+        // }
+
         // const onSubmit = () => {
-        //         props.newOrder(props.cart)
+        //         let path =   `/${props.objectFields.urlRoute}/checkOut`;     
+        //         history.push(path);
         // }
 
         function calcTotalPrice() {

@@ -1,5 +1,6 @@
 .newsLetter-all{
     color: white;
+    
 }
 .newsLetter-Title{
     font-size: 20px;
@@ -8,4 +9,18 @@
 .newsLetter-SubTitle{
     font-size: 14px;
     padding-left: 22%
+}
+.newsLetter-background-image{
+    height: 20%;
+    width: 40%;
+    background-image: url('../../assets/home.png');
+}
+.newsLetter-input{
+ opacity: 0.2;
+ color: white;
+}
+.newsLetter-button{
+ opacity: 0.5;
+ color: white;
+
 }

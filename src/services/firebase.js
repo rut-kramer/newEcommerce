@@ -53,8 +53,8 @@ export const createUserWithEmailAndPassword = (email, password) => {
 }
 
 // ...
-// export const logOut = () => {
-export const logOut = auth.signOut();
+// export const logOut = 
+export const logOut = () => {auth.signOut()};
   // .then(()=> {
   //   console.log('logged out')
   //   // window.location.href='https://bullcommerce.shop/login'

@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // plugin that creates slider
 import Slider from "nouislider";
 // reactstrap components
@@ -27,6 +27,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 //  import Carousel from 'reacst-elastic-carousel'
+import { withRouter } from 'react-router-dom';
 
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
@@ -45,6 +46,7 @@ import ia006 from "../../../assets/img/xd/ia_300000006.png";
 import cart from "../../../assets/img/xd/cart.svg";
 
 import { Alert } from 'reactstrap';
+import "../../alerts/alert.css";
 import "../../reactstrapComponents/alert.css";
 
 function CategoryBullcommerce(props) {
@@ -394,13 +396,17 @@ function CategoryBullcommerce(props) {
                       //   props.filteredProducts.length > 0))}
                       // {(Array.isArray(props.filteredProducts) &&
                       //   props.filteredProducts.length > 0) &&
-                      //   props.filteredProducts.map((item, index) => (
+                      //   props.filteredProducts.map((it 
 
                       <Col lg="4" md="6" sm="12" key={index}>
 
                         <Card className="card-product card-plain">
-                          <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
+                          <div className="card-image frameToProductView"
+                            onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push("/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU) }}
+                          >
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                              {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
+
                               <img className="imageProduct"
                                 alt="..."
                                 src={ia006}
@@ -469,18 +475,15 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
+
                           <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
-                            <Pagination
-                              className="pagination pagination-info justify-content-end pt-2"
-                              listClassName="pagination-info justify-content-center"
-                            >
-                              {/* <PaginationItem>
+                            <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
@@ -493,29 +496,26 @@ function CategoryBullcommerce(props) {
                                   ></i>
                                 </span>
                               </PaginationLink>
-                            </PaginationItem>  */}
-
-                              {/* <div className="Apprs">  */}
-                              {/* <Carousel  itemsToShow={1}> */}
-                              {/* <div id="carousel" class="slider"> */}
-                              {arrPager && arrPager.map((item, index) => (
-                                <item key={index}>
-                                  <PaginationItem
-                                    className={degelBtn == index ? "active" : ""}
+                            </PaginationItem>
+                            {/* <div className="Apprs">  */}
+                            {/* <Carousel  itemsToShow={1}> */}
+                            {arrPager && arrPager.map((item, index) => (
+                              <item key={index}>
+                                <PaginationItem
+                                  className={degelBtn == index ? "active" : ""}
+                                >
+                                  <PaginationLink
+                                    href="#pablo"
+                                    onClick={(e) => { e.preventDefault(); changePageNum(index) }}
                                   >
-                                    <PaginationLink
-                                      href="#pablo"
-                                      onClick={(e) => { e.preventDefault(); changePageNum(index) }}
-                                    >
-                                      {item.index}
-                                    </PaginationLink>
-                                  </PaginationItem>
-                                </item>
-                              ))}
-                              {/* </div> */}
-                              {/* </Carousel> */}
-                              {/* </div> */}
-                              {/* <PaginationItem 
+                                    {item.index}
+                                  </PaginationLink>
+                                </PaginationItem>
+                              </item>
+                            ))}
+                            {/* </Carousel> */}
+                            {/* </div> */}
+                            <PaginationItem
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -531,9 +531,8 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>
-                        */}
-                            </Pagination>
                           </Pagination>
+
                         </Col>
                       </Row>
                     </Col>
@@ -565,11 +564,13 @@ export default connect(
       // setSliderMin: (x) => { dispatch(actions.setMinPrice(x)) },
       // setSliderMax: (x) => { dispatch(actions.setMaxPrice(x)) },
       setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
-      addToCart: (product) => { dispatch(actions.addToCart(product)) }
+      addToCart: (product) => { dispatch(actions.addToCart(product)) },
+      setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
+      setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
 
     }
   }
-)(CategoryBullcommerce);
+)(withRouter(CategoryBullcommerce));
 
 
 

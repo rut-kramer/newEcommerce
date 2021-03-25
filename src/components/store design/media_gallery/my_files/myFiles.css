@@ -1,0 +1,46 @@
+.my-file{
+    padding-top: 10%;
+    padding-left: 1%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+.upload-my-file{
+    background: transparent linear-gradient(to top left, #FE5196 20%,  #FC894D 100%) 0% 0% no-repeat padding-box;
+    width: 7rem;
+    height:7rem;
+    text-align: center;
+    padding-top: 20%;
+}
+.icon-upload-my-file{
+    color: white;
+    font-size: 2rem;
+}
+.word-icon-upload-my-file{
+    color: white;
+}
+.upload-my-file-div {
+    position: relative;
+    width: 7rem;
+    height:7rem;
+    margin: 0;
+  }
+  .upload-my-file-div img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.048);
+    z-index: 9999;
+    width: 7rem;
+    height:7rem;
+  }
+  .upload-my-file-div:hover .overlay{
+    display: block;
+  }
+
+
