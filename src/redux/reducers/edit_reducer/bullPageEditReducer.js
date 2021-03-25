@@ -5,7 +5,8 @@ const initialState = {
     //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     collapse: "",
     title: "",
-    alignment: "center"
+    alignment: "center",
+    ifDisplayTitle: "true"
 }
 
 const bullPageEdit = {
@@ -18,6 +19,9 @@ const bullPageEdit = {
     setCollapse(state, action) {
         state.collapse = action.payload
     },
+    setIfDisplayTitle(state, action) {
+        state.ifDisplayTitle = !state.ifDisplayTitle
+    }
 
 
 }

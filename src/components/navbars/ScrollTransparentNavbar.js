@@ -127,7 +127,6 @@ function ScrollTransparentNavbar(props) {
             <img alt="..."
               src={props.objectFields.logo} className="logoHeader"
               onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("header") }}
-            // {() => props.setCollapse("header")}
             >
             </img>
             {/* <Button

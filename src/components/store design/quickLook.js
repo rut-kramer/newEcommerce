@@ -21,7 +21,7 @@ function QuickLook(props) {
     const [orderAmount, setOrderAmount] = useState(1)
     return (
 
-        <div className="sideBar">
+        <div>
             <button
                 onClick={props.w3_close}
                 className="">&times;

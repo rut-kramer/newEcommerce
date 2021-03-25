@@ -21,7 +21,6 @@ import SliderConfigurator from "./sliderConfigurator"
 function HomeConfigurator(props) {
     const [collapses, setCollapses] = React.useState([0]);
     useEffect(() => {
-        debugger
         changeCollapse(props.collapseOfRedux)
     }, [props.collapseOfRedux])
 

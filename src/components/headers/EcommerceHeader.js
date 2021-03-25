@@ -18,51 +18,15 @@ import { useHistory } from "react-router-dom";
 import "./ecommerceHeader.css"
 import { actions } from "../../redux/action";
 import { connect } from "react-redux";
-
-
-
 //img xd
-import interior from "../../assets/img/xd/interior-with-white-sofa@2x.png";
-import img3 from "../../assets/img/xd/ia_300000045.png"
 import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
   const history = useHistory();
 
-  // const [items, setItem] = useState([
-  //   {
-
-  //     src: "url(" + interior + ")",
-  //     altText: "",
-  //     caption: "",
-  //   },
-  //   {
-  //     src: "url( " + props.homeStoreDesign.image + ")",
-  //     altText: "",
-  //     caption: "",
-  //   },
-  //   {
-  //     src: "url(" + img3 + ")",
-  //     altText: "",
-  //     caption: "",
-  //   },
-  //   {
-  //     src: "url(" + interior + ")",
-  //     altText: "",
-  //     caption: "",
-  //   },
-  //   {
-  //     src: "url(" + interior + ")",
-  //     altText: "",
-  //     caption: "",
-  //   },
-
-  // ]);
-
 
   function openMediaGallery() {
-    debugger
     history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
 
   }
@@ -95,35 +59,32 @@ function EcommerceHeader(props) {
       src: "url(" + aa + ")",
     }
     props.setImagesArr(img)
-    // setItem([...items, img])
   }
   return (
-    <div className="carouelImgHover">
+    <div>
       <button onClick={addImg}>add img</button>
-      <div className="bullcommerceTitle">
-        <input className="bullcommerceTitleInput"
-          value={props.title ? props.title : props.objectFields.storeName}
-          onChange={(e) => props.setTitle(e.target.value)}
-          onClick={(e) => { props.changeCurrentComponent("HomeConfigurator"); openMediaGallery() }}
-          // onClick={() => {
-          //   props.changeCurrentComponent("HomeConfigurator");
-          //   props.setCollapse("slider")
-          // }}
-
-          style={{
-            textAlign: props.alignment ? props.alignment : 'center',
-          }}
-        ></input>
-      </div>
-
+      {props.ifDisplayTitle ?
+        <div className="bullcommerceTitle">
+          <input className="bullcommerceTitleInput"
+            value={props.title ? props.title : props.objectFields.storeName}
+            onChange={(e) => props.setTitle(e.target.value)}
+            onClick={(e) => {
+              props.changeCurrentComponent("HomeConfigurator");
+              props.setCollapse("slider");
+            }}
+            style={{
+              textAlign: props.alignment ? props.alignment : 'center',
+            }}
+          ></input>
+        </div> : ""
+      }
       <Carousel activeIndex={activeIndex} next={next} previous={previous}
-
       >
         <CarouselIndicators
           items={props.ImagesArr}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
-
+          className="EH-carouselIndicators"
         />
         {props.ImagesArr.map((item) => {
           return (
@@ -131,8 +92,12 @@ function EcommerceHeader(props) {
               onExiting={onExiting}
               onExited={onExited}
               key={item.src}
+
             >
-              <div className="page-header header-filter">
+              <div
+                onClick={openMediaGallery}
+                className="page-header header-filter carouelImgHover"
+              >
                 <div
                   className="page-header-image"
                   style={{
@@ -142,9 +107,9 @@ function EcommerceHeader(props) {
 
               </div>
             </CarouselItem>
-
           );
         })}
+
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
         <a
           className="left carousel-control carousel-control-prev"
@@ -189,9 +154,9 @@ function EcommerceHeader(props) {
             </FontAwesomeIcon>                                                                                </Button>
         </a>
       </Carousel>
-      {/* <img alt="..."
-        src={props.ImagesArr[2]} className="logoHeader">
-      </img> */}
+
+
+
     </div>);
 }
 
@@ -202,15 +167,14 @@ const mapStateToProps = (state) => {
     title: state.bullPageEditReducer.title,
     alignment: state.bullPageEditReducer.alignment,
     ImagesArr: state.carouselImgReducer.ImagesArr,
-    collapseOfRedux: state.bullPageEditReducer.collapse
-
+    collapseOfRedux: state.bullPageEditReducer.collapse,
+    ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
   setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
-  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
-
+  setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

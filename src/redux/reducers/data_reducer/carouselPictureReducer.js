@@ -13,6 +13,7 @@ const initialState = {
         src: "url(" + img3 + ")",
     }
     ],
+    ifDisplaySlider: true
 }
 const carouselImages = {
     setImagesArr(state, action) {
@@ -22,6 +23,10 @@ const carouselImages = {
             src: "url(" + action.payload + ")",
         })
     },
+    setifDisplaySlider(state, action) {
+        state.ifDisplaySlider = !state.ifDisplaySlider
+    },
+
 
 }
 
