@@ -87,12 +87,9 @@ function SliderConfigurator(props) {
                             </Row>
                         </Row>
                         <Row md="12" className="mt-3">Title Size</Row>
-                        <div className="slidecontainer">
+                        {/* <div className="slidecontainer">
                             <input className="slider-range" type="range" min="1" max="100" />
-                        </div>
-
-                        <Row md="12" className="mt-3"></Row>
-
+                        </div> */}
                         <Row md="12" className="mt-3 justify-content-between">
                             <Col md="7" className="SC-alignment">Alignment</Col>
                             <Col md="5" className="SC-alignmentIcons">
@@ -106,13 +103,13 @@ function SliderConfigurator(props) {
 
                         <Row md="12" className="mt-3">Title Fill</Row>
                         <Row md="12" className="mt-3">Sub Title</Row>
-                        <Row md="12" className="mt-3">
+                        <Row md="12" className="mt-1">
                             <input className="SC-input"
                                 placeholder="add"
                             ></input>
                         </Row>
                         <Row md="12" className="mt-3">Power Button</Row>
-                        <Row md="12" className="mt-3"> <input className="SC-input"
+                        <Row md="12" className="mt-1"> <input className="SC-input"
                             placeholder="add"
                         ></input></Row>
                         <Row md="12" className="mt-3">Border Radius Button</Row>
