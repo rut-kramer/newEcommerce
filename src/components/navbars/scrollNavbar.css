@@ -7,11 +7,11 @@
     color: yellow;
     
 }
-#dropdown{
+/* #dropdown{
     
     background-color: transparent;
     color: black;
-}
+} */
 #store_main_navbar{
     position: fixed;
     z-index: 1000;
@@ -19,3 +19,13 @@
     width:100%;
 }
 /* .navbar-translate{width: 100%;} */
+
+.drag_icon_category{
+    font-weight: 100;
+    opacity: 0;
+    color: black;
+}
+
+.drag_category:hover>.drag_icon_category{
+    opacity: 1;
+}

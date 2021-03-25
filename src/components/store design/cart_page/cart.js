@@ -100,144 +100,148 @@ function Cart(props) {
         return (
                 <>
                         <div className="wrapper">
-                                <div className="main">
-                                        <div className="section cart">
-                                                {/* <button onClick={save}>save</button>
-<button onClick={get}>get</button> */}
-                                                <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
+                                <Row>
+                                        <Col sm="12" md={{ size: 10, offset: 1 }}>
+                                                <div className="main">
+                                                        <div className="section cart">
+                                                                {/* <button onClick={save}>save</button>
+        <button onClick={get}>get</button> */}
+                                                                <h3 style={{ textAlign: 'center' }}><b>My Shopping</b></h3>
 
-                                                {(Array.isArray(props.cart.products) && props.cart.products.length) ?
-                                                        <>
-                                                                <Table hover>
-                                                                        <thead className="tableHeader" >
-                                                                                <tr>
-                                                                                        <th><b>PRODUCT</b></th>
-                                                                                        <th><b>PRICE</b></th>
-                                                                                        <th><b>QUANTITY</b></th>
-                                                                                        <th><b>TOTAL</b></th>
-                                                                                        <th><b>ACTION</b></th>
-                                                                                </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                                {props.cart.products.map((item, index) => (
-                                                                                        <tr key={index}>
-                                                                                                <td>
-                                                                                                        <img alt="exp" src={background} style={{ height: "100px", width: "auto" }} />{"   "}
-                                                                                                        <b>{item.product.name}</b>
-                                                                                                </td>
-                                                                                                <td>{item.product.price}</td>
-                                                                                                <td className="calcAmount">
-                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
-                                                                                                                <FontAwesomeIcon icon={['fas', 'plus']}>
-                                                                                                                </FontAwesomeIcon>
-                                                                                                        </Button>{' '}
-                                                                                                        {item.amount}{' '}
-                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
-                                                                                                                <FontAwesomeIcon icon={['fas', 'minus']}>
-                                                                                                                </FontAwesomeIcon>
-                                                                                                        </Button>
-                                                                                                </td>
-                                                                                                <td>{(item.amount * item.product.price).toFixed(2)}$</td>
-                                                                                                <td>
-                                                                                                        <Row>
-                                                                                                                <Col md="12">
-                                                                                                                        <Link to={{ pathname: `/${props.objectFields.urlRoute}/product/${item.product.SKU}`, state: { product: item.product } }} style={{ color: "#212529" }}>
-                                                                                                                                <FontAwesomeIcon className="clickIcon" icon={['fas', 'pencil-alt']} >
+                                                                {(Array.isArray(props.cart.products) && props.cart.products.length) ?
+                                                                        <>
+                                                                                <Table hover>
+                                                                                        <thead className="tableHeader" >
+                                                                                                <tr>
+                                                                                                        <th><b>PRODUCT</b></th>
+                                                                                                        <th><b>PRICE</b></th>
+                                                                                                        <th><b>QUANTITY</b></th>
+                                                                                                        <th><b>TOTAL</b></th>
+                                                                                                        <th><b>ACTION</b></th>
+                                                                                                </tr>
+                                                                                        </thead>
+                                                                                        <tbody>
+                                                                                                {props.cart.products.map((item, index) => (
+                                                                                                        <tr key={index}>
+                                                                                                                <td>
+                                                                                                                        <img alt="exp" src={background} style={{ height: "100px", width: "auto" }} />{"   "}
+                                                                                                                        <b>{item.product.name}</b>
+                                                                                                                </td>
+                                                                                                                <td>{item.product.price}</td>
+                                                                                                                <td className="calcAmount">
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
+                                                                                                                                <FontAwesomeIcon icon={['fas', 'plus']}>
                                                                                                                                 </FontAwesomeIcon>
-                                                                                                                        </Link>
-                                                                                                                </Col>
-                                                                                                        </Row>
-                                                                                                        <Row>
-                                                                                                                <Col md="12">
-                                                                                                                        <FontAwesomeIcon className="clickIcon" icon={['fas', 'trash']} onClick={async () => { await props.remove(item); calcTotalPrice() }}>
-                                                                                                                        </FontAwesomeIcon>
-                                                                                                                </Col>
-                                                                                                        </Row>
-                                                                                                </td>
-                                                                                        </tr>
-                                                                                ))}
-                                                                        </tbody>
-                                                                </Table>
+                                                                                                                        </Button>{' '}
+                                                                                                                        {item.amount}{' '}
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
+                                                                                                                                <FontAwesomeIcon icon={['fas', 'minus']}>
+                                                                                                                                </FontAwesomeIcon>
+                                                                                                                        </Button>
+                                                                                                                </td>
+                                                                                                                <td>{(item.amount * item.product.price).toFixed(2)}$</td>
+                                                                                                                <td>
+                                                                                                                        <Row>
+                                                                                                                                <Col md="12">
+                                                                                                                                        <Link to={{ pathname: `/${(props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}/product/${item.product.SKU}`, state: { product: item.product } }} style={{ color: "#212529" }}>
+                                                                                                                                                <FontAwesomeIcon className="clickIcon" icon={['fas', 'pencil-alt']} >
+                                                                                                                                                </FontAwesomeIcon>
+                                                                                                                                        </Link>
+                                                                                                                                </Col>
+                                                                                                                        </Row>
+                                                                                                                        <Row>
+                                                                                                                                <Col md="12">
+                                                                                                                                        <FontAwesomeIcon className="clickIcon" icon={['fas', 'trash']} onClick={async () => { await props.remove(item); calcTotalPrice() }}>
+                                                                                                                                        </FontAwesomeIcon>
+                                                                                                                                </Col>
+                                                                                                                        </Row>
+                                                                                                                </td>
+                                                                                                        </tr>
+                                                                                                ))}
+                                                                                        </tbody>
+                                                                                </Table>
 
 
-                                                                <Container>
-                                                                        <Row>
-                                                                                <Col md="4">
-                                                                                        <div className="cartButtons">
-                                                                                                <Link to={"/" + props.objectFields.urlRoute}>
-                                                                                                        <Button outline size="sm">Continue Shopping</Button>{' '}
-                                                                                                </Link>
-                                                                                                <Button outline size="sm">Shop Now</Button>
-                                                                                        </div>
-                                                                                </Col>
-                                                                                <Col md="4"></Col>
-                                                                                <Col md="4" className="sumTotal">
-                                                                                        <div className="totalLine">
-                                                                                                <Row>
-                                                                                                        <Col md="6" style={{ color: "#707070" }}>SUB TOTAL</Col>
-                                                                                                        <Col md="6">{props.cart.totalPrice}$</Col>
-                                                                                                </Row>
-                                                                                                <Row>
-                                                                                                        <Col md="6" style={{ color: "#707070" }}>SHIPPING</Col>
-                                                                                                        <Col md="6">100$</Col>
-                                                                                                </Row>
-                                                                                        </div>
+                                                                                <Container>
                                                                                         <Row>
-                                                                                                <Col md="6" style={{ color: "#707070" }}><b>TOTAL</b></Col>
-                                                                                                <Col md="6"><b>{props.cart.totalPrice + 100}$</b></Col>
-                                                                                        </Row>
-
-                                                                                </Col>
-                                                                        </Row>
-                                                                </Container>
-                                                        </>
-                                                        : <>
-                                                                <div>No items in your cart.</div>
-                                                                <Link to={"/" + props.objectFields.urlRoute}>
-                                                                        <Button className="continueShop" outline size="sm">Back to shop</Button>{' '}
-                                                                </Link>
-                                                        </>}
-
-                                        </div>
-                                        <div className="section viewedProducts">
-                                                <h3 style={{ textAlign: 'center' }}>
-                                                        <b>Products you viewed</b></h3>
-                                                <div>
-                                                        <Row>
-                                                                {props.treeProduct.map((item, index) => (
-                                                                        <Col lg="4" md="6" sm="12" key={index}>
-                                                                                <Card className="card-product card-plain">
-                                                                                        <div className="card-image frameToProductView">
-                                                                                                <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
-                                                                                                        <img className="imageProduct"
-                                                                                                                alt="..."
-                                                                                                                src={ia006}
-                                                                                                        ></img>
-                                                                                                </Link>
-                                                                                        </div>
-
-                                                                                        <CardBody>
-                                                                                                <br></br>
-                                                                                                <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
-                                                                                                <CardFooter>
-                                                                                                        <div className="price-container">
-                                                                                                                <span className="price">$ {item.price}</span>
+                                                                                                <Col md="4">
+                                                                                                        <div className="cartButtons">
+                                                                                                                <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}>
+                                                                                                                        <Button outline size="sm">Continue Shopping</Button>{' '}
+                                                                                                                </Link>
+                                                                                                                <Button outline size="sm">Shop Now</Button>
                                                                                                         </div>
-                                                                                                </CardFooter>
-                                                                                        </CardBody>
+                                                                                                </Col>
+                                                                                                <Col md="4"></Col>
+                                                                                                <Col md="4" className="sumTotal">
+                                                                                                        <div className="totalLine">
+                                                                                                                <Row>
+                                                                                                                        <Col md="6" style={{ color: "#707070" }}>SUB TOTAL</Col>
+                                                                                                                        <Col md="6">{props.cart.totalPrice}$</Col>
+                                                                                                                </Row>
+                                                                                                                <Row>
+                                                                                                                        <Col md="6" style={{ color: "#707070" }}>SHIPPING</Col>
+                                                                                                                        <Col md="6">100$</Col>
+                                                                                                                </Row>
+                                                                                                        </div>
+                                                                                                        <Row>
+                                                                                                                <Col md="6" style={{ color: "#707070" }}><b>TOTAL</b></Col>
+                                                                                                                <Col md="6"><b>{props.cart.totalPrice + 100}$</b></Col>
+                                                                                                        </Row>
 
-                                                                                </Card>
-                                                                        </Col>
-                                                                ))}</Row></div>
+                                                                                                </Col>
+                                                                                        </Row>
+                                                                                </Container>
+                                                                        </>
+                                                                        : <>
+                                                                                <div>No items in your cart.</div>
+                                                                                <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}>
+                                                                                        <Button className="continueShop" outline size="sm">Back to shop</Button>{' '}
+                                                                                </Link>
+                                                                        </>}
+
+                                                        </div>
+                                                        <div className="section viewedProducts">
+                                                                <h3 style={{ textAlign: 'center' }}>
+                                                                        <b>Products you viewed</b></h3>
+                                                                <div>
+                                                                        <Row>
+                                                                                {props.treeProduct.map((item, index) => (
+                                                                                        <Col lg="4" md="6" sm="12" key={index}>
+                                                                                                <Card className="card-product card-plain">
+                                                                                                        <div className="card-image frameToProductView">
+                                                                                                                <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
+                                                                                                                        <img className="imageProduct"
+                                                                                                                                alt="..."
+                                                                                                                                src={ia006}
+                                                                                                                        ></img>
+                                                                                                                </Link>
+                                                                                                        </div>
+
+                                                                                                        <CardBody>
+                                                                                                                <br></br>
+                                                                                                                <CardTitle className="card-title" tag="h4">{item.name}</CardTitle>
+                                                                                                                <CardFooter>
+                                                                                                                        <div className="price-container">
+                                                                                                                                <span className="price">$ {item.price}</span>
+                                                                                                                        </div>
+                                                                                                                </CardFooter>
+                                                                                                        </CardBody>
+
+                                                                                                </Card>
+                                                                                        </Col>
+                                                                                ))}</Row></div>
 
 
 
 
 
 
-                                        </div>
+                                                        </div>
 
-                                </div>
+                                                </div>
+                                        </Col>
+                                </Row>
                         </div>
                 </>
         );

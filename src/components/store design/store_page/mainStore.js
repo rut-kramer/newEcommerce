@@ -80,7 +80,7 @@ function MainStore(props) {
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 <Route path="/:storeName/uploadImages" component={UploadImages}></Route>
                 <Route path="/:storeName/cart" component={Cart}></Route>
-                <Route path="/:storeName/category/"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
+                <Route path="/:storeName/category/:categoryName"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}
                 ></Bullcommerce></Route>

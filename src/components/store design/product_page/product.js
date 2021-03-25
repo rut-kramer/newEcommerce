@@ -140,7 +140,7 @@ function Product(props) {
                         {/* <Container className="p-0">
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
-                        <div className="wrapper">
+                        <div className="product_page">
                                 <div className="main">
                                         <Row>
                                                 <Col sm="12" md={{ size: 10, offset: 1 }}>

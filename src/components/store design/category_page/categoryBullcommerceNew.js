@@ -27,7 +27,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Switch, Route, Link } from "react-router-dom";
 //  import Carousel from 'reacst-elastic-carousel'
- 
+
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
 import FilteredProducts from "../filteredProducts";
@@ -400,7 +400,7 @@ function CategoryBullcommerce(props) {
 
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView">
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                            <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
                               <img className="imageProduct"
                                 alt="..."
                                 src={ia006}
@@ -472,15 +472,15 @@ function CategoryBullcommerce(props) {
                         <Col md="6" style={{ padding: 0 }}><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
-                        <Pagination
-                            className="pagination pagination-info justify-content-end pt-2"
-                            listClassName="pagination-info justify-content-center"
-                          >    
-                        <Pagination
+                          <Pagination
                             className="pagination pagination-info justify-content-end pt-2"
                             listClassName="pagination-info justify-content-center"
                           >
-                            {/* <PaginationItem>
+                            <Pagination
+                              className="pagination pagination-info justify-content-end pt-2"
+                              listClassName="pagination-info justify-content-center"
+                            >
+                              {/* <PaginationItem>
                               <PaginationLink
                                 aria-label="Previous"
                                 href="#pablo"
@@ -494,28 +494,28 @@ function CategoryBullcommerce(props) {
                                 </span>
                               </PaginationLink>
                             </PaginationItem>  */}
-                           
-                             {/* <div className="Apprs">  */}
- {/* <Carousel  itemsToShow={1}> */}
- {/* <div id="carousel" class="slider"> */}
-                             {arrPager&&arrPager.map((item, index) => ( 
-                      <item key={index}> 
-                        <PaginationItem
-                             className={degelBtn == index ? "active" : ""}
-                            >
-                              <PaginationLink
-                                href="#pablo"
-                                onClick={(e) => {e.preventDefault();changePageNum(index)}}
-                              >
-                                {item.index}
-                        </PaginationLink>
-                            </PaginationItem>
-                            </item>
-                  ))}  
-                  {/* </div> */}
-{/* </Carousel> */}
-{/* </div> */}
-                            {/* <PaginationItem 
+
+                              {/* <div className="Apprs">  */}
+                              {/* <Carousel  itemsToShow={1}> */}
+                              {/* <div id="carousel" class="slider"> */}
+                              {arrPager && arrPager.map((item, index) => (
+                                <item key={index}>
+                                  <PaginationItem
+                                    className={degelBtn == index ? "active" : ""}
+                                  >
+                                    <PaginationLink
+                                      href="#pablo"
+                                      onClick={(e) => { e.preventDefault(); changePageNum(index) }}
+                                    >
+                                      {item.index}
+                                    </PaginationLink>
+                                  </PaginationItem>
+                                </item>
+                              ))}
+                              {/* </div> */}
+                              {/* </Carousel> */}
+                              {/* </div> */}
+                              {/* <PaginationItem 
                             >
                               <PaginationLink
                                 aria-label="Next"
@@ -532,8 +532,8 @@ function CategoryBullcommerce(props) {
                               </PaginationLink>
                             </PaginationItem>
                         */}
-                          </Pagination>
                             </Pagination>
+                          </Pagination>
                         </Col>
                       </Row>
                     </Col>
