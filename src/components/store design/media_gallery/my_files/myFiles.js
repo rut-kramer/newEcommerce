@@ -23,7 +23,7 @@ function MyFiles(props) {
                 <Row md="12">
                     <Col md="9" className="">
                         <div className="my-file" style={{ display: "flex" }}>
-                            <Link to={"/:storeName/admin/mediaGallery/uploudImage"} onClick={() => props.setTitleBySideBar('Uploud Images')}>
+                            <Link to={"/" + props.objectFields.urlRoute + "/admin/mediaGallery/uploudImage"} onClick={() => props.setTitleBySideBar('Uploud Images')}>
                                 <div className="upload-my-file" style={{ display: "inline-block" }}>
                                     <FontAwesomeIcon className="icon-upload-my-file"
                                         icon={['fas', 'plus']}>
@@ -48,6 +48,7 @@ function MyFiles(props) {
 }
 const mapStateToProps = (state) => {
     return {
+        objectFields: state.storeReducer.objectFields
     }
 }
 const mapDispatchToProps = (dispatch) => ({
