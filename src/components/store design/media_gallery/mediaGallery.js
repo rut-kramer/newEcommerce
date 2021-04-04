@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
 import { Route, Switch, useLocation } from 'react-router-dom'
@@ -14,12 +14,13 @@ import MyFiles from './my_files/myFiles'
 import UploadImages from './uploud_images/uploadImages'
 import Gallery from './gallery/gallery'
 import './mediaGallery.css'
-let loc = "";
+// let loc = "";
 function MediaGallery(props) {
     let location = useLocation();
-
+    const [loc, setLoc] = useState("");
     useEffect(() => {
-        loc = location.pathname
+        setLoc(location.pathname)
+        // loc = 
         console.log(loc)
     }, []);
     return (
@@ -32,16 +33,16 @@ function MediaGallery(props) {
                 <Col md="10">
                     <Switch>
                      
-                        <Route path={loc + "/mediaGallery/uploudImage"}>
+                        <Route path={loc + "/uploudImage"}>
                             <UploadImages></UploadImages>
                         </Route>
-                        <Route path={loc + "/mediaGallery/myFiles"}>
+                        <Route path={loc + "/myFiles"}>
                             <MyFiles></MyFiles>
                         </Route>
-                        <Route path={loc + "/mediaGallery/gallery"}>
+                        <Route path={loc + "/gallery"}>
                             <Gallery></Gallery>
                         </Route>
-                        <Route path={loc + "/mediaGallery/trash"}>
+                        <Route path={loc + "/trash"}>
                             <Trash></Trash>
                         </Route>
                         <Route exact path={loc }>

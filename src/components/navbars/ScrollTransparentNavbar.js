@@ -32,6 +32,7 @@ function ScrollTransparentNavbar(props) {
   //     : " navbar-transparent"
   // );
   // buyButtonColor
+
   const history = useHistory();
 
   const [modal, setModal] = useState(false);
@@ -123,11 +124,10 @@ function ScrollTransparentNavbar(props) {
       <Navbar id="store_main_navbar" color="white" expand="lg" style={{ maxWidth: props.mainWidth }}>
         <Container className="d-flex justify-content-between">
           {/* <div className="navbar-translate"> */}
-          <NavbarBrand to={"/" + props.objectFields.storeName} tag={Link} id="navbar-brand">
+          <NavbarBrand to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)} tag={Link} id="navbar-brand">
             <img alt="..."
               src={props.objectFields.logo} className="logoHeader"
-              onClick={() => props.changeCurrentComponent("HomeConfigurator")}
-
+              onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("header") }}
             >
             </img>
             {/* <Button
@@ -177,21 +177,16 @@ function ScrollTransparentNavbar(props) {
                 ))}
                 </Nav>
               */}
-            <div>
-              <div className="mr-2 ml-2" style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
+            <div className="d-flex justify-content-between">
+              <div style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
                 {/* <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}> */}
                 <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']} ></FontAwesomeIcon>
                 {/* </Link> */}
               </div>
-              <div className="separatorStripe mr-2 ml-2" style={{ float: "left" }}></div>
-              <Link to={"/" + props.objectFields.storeName + "/cart"} className="mr-2 ml-2" style={{ float: "left" }}>
+              <div className="separatorStripe" style={{ float: "left" }}></div>
+              <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/cart"} style={{ float: "left" }}>
                 <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
                 <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
-              </Link>
-
-              <Link to={"/" + props.objectFields.storeName + "/checkOut"} className="mr-2 ml-2" style={{ float: "left" }}>
-
-                <FontAwesomeIcon className="mt-2 ml-3" icon={['far', 'user-circle']}></FontAwesomeIcon>
               </Link>
             </div>
           </Collapse>
@@ -219,11 +214,15 @@ const mapStateToProps = (state) => {
     objectFields: state.storeReducer.objectFields,
     cartProducts: state.cartReducer.cart.products,
     products: state.productReducer.products,
-    mainWidth: state.wrapReducer.mainWidth
+    mainWidth: state.wrapReducer.mainWidth,
+    collapseOfRedux: state.bullPageEditReducer.collapse
+
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)
