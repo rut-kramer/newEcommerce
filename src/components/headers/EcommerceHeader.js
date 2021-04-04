@@ -27,7 +27,7 @@ function EcommerceHeader(props) {
 
 
   function openMediaGallery() {
-    history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
+    history.push("/" + props.objectFields.urlRoute + "/mediaGallery");
 
   }
   const [activeIndex, setActiveIndex] = React.useState(0);
