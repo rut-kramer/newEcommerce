@@ -62,13 +62,16 @@
     border: none;
     border-bottom: 1px solid grey !important;
     color: white;
+    opacity: 0.4;
   }
   .SC-alignment{
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
   .SC-alignmentIcons{
-    padding:0 !important
+    padding:0 !important;
+    margin-right: 0 !important;
+    padding-left: 10px !important;
   }
   /* slider size */
   .slidecontainer {
@@ -77,5 +80,19 @@
 .slider-range{
   height: 3px;
 }
+.SC-inputFile{
+  background-color: #707070;
+  /* border:1px solid #707070; */
+  height: 4rem !important; 
+  width: 5.5rem !important;
+  padding: 1rem;
+}
+.tafritSliderConfig{
+  padding-left: 0.25rem !important;
+  color: #EBEAEA;
 
+}
+.SC-titleName{
+  margin-left:0.05rem !important;
+}
 

@@ -352,11 +352,29 @@ function CategoryBullcommerce(props) {
   }
 
   return (
-    <>
+    <>  
+            
+
       <div className="wrapper">
+          <div>
+          <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
+ Home Page
+</Link>
+<label>/</label>
+<label color="inherit" >
+    Category  
+</label>
+</div>
         <EcommerceHeader />
         <div className="main">
+
           <div className="section">
+        
+
             <Container>
               <Row className="mx-5 px-5">
                 <Col md="12" className="d-flex justify-content-between titleCategory">

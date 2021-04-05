@@ -1,20 +1,19 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import Select from "react-select"
 import appleIcon from '../../assets/apple-touch-icon.png'
 import { actions } from '../../redux/action';
 import { logOut } from "../../services/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
-import { combineReducers } from 'redux';
+
+
 
 // public/apple-touch-icon'
-function TopFrame(props, { setFlagCon }) {
+function TopFrame(props) {
     const [cookies, setCookie] = useCookies(["order"]);
     let flag = 1;
     function funcReset(item) {
-
         props.setCurrentStore(item);
         props.getOrdersByStore(item._id)
         props.getCategoriesByStore(item._id)
@@ -26,11 +25,11 @@ function TopFrame(props, { setFlagCon }) {
             props.setCart(t)
             flag = 2
         }
-        props.history.push(`/` + props.objectFields)
+        props.history.push(`/` + props.objectFields.urlRoute)
     }
 useEffect(()=>{
       props.getStoreByUser(props.user._id);   
-})
+},[])
 
 
     window.addEventListener("beforeunload", (ev) => {
@@ -53,22 +52,22 @@ useEffect(()=>{
         });
 
     });
-    function save() {
+    // function save() {
 
-        // console.log(          JSON.stringify({
-        //     "store": "data._id",
-        //     "categoryName": "Default66Category1",
-        //     "color": "red", "masterCategory": null
-        //  }) )
-        setCookie(props.storeCurrent._id, props.cart, {
-            path: "/"
-        });
-    }
-    function get() {
-        let str = props.storeCurrent._id;
-        let t = cookies[str];
-        props.setCart(t)
-    }
+    //     // console.log(          JSON.stringify({
+    //     //     "store": "data._id",
+    //     //     "categoryName": "Default66Category1",
+    //     //     "color": "red", "masterCategory": null
+    //     //  }) )
+    //     setCookie(props.storeCurrent._id, props.cart, {
+    //         path: "/"
+    //     });
+    // }
+    // function get() {
+    //     let str = props.storeCurrent._id;
+    //     let t = cookies[str];
+    //     props.setCart(t)
+    // }
 
 
     //       useEffect(()=>{
@@ -88,22 +87,7 @@ useEffect(()=>{
 
 
             <div className="row">
-                {/* <button
-                color="inherit"
-                aria-label="open drawer"
-                onClick={setFlagCon}
-                //edge="end"
-                style={{ 
-                    width: "64px",
-                    height: "50px",
-                    opacity: 1,
-                    backgroundColor: "#ffffff",
-                    border: "none",
-                    padding: "5px",
-                    marginLeft: "10px"}}>
-                    <h2>=</h2> 
-                </button> */}
-
+               
 
                 <button
                     // color="inherit"
@@ -122,30 +106,32 @@ useEffect(()=>{
                     <FontAwesomeIcon style={{ fontSize: "25px" }} icon={['fas', 'bars']}></FontAwesomeIcon>
                 </button>
 
+
                 <Link to="/home">
                     <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
                 </Link>
+                    <FontAwesomeIcon style={{ fontSize: "28px" ,height: "2em", marginRight: "8px"}} icon={['far', 'copy']}>
+            </FontAwesomeIcon>  
                 <div>
 
                     <select onChange={(e) => {
                         funcReset(JSON.parse(e.target.value))
                     }}
                         className="field__select" >
-                            <option>בחר חנות</option>
                         {props.stores.map((item, index) => (
-                            <option value={JSON.stringify(item)} >{item.storeName}</option>
-                        ))}
+                            
+                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>{item._id==props.storeCurrent._id?"https://"+item.urlRoute+".bullcommerce.shop":item.storeName}</option>
+                            
+                            // <option value={JSON.stringify(item)} >{item.storeName}</option>
+                            ))}
+                            {/* <option>בחר חנות</option> */}
                     </select>
-
+{/* 
                     <label>{props.objectFields.urlRoute}</label>
                     <button onClick={save}>save</button>
-                    <button onClick={get}>get</button>
+                    <button onClick={get}>get</button> */}
                 </div>
-                {/* <button onClick={() => {
-                    // props.history.push(`/`) 
-                    //  logOut;//
-                   
-                }}>Sing Out</button> */}
+
                 <div className="ml-auto" style={{ marginRight: "3vw", fontSize: "24px" }}>
                     {props.user && props.user.username} &nbsp;
                 <Link to="/" style={{ fontSize: "34px", color: 'black' }}
@@ -179,7 +165,7 @@ export default connect(
     },
     (dispatch) => {
         return {
-            setUser: (a) => dispatch(actions.setUserId(a)),
+            // setUser: (a) => dispatch(actions.setUserId(a)),
             userLogout: (j) => dispatch(actions.userLogout(j)),
             getStoreByUser: (id) => { dispatch(actions.getStoreByUser(id)) },
             getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },

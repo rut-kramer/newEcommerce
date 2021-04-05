@@ -48,6 +48,7 @@ import gucci from "../../../assets/img/gucci.jpg"
 import { connect } from "react-redux";
 import { actions } from "../../../redux/action";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar";
+import { Link } from "react-router-dom";
 
 const items = [
         {
@@ -140,7 +141,24 @@ function Product(props) {
                         {/* <Container className="p-0">
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
-                        <div className="product_page">
+                        <div className="wrapper">
+                        <div>
+                        <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
+ Home Page
+</Link>
+<label>/</label>
+<Link to={{ pathname: "/" + props.objectFields.urlRoute+"/category"}}>
+    Category  
+</Link>
+<label>/</label>
+<label color="inherit" >
+{product.name}  
+</label>
+</div>
                                 <div className="main">
                                         <Row>
                                                 <Col sm="12" md={{ size: 10, offset: 1 }}>
@@ -485,6 +503,7 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
+                        objectFields: state.storeReducer.objectFields
 
 
                 }

@@ -18,16 +18,16 @@ import ia006 from "../../assets/img/xd/ia_300000006.png";
 function QuickLook(props) {
 
 
-    const [orderAmount, setOrderAmount] = useState(1)
+    // const [orderAmount, setOrderAmount] = useState(1)
     return (
 
-        <div className="sideBar">
+        <div>
             <button
                 onClick={props.w3_close}
                 className="">&times;
                     </button>
 
-            <img alt="...." className="imageProductQLook mt-4"
+            <img alt="...." className="imageProductQLook"
                 src={ia006}>
             </img>
             <div className="detailsProduct mt-2">
@@ -39,18 +39,24 @@ function QuickLook(props) {
                     {/* אולי כדאי להחליף לדיו את תגית טידי */}
                     <td className="calcAmount">
                         <Button size="sm"
-                            onClick={() => { setOrderAmount(orderAmount + 1) }}
+
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.setOrderAmount(props.orderAmount + 1)
+                            }}
                         >
 
                             <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                         </Button>{' '}
-                        {orderAmount}{' '}
+                        {/* 1 */}
+                        {props.orderAmount}{' '}
                         <Button size="sm"
-                            onClick={() => {
-                                if (orderAmount > 1)
-                                    setOrderAmount(orderAmount - 1);
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                if (props.orderAmount > 1)
+                                    props.setOrderAmount(props.orderAmount - 1);
                                 else
-                                    setOrderAmount(orderAmount)
+                                    props.setOrderAmount(props.orderAmount)
                             }}
                         >
                             <FontAwesomeIcon icon={['fas', 'minus']}></FontAwesomeIcon>
@@ -62,7 +68,7 @@ function QuickLook(props) {
                         props.addToCart(
                             {
                                 "product": props.currentProduct,
-                                "amount": orderAmount
+                                "amount": props.orderAmount
                             });
                         props.cartPanal_open()
                     }}
