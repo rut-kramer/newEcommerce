@@ -15,6 +15,8 @@ function UploadImages(props) {
             }
             reader.readAsDataURL(event)
             setFileToUpload(event);
+        props.uploadImage(event);
+
         }
     }
     // הפונקציה הזו בשביל תצוגת התמונות מהשרת
