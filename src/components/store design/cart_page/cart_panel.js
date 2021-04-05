@@ -16,13 +16,8 @@ import productInCart from "../../../assets/img/xd/631e3939-9988-41b6-a6fe-d60206
 import "./cart.css"
 import { Link } from 'react-router-dom';
 function CartPanel(props) {
-    // const [cartPanelOpen, setCartPanelOpen] = useState(false)
-    // function cartPanal_open() {
-    //     setCartPanelOpen(true)
-    // }
-    // function cartPanal_close() {
-    //     setCartPanelOpen(false)
-    // }
+    // const [orderAmount, setOrderAmount] = useState(1)
+
     return (
 
         <Container>
@@ -39,13 +34,23 @@ function CartPanel(props) {
                                 <Col md="3" style={{ width: "18px" }}><img src={productInCart}></img></Col>
                                 <Col md="3">{item.product.name}</Col>
                                 <Col md="3">
-                                    <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }} onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
+                                    <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            props.changeAmount({ "index": index, "plusOrMinus": "plus" })
+                                        }}
+                                    >
                                         <FontAwesomeIcon icon={['fas', 'plus']}>
                                         </FontAwesomeIcon>
                                     </Button>{' '}
                                     {item.amount}{' '}
+
                                     <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
-                                        onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            props.changeAmount({ "index": index, "plusOrMinus": "minus" })
+                                        }}
+                                    >
                                         <FontAwesomeIcon icon={['fas', 'minus']}>
                                         </FontAwesomeIcon>
                                     </Button>
@@ -83,6 +88,8 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
+    changeAmount: (e) => { dispatch(actions.changeAmount(e)) }
+
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CartPanel);
