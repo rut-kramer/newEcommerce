@@ -25,8 +25,10 @@ function TopFrame(props) {
             props.setCart(t)
             flag = 2
         }
-        props.history.push(`/` + props.objectFields.urlRoute)
+         props.history.push(`/` + item.urlRoute)
     }
+
+
 useEffect(()=>{
       props.getStoreByUser(props.user._id);   
 },[])
@@ -120,7 +122,8 @@ useEffect(()=>{
                         className="field__select" >
                         {props.stores.map((item, index) => (
                             
-                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>{item._id==props.storeCurrent._id?"https://"+item.urlRoute+".bullcommerce.shop":item.storeName}</option>
+                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>
+                                {item._id==props.storeCurrent._id?"https://"+props.storeCurrent.urlRoute+".bullcommerce.shop":item.storeName}</option>
                             
                             // <option value={JSON.stringify(item)} >{item.storeName}</option>
                             ))}
