@@ -53,6 +53,7 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
+  const { category } = props.location.state;
 
 
   const [alerts, setAlerts] = useState([]);
@@ -110,7 +111,15 @@ function CategoryBullcommerce(props) {
 
   }, []);
 
-  useEffect(() => { callPager() }, [props.filterProducts])
+  useEffect(() => {
+    callPager();
+    let productsCategory = props.storeProducts.filter(pc => {
+      if (pc.category === category._id)
+        return pc;
+    })
+    console.log("pc", productsCategory);
+    props.setFilteredProducts(productsCategory);
+  }, [props.filterProducts])
   const numOfPage = 6
   const [arrPager, setArrPager] = useState([])
   let arrTemp = []
@@ -385,7 +394,7 @@ function CategoryBullcommerce(props) {
                   // style={{ marginLeft: "-50px" }}
                   >
                     {/*קומפוננטת סינון המוצרים*/}
-                    <FilteredProducts onFilter={onFilter} addCategoryToFilterObject={addCategoryToFilterObject} addTermToFilterObject={addTermToFilterObject} ></FilteredProducts>
+                    <FilteredProducts onFilter={onFilter} addCategoryToFilterObject={addCategoryToFilterObject} addTermToFilterObject={addTermToFilterObject} categoryName={category.categoryName} ></FilteredProducts>
                   </div>
                 </Col>
                 <Col md="9" className="pr-0">

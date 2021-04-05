@@ -61,10 +61,10 @@ function FooterOrange(props) {
                             </ul>
                         </Col>
                         <Col >
-                            <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/category/allCategories"}>
+                            {/* <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/category/allCategories"}> */}
 
-                                <h5>Categories</h5>
-                            </Link>
+                            <h5>Categories</h5>
+                            {/* </Link> */}
                             <ul className="mt-2 links-vertical size">
                                 <li>
                                     <a

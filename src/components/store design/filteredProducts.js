@@ -79,7 +79,7 @@ function FilteredProducts(props) {
                 }
         }, []);
 
-        const { addTermToFilterObject, addCategoryToFilterObject, onFilter } = props;
+        const { addTermToFilterObject, addCategoryToFilterObject, onFilter, categoryName } = props;
 
         // const [filterObject, setFilterObject] = useState({
         //         categories: [],
@@ -277,7 +277,7 @@ function FilteredProducts(props) {
                                                                                                         // item, type, ifCheck
                                                                                                         type="checkbox"
                                                                                                         onChange={(e) => addCategoryToFilterObject(item, e.target.checked)}></Input>
-                                                                                                <span className="form-check-sign1">
+                                                                                                <span className="form-check-sign1" style={{ opacity: (categoryName === item.categoryName && 1) }}>
                                                                                                         <FontAwesomeIcon icon={['fas', 'check']}></FontAwesomeIcon>
 
                                                                                                 </span>
