@@ -6,7 +6,9 @@ const initialState = {
     collapse: "",
     title: "",
     alignment: "center",
-    ifDisplayTitle: "true"
+    ifDisplayTitle: "true",
+    color: "white",
+    size: "",
 }
 
 const bullPageEdit = {
@@ -15,6 +17,12 @@ const bullPageEdit = {
     },
     setAlignment(state, action) {
         state.alignment = action.payload
+    },
+    setColor(state, action) {
+        state.color = action.payload
+    },
+    setSize(state, action) {
+        state.size = action.payload
     },
     setCollapse(state, action) {
         state.collapse = action.payload

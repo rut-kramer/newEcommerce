@@ -61,7 +61,7 @@ function SliderConfigurator(props) {
                                     // onChange={(e) => handlerLogo(e.target.files[0])} 
                                     />
                                 </div></Col>
-                            <Col md="4" className="p-0 pl-4 pt-4">
+                            <Col md="5" className="p-0 pl-4 pt-4">
                                 <label className="sliderConfigSwitch">
                                     <input type="checkbox"
                                         onChange={props.setifDisplaySlider}
@@ -73,8 +73,8 @@ function SliderConfigurator(props) {
 
                         <Row md="12" className="mt-3">Title Setting </Row>
                         <Row md="12" className="mt-3">
-                            <Col md="8" className="p-0">Title Name</Col>
-                            <Col md="4" className="p-0 pl-4">
+                            <Col md="7" className="p-0">Title Name</Col>
+                            <Col md="5" className="p-0 pl-4">
                                 <label className="sliderConfigSwitch">
                                     <input type="checkbox"
                                         onChange={props.setIfDisplayTitle}
@@ -90,9 +90,11 @@ function SliderConfigurator(props) {
                             </Row>
                         </Row>
                         <Row md="12" className="mt-3">Title Size</Row>
-                        {/* <div className="slidecontainer">
-                            <input className="slider-range" type="range" min="1" max="100" />
-                        </div> */}
+                        <div className="slidecontainer">
+                            <input className="slider-range" type="range" min="1" max="100"
+                                onChange={(e) => { props.setSize(e.target.value + "px") }}
+                            />
+                        </div>
                         <Row md="12" className="mt-3 justify-content-between">
                             <Col md="7" className="SC-alignment">Alignment</Col>
                             <Col md="5" className="SC-alignmentIcons">
@@ -104,7 +106,13 @@ function SliderConfigurator(props) {
                             </Col>
                         </Row>
 
-                        <Row md="12" className="mt-3">Title Fill</Row>
+                        <Row md="12" className="mt-3">
+                            <Col md="6" className="p-0"><label for="favcolor">Title Fill</label></Col>
+                            <Col md="6" className="pr-0">
+                                <input type="color" id="favcolor" name="favcolor" onChange={(e) => { props.setColor(e.target.value) }} />
+                            </Col>
+
+                        </Row>
                         <Row md="12" className="mt-3">Sub Title</Row>
                         <Row md="12" className="mt-1">
                             <input className="SC-input"
@@ -135,6 +143,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
     setTitle: (e) => dispatch(actions.setTitle(e)),
     setAlignment: (side) => dispatch(actions.setAlignment(side)),
+    setColor: (color) => dispatch(actions.setColor(color)),
+    setSize: (size) => dispatch(actions.setSize(size)),
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),
     setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle()),

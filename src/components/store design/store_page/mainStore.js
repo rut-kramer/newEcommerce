@@ -10,14 +10,11 @@ import Cart from "../cart_page/cart";
 import CheckOut from "../check_out/checkOut";
 import QuickLook from '../quickLook'
 import MediaGallery from "../media_gallery/mediaGallery"
-// import UploadImages from "../upload_images/uploadImages"
 import CartPanel from "../cart_page/cart_panel"
 import { Table, Container, Row, Col, Button } from 'reactstrap';
 import '../quickLook.css'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
-import productInCart from "../../../assets/img/xd/631e3939-9988-41b6-a6fe-d60206ab0582@2x.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Editproduct from "../../store setting/product_management/productEdit";
 function MainStore(props) {
     const [sideBarOpen, setSideBarOpen] = useState(false)
@@ -103,7 +100,6 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    changeAmount: (e) => { dispatch(actions.changeAmount(e)) }
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MainStore);

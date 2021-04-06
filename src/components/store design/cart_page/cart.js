@@ -113,20 +113,20 @@ function Cart(props) {
         return (
                 <>
                         <div className="wrapper">
-                        <div>  
+                                <div>
 
 
-<br></br>
-<br></br>
-<br></br>
- <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
-  Home Page  
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                                                Home Page
 </Link>
-<label>/</label>
-<label color="inherit" >
-    My Cart  
+                                        <label>/</label>
+                                        <label color="inherit" >
+                                                My Cart
 </label>
-</div>
+                                </div>
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}>
                                                 <div className="main">
@@ -156,12 +156,12 @@ function Cart(props) {
                                                                                                                 </td>
                                                                                                                 <td>{item.product.price}</td>
                                                                                                                 <td className="calcAmount">
-                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ index: index, amount: 1, plusOrMinus: "plus" }) }}>
                                                                                                                                 <FontAwesomeIcon icon={['fas', 'plus']}>
                                                                                                                                 </FontAwesomeIcon>
                                                                                                                         </Button>{' '}
                                                                                                                         {item.amount}{' '}
-                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ index: index, amount: 1, plusOrMinus: "minus" }) }}>
                                                                                                                                 <FontAwesomeIcon icon={['fas', 'minus']}>
                                                                                                                                 </FontAwesomeIcon>
                                                                                                                         </Button>
@@ -287,7 +287,6 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        pluseAmount: (i) => { dispatch(actions.pluseAmount(i)) },
                         clear: () => { dispatch(actions.clear()) },
                         minuseAmount: (i) => { ; dispatch(actions.minuseAmount(i)) },
                         remove: (i) => { ; dispatch(actions.remove(i)) },

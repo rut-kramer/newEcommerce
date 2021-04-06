@@ -1,17 +1,10 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import MediaGallery from '../store design/media_gallery/mediaGallery'
-// import { Link } from 'react-router-dom'
-
-// reactstrap components
 import {
   Button,
-  // Row,
-  // Col,
   Carousel,
   CarouselItem,
   CarouselIndicators,
-  // Container,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
@@ -77,6 +70,8 @@ function EcommerceHeader(props) {
             }}
             style={{
               textAlign: props.alignment ? props.alignment : 'center',
+              color: props.color ? props.color : "white",
+              fontSize: props.size ? props.size : "100 px"
             }}
           ></input>
         </div> : ""
@@ -170,6 +165,8 @@ const mapStateToProps = (state) => {
     homeStoreDesign: state.storeHomeReducer.homeStoreDesign,
     title: state.bullPageEditReducer.title,
     alignment: state.bullPageEditReducer.alignment,
+    color: state.bullPageEditReducer.color,
+    size: state.bullPageEditReducer.size,
     ImagesArr: state.carouselImgReducer.ImagesArr,
     collapseOfRedux: state.bullPageEditReducer.collapse,
     ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle,

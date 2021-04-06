@@ -343,28 +343,28 @@ function CategoryBullcommerce(props) {
   }
 
   return (
-    <>  
-            
+    <>
+
 
       <div className="wrapper">
-          <div>
+        <div>
           <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
- Home Page
+          <br></br>
+          <br></br>
+          <br></br>
+          <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+            Home Page
 </Link>
-<label>/</label>
-<label color="inherit" >
-    Category  
+          <label>/</label>
+          <label color="inherit" >
+            Category
 </label>
-</div>
+        </div>
         <EcommerceHeader />
         <div className="main">
 
           <div className="section">
-        
+
 
             <Container>
               <Row className="mx-5 px-5">
@@ -445,13 +445,14 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": item,
-                                    "amount": 1
-                                  }
-                                )}
-
+                                onClick={() => {
+                                  props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    }
+                                  ); props.cartPanal_open()
+                                }}
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                 {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}

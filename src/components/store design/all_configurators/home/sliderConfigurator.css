@@ -3,6 +3,7 @@
     display: inline-block;
     width: 36px;
     height: 19px;
+    margin-left: 0.3rem;
   }
   
   .sliderConfigSwitch input { 
@@ -82,7 +83,7 @@
 }
 .SC-inputFile{
   background-color: #707070;
-  /* border:1px solid #707070; */
+  border:1px solid #707070;
   height: 4rem !important; 
   width: 5.5rem !important;
   padding: 1rem;
@@ -95,4 +96,9 @@
 .SC-titleName{
   margin-left:0.05rem !important;
 }
-
+#favcolor{
+  background-color: transparent;
+  /* border:1px red solid; */
+  margin-left: 1.5rem;
+  border: none;
+}
