@@ -12,7 +12,7 @@
 }
 .check-out-label{
     margin-bottom: 0vh;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     font: var(--unnamed-font-style-normal) normal medium 16px/16px var(--unnamed-font-family-roboto);
     text-align: left;
     font: normal normal medium 16px/16px Roboto;
@@ -26,4 +26,5 @@
 }
 .check-out-form{
  margin: 3% 25%;
+ /* margin-top: 0px !important; */
 }
