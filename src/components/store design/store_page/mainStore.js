@@ -23,16 +23,16 @@ function MainStore(props) {
     const [sideBarOpen, setSideBarOpen] = useState(false)
     const [quickLookProduct, setQuickLookProduct] = useState()
     const [cartPanelOpen, setCartPanelOpen] = useState(false)
+    const [orderAmount, setOrderAmount] = useState(1)
 
     function w3_open(item) {
         setSideBarOpen(true)
         setQuickLookProduct(item)
     }
-
     function w3_close() {
         setSideBarOpen(false)
+        setOrderAmount(1)
     }
-
     function cartPanal_open() {
         setCartPanelOpen(true)
     }
@@ -55,12 +55,14 @@ function MainStore(props) {
                         sideBarOpen ? "block" : "none"
                 }}
             >
-                {quickLookProduct ?
+                {quickLookProduct &&
                     <QuickLook
                         w3_close={w3_close}
                         currentProduct={quickLookProduct}
                         cartPanal_open={cartPanal_open}
-                    ></QuickLook> : ""}
+                        orderAmount={orderAmount}
+                        setOrderAmount={setOrderAmount}
+                    ></QuickLook>}
             </div>
 
             <div className="cartPanal"
@@ -75,7 +77,7 @@ function MainStore(props) {
 
 
 
-            <HeaderNavbar></HeaderNavbar>
+            <HeaderNavbar cartPanal_open={cartPanal_open} cartPanal_close={cartPanal_close}></HeaderNavbar>
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
@@ -83,7 +85,6 @@ function MainStore(props) {
                 <Route path="/:storeName/category/:categoryName"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
                 <Route path="/:storeName/Editproduct/:productSKU" component={Editproduct}></Route>
-                
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}
                 ></Bullcommerce></Route>
                 <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
