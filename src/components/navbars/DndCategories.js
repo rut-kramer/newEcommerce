@@ -29,7 +29,8 @@ function CategoryWithDropdown(props) {
 
         // const toggle = () => setDropdownOpen(prevState => !prevState);
         return (
-                <Link to={`/${props.storeName}/category/${category.categoryName}`} style={{ color: (activeCategory === category.categoryName && '#F29544') }}>
+                // to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}
+                <Link to={{ pathname: `/${props.storeName}/category/${category.categoryName}`, state: { category: category } }} style={{ color: (activeCategory === category.categoryName && '#F29544') }}>
                         {category.categoryName}
                 </Link>
                 //         <Dropdown isOpen={dropdownOpen} toggle={toggle} style={{ backgroundColor: "transparent" }} nav>
@@ -68,17 +69,14 @@ function Dnd(props) {
                 if (!result.destination) {
                         return;
                 }
-                console.log("pppppp", props.categories);
                 const items = reorder(
                         props.categories,
                         result.source.index,
                         result.destination.index
                 );
                 props.setListMenu(items)
-                console.log(props.categories)
         }
         const reorder = (list, startIndex, endIndex) => {
-                console.log("grryty", list);
                 const result = [list.length]
                 for (let index = 0; index < list.length; index++) {
                         result[index] = list[index];

@@ -6,15 +6,15 @@ import { actions } from '../../redux/action';
 import { logOut } from "../../services/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 
 
 // public/apple-touch-icon'
 function TopFrame(props) {
 
-    const [copyUrl,setCopyUrl]=useState({
-        value: "https://"+props.storeCurrent.urlRoute+".bullcommerce.shop",
+    const [copyUrl, setCopyUrl] = useState({
+        value: "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop",
         copied: false,
     })
     const [cookies, setCookie] = useCookies(["order"]);
@@ -25,22 +25,23 @@ function TopFrame(props) {
         props.getCategoriesByStore(item._id)
         props.getAllPaper(item._id)
         props.getAllAttributes(item._id)
+        props.getBhdByStoreId(item._id)
         let str = props.storeCurrent;
         let t = cookies[str];
         if ((flag === 1) && (t)) {
             props.setCart(t)
             flag = 2
         }
-         props.history.push(`/` + item.urlRoute)
-       setCopyUrl({value:"https://"+item.urlRoute+".bullcommerce.shop", copied: false})
-   
-    
+        props.history.push(`/` + item.urlRoute)
+        setCopyUrl({ value: "https://" + item.urlRoute + ".bullcommerce.shop", copied: false })
+
+
     }
 
 
-useEffect(()=>{
-      props.getStoreByUser(props.user._id);   
-},[])
+    useEffect(() => {
+        props.getStoreByUser(props.user._id);
+    }, [])
 
 
     window.addEventListener("beforeunload", (ev) => {
@@ -98,7 +99,7 @@ useEffect(()=>{
 
 
             <div className="row">
-               
+
 
                 <button
                     // color="inherit"
@@ -123,39 +124,39 @@ useEffect(()=>{
                 </Link>
 
                 <CopyToClipboard text={copyUrl.value} onCopy={() => {
-                    setCopyUrl({copied: true})
+                    setCopyUrl({ copied: true })
                     setTimeout(() => {
-                        setCopyUrl({ copied: false})
+                        setCopyUrl({ copied: false })
                     }, 500);
-                  }  }>
-                <FontAwesomeIcon style={{ fontSize: "28px" ,height: "2em", marginRight: "8px"}} icon={['far', 'copy']} ></FontAwesomeIcon>  
-    
-                  </CopyToClipboard>
-      
-                
+                }}>
+                    <FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['far', 'copy']} ></FontAwesomeIcon>
+
+                </CopyToClipboard>
+
+
                 <div>
                     <select onChange={(e) => {
                         funcReset(JSON.parse(e.target.value))
                     }}
                         className="field__select" >
                         {props.stores.map((item, index) => (
-                            
-                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>
-                                {item._id==props.storeCurrent._id?"https://"+props.storeCurrent.urlRoute+".bullcommerce.shop":item.storeName}</option>
-                            
+
+                            <option value={JSON.stringify(item)} selected={item._id == props.storeCurrent._id ? "selected" : ""}>
+                                {item._id == props.storeCurrent._id ? "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop" : item.storeName}</option>
+
                             // <option value={JSON.stringify(item)} >{item.storeName}</option>
-                            ))}
-                            {/* <option>בחר חנות</option> */}
+                        ))}
+                        {/* <option>בחר חנות</option> */}
                     </select>
-                   
-{/* 
+
+                    {/* 
                     <label>{props.objectFields.urlRoute}</label>
                     <button onClick={save}>save</button>
                     <button onClick={get}>get</button> */}
                 </div>
 
 
- {copyUrl.copied ? <span style={{color: 'red',border:'1px solid red',borderRadius:'25%' }}>Copied.</span> : null}
+                {copyUrl.copied ? <span style={{ color: 'red', border: '1px solid red', borderRadius: '25%' }}>Copied.</span> : null}
                 <div className="ml-auto" style={{ marginRight: "3vw", fontSize: "24px" }}>
                     {props.user && props.user.username} &nbsp;
                 <Link to="/" style={{ fontSize: "34px", color: 'black' }}
@@ -198,6 +199,7 @@ export default connect(
             getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
             setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
             setCart: (e) => { dispatch(actions.setOrder(e)) },
+            getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
 
         }
     }

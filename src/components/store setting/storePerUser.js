@@ -12,6 +12,7 @@ function StorePerUser(props) {
     props.getCategoriesByStore(item._id)
     props.getAllPaper(item._id)
     props.getAllAttributes(item._id)
+    props.getBhdByStoreId(item._id)
   }
 
   function deleteSto(i) {
@@ -89,6 +90,7 @@ export default connect(
       getOrdersByStore: (i) => { dispatch(actions.getOrdersByStore(i)) },
       getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
       getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
+      getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
     }
   }
 

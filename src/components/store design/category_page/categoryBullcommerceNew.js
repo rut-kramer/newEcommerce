@@ -53,7 +53,9 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
-const category={categoryName:"hello"}
+  const { category } = props.location.state;
+
+
   const [alerts, setAlerts] = useState([]);
   const [filterObject, setFilterObject] = useState({
     categories: [],
@@ -99,14 +101,21 @@ const category={categoryName:"hello"}
 
   }, []);
 
-  useEffect(() => { callPager() }, [props.filterProducts])
-  
+  useEffect(() => {
+    callPager();
+    let productsCategory = props.storeProducts.filter(pc => {
+      if (pc.category === category._id)
+        return pc;
+    })
+    console.log("pc", productsCategory);
+    props.setFilteredProducts(productsCategory);
+  }, [props.filterProducts])
   const numOfPage = 6
-  const numPaper=  Math.ceil(props.filterProducts.length / numOfPage)
+  const numPaper = Math.ceil(props.filterProducts.length / numOfPage)
   const [arrPager, setArrPager] = useState([])
   const [degelBtn, setDegelBtn] = useState(0)
   const [pa1, setP1] = useState(1)
-  
+
   function callPager() {
     setArrPager([])
     for (let index = 0; index < numPaper; index++) {
@@ -115,10 +124,10 @@ const category={categoryName:"hello"}
         list: ""
       }
       let list = props.filterProducts;
-      list = list[0] ? list.slice(((index) * numOfPage),((index + 1) * numOfPage)) : [];
+      list = list[0] ? list.slice(((index) * numOfPage), ((index + 1) * numOfPage)) : [];
       objec.index = index + 1;
       objec.list = list
-      setArrPager(arrPager_=>[...arrPager_, objec]);
+      setArrPager(arrPager_ => [...arrPager_, objec]);
     }
   }
 
@@ -133,12 +142,11 @@ const category={categoryName:"hello"}
       else
         PageNum = num;
     }
-    if(PageNum>-1&&PageNum<numPaper)
-    {
-    setDegelBtn(PageNum)  
-     setP1(((PageNum) * numOfPage) + 1)
-  
-  }
+    if (PageNum > -1 && PageNum < numPaper) {
+      setDegelBtn(PageNum)
+      setP1(((PageNum) * numOfPage) + 1)
+
+    }
   }
 
   const onFilter = (min, max) => {
@@ -326,28 +334,28 @@ const category={categoryName:"hello"}
   }
 
   return (
-    <>  
-            
+    <>
+
 
       <div className="wrapper">
-          <div>
+        <div>
           <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
- Home Page
+          <br></br>
+          <br></br>
+          <br></br>
+          <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+            Home Page
 </Link>
-<label>/</label>
-<label color="inherit" >
-    {category.categoryName}
-</label>
-</div>
+          <label>/</label>
+          <label color="inherit" >
+            {category.categoryName}
+          </label>
+        </div>
         <EcommerceHeader />
         <div className="main">
 
           <div className="section">
-        
+
 
             <Container>
               <Row className="mx-5 px-5">
@@ -386,7 +394,7 @@ const category={categoryName:"hello"}
                   // style={{ marginLeft: "-50px" }}
                   >
                     {/*קומפוננטת סינון המוצרים*/}
-                    <FilteredProducts onFilter={onFilter} addCategoryToFilterObject={addCategoryToFilterObject} addTermToFilterObject={addTermToFilterObject} ></FilteredProducts>
+                    <FilteredProducts onFilter={onFilter} addCategoryToFilterObject={addCategoryToFilterObject} addTermToFilterObject={addTermToFilterObject} categoryName={category.categoryName} ></FilteredProducts>
                   </div>
                 </Col>
                 <Col md="9" className="pr-0">
@@ -454,7 +462,7 @@ const category={categoryName:"hello"}
                                 data-placement="left"
                                 id="tooltip719224089"
                                 onClick={() => props.w3_open(item)}
-                            >
+                              >
                                 <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
                               </Button>
@@ -474,7 +482,7 @@ const category={categoryName:"hello"}
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{pa1}-{arrPager[degelBtn]&&(pa1+arrPager[degelBtn].list.length-1)} of {props.filterProducts.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{arrPager[degelBtn] && (pa1 + arrPager[degelBtn].list.length - 1)} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
 
