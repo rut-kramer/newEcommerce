@@ -128,7 +128,7 @@ const mapStateToProps = (state) => {
     return {
         title: state.bullPageEditReducer.title,
         objectFields: state.storeReducer.objectFields,
-        ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+        ifDisplaySlider: state.BHD.ifDisplaySlider
 
     }
 }

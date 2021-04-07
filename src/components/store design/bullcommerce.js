@@ -159,7 +159,7 @@ export default connect(
             categories: state.categoriesReducer.categories,
             featuredProducts: state.productReducer.featuredProducts,
             objectFields: state.storeReducer.objectFields,
-            ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+            ifDisplaySlider: state.BHD.ifDisplaySlider
 
         }
     },
