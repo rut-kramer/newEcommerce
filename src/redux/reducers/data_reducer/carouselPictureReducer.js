@@ -13,20 +13,29 @@ const initialState = {
         src: "url(" + img3 + ")",
     }
     ],
-    ifDisplaySlider: true
+    ifDisplaySlider: true,
+    changeImgInCurrentLocation: -1
 }
 const carouselImages = {
     setImagesArr(state, action) {
-        if (state.ImagesArr[0].src == "url(" + interior + ")")
-            state.ImagesArr = []
-        state.ImagesArr.push({
-            src: "url(" + action.payload + ")",
-        })
+        if (state.changeImgInCurrentLocation == -1) {
+            if (state.ImagesArr[0].src == "url(" + interior + ")")
+                state.ImagesArr = []
+            state.ImagesArr.push({
+                src: "url(" + action.payload + ")",
+            })
+        }
+        else {
+            state.ImagesArr[state.changeImgInCurrentLocation].src = "url(" + action.payload + ")"
+
+        }
     },
     setifDisplaySlider(state, action) {
         state.ifDisplaySlider = !state.ifDisplaySlider
     },
-
+    setChangeImgInCurrentLocation(state, action) {
+        state.changeImgInCurrentLocation = action.payload;
+    }
 
 }
 

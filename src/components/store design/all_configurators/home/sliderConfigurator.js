@@ -32,6 +32,7 @@ function SliderConfigurator(props) {
     const history = useHistory();
 
     function openMediaGallery() {
+        props.setChangeImgInCurrentLocation(-1)
         history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
 
     }
@@ -48,7 +49,9 @@ function SliderConfigurator(props) {
                     >
 
                         <Row md="12" className="mt-3"><Col md="9" className="p-0">Slider Image</Col>
-                            <Col md="3" className="p-0 pl-4"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
+                            <Col md="3" className="p-0 pl-4"
+                                onClick={openMediaGallery}>
+                                <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                             </Col>
                         </Row>
                         <Row md="12" className="mt-3">
@@ -134,7 +137,8 @@ const mapDispatchToProps = (dispatch) => ({
     setAlignment: (side) => dispatch(actions.setAlignment(side)),
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),
-    setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle())
+    setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle()),
+    setChangeImgInCurrentLocation: (place) => dispatch(actions.setChangeImgInCurrentLocation(place))
 
 
 

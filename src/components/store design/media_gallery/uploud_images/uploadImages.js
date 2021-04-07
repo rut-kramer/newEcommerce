@@ -50,7 +50,6 @@ function UploadImages(props) {
 const mapStateToProps = (state) => {
     return {
         url: state.coinsReducer.picture,
-        // ImagesArr: state.carouselImgReducer.ImagesArr
     }
 }
 const mapDispatchToProps = (dispatch) => ({
