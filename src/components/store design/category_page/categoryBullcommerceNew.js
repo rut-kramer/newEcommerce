@@ -53,8 +53,7 @@ function CategoryBullcommerce(props) {
   // const item = {
   //   SKU: "3456666"
   // }
-
-
+const category={categoryName:"hello"}
   const [alerts, setAlerts] = useState([]);
   const [filterObject, setFilterObject] = useState({
     categories: [],
@@ -85,9 +84,6 @@ function CategoryBullcommerce(props) {
 
   };
 
-
-
-  let pager2 = [];
   useEffect(() => {
 
     console.log("ssttrree", props.objectFields);
@@ -96,13 +92,6 @@ function CategoryBullcommerce(props) {
     document.documentElement.classList.remove("nav-open");
     window.scrollTo(0, 0);
     document.body.scrollTop = 0;
-    let numPaper = (props.filterProducts.length / numOfPage);
-    numPaper = Math.round(numPaper) + 1 + 1
-    pager2 = new Array(numPaper)
-    for (let index = 0; index < pager2.length; index++) {
-      pager2[index] = index;
-
-    }
     return function cleanup() {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
@@ -111,37 +100,28 @@ function CategoryBullcommerce(props) {
   }, []);
 
   useEffect(() => { callPager() }, [props.filterProducts])
+  
   const numOfPage = 6
+  const numPaper=  Math.ceil(props.filterProducts.length / numOfPage)
   const [arrPager, setArrPager] = useState([])
-  let arrTemp = []
+  const [degelBtn, setDegelBtn] = useState(0)
   const [pa1, setP1] = useState(1)
-  const [pa2, setP2] = useState(numOfPage)
-  let p1 = 1
-  let p2 = 2
-
-
+  
   function callPager() {
-    let numPaper = (props.filterProducts.length / numOfPage);
-    numPaper = Math.ceil(numPaper)
+    setArrPager([])
     for (let index = 0; index < numPaper; index++) {
       let objec = {
         index: "",
         list: ""
       }
-      p1 = ((index) * numOfPage);
-      p2 = ((index + 1) * numOfPage);
       let list = props.filterProducts;
-      list = list[0] ? list.slice(p1, p2) : [];
-      console.log("list", index, list);
+      list = list[0] ? list.slice(((index) * numOfPage),((index + 1) * numOfPage)) : [];
       objec.index = index + 1;
       objec.list = list
-      arrTemp.push(objec)
+      setArrPager(arrPager_=>[...arrPager_, objec]);
     }
-    setArrPager(
-      a => arrTemp
-    )
   }
-  const [degelBtn, setDegelBtn] = useState(0)
+
   function changePageNum(num) {
     let PageNum = degelBtn;
 
@@ -153,9 +133,12 @@ function CategoryBullcommerce(props) {
       else
         PageNum = num;
     }
-    setDegelBtn(PageNum)
-    setP1(((PageNum) * numOfPage) + 1)
-    setP2((PageNum + 1) * numOfPage)
+    if(PageNum>-1&&PageNum<numPaper)
+    {
+    setDegelBtn(PageNum)  
+     setP1(((PageNum) * numOfPage) + 1)
+  
+  }
   }
 
   const onFilter = (min, max) => {
@@ -357,7 +340,7 @@ function CategoryBullcommerce(props) {
 </Link>
 <label>/</label>
 <label color="inherit" >
-    Category  
+    {category.categoryName}
 </label>
 </div>
         <EcommerceHeader />
@@ -471,9 +454,7 @@ function CategoryBullcommerce(props) {
                                 data-placement="left"
                                 id="tooltip719224089"
                                 onClick={() => props.w3_open(item)}
-
-                              >
-
+                            >
                                 <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
 
                               </Button>
@@ -493,7 +474,7 @@ function CategoryBullcommerce(props) {
                     }
                     < Col md="12">
                       <Row className="pagerCategory">
-                        <Col md="6"><div className="pt-3">{pa1}-{pa2} of {props.filterProducts.length} Results</div>
+                        <Col md="6"><div className="pt-3">{pa1}-{arrPager[degelBtn]&&(pa1+arrPager[degelBtn].list.length-1)} of {props.filterProducts.length} Results</div>
                         </Col>
                         <Col md="6">
 
