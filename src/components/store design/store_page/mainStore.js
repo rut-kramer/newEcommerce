@@ -78,6 +78,7 @@ function MainStore(props) {
 
 
             <HeaderNavbar cartPanal_open={cartPanal_open} cartPanal_close={cartPanal_close}></HeaderNavbar>
+            <div style={{ width: "100%", height: "60px" }}></div>
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>

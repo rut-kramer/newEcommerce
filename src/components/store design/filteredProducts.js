@@ -46,10 +46,12 @@ function FilteredProducts(props) {
         const [maxView, setMaxView] = useState(0);
 
         useEffect(() => {
-                let min, max;
+                let min = 0, max = 100;
                 if (Array.isArray(props.storeProducts) && props.storeProducts.length > 0) {
-                        min = props.storeProducts[0].price;
-                        max = props.storeProducts[0].price;
+                        if (props.storeProducts[0].price) {
+                                min = props.storeProducts[0].price;
+                                max = props.storeProducts[0].price;
+                        }
                         props.storeProducts.forEach(product => {
                                 if (product.price > max)
                                         max = product.price;

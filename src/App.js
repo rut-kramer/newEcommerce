@@ -5,7 +5,6 @@ import store from './redux/store'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import Login from "./components/login"
 // import Home from "./components/home";
-// import OpenStore from "./components/openStore"
 import PrivateRoute from './PrivateRoute.js';
 import ProductNew from './components/store setting/product_management/newProduct';
 import ProductEdit from './components/store setting/product_management/productEdit';

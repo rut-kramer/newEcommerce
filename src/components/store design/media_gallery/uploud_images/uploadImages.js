@@ -11,11 +11,11 @@ function UploadImages(props) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.setImagesArr(reader.result)
+                // props.setImagesArr(reader.result)
             }
             reader.readAsDataURL(event)
             setFileToUpload(event);
-        props.uploadImage(event);
+            props.uploadImage(event);
 
         }
     }

@@ -62,7 +62,16 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                     dispatch(actions.getCategoriesByStore(data._id));
                     dispatch(actions.getAllPaper(data._id));
                     dispatch(actions.getAllAttributes(data._id));
-                  
+
+                    dispatch(actions.newBullcommerceHeaderDesign({
+                        store: data._id,
+                        sliderImages: [],
+                        stepperColor: "",
+                        sliderArrowsColor: "",
+                        sliderArrowsBackgroundcolor: "",
+                        textContent: data.storeName
+                    }))
+
                     resolve(data)
 
                     // dispatch(actions.createNewCategory({
@@ -92,7 +101,7 @@ export const createNewStore = ({ dispatch, getState }) => next => action => {
                     //                 "featured": true
                     //             }))
                     //         }
-                        // })
+                    // })
                 },
 
 

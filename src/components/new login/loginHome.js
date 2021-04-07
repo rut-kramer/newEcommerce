@@ -23,12 +23,13 @@ function LoginHome(props) {
         //         setToLoad(true);
         //     }, [props.lastUpdatedUserStore]);
         function funcReset() {
-            let item=props.lastUpdatedUserStore[0];
+            let item = props.lastUpdatedUserStore[0];
             props.setCurrentStore(item);
             props.getOrdersByStore(item._id)
             props.getCategoriesByStore(item._id)
             props.getAllPaper(item._id)
             props.getAllAttributes(item._id)
+            props.getBhdByStoreId(item._id)
         }
         useEffect(() => {
             props.lastUpdatedUserStore[0] && funcReset(props.lastUpdatedUserStore[0])
@@ -78,7 +79,8 @@ export default connect(
             getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
 
             setUsername: (e) => dispatch(actions.setUsername(e)),
-            getLastUpdatedStore: (e) => dispatch(actions.lastUpdatedStore(e))
+            getLastUpdatedStore: (e) => dispatch(actions.lastUpdatedStore(e)),
+            getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
 
         }
     }

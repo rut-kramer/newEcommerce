@@ -40,8 +40,9 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             success: function (data1) {
 
 
-                dispatch(actions.setPicture(JSON.parse(data1).data.url))
-                console.log("picture", JSON.parse(data1).data.url);
+                dispatch(actions.setPicture(JSON.parse(data1).data.url));
+                dispatch(actions.setImagesArr(JSON.parse(data1).data.url));
+                console.log("picture", JSON.parse(data1));
                 // dispatch(actions.setPicture(data1))
             },
             error: function (err) {

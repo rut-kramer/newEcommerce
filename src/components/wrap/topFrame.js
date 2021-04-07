@@ -19,6 +19,7 @@ function TopFrame(props) {
         props.getCategoriesByStore(item._id)
         props.getAllPaper(item._id)
         props.getAllAttributes(item._id)
+        props.getBhdByStoreId(item._id)
         let str = props.storeCurrent;
         let t = cookies[str];
         if ((flag === 1) && (t)) {
@@ -27,9 +28,9 @@ function TopFrame(props) {
         }
         props.history.push(`/` + props.objectFields.urlRoute)
     }
-useEffect(()=>{
-      props.getStoreByUser(props.user._id);   
-},[])
+    useEffect(() => {
+        props.getStoreByUser(props.user._id);
+    }, [])
 
 
     window.addEventListener("beforeunload", (ev) => {
@@ -87,7 +88,7 @@ useEffect(()=>{
 
 
             <div className="row">
-               
+
 
                 <button
                     // color="inherit"
@@ -110,8 +111,8 @@ useEffect(()=>{
                 <Link to="/home">
                     <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
                 </Link>
-                    <FontAwesomeIcon style={{ fontSize: "28px" ,height: "2em", marginRight: "8px"}} icon={['far', 'copy']}>
-            </FontAwesomeIcon>  
+                <FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['far', 'copy']}>
+                </FontAwesomeIcon>
                 <div>
 
                     <select onChange={(e) => {
@@ -119,14 +120,14 @@ useEffect(()=>{
                     }}
                         className="field__select" >
                         {props.stores.map((item, index) => (
-                            
-                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>{item._id==props.storeCurrent._id?"https://"+item.urlRoute+".bullcommerce.shop":item.storeName}</option>
-                            
+
+                            <option value={JSON.stringify(item)} selected={item._id == props.storeCurrent._id ? "selected" : ""}>{item._id == props.storeCurrent._id ? "https://" + item.urlRoute + ".bullcommerce.shop" : item.storeName}</option>
+
                             // <option value={JSON.stringify(item)} >{item.storeName}</option>
-                            ))}
-                            {/* <option>בחר חנות</option> */}
+                        ))}
+                        {/* <option>בחר חנות</option> */}
                     </select>
-{/* 
+                    {/* 
                     <label>{props.objectFields.urlRoute}</label>
                     <button onClick={save}>save</button>
                     <button onClick={get}>get</button> */}
@@ -174,6 +175,7 @@ export default connect(
             getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
             setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
             setCart: (e) => { dispatch(actions.setOrder(e)) },
+            getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
 
         }
     }

@@ -8,7 +8,8 @@ import { createNewStore, getStoreByUser, deleteStore } from './middleware/crudSt
 import { getTheLastUpdatedStorePerUser } from './middleware/crudUser'
 import { createNewPaper, getAllPaper, deletePaper, editPaper } from './middleware/crudPaper'
 import { getAllAttributes, newAttributes, deleteAttributes, editAttribute } from './middleware/crudAttribute'
-import { uploadImage } from './middleware/crud'
+import { uploadImage } from './middleware/crud';
+import { newBullcommerceHeader, editBullcommerceHeader, getBullcommerceHeaderByStoreId } from './middleware/crudDesign';
 import productReducer from './reducers/data_reducer/productReducer';
 import categoriesReducer from './reducers/data_reducer/categoryReducer';
 import cartReducer from './reducers/cartReducer';
@@ -28,23 +29,24 @@ import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import { deleteTerms, newTerm } from './middleware/crudTerm';
 import quillReducer from './reducers/data_reducer/quillReducer';
-import mediaGalleryReducer from './reducers/mediaGalleryReducer'
+import mediaGalleryReducer from './reducers/mediaGalleryReducer';
+import BHD from './reducers/design_reducers/bullcommerceHeaderReducer';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,
+        BHD
     })
-    
-    const rootReducer = (state, action) => {
-        if (action.payload === 'USER_LOGOUT') 
-        {
-          state = undefined
-        }
-        return reducers(state, action)
+
+const rootReducer = (state, action) => {
+    if (action.payload === 'USER_LOGOUT') {
+        state = undefined
     }
+    return reducers(state, action)
+}
 const store = createStore(
     rootReducer,
 
@@ -85,7 +87,11 @@ const store = createStore(
             addToCart,
             changeProductAmount,
             deleteAttributes, newAttributes, getAllAttributes, editAttribute,
-            deleteTerms, newTerm
+            deleteTerms,
+            newTerm,
+            newBullcommerceHeader,
+            editBullcommerceHeader,
+            getBullcommerceHeaderByStoreId
         ))
 )
 window.store = store;
