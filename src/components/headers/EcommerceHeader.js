@@ -7,7 +7,7 @@ import {
   CarouselIndicators,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import "./ecommerceHeader.css"
@@ -18,10 +18,12 @@ import aa from "../../assets/img/bg1.jpg"
 
 function EcommerceHeader(props) {
   const history = useHistory();
-
+  const location = useLocation();
 
   function openMediaGallery(index) {
     props.setChangeImgInCurrentLocation(index)
+    props.setfunctionToSetImage("setImagesArr")
+    props.setImageLocation(location.pathname)
     history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
   }
 
@@ -78,22 +80,24 @@ function EcommerceHeader(props) {
       }
       <Carousel activeIndex={activeIndex} next={next} previous={previous}
       >
-        <CarouselIndicators
-          items={props.ImagesArr}
-          activeIndex={activeIndex}
-          onClickHandler={goToIndex}
-          className="EH-carouselIndicators"
-        />
+        {
+          props.ImagesArr.length != 1 &&
+          <CarouselIndicators
+            items={props.ImagesArr}
+            activeIndex={activeIndex}
+            onClickHandler={goToIndex}
+            className="EH-carouselIndicators"
+          />
+        }
+
         {props.ImagesArr.map((item, index) => {
           return (
             <CarouselItem
               onExiting={onExiting}
               onExited={onExited}
               key={item.src}
-
             >
               <div
-
                 onClick={() => openMediaGallery(index)}
                 className="page-header header-filter carouelImgHover"
               >
@@ -110,48 +114,52 @@ function EcommerceHeader(props) {
         })}
 
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
-        <a
-          className="left carousel-control carousel-control-prev"
-          data-slide="prev"
-          href="#pablo"
-          onClick={(e) => {
-            e.preventDefault();
-            previous();
-          }}
-          role="button"
-        >
-          <Button
-            className="btn-icon btn-round"
-            name="button"
-            size="sm"
-            type="button"
-            style={{ backgroundColor: "transparent" }}
-          >
-            <FontAwesomeIcon icon={['fas', 'chevron-left']}>
-            </FontAwesomeIcon>
-          </Button>
-        </a>
-        <a
-          className="right carousel-control carousel-control-next"
-          data-slide="next"
-          href="#pablo"
-          onClick={(e) => {
-            e.preventDefault();
-            next();
-          }}
-          role="button"
-        >
-          <Button
-            className="btn-icon btn-round"
-            name="button"
-            size="sm"
-            type="button"
-            style={{ backgroundColor: "transparent" }}
+        {props.ImagesArr.length != 1 &&
+          <>
+            <a
+              className="left carousel-control carousel-control-prev"
+              data-slide="prev"
+              href="#pablo"
+              onClick={(e) => {
+                e.preventDefault();
+                previous();
+              }}
+              role="button"
+            >
+              <Button
+                className="btn-icon btn-round"
+                name="button"
+                size="sm"
+                type="button"
+                style={{ backgroundColor: "transparent" }}
+              >
+                <FontAwesomeIcon icon={['fas', 'chevron-left']}>
+                </FontAwesomeIcon>
+              </Button>
+            </a>
+            <a
+              className="right carousel-control carousel-control-next"
+              data-slide="next"
+              href="#pablo"
+              onClick={(e) => {
+                e.preventDefault();
+                next();
+              }}
+              role="button"
+            >
+              <Button
+                className="btn-icon btn-round"
+                name="button"
+                size="sm"
+                type="button"
+                style={{ backgroundColor: "transparent" }}
 
-          >
-            <FontAwesomeIcon icon={['fas', 'chevron-right']}>
-            </FontAwesomeIcon>                                                                                </Button>
-        </a>
+              >
+                <FontAwesomeIcon icon={['fas', 'chevron-right']}>
+                </FontAwesomeIcon>                                                                                </Button>
+            </a>
+          </>
+        }
       </Carousel>
 
 
@@ -178,7 +186,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
   setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
-  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location))
-
+  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
+  setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
+  setImageLocation: (location) => dispatch(actions.setImageLocation(location))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

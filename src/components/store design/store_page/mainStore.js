@@ -11,7 +11,6 @@ import CheckOut from "../check_out/checkOut";
 import QuickLook from '../quickLook'
 import MediaGallery from "../media_gallery/mediaGallery"
 import CartPanel from "../cart_page/cart_panel"
-import { Table, Container, Row, Col, Button } from 'reactstrap';
 import '../quickLook.css'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
@@ -66,6 +65,7 @@ function MainStore(props) {
                 style={{
                     display:
                         cartPanelOpen ? "block" : "none"
+
                 }}>
                 <CartPanel></CartPanel>
 

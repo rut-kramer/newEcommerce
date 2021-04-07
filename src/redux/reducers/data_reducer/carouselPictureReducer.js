@@ -16,7 +16,8 @@ const initialState = {
     ifDisplaySlider: true,
     changeImgInCurrentLocation: -1
 }
-const carouselImages = {
+const carouselImages =
+{
     setImagesArr(state, action) {
         if (state.changeImgInCurrentLocation == -1) {
             if (state.ImagesArr[0].src == "url(" + interior + ")")
@@ -27,7 +28,6 @@ const carouselImages = {
         }
         else {
             state.ImagesArr[state.changeImgInCurrentLocation].src = "url(" + action.payload + ")"
-
         }
     },
     setifDisplaySlider(state, action) {

@@ -22,4 +22,5 @@ Carousel {
   }
   .EH-carouselIndicators{
     z-index: 1 !important;
+    margin-bottom: 0.3rem !important;
   }

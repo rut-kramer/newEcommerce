@@ -47,7 +47,7 @@
         box-shadow :-5px 5px 5px #00000029;
         background-color: white;
         position: fixed;
-        z-index: 4;
+        z-index: 10 !important;
         margin-left: 36.8rem!important;
         margin-top: 4.4rem;
 }
