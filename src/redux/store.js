@@ -29,7 +29,10 @@ import { actions } from './action';
 import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import { deleteTerms, newTerm } from './middleware/crudTerm';
 import quillReducer from './reducers/data_reducer/quillReducer';
-import mediaGalleryReducer from './reducers/mediaGalleryReducer';
+import mediaGalleryReducer from './reducers/mediaGalleryReducer'
+import uploadImageReducer from './reducers/uploadImageReducer'
+import { newUploadImage } from './middleware/crudUploadImg';
+
 import BHD from './reducers/design_reducers/bullcommerceHeaderReducer';
 const reducers =
     combineReducers({
@@ -37,8 +40,9 @@ const reducers =
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,
-        BHD
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,uploadImageReducer,BHD
+        
+        
     })
 
 const rootReducer = (state, action) => {
@@ -87,8 +91,8 @@ const store = createStore(
             addToCart,
             changeProductAmount,
             deleteAttributes, newAttributes, getAllAttributes, editAttribute,
-            deleteTerms,
-            newTerm,
+            deleteTerms, newTerm,
+            newUploadImage,
             newBullcommerceHeader,
             editBullcommerceHeader,
             getBullcommerceHeaderByStoreId

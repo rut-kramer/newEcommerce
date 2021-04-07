@@ -20,7 +20,6 @@ function MediaGallery(props) {
     const [loc, setLoc] = useState("");
     useEffect(() => {
         setLoc(location.pathname)
-        // loc = 
         console.log(loc)
     }, []);
     return (
@@ -32,7 +31,7 @@ function MediaGallery(props) {
                 </Col>
                 <Col md="10">
                     <Switch>
-                     
+
                         <Route path={loc + "/uploudImage"}>
                             <UploadImages></UploadImages>
                         </Route>
@@ -45,8 +44,9 @@ function MediaGallery(props) {
                         <Route path={loc + "/trash"}>
                             <Trash></Trash>
                         </Route>
-                        <Route exact path={loc }>
-                            <UploadImages></UploadImages>
+                        <Route exact path={loc}>
+                            
+                            <UploadImages/>
                         </Route>
                     </Switch>
                 </Col>
