@@ -113,20 +113,20 @@ function Cart(props) {
         return (
                 <>
                         <div className="wrapper">
-                        <div>  
+                                <div>
 
 
-<br></br>
-<br></br>
-<br></br>
- <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
-  Home Page  
+                                        <br></br>
+                                        <br></br>
+                                        <br></br>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                                                Home Page
 </Link>
-<label>/</label>
-<label color="inherit" >
-    My Cart  
+                                        <label>/</label>
+                                        <label color="inherit" >
+                                                My Cart
 </label>
-</div>
+                                </div>
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}>
                                                 <div className="main">
@@ -196,7 +196,9 @@ function Cart(props) {
                                                                                                                 <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}>
                                                                                                                         <Button outline size="sm">Continue Shopping</Button>{' '}
                                                                                                                 </Link>
-                                                                                                                <Button outline size="sm">Shop Now</Button>
+                                                                                                                <Link to={`/${props.objectFields.urlRoute}/checkOut`}>
+                                                                                                                        <Button outline size="sm">Shop Now</Button>
+                                                                                                                </Link>
                                                                                                         </div>
                                                                                                 </Col>
                                                                                                 <Col md="4"></Col>
