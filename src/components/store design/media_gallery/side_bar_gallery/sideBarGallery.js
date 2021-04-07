@@ -20,20 +20,9 @@ function SideBarGallery(props) {
                         activeClassName={"side-bar-gallery-link-active mt-5"}
                         className={"side-bar-gallery-link mt-5"}
                         to={loc + "/uploudImage"}
-                        onClick={() => props.setTitleBySideBar('Uploud Images')}
-                        // location={{
-                        //     search: '?id=2',
-                        // }}
-                        // isActive={(match, location) => {
-                        //     if (!match) {
-                        //         return false;
-                        //     }
-                        //     const searchParams = newURLSearchParams(location.search);
-                        //     return match.isExact && searchParams.has('id');
-                        // }}
+                        onClick={() => props.setTitleBySideBar('Uploud Images')}                    
                         isActive={() => (loc + "/uploudImage") === location.pathname||(loc ) === location.pathname}
-                        // isActive={() => location.pathname.includes('/uploudImage')}
-                    >
+                        >
                         Uploud Images
                     </NavLink>
                 </div>

@@ -29,13 +29,15 @@ import attributeReducer from "./reducers/data_reducer/attributeReducer";
 import { deleteTerms, newTerm } from './middleware/crudTerm';
 import quillReducer from './reducers/data_reducer/quillReducer';
 import mediaGalleryReducer from './reducers/mediaGalleryReducer'
+import uploadImageReducer from './reducers/uploadImageReducer'
+import { newUploadImage } from './middleware/crudUploadImg';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,uploadImageReducer
     })
     
     const rootReducer = (state, action) => {
@@ -85,7 +87,8 @@ const store = createStore(
             addToCart,
             changeProductAmount,
             deleteAttributes, newAttributes, getAllAttributes, editAttribute,
-            deleteTerms, newTerm
+            deleteTerms, newTerm,
+            newUploadImage
         ))
 )
 window.store = store;
