@@ -44,48 +44,37 @@ let flag = 1;
 
 function Cart(props) {
 
-        const [cookies, setCookie] = useCookies(["order"]);
-        // let history = useHistory();
-        useEffect(() => {
-                // props.setUser(props.user._id);
-                // props.setStore(props.currentStore)
-                let str = props.storeCurrent;
-                let t = cookies[str];
-                if ((flag === 1) && (t)) {
-                        props.setCart(t)
-                        flag = 2
-                }
-        }, [])
+        // const [cookies, setCookie] = useCookies(["order"]);
+         let history = useHistory();
+        // useEffect(() => {
+        //         // props.setUser(props.user._id);
+        //         // props.setStore(props.currentStore)
+        //         let str = props.storeCurrent;
+        //         let t = cookies[str];
+        //         if ((flag === 1) && (t)) {
+        //                 props.setCart(t)
+        //                 flag = 2
+        //         }
+        // }, [])
 
-        window.addEventListener("beforeunload", (ev) => {
-                ev.preventDefault();
-                // let listOrder=cookies.listOrder
-                // let cart= listFromCookies.find(c=>c.store==props.cart.store)
-                // if(cart)
-                // {
+        // window.addEventListener("beforeunload", (ev) => {
+        //         ev.preventDefault();
+        //         // let listOrder=cookies.listOrder
+        //         // let cart= listFromCookies.find(c=>c.store==props.cart.store)
+        //         // if(cart)
+        //         // {
 
-                // }
-                // else
-                // {
-                //         listOrder.push(props.cart)
-                //         setCookie("listOrder",listOrder, {
-                //                  path: "/"
-                //         });     
-                // }
-                setCookie(props.storeCurrent, props.cart, {
-                        path: "/"
-                });
-
-        });
-        // function  save() {
-        //         setCookie(props.storeCurrent,props.cart, {
+        //         // }
+        //         // else
+        //         // {
+        //         //         listOrder.push(props.cart)
+        //         //         setCookie("listOrder",listOrder, {
+        //         //                  path: "/"
+        //         //         });     
+        //         // }
+        //         setCookie(props.storeCurrent, props.cart, {
         //                 path: "/"
-        //               }); 
-        // }
-        // function  get() {
-        //       let  str=props.storeCurrent;
-        //       let t = cookies[str];
-        // }
+        //         });
 
         // });
         // function  save() {
@@ -98,10 +87,13 @@ function Cart(props) {
         //       let t = cookies[str];
         // }
 
-        // const onSubmit = () => {
-        //         let path =   `/${props.objectFields.urlRoute}/checkOut`;     
-        //         history.push(path);
-        // }
+        // });
+
+
+        const onSubmit = () => {
+                let path =   `/${props.objectFields.urlRoute}/checkOut`;     
+                history.push(path);
+        }
 
         function calcTotalPrice() {
                 var totalPrice = 0;
