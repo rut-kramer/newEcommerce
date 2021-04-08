@@ -418,7 +418,7 @@ function CategoryBullcommerce(props) {
 
                               <img className="imageProduct"
                                 alt="..."
-                                src={ia006}
+                                src={item.image}
                               ></img>
                             </Link>
                           </div>
