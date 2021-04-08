@@ -1,6 +1,5 @@
-// import React, { Component } from 'react';
-import React, { useEffect, useState } from 'react';
-import { Switch, Route, Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Switch, Route } from "react-router-dom";
 import HeaderNavbar from "../../navbars/ScrollTransparentNavbar"
 import FooterOrange from "../header_and_footer/footerOrange"
 import Bullcommerce from '../bullcommerce';
@@ -75,9 +74,10 @@ function MainStore(props) {
 
 
             <HeaderNavbar cartPanal_open={cartPanal_open} cartPanal_close={cartPanal_close}></HeaderNavbar>
+            <div style={{ width: "100%", height: "60px" }}></div>
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
-                <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
+                {/* <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route> */}
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/:categoryName"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>

@@ -196,7 +196,9 @@ function Cart(props) {
                                                                                                                 <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)}>
                                                                                                                         <Button outline size="sm">Continue Shopping</Button>{' '}
                                                                                                                 </Link>
-                                                                                                                <Button outline size="sm">Shop Now</Button>
+                                                                                                                <Link to={`/${props.objectFields.urlRoute}/checkOut`}>
+                                                                                                                        <Button outline size="sm">Shop Now</Button>
+                                                                                                                </Link>
                                                                                                         </div>
                                                                                                 </Col>
                                                                                                 <Col md="4"></Col>

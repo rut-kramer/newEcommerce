@@ -38,16 +38,30 @@ function EcommerceHeader(props) {
   };
   const next = () => {
     if (animating) return;
+    const sliderImg = activeIndex === props.bhd.sliderImages.length - 1 ? 0 : activeIndex + 1;
     const nextIndex = activeIndex === props.ImagesArr.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
-    props.setCurrentIndexFromCarousl(nextIndex)
+    if (Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) {
+      setActiveIndex(sliderImg);
+      props.setCurrentIndexFromCarousl(sliderImg)
+    }
+    else {
+      setActiveIndex(nextIndex);
+      props.setCurrentIndexFromCarousl(nextIndex)
+    }
   };
   const previous = () => {
     if (animating) return;
     const nextIndex = activeIndex === 0 ? props.ImagesArr.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
-    props.setCurrentIndexFromCarousl(nextIndex)
+    const sliderImg = activeIndex === 0 ? props.bhd.sliderImages.length - 1 : activeIndex - 1;
+    if (Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) {
+      setActiveIndex(sliderImg);
+      props.setCurrentIndexFromCarousl(sliderImg)
+    }
+    else {
+      setActiveIndex(nextIndex);
+      props.setCurrentIndexFromCarousl(nextIndex)
 
+    }
   };
   const goToIndex = (newIndex) => {
     if (animating) return;
@@ -55,22 +69,15 @@ function EcommerceHeader(props) {
     props.setCurrentIndexFromCarousl(newIndex)
 
   };
-  // הוספת תמונה
-  const addImg = () => {
-    let img =
-    {
-      src: "url(" + aa + ")",
-    }
-    props.setImagesArr(img)
-  }
+
   return (
     <div>
-      <button onClick={addImg}>add img</button>
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={props.title ? props.title : props.objectFields.storeName}
-            onChange={(e) => props.setTitle(e.target.value)}
+            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
+            // value={props.objectFields.storeName}
+            onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
               props.setCollapse("slider");
@@ -85,40 +92,63 @@ function EcommerceHeader(props) {
       }
       <Carousel activeIndex={activeIndex} next={next} previous={previous}
       >
-        {
-          props.ImagesArr.length != 1 &&
-          <CarouselIndicators
-            items={props.ImagesArr}
-            activeIndex={activeIndex}
-            onClickHandler={goToIndex}
-            className="EH-carouselIndicators"
-          />
-        }
+        <CarouselIndicators
+          items={(Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) ? props.bhd.sliderImages : props.ImagesArr}
+          activeIndex={activeIndex}
+          onClickHandler={goToIndex}
+          className="EH-carouselIndicators"
+        />
+        {(Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) ?
+          props.bhd.sliderImages.map((item, index) => {
+            return (
+              <CarouselItem
+                onExiting={onExiting}
+                onExited={onExited}
+                key={'url(' + item + ')'}
 
-        {props.ImagesArr.map((item, index) => {
-          return (
-            <CarouselItem
-              onExiting={onExiting}
-              onExited={onExited}
-              key={"url(" + item.src + ")"}
+              >
 
-            >
-              <div
-                onClick={() => openMediaGallery(index)}
-                className="page-header header-filter carouelImgHover"
+                <div
+
+                  onClick={() => openMediaGallery(index)}
+                  className="page-header header-filter carouelImgHover"
+                >
+                  <div
+                    className="page-header-image"
+                    style={{
+                      backgroundImage: 'url(' + item + ')'
+                    }}
+                  ></div>
+
+                </div>
+              </CarouselItem>
+            );
+          }) :
+          props.ImagesArr.map((item, index) => {
+            return (
+              <CarouselItem
+                onExiting={onExiting}
+                onExited={onExited}
+                key={"url(" + item.src + ")"}
+
               >
                 <div
-                  className="page-header-image"
-                  style={{
-                    backgroundImage: "url(" + item.src + ")"
+                  onClick={() => openMediaGallery(index)}
+                  className="page-header header-filter carouelImgHover"
+                >
+                  <div
+                    className="page-header-image"
+                    style={{
+                      backgroundImage: "url(" + item.src + ")"
+                    }}
+                  ></div>
 
-                  }}
-                ></div>
+                </div>
+              </CarouselItem>
+            );
+          }
+          )}
 
-              </div>
-            </CarouselItem>
-          );
-        })}
 
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
         {props.ImagesArr.length != 1 &&
@@ -182,20 +212,22 @@ const mapStateToProps = (state) => {
     alignment: state.bullPageEditReducer.alignment,
     color: state.bullPageEditReducer.color,
     size: state.bullPageEditReducer.size,
-    ImagesArr: state.carouselImgReducer.ImagesArr,
+    ImagesArr: state.BHD.ImagesArr,
     collapseOfRedux: state.bullPageEditReducer.collapse,
     ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle,
+    bhd: state.BHD.bullcommerceHeaderDesign
 
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-  setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
   setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
   setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
   setImageLocation: (location) => dispatch(actions.setImageLocation(location)),
-  setCurrentIndexFromCarousl: (index) => dispatch(actions.setCurrentIndexFromCarousl(index))
+  setCurrentIndexFromCarousl: (index) => dispatch(actions.setCurrentIndexFromCarousl(index)),
+  setBhTitle: (x) => dispatch(actions.setBhTitle(x))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

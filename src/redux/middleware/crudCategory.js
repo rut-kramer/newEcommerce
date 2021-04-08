@@ -25,7 +25,7 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
                 success: function (data) {
                     dispatch(actions.addNewCategory(data));
                     resolve(data)
-                    alert("הקטגוריה נוצרה בהצלחה")
+                    // alert("הקטגוריה נוצרה בהצלחה")
                 },
                 error: function (err) {
                     console.log(err)

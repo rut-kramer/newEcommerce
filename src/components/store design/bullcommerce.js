@@ -72,7 +72,7 @@ function Bullcommerce(props) {
                                                 <div className="card-image Aheight">
                                                     <img
                                                         alt="..."
-                                                        src={ia006}
+                                                        src={item.image}
                                                     ></img>
                                                 </div>
                                             </Link>
@@ -159,7 +159,7 @@ export default connect(
             categories: state.categoriesReducer.categories,
             featuredProducts: state.productReducer.featuredProducts,
             objectFields: state.storeReducer.objectFields,
-            ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+            ifDisplaySlider: state.BHD.ifDisplaySlider
 
         }
     },
