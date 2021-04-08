@@ -72,7 +72,7 @@ function Bullcommerce(props) {
                                                 <div className="card-image Aheight">
                                                     <img
                                                         alt="..."
-                                                        src={ia006}
+                                                        src={item.image}
                                                     ></img>
                                                 </div>
                                             </Link>
