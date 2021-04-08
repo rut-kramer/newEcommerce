@@ -44,9 +44,9 @@ function Content(props) {
 
     return (
         <div className="Content">
-            <button onClick={save}>save</button>
+            {/* <button onClick={save}>save</button>
             <button onClick={get}>get</button>
-            <button onClick={remove}>remove</button>
+            <button onClick={remove}>remove</button> */}
             <Switch>
                 <Route path="/dnd" component={Dnd} />
 

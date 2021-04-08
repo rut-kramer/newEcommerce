@@ -70,10 +70,8 @@ const items = [
 
 function Product(props) {
 
-        const { product } = props.location.state;
-        console.log("pprr", product);
-        console.log("add", props.addToCart);
-        // carousel states and functions
+        // const { product } = props.location.state;
+
         const [activeIndex, setActiveIndex] = useState(0);
         const [animating, setAnimating] = useState(false);
 
@@ -113,7 +111,6 @@ function Product(props) {
                 if (animating) return;
                 setActiveIndex(newIndex);
         };
-        // collapse states and functions
         const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
@@ -122,7 +119,7 @@ function Product(props) {
                         setCollapses([...collapses, collapse]);
                 }
         };
-        // select states and functions
+        
         const [colorSelect, setColorSelect] = useState(null);
         const [sizeSelect, setSizeSelect] = useState(null);
         useEffect(() => {
@@ -136,6 +133,32 @@ function Product(props) {
                         document.body.classList.remove("sidebar-collapse");
                 };
         }, []);
+
+        const update = (event) => {
+                alert("GG")
+                var u;
+                if (event.target.name === "featured" || event.target.name === "isStock" || event.target.name === "isDraft")
+
+                        u = event.target.checked;
+                else
+                        u = event.target.value
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        [event.target.id]: u
+                });
+        }
+
+        const updateCategory = (event) => {
+                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        category: k[0]._id
+                });
+        }
+
+        const Submit = () => {
+                props.editproduct(props.currentProduct);
+        }
         return (
                 <>
                         {/* <Container className="p-0">
@@ -156,7 +179,7 @@ function Product(props) {
 </Link>
 <label>/</label>
 <label color="inherit" >
-{product.name}  
+{props.currentProduct.name}  
 </label>
 </div>
                                 <div className="main">
@@ -240,21 +263,18 @@ function Product(props) {
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>
-                                                                                        <b>
-                                                                                                {product.name}
-                                                                                                {/* A two-seater sofa in a modern design upholstered
-                                                                                in a velvec fubric on the Quito-mustard model */}
+                                                                                        <b contentEditable={props.isAdmin} data  onKeyUp={update} >
+                                                                                                {props.currentProduct.name}
+                                                                                   
                                                                                         </b>
                                                                                 </h4>
-                                                                                <p style={{ fontSize: "18px" }}>
-                                                                                        {product.description}
-                                                                                        {/* Lorem Ipsum dolor sit amet, consectetur sadipscing elit, sed
-                                                                        diam nonumy eirmod tempor invidunt ut labore et dolore
-                                                                        magna aliquy erat, sed diam nonumy eirmod, At vero eos et. */}
+                                                                                <p  contentEditable={props.isAdmin} style={{ fontSize: "18px" }} onKeyUp={update}>
+                                                                                        {props.currentProduct.description}
+                                                                                
                                                                                 </p>
-                                                                                {(Array.isArray(product.attributes) &&
-                                                                                        product.attributes.length) ?
-                                                                                        product.attributes.map((item, index) => (
+                                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                                        props.currentProduct.attributes.length) ?
+                                                                                        props.currentProduct.attributes.map((item, index) => (
 
                                                                                                 <div key={index} className="d productColors">
                                                                                                         <h4><b>{item.attribute.name}:</b></h4>
@@ -296,10 +316,25 @@ function Product(props) {
                                                                                         : <></>}
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>Price:</b></h4>
-                                                                                        <span><del>290$</del></span>
-                                                                                        <span>$ {product.price}</span>
+                                                                                        <p  contentEditable={props.isAdmin} onKeyUp={update}><del>$ {props.currentProduct.salePrice}</del></p>
+                                                                                        <p  contentEditable={props.isAdmin} onKeyUp={update}>$ {props.currentProduct.price}</p>
                                                                                 </div>
-                                                                                <div className="d">
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>weight:</b></h4>
+                                                                                        <p  contentEditable={props.isAdmin} onKeyUp={update}>{props.currentProduct.weight}</p>
+                                                                                </div>
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>SKU:</b></h4>
+                                                                                        <p  contentEditable={props.isAdmin} onKeyUp={update}> {props.currentProduct.SKU}</p>
+                                                                                </div>
+
+                                                                              {props.isAdmin?
+                                                                                <Button className="addToCart" outline size="sm" onClick={Submit}>
+                                                                                <FontAwesomeIcon icon={['fas', 'edit']}>
+                                                                                </FontAwesomeIcon>
+                                                                                Edit the product
+                                                                        </Button>: 
+                                                                              <div className="d">
                                                                                         <h4><b>Quantity:</b></h4>
                                                                                         <div>
                                                                                                 <Button size="sm" onClick={() => { setOrderAmount(orderAmount + 1) }}>
@@ -319,7 +354,7 @@ function Product(props) {
                                                                                                 <Button className="addToCart" outline size="sm"
                                                                                                         onClick={() => {
                                                                                                                 props.addToCart({
-                                                                                                                        "product": product,
+                                                                                                                        "product": props.currentProduct,
                                                                                                                         "amount": orderAmount
                                                                                                                 })
                                                                                                         }}>
@@ -329,14 +364,11 @@ function Product(props) {
                         </Button>{' '}
                                                                                         </div>
                                                                                 </div>
-                                                                                <div className="d">
-                                                                                        <b>
-                                                                                                Dimantions
-                                                                        </b>
-                                                                                </div>
-                                                                        </Col>
+                                                                                                                                            } 
+                                                                      </Col>
                                                                 </Row>
                                                         </div>
+                                                        {props.isAdmin?"":<>
                                                         <div className="section" id="moreDetails">
                                                                 <h3><b>DIMANTIONS</b></h3>
                                                                 <Row>
@@ -486,7 +518,8 @@ function Product(props) {
                                                                         </Row>
                                                                 </div>
                                                         </div>
-                                                </Col>
+                                              </>}  
+                                              </Col>
                                         </Row>
                                 </div>
                         </div>
@@ -503,14 +536,16 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                        objectFields: state.storeReducer.objectFields
-
+                        objectFields: state.storeReducer.objectFields,
+                        isAdmin:state.viewOrEditReducer.isAdmin,
+                        currentProduct: state.productReducer.currentProduct
 
                 }
         },
         (dispatch) => {
                 return {
-
+                        editproduct: (v) => dispatch(actions.editProduct(v)),
+                        setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e)),
                         addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
                         addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
                 }

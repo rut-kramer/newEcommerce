@@ -403,9 +403,9 @@ const category={categoryName:"hello"}
 
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView"
-                            onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push("/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU) }}
+                            // onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item); props.history.push("/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU) }}
                           >
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }}>
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }} onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item)}}>
                               {/* <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/Editproduct/" + item.SKU, state: { product: item } }}> */}
 
                               <img className="imageProduct"
