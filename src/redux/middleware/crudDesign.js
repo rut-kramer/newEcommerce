@@ -14,7 +14,7 @@ export const newBullcommerceHeader = ({ dispatch, getState }) => next => action 
                         data: raw,
                         success: function (data) {
                                 console.log("object design", data);
-                                dispatch(actions.setBHD(data[0]))
+                                dispatch(actions.setBHD(data))
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
@@ -55,7 +55,7 @@ export const getBullcommerceHeaderByStoreId = ({ dispatch, getState }) => next =
                         contentType: "application/json",
                         success: function (data) {
                                 console.log("object design", data);
-                                dispatch(actions.setBHD(data[0]))
+                                dispatch(actions.setBHD(data))
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
                                 console.log(XMLHttpRequest, " ", textStatus, " ", errorThrown)
