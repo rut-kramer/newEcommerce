@@ -69,8 +69,8 @@ function EcommerceHeader(props) {
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={props.title ? props.title : props.objectFields.storeName}
-            onChange={(e) => props.setTitle(e.target.value)}
+            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
+            onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
               props.setCollapse("slider");
@@ -98,6 +98,7 @@ function EcommerceHeader(props) {
                 key={'url(' + item + ')'}
 
               >
+
                 <div
 
                   onClick={() => openMediaGallery(index)}
@@ -113,18 +114,15 @@ function EcommerceHeader(props) {
                 </div>
               </CarouselItem>
             );
-          }
-          ) :
+          }) :
           props.ImagesArr.map((item, index) => {
             return (
               <CarouselItem
                 onExiting={onExiting}
                 onExited={onExited}
                 key={item.src}
-
               >
                 <div
-
                   onClick={() => openMediaGallery(index)}
                   className="page-header header-filter carouelImgHover"
                 >
@@ -209,7 +207,8 @@ const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
-  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location))
+  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
+  setBhTitle: (x) => dispatch(actions.setBhTitle(x))
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);
