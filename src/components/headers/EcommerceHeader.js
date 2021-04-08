@@ -40,15 +40,20 @@ function EcommerceHeader(props) {
     if (animating) return;
     const nextIndex = activeIndex === props.ImagesArr.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
+    props.setCurrentIndexFromCarousl(nextIndex)
   };
   const previous = () => {
     if (animating) return;
     const nextIndex = activeIndex === 0 ? props.ImagesArr.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
+    props.setCurrentIndexFromCarousl(nextIndex)
+
   };
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
+    props.setCurrentIndexFromCarousl(newIndex)
+
   };
   // הוספת תמונה
   const addImg = () => {
@@ -95,7 +100,8 @@ function EcommerceHeader(props) {
             <CarouselItem
               onExiting={onExiting}
               onExited={onExited}
-              key={item.src}
+              key={"url(" + item.src + ")"}
+
             >
               <div
                 onClick={() => openMediaGallery(index)}
@@ -104,7 +110,8 @@ function EcommerceHeader(props) {
                 <div
                   className="page-header-image"
                   style={{
-                    backgroundImage: item.src
+                    backgroundImage: "url(" + item.src + ")"
+
                   }}
                 ></div>
 
@@ -188,6 +195,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
   setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
   setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
-  setImageLocation: (location) => dispatch(actions.setImageLocation(location))
+  setImageLocation: (location) => dispatch(actions.setImageLocation(location)),
+  setCurrentIndexFromCarousl: (index) => dispatch(actions.setCurrentIndexFromCarousl(index))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

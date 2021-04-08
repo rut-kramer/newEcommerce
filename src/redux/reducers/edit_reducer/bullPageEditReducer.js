@@ -9,6 +9,7 @@ const initialState = {
     ifDisplayTitle: "true",
     color: "white",
     size: "",
+    currentIndexFromCarousl: 0
 }
 
 const bullPageEdit = {
@@ -29,8 +30,10 @@ const bullPageEdit = {
     },
     setIfDisplayTitle(state, action) {
         state.ifDisplayTitle = !state.ifDisplayTitle
+    },
+    setCurrentIndexFromCarousl(state, action) {
+        state.currentIndexFromCarousl = action.payload
     }
-
 
 }
 

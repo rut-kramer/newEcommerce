@@ -173,16 +173,12 @@ function ScrollTransparentNavbar(props) {
               */}
             <div className="d-flex justify-content-between">
               <div style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
-                {/* <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}> */}
                 <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']} ></FontAwesomeIcon>
-                {/* </Link> */}
               </div>
               <div className="separatorStripe" style={{ float: "left" }}></div>
               <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/cart"} style={{ float: "left" }}>
                 <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}
                   onMouseEnter={() => props.cartPanal_open()}
-                  onMouseLeave={() => props.cartPanal_close()}
-
                 >
 
                 </FontAwesomeIcon>

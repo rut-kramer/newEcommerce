@@ -18,7 +18,8 @@ function CartPanel(props) {
 
     return (
         <Container>
-            <Row>
+            <Row onMouseLeave={() => props.cartPanal_close()}
+            >
                 <Col sm="12"
                     md={{ size: 10, offset: 1 }}
                     className="onlyProduct"

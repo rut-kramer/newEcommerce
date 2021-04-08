@@ -67,7 +67,7 @@ function MainStore(props) {
                         cartPanelOpen ? "block" : "none"
 
                 }}>
-                <CartPanel></CartPanel>
+                <CartPanel cartPanal_close={cartPanal_close}></CartPanel>
 
             </div>
 

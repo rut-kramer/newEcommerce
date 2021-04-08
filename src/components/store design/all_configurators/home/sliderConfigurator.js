@@ -7,6 +7,11 @@ import {
     Row,
     Col,
     Container,
+    Button,
+    Carousel,
+    CarouselItem,
+    CarouselIndicators,
+
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -15,6 +20,7 @@ import cloud from "../../../../assets/img/xd/cloud.png"
 
 function SliderConfigurator(props) {
     const [fileToUpload, setFileToUpload] = useState(null);
+
 
     function handlerLogo(event) {
         if (event) {
@@ -48,20 +54,9 @@ function SliderConfigurator(props) {
                         className="tafritSliderConfig"
                     >
 
-                        <Row md="12" className="mt-3"><Col md="9" className="p-0">Slider Image</Col>
-                            <Col md="3" className="p-0 pl-4"
-                                onClick={openMediaGallery}>
-                                <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
-                            </Col>
-                        </Row>
                         <Row md="12" className="mt-3">
-                            <Col col="4" className="p-0">
-                                <div className="SC-inputFile">
-                                    <img src={cloud} onClick={openMediaGallery}
-                                    // onChange={(e) => handlerLogo(e.target.files[0])} 
-                                    />
-                                </div></Col>
-                            <Col md="5" className="p-0 pl-4 pt-4">
+                            <Col md="8" className="p-0">Slider Image</Col>
+                            <Col md="4" className="p-0 pl-2">
                                 <label className="sliderConfigSwitch">
                                     <input type="checkbox"
                                         onChange={props.setifDisplaySlider}
@@ -69,8 +64,29 @@ function SliderConfigurator(props) {
                                     <span className="sliderConfigurator round"></span>
                                 </label>
                             </Col>
+                            {/* <Col md="3" className="p-0 pl-4"
+                                onClick={openMediaGallery}>
+                                <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
+                            </Col> */}
                         </Row>
+                        <Row md="12" className="mt-3">
+                            <Col col="4" className="p-0">
+                                <div className="SC-inputFile p-0">
+                                    <img
+                                        className="SC-imgOfCarousel"
+                                        src={props.ImagesArr[props.currentIndexFromCarousl].src} />
+                                </div>
+                            </Col>
+                            <Col col="4" className="p-0 ml-1">
+                                <div className="SC-inputFile">
+                                    <img className="SC-imgColud" src={cloud} onClick={openMediaGallery}
+                                    // onChange={(e) => handlerLogo(e.target.files[0])} 
+                                    />
+                                    <div className="SC-textInCloud mt-1">Add Image To Slider</div>
+                                </div>
+                            </Col>
 
+                        </Row>
                         <Row md="12" className="mt-3">Title Setting </Row>
                         <Row md="12" className="mt-3">
                             <Col md="7" className="p-0">Title Name</Col>
@@ -113,17 +129,17 @@ function SliderConfigurator(props) {
                             </Col>
 
                         </Row>
-                        <Row md="12" className="mt-3">Sub Title</Row>
+                        {/* <Row md="12" className="mt-3">Sub Title</Row>
                         <Row md="12" className="mt-1">
                             <input className="SC-input"
                                 placeholder="add"
                             ></input>
-                        </Row>
-                        <Row md="12" className="mt-3">Power Button</Row>
+                        </Row> */}
+                        {/* <Row md="12" className="mt-3">Power Button</Row>
                         <Row md="12" className="mt-1"> <input className="SC-input"
                             placeholder="add"
                         ></input></Row>
-                        <Row md="12" className="mt-3">Border Radius Button</Row>
+                        <Row md="12" className="mt-3">Border Radius Button</Row> */}
                         <Row md="12"></Row>
 
                     </Col>
@@ -136,7 +152,10 @@ const mapStateToProps = (state) => {
     return {
         title: state.bullPageEditReducer.title,
         objectFields: state.storeReducer.objectFields,
-        ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+        ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider,
+        ImagesArr: state.carouselImgReducer.ImagesArr,
+        currentIndexFromCarousl: state.bullPageEditReducer.currentIndexFromCarousl
+
 
     }
 }
