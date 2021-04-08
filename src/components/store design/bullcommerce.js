@@ -115,7 +115,10 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224089"
-                                                        onClick={() => props.w3_open(item)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            props.w3_open(item)
+                                                        }}
                                                     >
                                                         <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
                                                     </Button>
@@ -156,7 +159,7 @@ export default connect(
             categories: state.categoriesReducer.categories,
             featuredProducts: state.productReducer.featuredProducts,
             objectFields: state.storeReducer.objectFields,
-            ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+            ifDisplaySlider: state.BHD.ifDisplaySlider
 
         }
     },

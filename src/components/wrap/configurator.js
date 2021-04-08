@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from "react-redux";
+import { actions } from '../../redux/action';
 import { Link } from 'react-router-dom';
-
 import './wrap-component.css'
 import Home from "../home";
-import OpenStore from "../openStore";
 import AddCategory from '../store setting/category_managment/addCategory';
 import AddProduct from '../store setting/product_management/addProduct';
 import EditProduct from '../store setting/product_management/editProduct';
@@ -16,7 +15,13 @@ import ProductConfigurator from "../store design/all_configurators/product/produ
 
 import HomeConfigurator from "../store design/all_configurators/home/homeConfigurator.js"
 function Configurator(props) {
-    const [adminLink, setAdminLink] = useState(true)
+    const [adminLink, setAdminLink] = useState(true);
+
+    const publishStore = () => {
+        debugger
+        props.editBullcommerceHeader(props.bullcommerceHeaderDesign);
+    }
+
     return (
         <>
             {
@@ -24,7 +29,7 @@ function Configurator(props) {
                     <div className="MuiDrawer-paperAnchorRight MuiDrawer-paperAnchorDockedRight MuiDrawer-paper Configurator-drawerPaper-50" style={{ transform: props.flag ? "translate(0px)" : "translate(-100%)" }}>
                         <div className="con-title">
                             Home Page
-                            <Link to={'/' + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + (adminLink ? '/admin' : '')} onClick={() => { setAdminLink(!adminLink) }}>
+            <Link to={'/' + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + (adminLink ? '/admin' : '')} onClick={() => { setAdminLink(!adminLink) }}>
                                 <span className="material-icons pointer">settings</span>
                             </Link>
                         </div>
@@ -32,7 +37,6 @@ function Configurator(props) {
                             props.currentComponent ? (() => {
                                 switch (props.currentComponent) {
                                     case "Home": return <Home />;
-                                    case "OpenStore": return <OpenStore />;
                                     case "AddCategory": return <AddCategory />;
                                     case "AddProduct": return <AddProduct />;
                                     case "EditProduct": return <EditProduct />;
@@ -48,8 +52,7 @@ function Configurator(props) {
                         }
 
 
-
-
+                        <button className="configurator_btn-update" onClick={publishStore}>update</button>
 
                     </div>
                 </div>
@@ -63,11 +66,12 @@ function Configurator(props) {
 const mapStateToProps = (state) => {
     return {
         objectFields: state.storeReducer.objectFields,
-        currentComponent: state.wrapReducer.currentComponent
+        currentComponent: state.wrapReducer.currentComponent,
+        bullcommerceHeaderDesign: state.BHD.bullcommerceHeaderDesign
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-
+    editBullcommerceHeader: (x) => dispatch(actions.editBullcommerceHeaderDesign(x)),
 })
 export default connect(mapStateToProps, mapDispatchToProps)(Configurator);
 

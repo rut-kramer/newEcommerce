@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MediaGallery from '../store design/media_gallery/mediaGallery'
-import { Link } from 'react-router-dom'
+// import MediaGallery from '../store design/media_gallery/mediaGallery'
+// import { Link } from 'react-router-dom'
 
 // reactstrap components
 import {
   Button,
-  Row,
-  Col,
+  // Row,
+  // Col,
   Carousel,
   CarouselItem,
   CarouselIndicators,
-  Container,
+  // Container,
 } from "reactstrap";
 import { useHistory } from "react-router-dom";
 
-import "./ecommerceHeader.css"
-import { actions } from "../../redux/action";
 import { connect } from "react-redux";
+import { actions } from "../../redux/action";
+import "./ecommerceHeader.css"
+
 //img xd
 import aa from "../../assets/img/bg1.jpg"
 
@@ -26,10 +27,12 @@ function EcommerceHeader(props) {
   const history = useHistory();
 
 
-  function openMediaGallery() {
-    history.push("/" + props.objectFields.urlRoute + "/mediaGallery");
-
+  function openMediaGallery(index) {
+    props.setChangeImgInCurrentLocation(index)
+    history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
   }
+
+
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [animating, setAnimating] = React.useState(false);
   const onExiting = () => {
@@ -40,34 +43,34 @@ function EcommerceHeader(props) {
   };
   const next = () => {
     if (animating) return;
+    const sliderImg = activeIndex === props.bhd.sliderImages.length - 1 ? 0 : activeIndex + 1;
     const nextIndex = activeIndex === props.ImagesArr.length - 1 ? 0 : activeIndex + 1;
-    setActiveIndex(nextIndex);
+    if (Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0)
+      setActiveIndex(sliderImg);
+    else
+      setActiveIndex(nextIndex);
   };
   const previous = () => {
     if (animating) return;
     const nextIndex = activeIndex === 0 ? props.ImagesArr.length - 1 : activeIndex - 1;
-    setActiveIndex(nextIndex);
+    const sliderImg = activeIndex === 0 ? props.bhd.sliderImages.length - 1 : activeIndex - 1;
+    if (Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0)
+      setActiveIndex(sliderImg);
+    else
+      setActiveIndex(nextIndex);
   };
   const goToIndex = (newIndex) => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
-  // הוספת תמונה
-  const addImg = () => {
-    let img =
-    {
-      src: "url(" + aa + ")",
-    }
-    props.setImagesArr(img)
-  }
+
   return (
     <div>
-      <button onClick={addImg}>add img</button>
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={props.title ? props.title : props.objectFields.storeName}
-            onChange={(e) => props.setTitle(e.target.value)}
+            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
+            onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
               props.setCollapse("slider");
@@ -81,34 +84,61 @@ function EcommerceHeader(props) {
       <Carousel activeIndex={activeIndex} next={next} previous={previous}
       >
         <CarouselIndicators
-          items={props.ImagesArr}
+          items={(Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) ? props.bhd.sliderImages : props.ImagesArr}
           activeIndex={activeIndex}
           onClickHandler={goToIndex}
           className="EH-carouselIndicators"
         />
-        {props.ImagesArr.map((item) => {
-          return (
-            <CarouselItem
-              onExiting={onExiting}
-              onExited={onExited}
-              key={item.src}
+        {(Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) ?
+          props.bhd.sliderImages.map((item, index) => {
+            return (
+              <CarouselItem
+                onExiting={onExiting}
+                onExited={onExited}
+                key={'url(' + item + ')'}
 
-            >
-              <div
-                onClick={openMediaGallery}
-                className="page-header header-filter carouelImgHover"
+              >
+
+                <div
+
+                  onClick={() => openMediaGallery(index)}
+                  className="page-header header-filter carouelImgHover"
+                >
+                  <div
+                    className="page-header-image"
+                    style={{
+                      backgroundImage: 'url(' + item + ')'
+                    }}
+                  ></div>
+
+                </div>
+              </CarouselItem>
+            );
+          }) :
+          props.ImagesArr.map((item, index) => {
+            return (
+              <CarouselItem
+                onExiting={onExiting}
+                onExited={onExited}
+                key={item.src}
               >
                 <div
-                  className="page-header-image"
-                  style={{
-                    backgroundImage: item.src
-                  }}
-                ></div>
+                  onClick={() => openMediaGallery(index)}
+                  className="page-header header-filter carouelImgHover"
+                >
+                  <div
+                    className="page-header-image"
+                    style={{
+                      backgroundImage: item.src
+                    }}
+                  ></div>
 
-              </div>
-            </CarouselItem>
-          );
-        })}
+                </div>
+              </CarouselItem>
+            );
+          }
+          )}
+
 
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
         <a
@@ -166,15 +196,19 @@ const mapStateToProps = (state) => {
     homeStoreDesign: state.storeHomeReducer.homeStoreDesign,
     title: state.bullPageEditReducer.title,
     alignment: state.bullPageEditReducer.alignment,
-    ImagesArr: state.carouselImgReducer.ImagesArr,
+    ImagesArr: state.BHD.ImagesArr,
     collapseOfRedux: state.bullPageEditReducer.collapse,
-    ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle
+    ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle,
+    bhd: state.BHD.bullcommerceHeaderDesign
+
   }
 }
 const mapDispatchToProps = (dispatch) => ({
   setTitle: (e) => dispatch(actions.setTitle(e)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-  setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
+  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
+  setBhTitle: (x) => dispatch(actions.setBhTitle(x))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);

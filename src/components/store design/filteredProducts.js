@@ -46,10 +46,12 @@ function FilteredProducts(props) {
         const [maxView, setMaxView] = useState(0);
 
         useEffect(() => {
-                let min, max;
+                let min = 0, max = 100;
                 if (Array.isArray(props.storeProducts) && props.storeProducts.length > 0) {
-                        min = props.storeProducts[0].price;
-                        max = props.storeProducts[0].price;
+                        if (props.storeProducts[0].price) {
+                                min = props.storeProducts[0].price;
+                                max = props.storeProducts[0].price;
+                        }
                         props.storeProducts.forEach(product => {
                                 if (product.price > max)
                                         max = product.price;
@@ -79,7 +81,7 @@ function FilteredProducts(props) {
                 }
         }, []);
 
-        const { addTermToFilterObject, addCategoryToFilterObject, onFilter } = props;
+        const { addTermToFilterObject, addCategoryToFilterObject, onFilter, categoryName } = props;
 
         // const [filterObject, setFilterObject] = useState({
         //         categories: [],
@@ -277,7 +279,7 @@ function FilteredProducts(props) {
                                                                                                         // item, type, ifCheck
                                                                                                         type="checkbox"
                                                                                                         onChange={(e) => addCategoryToFilterObject(item, e.target.checked)}></Input>
-                                                                                                <span className="form-check-sign1">
+                                                                                                <span className="form-check-sign1" style={{ opacity: (categoryName === item.categoryName && 1) }}>
                                                                                                         <FontAwesomeIcon icon={['fas', 'check']}></FontAwesomeIcon>
 
                                                                                                 </span>
