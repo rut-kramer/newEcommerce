@@ -69,8 +69,9 @@ function Bullcommerce(props) {
                                         <Card className="card-product card-plain">
                                             <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
 
-                                                <div className="card-image Aheight">
+                                                <div className="card-image Aheight d-flex align-items-center">
                                                     <img
+                                                        className=""
                                                         alt="..."
                                                         src={item.image}
                                                     ></img>
