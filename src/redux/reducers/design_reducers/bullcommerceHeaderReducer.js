@@ -38,6 +38,9 @@ const bullcommerceHeader = {
 
                 // }
         },
+        setBhTitle(state, action) {
+                state.bullcommerceHeaderDesign.title.textContent = action.payload
+        },
         setifDisplaySlider(state, action) {
                 state.ifDisplaySlider = !state.ifDisplaySlider
         },
