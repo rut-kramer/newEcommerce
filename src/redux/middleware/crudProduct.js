@@ -25,7 +25,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
                 contentType: "application/json",
                 data: raw,
                 success: function (data) {
-                    alert("add the product")
+                    // alert("add the product")
                     
                 //     let options = Object.assign({}, res.data[0].products[0], { "color":  res.data[0].color});
                 //     let p 
@@ -46,7 +46,7 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
                 },
                 error: function (err) {
                     reject(err)
-                    alert("המוצר לא הוסף ,בדוק האם המק''ט כבר קיים")
+                    alert("תקלה! המוצר לא הוסף")
                 }
             });
         }
