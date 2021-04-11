@@ -161,6 +161,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     setTitle: (e) => dispatch(actions.setTitle(e)),
+    setSize: (size) => dispatch(actions.setSize(size)),
+    setColor: (color) => dispatch(actions.setColor(color)),
     setAlignment: (side) => dispatch(actions.setAlignment(side)),
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),

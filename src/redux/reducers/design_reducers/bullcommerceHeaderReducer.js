@@ -21,7 +21,6 @@ const bullcommerceHeader = {
 
         //BHD=bullcommerceHeaderDesign
         setBHD(state, action) {
-                debugger
                 state.bullcommerceHeaderDesign = action.payload;
         },
         setImagesArr(state, action) {

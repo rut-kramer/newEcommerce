@@ -13,7 +13,6 @@ import { actions } from "../../redux/action";
 import "./ecommerceHeader.css"
 
 //img xd
-import aa from "../../assets/img/bg1.jpg"
 
 
 function EcommerceHeader(props) {
@@ -105,11 +104,8 @@ function EcommerceHeader(props) {
                 onExiting={onExiting}
                 onExited={onExited}
                 key={'url(' + item + ')'}
-
               >
-
                 <div
-
                   onClick={() => openMediaGallery(index)}
                   className="page-header header-filter carouelImgHover"
                 >

@@ -4,7 +4,6 @@ import { actions } from '../action';
 
 export const newBullcommerceHeader = ({ dispatch, getState }) => next => action => {
         if (action.type === 'NEW_BULLCOMMERCE_HEADER_DESIGN') {
-                debugger
                 var raw = JSON.stringify(action.payload);
                 $.ajax({
                         url: `https://bullcommerce.shop/api/designs/newBullcommerceHeader/`,
@@ -26,7 +25,6 @@ export const newBullcommerceHeader = ({ dispatch, getState }) => next => action 
 
 export const editBullcommerceHeader = ({ dispatch, getState }) => next => action => {
         if (action.type === 'EDIT_BULLCOMMERCE_HEADER_DESIGN') {
-                debugger
                 var raw = JSON.stringify(action.payload);
                 $.ajax({
                         url: `https://bullcommerce.shop/api/designs/editBullcommerceHeader/${action.payload._id}`,
