@@ -188,7 +188,7 @@ function Product(props) {
                                                         <div className="section" id="productDetails">
                                                                 <Row>
                                                                         <Col id="productImage" md="6" sm="12">
-                                                                                <Carousel
+                                                                                {/* <Carousel
                                                                                         activeIndex={activeIndex}
                                                                                         next={next}
                                                                                         previous={previous}
@@ -258,8 +258,12 @@ function Product(props) {
                                                                                                         <FontAwesomeIcon icon={['fas', 'chevron-right']}>
                                                                                                         </FontAwesomeIcon>                                                                                </Button>
                                                                                         </a>
-                                                                                </Carousel>
-
+                                                                                </Carousel> */}
+                                                                                                                <img
+                                                                                                                        src={product.image}
+                                                                                                                        // alt={item.altText}
+                                                                                                                        className="d-block img-raised"
+                                                                                                                />
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>

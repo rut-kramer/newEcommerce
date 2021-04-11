@@ -1,17 +1,14 @@
 import React from 'react';
 import { Switch, Route, Link } from "react-router-dom";
-import Bullcommerce from '../store design/bullcommerce';
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
-// import Cart from '../store design/cart';
-import Product from '../store design/product_page/product';
 import Dnd from '../navbars/DndCategories'
 import Cart from '../store design/cart_page/cart';
 import { useCookies } from "react-cookie";
 import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
 import MainStoreRoutes from "../store design/store_page/mainStore"
 import TopFooter from "../topFooter"
+import MediaGallery from '../store design/media_gallery/mediaGallery';
 
 function Content(props) {
 //    //   cookies = "str="+props.cart
@@ -57,6 +54,7 @@ function Content(props) {
                 <Route path="/:storeName" component={Temporary} /> */}
 
                 {/* <Switch> */}
+                <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
             </Switch>

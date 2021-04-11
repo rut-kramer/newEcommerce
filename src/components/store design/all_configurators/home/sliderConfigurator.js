@@ -32,6 +32,7 @@ function SliderConfigurator(props) {
     const history = useHistory();
 
     function openMediaGallery() {
+        props.setChangeImgInCurrentLocation(-1)
         history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
 
     }
@@ -48,7 +49,9 @@ function SliderConfigurator(props) {
                     >
 
                         <Row md="12" className="mt-3"><Col md="9" className="p-0">Slider Image</Col>
-                            <Col md="3" className="p-0 pl-4"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
+                            <Col md="3" className="p-0 pl-4"
+                                onClick={openMediaGallery}>
+                                <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                             </Col>
                         </Row>
                         <Row md="12" className="mt-3">
@@ -81,7 +84,7 @@ function SliderConfigurator(props) {
                             </Col>
                             <Row md="12" className="SC-titleName">
                                 <input className="SC-input"
-                                    value={props.title ? props.title : props.objectFields.storeName}
+                                    value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
                                     onChange={(e) => props.setTitle(e.target.value)}
                                 ></input>
                             </Row>
@@ -125,16 +128,18 @@ const mapStateToProps = (state) => {
     return {
         title: state.bullPageEditReducer.title,
         objectFields: state.storeReducer.objectFields,
-        ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+        ifDisplaySlider: state.BHD.ifDisplaySlider,
+        bhd: state.BHD.bullcommerceHeaderDesign
 
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setTitle: (e) => dispatch(actions.setTitle(e)),
+    setTitle: (e) => dispatch(actions.setBhTitle(e)),
     setAlignment: (side) => dispatch(actions.setAlignment(side)),
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),
-    setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle())
+    setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle()),
+    setChangeImgInCurrentLocation: (place) => dispatch(actions.setChangeImgInCurrentLocation(place))
 
 
 

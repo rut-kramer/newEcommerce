@@ -25,24 +25,18 @@ import { actions } from '../../redux/action';
 import ModalExample from "../reactstrapComponents/modal";
 
 function ScrollTransparentNavbar(props) {
-  // const [collapseOpen, setCollapseOpen] = useState(false);
-  // const [navbarColor, setNavbarColor] = useState(
-  //   (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
-  //     ? ""
-  //     : " navbar-transparent"
-  // );
-  // buyButtonColor
+
+
 
   const history = useHistory();
-
   const [modal, setModal] = useState(false);
-  // const [searchText, setSearchText] = useState("");
 
   const [, setBuyButtonColor] = useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
       ? "info"
       : "neutral"
   );
+
   useEffect(() => {
 
     const updateNavbarColor = () => {
@@ -185,7 +179,15 @@ function ScrollTransparentNavbar(props) {
               </div>
               <div className="separatorStripe" style={{ float: "left" }}></div>
               <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/cart"} style={{ float: "left" }}>
-                <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}></FontAwesomeIcon>
+                <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}
+                  onMouseEnter={() => props.cartPanal_open()}
+                  onMouseLeave={() => props.cartPanal_close()}
+
+                >
+
+                </FontAwesomeIcon>
+
+
                 <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
               </Link>
             </div>

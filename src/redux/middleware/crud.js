@@ -22,10 +22,10 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             return;
         }
         const myFile = new FormData();
-        
+
         myFile.append("file", action.payload);
         $.ajax({
-            "url": `https://files.codes/api/Yeudit%20Shapira/upload`,
+            "url": `https://files.codes/api/yeudit/upload`,
             // + getState().userReducer.user.uid,
             "method": "POST",
             "processData": false,
@@ -38,10 +38,11 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "data": myFile,
             "async": false,
             success: function (data1) {
-        
 
-                dispatch(actions.setPicture(data1))
-                console.log("picture", data1.data);
+
+                dispatch(actions.setPicture(JSON.parse(data1).data.url));
+                dispatch(actions.setImagesArr(JSON.parse(data1).data.url));
+                console.log("picture", JSON.parse(data1));
                 // dispatch(actions.setPicture(data1))
             },
             error: function (err) {

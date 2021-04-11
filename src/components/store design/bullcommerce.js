@@ -69,10 +69,11 @@ function Bullcommerce(props) {
                                         <Card className="card-product card-plain">
                                             <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
 
-                                                <div className="card-image Aheight">
+                                                <div className="card-image Aheight d-flex align-items-center">
                                                     <img
+                                                        className=""
                                                         alt="..."
-                                                        src={ia006}
+                                                        src={item.image}
                                                     ></img>
                                                 </div>
                                             </Link>
@@ -115,7 +116,10 @@ function Bullcommerce(props) {
                                                         color="danger"
                                                         data-placement="left"
                                                         id="tooltip719224089"
-                                                        onClick={() => props.w3_open(item)}
+                                                        onClick={(e) => {
+                                                            e.stopPropagation()
+                                                            props.w3_open(item)
+                                                        }}
                                                     >
                                                         <FontAwesomeIcon className="eye" icon={['far', 'eye']}></FontAwesomeIcon>
                                                     </Button>
@@ -156,7 +160,7 @@ export default connect(
             categories: state.categoriesReducer.categories,
             featuredProducts: state.productReducer.featuredProducts,
             objectFields: state.storeReducer.objectFields,
-            ifDisplaySlider: state.carouselImgReducer.ifDisplaySlider
+            ifDisplaySlider: state.BHD.ifDisplaySlider
 
         }
     },

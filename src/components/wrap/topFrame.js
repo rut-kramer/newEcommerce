@@ -6,13 +6,13 @@ import { actions } from '../../redux/action';
 import { logOut } from "../../services/firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 // public/apple-touch-icon'
 function TopFrame(props) {
 
-    const [copyUrl,setCopyUrl]=useState({
-        value: "https://"+props.storeCurrent.urlRoute+".bullcommerce.shop",
+    const [copyUrl, setCopyUrl] = useState({
+        value: "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop",
         copied: false,
     })
 
@@ -28,9 +28,9 @@ function TopFrame(props) {
     }
 
 
-useEffect(()=>{
-      props.getStoreByUser(props.user._id);   
-},[])
+    useEffect(() => {
+        props.getStoreByUser(props.user._id);
+    }, [])
 
     return (  
         <div
@@ -69,9 +69,9 @@ useEffect(()=>{
             <div id="linkToAdmin" style={{display:"inline-flex"}} >
 
                 <CopyToClipboard text={copyUrl.value} onCopy={() => {
-                    setCopyUrl({copied: true})
+                    setCopyUrl({ copied: true })
                     setTimeout(() => {
-                        setCopyUrl({ copied: false})
+                        setCopyUrl({ copied: false })
                     }, 500);
                   }  }>
                       <FontAwesomeIcon style={{ fontSize: "28px" ,height: "2em", marginRight: "8px"}} icon={['far', 'copy']} ></FontAwesomeIcon>  
@@ -82,13 +82,13 @@ useEffect(()=>{
                     }}
                         className="field__select" >
                         {props.stores.map((item, index) => (
-                            
-                            <option value={JSON.stringify(item)} selected={item._id==props.storeCurrent._id?"selected":""}>
-                                {item._id==props.storeCurrent._id?"https://"+props.storeCurrent.urlRoute+".bullcommerce.shop":item.storeName}</option>
-                            
+
+                            <option value={JSON.stringify(item)} selected={item._id == props.storeCurrent._id ? "selected" : ""}>
+                                {item._id == props.storeCurrent._id ? "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop" : item.storeName}</option>
+
                             // <option value={JSON.stringify(item)} >{item.storeName}</option>
-                            ))}
-                            {/* <option>בחר חנות</option> */}
+                        ))}
+                        {/* <option>בחר חנות</option> */}
                     </select>
                    
                      
@@ -157,6 +157,7 @@ export default connect(
             setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
             setCart: (e) => { dispatch(actions.setOrder(e)) },
             replaceAdmin: () => { dispatch(actions.replaceAdmin()) },
+            getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
 
         }
     }
