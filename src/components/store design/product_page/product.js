@@ -175,7 +175,7 @@ function Product(props) {
 </Link>
                                         <label>/</label>
                                         <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category" }}>
-                                                {category.categoryName}
+                                                {props.currentProduct.categoryName}
                                         </Link>
                                         <label>/</label>
                                         <label color="inherit" >
@@ -260,7 +260,7 @@ function Product(props) {
                                                                                         </a>
                                                                                 </Carousel> */}
                                                                                                                 <img
-                                                                                                                        src={product.image}
+                                                                                                                        src={props.currentProduct.image}
                                                                                                                         // alt={item.altText}
                                                                                                                         className="d-block img-raised"
                                                                                                                 />
