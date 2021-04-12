@@ -4,7 +4,15 @@ import interior from "../../../assets/img/xd/interior-with-white-sofa@2x.png";
 import img3 from "../../../assets/img/xd/ia_300000045.png";
 
 const initialState = {
-        bullcommerceHeaderDesign: {},
+        bullcommerceHeaderDesign: {
+                sliderImages: [{
+                        src: "url(" + interior + ")",
+                },
+                {
+                        src: "url(" + img3 + ")",
+                }
+                ]
+        },
         ImagesArr: [{
                 src: "url(" + interior + ")",
         },
