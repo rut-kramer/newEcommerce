@@ -29,6 +29,8 @@ function EcommerceHeader(props) {
 
   function openMediaGallery(index) {
     props.setChangeImgInCurrentLocation(index)
+    props.setfunctionToSetImage("setImagesArr")
+    props.setChangeImgInCurrentLocation(index)
     history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
   }
 
@@ -209,7 +211,8 @@ const mapDispatchToProps = (dispatch) => ({
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
   setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
-  setBhTitle: (x) => dispatch(actions.setBhTitle(x))
-
+  setBhTitle: (x) => dispatch(actions.setBhTitle(x)),
+  setChangeImgInCurrentLocation: (e) => dispatch(actions.setChangeImgInCurrentLocation(e)),
+  setfunctionToSetImage: (e) => dispatch(actions.setfunctionToSetImage(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);
