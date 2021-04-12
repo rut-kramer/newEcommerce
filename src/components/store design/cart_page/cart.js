@@ -3,8 +3,7 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
-import { Link } from 'react-router-dom';
-// import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // import { Table, Container, Row, Col, Button,  Card, } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
@@ -45,7 +44,7 @@ let flag = 1;
 function Cart(props) {
 
         // const [cookies, setCookie] = useCookies(["order"]);
-         let history = useHistory();
+        let history = useHistory();
         // useEffect(() => {
         //         // props.setUser(props.user._id);
         //         // props.setStore(props.currentStore)
@@ -91,7 +90,7 @@ function Cart(props) {
 
 
         const onSubmit = () => {
-                let path =   `/${props.objectFields.urlRoute}/checkOut`;     
+                let path = `/${props.objectFields.urlRoute}/checkOut`;
                 history.push(path);
         }
 
