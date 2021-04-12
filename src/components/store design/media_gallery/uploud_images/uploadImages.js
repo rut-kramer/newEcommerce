@@ -3,12 +3,11 @@ import './uploadImages.css'
 import { actions } from "../../../../redux/action"
 import { connect } from 'react-redux';
 import uploadImg from '../../../../assets/uploadImg.svg'
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function UploadImages(props) {
     const [fileToUpload, setFileToUpload] = useState(null);
     const [myImage, setMyImage] = useState(null);
-    function setImagesArr(u) { console.log("sdfghjkkkkkkkkkkkkkk"); }
     function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
@@ -28,19 +27,24 @@ function UploadImages(props) {
     // }
     return (
         <>
-            <div className="uploud-image">
+            <div className="uploud-image"
+                style={{ myImage } ? {
+                    backgroundImage: `url(${myImage})`,
+                    backgroundPosition: 'center',
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat'
+                } : { display: "none" }}>
                 <div className="uploud-image-middle">
-                    <label for="files"></label>  
-                   <img className="myImage" src={myImage} style={myImage ? {} : {display: "none"}}></img>
-                   <div> <img className="upload-img" src={uploadImg} style={myImage ? {display: "none"} : {}} alt="uploadImg" /></div>
+                    <label for="files"></label>
+                    <div> <img className="upload-img" src={uploadImg} style={myImage ? { display: "none" } : {}} alt="uploadImg" /></div>
                     <div><p className="upload-image-word mt-2 mb-1">Drop Image Here</p></div>
                     <div><p className="upload-image-word pl-5 ml-3 mt-0">Or</p></div>
-                    <div className="uploud-image-choose-file-div ml-2">
+                    <div className="uploud-image-choose-file-div ">
                         <label htmlFor="files" className="uploud-image-choose-file" >
                             Choose Files
-                            <img className="logoC"
+                            {/* <img className="logoC"
                                 src={props.url}
-                            ></img>
+                            ></img> */}
                         </label>
                         <input id="files" style={{ visibility: "hidden" }} type="file" onChange={(e) => handlerLogo(e.target.files[0])} />
                         <Link to={props.imageLocation}>
@@ -51,7 +55,6 @@ function UploadImages(props) {
             </div>
         </>
     )
-
 }
 const mapStateToProps = (state) => {
     return {
@@ -62,9 +65,6 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     uploadImage: (x) => dispatch(actions.uploadImage(x)),
-    // setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
-    // setImageLocation: (e) => dispatch(actions.setImageLocation(e))
     uploadImageNameAction: (e) => dispatch(actions.uploadImageNameAction(e))
-
 })
 export default connect(mapStateToProps, mapDispatchToProps)(UploadImages);

@@ -6,7 +6,7 @@ import {
     Col,
     Container,
 } from "reactstrap";
-import ImageNewsLetter from '../../assets/homeNewsLetter.png'
+import ImageNewsLetter from '../../assets/3.jpg'
 import "./newsLetter.css"
 import homeImage from '../../assets/home.png';
 function NewsLetter(props) {

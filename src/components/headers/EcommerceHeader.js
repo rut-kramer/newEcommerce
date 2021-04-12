@@ -69,7 +69,7 @@ function EcommerceHeader(props) {
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
+            // value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
             onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");

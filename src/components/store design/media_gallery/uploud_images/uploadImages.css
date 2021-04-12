@@ -18,10 +18,10 @@
     width: 8rem;
     height: 2rem;
     padding: 4% 14%;
+    margin-left: 0.4rem;
 }
-.myImage{
-    width: 90%;
-    height: 85%;
-    margin: 5%;
-    padding: 15% 37%;
+.uploud-image-choose-file-div:hover{
+    width: 8.8rem;
+    height: 2.2rem;
+    padding: 5% 17%;
 }
