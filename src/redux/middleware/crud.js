@@ -23,7 +23,7 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
         }
         const myFile = new FormData();
 
-        myFile.append("file", action.payload);
+        myFile.append("file", action.payload.file);
         $.ajax({
             "url": `https://files.codes/api/yeudit/upload`,
             // + getState().userReducer.user.uid,
@@ -39,9 +39,11 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
             "async": false,
             success: function (data1) {
 
-
+                alert("The picture uploaded successfully! " + JSON.parse(data1).data.url)
                 dispatch(actions.setPicture(JSON.parse(data1).data.url));
-                dispatch(actions.setImagesArr(JSON.parse(data1).data.url));
+                // dispatch(actions.setImagesArr(JSON.parse(data1).data.url));
+                dispatch(actions.uploadImageNameAction({ func: action.payload.func, img: JSON.parse(data1).data.url }))
+
                 console.log("picture", JSON.parse(data1));
                 // dispatch(actions.setPicture(data1))
             },

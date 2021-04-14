@@ -6,18 +6,17 @@ import uploadImg from '../../../../assets/uploadImg.svg'
 import { Link } from "react-router-dom";
 
 function UploadImages(props) {
-    const [fileToUpload, setFileToUpload] = useState(null);
     const [myImage, setMyImage] = useState(null);
     function handlerLogo(event) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.uploadImageNameAction({ func: props.functionSetImage, img: reader.result })
                 setMyImage(reader.result)
             }
             reader.readAsDataURL(event)
-            setFileToUpload(event);
-            props.uploadImage(event);
+            // props.uploadImageNameAction({ func: props.functionSetImage, img: reader.result })
+
+            props.uploadImage({ file: event, func: props.functionSetImage, img: event });
         }
     }
 

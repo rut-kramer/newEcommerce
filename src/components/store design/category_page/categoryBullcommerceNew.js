@@ -339,7 +339,7 @@ function CategoryBullcommerce(props) {
 
       <div className="wrapper">
         <div>
-      
+
           <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
             Home Page
 </Link>
@@ -409,7 +409,7 @@ function CategoryBullcommerce(props) {
                         <Card className="card-product card-plain">
                           <div className="card-image frameToProductView"
                           >
-                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }} onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item)}}>
+                            <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/product/" + item.SKU, state: { product: item } }} onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item) }}>
 
                               <img className="imageProduct"
                                 alt="..."
