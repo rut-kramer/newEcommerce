@@ -25,10 +25,12 @@ const bullcommerceHeader = {
                 state.bullcommerceHeaderDesign = action.payload;
         },
         setImagesArr(state, action) {
+                debugger
                 state.bullcommerceHeaderDesign.sliderImages.push(action.payload);
                 // if (state.changeImgInCurrentLocation == -1) {
                 //         if (state.ImagesArr[0].src == "url(" + interior + ")")
                 //                 state.ImagesArr = []
+
                 //         state.ImagesArr.push({
                 //                 src: "url(" + action.payload + ")",
                 //         })
@@ -39,6 +41,7 @@ const bullcommerceHeader = {
                 // }
         },
         setBhTitle(state, action) {
+                debugger
                 state.bullcommerceHeaderDesign.title.textContent = action.payload
         },
         setifDisplaySlider(state, action) {
