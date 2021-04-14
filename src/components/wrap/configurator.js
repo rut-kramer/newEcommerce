@@ -10,6 +10,7 @@ import EditProduct from '../store setting/product_management/editProduct';
 import EditCategory from '../store setting/category_managment/editCategory';
 import EditAttribute from '../store setting/attribute_management/editAttribute'
 import HeaderConfigurator from "../store design/all_configurators/home/headerConfigurator"
+import CategoryMenu from "../store design/all_configurators/category/categoryMenu";
 import SliderConfigurator from "../store design/all_configurators/home/sliderConfigurator"
 import ProductConfigurator from "../store design/all_configurators/product/productConfigurator"
 
@@ -46,6 +47,7 @@ function Configurator(props) {
                                     case "SliderConfigurator": return <SliderConfigurator />;
                                     case "ProductConfigurator": return <ProductConfigurator />;
                                     case "HomeConfigurator": return <HomeConfigurator />;
+                                    case "CategoryMenu": return <CategoryMenu />;
                                 }
                             })() :
                                 <h3>No component was selected!</h3>

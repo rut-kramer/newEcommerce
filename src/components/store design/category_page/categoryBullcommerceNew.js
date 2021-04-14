@@ -351,7 +351,7 @@ function CategoryBullcommerce(props) {
             {category.categoryName}
           </label>
         </div>
-        <EcommerceHeader />
+        {/* <EcommerceHeader /> */}
         <div className="main">
 
           <div className="section">

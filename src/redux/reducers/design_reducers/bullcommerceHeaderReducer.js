@@ -1,15 +1,14 @@
 import produce from 'immer';
 import createReducer from '../reducerUtils';
 import interior from "../../../assets/img/xd/interior-with-white-sofa@2x.png";
-import img3 from "../../../assets/img/xd/ia_300000045.png";
-
+import room from "../../../assets/img/xd/room.jpg";
 const initialState = {
         bullcommerceHeaderDesign: {},
         ImagesArr: [{
-                src: interior
+                src: room
         },
         {
-                src: img3
+                src: interior
         }
         ],
         ifDisplaySlider: true,

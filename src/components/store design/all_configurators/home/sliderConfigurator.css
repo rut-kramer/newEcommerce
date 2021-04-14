@@ -35,6 +35,9 @@
     -webkit-transition: .4s;
     transition: .4s;
   }
+  input:checked + .sliderConfigurator::before {
+    background-color: grey;
+  }
   
   input:checked + .sliderConfigurator {
     background-color: white;

@@ -2,14 +2,14 @@ import produce from 'immer';
 import createReducer from "../reducerUtils";
 
 const initialState = {
-    //כל הנתונים שצריכים להשתמש בהם בכל הקומפוננטות
     collapse: "",
-    title: "",
-    alignment: "center",
-    ifDisplayTitle: "true",
-    color: "white",
-    size: "",
-    currentIndexFromCarousl: 0
+    title: "",//סלידר
+    alignment: "center",//סלידר
+    ifDisplayTitle: "true",//סלידר
+    color: "white",//סלידר
+    size: "",//סלידר
+    currentIndexFromCarousl: 0,//סלידר
+    backgroundMenu: "red"//הידר תפריט ניווט
 }
 
 const bullPageEdit = {
@@ -24,6 +24,9 @@ const bullPageEdit = {
     },
     setSize(state, action) {
         state.size = action.payload
+    },
+    setBackgroundMenu(state, action) {//הידר תפריט ניווט
+        state.backgroundMenu = action.payload
     },
     setCollapse(state, action) {
         state.collapse = action.payload

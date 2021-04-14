@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Button,
@@ -69,13 +69,22 @@ function EcommerceHeader(props) {
 
   };
 
+  useEffect(function () {
+    return function exit() {
+      alert("exit")
+      //     if (window.confirm("אם אתה בטוח שברצונך למחוק את החנותן"))
+
+      //     else
+      //       alert('מזל שהתחרטת...')
+    }
+  }, []);
   return (
     <div>
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
-            // value={props.objectFields.storeName}
+            // value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
+            value={props.objectFields.storeName}
             onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
@@ -105,18 +114,37 @@ function EcommerceHeader(props) {
                 onExited={onExited}
                 key={'url(' + item + ')'}
               >
-                <div
-                  onClick={() => openMediaGallery(index)}
-                  className="page-header header-filter carouelImgHover"
-                >
+                {props.isAdmin ?
                   <div
-                    className="page-header-image"
-                    style={{
-                      backgroundImage: 'url(' + item + ')'
-                    }}
-                  ></div>
+                    onClick={() => openMediaGallery(index)}
+                    className="page-header header-filter carouelImgHover"
+                  >
+                    <div
+                      className="page-header-image"
+                      style={{
+                        backgroundImage: 'url(' + item + ')'
+                      }}
+                    ></div>
 
-                </div>
+                  </div>
+                  :
+                  <div
+                    className="page-header header-filter"
+                  >
+                    <div
+                      className="page-header-image"
+                      style={{
+                        backgroundImage: 'url(' + item + ')'
+                      }}
+                    ></div>
+
+                  </div>
+                }
+
+
+
+
+
               </CarouselItem>
             );
           }) :
@@ -160,18 +188,18 @@ function EcommerceHeader(props) {
               role="button"
             >
               <Button
-                className="btn-icon btn-round"
+                className="btn-icon btn-round btnToArrow"
                 name="button"
                 size="sm"
                 type="button"
                 style={{ backgroundColor: "transparent" }}
               >
-                <FontAwesomeIcon icon={['fas', 'chevron-left']}>
+                <FontAwesomeIcon icon={['fas', 'chevron-left']} className="EH-chevron">
                 </FontAwesomeIcon>
               </Button>
             </a>
             <a
-              className="right carousel-control carousel-control-next"
+              className="right carousel-control carousel-control-next EH-aOfBtn"
               data-slide="next"
               href="#pablo"
               onClick={(e) => {
@@ -181,14 +209,14 @@ function EcommerceHeader(props) {
               role="button"
             >
               <Button
-                className="btn-icon btn-round"
+                className="btn-icon btn-round btnToArrow"
                 name="button"
                 size="sm"
                 type="button"
                 style={{ backgroundColor: "transparent" }}
 
               >
-                <FontAwesomeIcon icon={['fas', 'chevron-right']}>
+                <FontAwesomeIcon icon={['fas', 'chevron-right']} className="EH-chevron">
                 </FontAwesomeIcon>                                                                                </Button>
             </a>
           </>
@@ -197,7 +225,7 @@ function EcommerceHeader(props) {
 
 
 
-    </div>);
+    </div >);
 }
 
 const mapStateToProps = (state) => {
@@ -211,8 +239,8 @@ const mapStateToProps = (state) => {
     ImagesArr: state.BHD.ImagesArr,
     collapseOfRedux: state.bullPageEditReducer.collapse,
     ifDisplayTitle: state.bullPageEditReducer.ifDisplayTitle,
-    bhd: state.BHD.bullcommerceHeaderDesign
-
+    bhd: state.BHD.bullcommerceHeaderDesign,
+    isAdmin: state.viewOrEditReducer.isAdmin
   }
 }
 const mapDispatchToProps = (dispatch) => ({

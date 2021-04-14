@@ -83,13 +83,12 @@ function SliderConfigurator(props) {
                                 </div></Col>
 
                         </Row>
-
                         <Row md="12" className="mt-3">Title Setting </Row>
                         <Row md="12" className="mt-3">
                             <Col md="7" className="p-0">Title Name</Col>
                             <Col md="5" className="p-0 pl-4">
                                 <label className="sliderConfigSwitch">
-                                    <input type="checkbox"
+                                    <input type="checkbox" style={{ backgroundColor: props.ifDisplaySlider ? "red" : "blue" }}
                                         onChange={props.setIfDisplayTitle}
                                     />
                                     <span className="sliderConfigurator round"></span>

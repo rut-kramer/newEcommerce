@@ -9,7 +9,7 @@
         vertical-align: middle;
 
         &:not(.btn):not(.dropdown-item){
-            color: $white-color;
+            // color: $white-color;
         }
     }
 
@@ -172,7 +172,7 @@
 }
 
 .bg-default{
-    background-color: $default-color !important;
+    // background-color: $default-color !important;
 }
 
 .bg-primary{
@@ -195,6 +195,6 @@
     background-color: $warning-color !important;
 }
 
-.bg-white{
-    background-color: $white-color !important;
-}
+// .bg-white{
+//     background-color: $white-color;
+// }
