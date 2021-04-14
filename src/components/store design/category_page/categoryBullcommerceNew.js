@@ -339,7 +339,6 @@ function CategoryBullcommerce(props) {
 
       <div className="wrapper">
         <div>
-
           <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
             Home Page
 </Link>
