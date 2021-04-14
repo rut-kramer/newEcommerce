@@ -26,7 +26,7 @@ const bullcommerceHeader = {
         },
         setImagesArr(state, action) {
                 debugger
-                state.bullcommerceHeaderDesign.sliderImages.push(action.payload);
+                state.bullcommerceHeaderDesign.sliderImages[state.changeImgInCurrentLocation] = action.payload;
                 // if (state.changeImgInCurrentLocation == -1) {
                 //         if (state.ImagesArr[0].src == "url(" + interior + ")")
                 //                 state.ImagesArr = []
@@ -39,6 +39,9 @@ const bullcommerceHeader = {
                 //         state.ImagesArr[state.changeImgInCurrentLocation].src = "url(" + action.payload + ")"
 
                 // }
+        },
+        addPictureToSliderImages(state, action) {
+                state.bullcommerceHeaderDesign.sliderImages.push(action.payload);
         },
         setBhTitle(state, action) {
                 debugger

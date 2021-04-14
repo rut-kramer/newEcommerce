@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from "react-redux";
 import { actions } from "../../../../redux/action";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import {
     Row,
@@ -15,6 +15,8 @@ import cloud from "../../../../assets/img/xd/cloud.png"
 
 function SliderConfigurator(props) {
     const [fileToUpload, setFileToUpload] = useState(null);
+
+    const location = useLocation();
 
     function handlerLogo(event) {
         if (event) {
@@ -32,7 +34,8 @@ function SliderConfigurator(props) {
     const history = useHistory();
 
     function openMediaGallery() {
-        props.setChangeImgInCurrentLocation(-1)
+        props.setfunctionToSetImage("addPictureToSliderImages")
+        props.setImageLocation(location.pathname)
         history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
 
     }
@@ -139,10 +142,8 @@ const mapDispatchToProps = (dispatch) => ({
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),
     setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle()),
-    setChangeImgInCurrentLocation: (place) => dispatch(actions.setChangeImgInCurrentLocation(place))
-
-
-
+    setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
+    setImageLocation: (location) => dispatch(actions.setImageLocation(location))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(SliderConfigurator);
 

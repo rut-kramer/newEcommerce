@@ -2,7 +2,7 @@ import axios from 'axios';
 import $ from 'jquery';
 
 import { actions } from '../action';
-
+import imageCompression from "browser-image-compression";
 
 
 export const userIdByEmail = ({ dispatch, getState }) => next => action => {
@@ -17,13 +17,30 @@ export const userIdByEmail = ({ dispatch, getState }) => next => action => {
 
 export const uploadImage = ({ dispatch, getState }) => next => action => {
     if (action.type === "UPLOAD_IMAGE") {
+
         if (action.payload.size > 5242880) {
             alert(`sorry, the file ${action.payload.name} is too big file, Please remove it from the list`);
             return;
         }
-        const myFile = new FormData();
 
+        // const options = {
+        //     maxSizeMB: 1,
+        //     maxWidthOrHeight: 1920,
+        //     useWebWorker: true,
+        // };
+        const myFile = new FormData();
         myFile.append("file", action.payload.file);
+
+        // async function a() {
+        //     debugger
+        //     const compressedFile = await imageCompression(action.payload.file, options);
+        //     debugger
+        //     myFile.append("file", compressedFile);
+
+        // }
+
+        // a();
+
         $.ajax({
             "url": `https://files.codes/api/yeudit/upload`,
             // + getState().userReducer.user.uid,
@@ -55,4 +72,49 @@ export const uploadImage = ({ dispatch, getState }) => next => action => {
     }
     return next(action);
 }
+
+// import imageCompression from "browser-image-compression";
+
+// function App() {
+//   async function handleImageUpload(event) {
+//     const imageFile = event.target.files[0];
+
+//     const options = {
+//       maxSizeMB: 1,
+//       maxWidthOrHeight: 1920,
+//       useWebWorker: true,
+//     };
+//     try {
+
+//       const compressedFile = await imageCompression(imageFile, options);
+
+//       const formData = new FormData();
+//       formData.append("File", compressedFile);
+
+//       await fetch("http://localhost:7000/upload", {
+//         method: "POST",
+//         body: formData,
+//         headers: {
+//           name: compressedFile.name,
+//         },
+//       })
+//         .then((result) => {
+//           console.log("Success:", result);
+//         })
+//         .catch((error) => {
+//           console.error("Error:", error);
+//         });
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+
+//   return (
+//     <div className="App">
+//       <input name="foo" type="file" onChange={handleImageUpload} />
+//     </div>
+//   );
+// }
+
+// export default App;
 
