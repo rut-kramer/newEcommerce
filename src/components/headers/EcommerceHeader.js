@@ -13,7 +13,7 @@ import {
   CarouselIndicators,
   // Container,
 } from "reactstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
@@ -25,12 +25,13 @@ import aa from "../../assets/img/bg1.jpg"
 
 function EcommerceHeader(props) {
   const history = useHistory();
+  const location = useLocation();
 
 
   function openMediaGallery(index) {
-    props.setChangeImgInCurrentLocation(index)
+    props.setChangeImgInCurrentLocation(index);
     props.setfunctionToSetImage("setImagesArr")
-    props.setChangeImgInCurrentLocation(index)
+    props.setImageLocation(location.pathname)
     history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
   }
 
@@ -71,8 +72,7 @@ function EcommerceHeader(props) {
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
-            // value={props.objectFields.storeName}
+            value={(props.bhd.title && (props.bhd.title !== undefined || props.bhd.title !== null)) ? props.bhd.title.textContent : props.objectFields.storeName}
             onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
@@ -92,54 +92,52 @@ function EcommerceHeader(props) {
           onClickHandler={goToIndex}
           className="EH-carouselIndicators"
         />
+
         {(Array.isArray(props.bhd.sliderImages) && props.bhd.sliderImages.length > 0) ?
-          props.bhd.sliderImages.map((item, index) => {
-            return (
-              <CarouselItem
-                onExiting={onExiting}
-                onExited={onExited}
-                key={'url(' + item + ')'}
+          props.bhd.sliderImages.map((item, index) => (
+            <CarouselItem
+              onExiting={onExiting}
+              onExited={onExited}
+              key={'url(' + item + ')'}
 
-              >
+            >
 
-                <div
+              <div
 
-                  onClick={() => openMediaGallery(index)}
-                  className="page-header header-filter carouelImgHover"
-                >
-                  <div
-                    className="page-header-image"
-                    style={{
-                      backgroundImage: 'url(' + item + ')'
-                    }}
-                  ></div>
-
-                </div>
-              </CarouselItem>
-            );
-          }) :
-          props.ImagesArr.map((item, index) => {
-            return (
-              <CarouselItem
-                onExiting={onExiting}
-                onExited={onExited}
-                key={item.src}
+                onClick={() => openMediaGallery(index)}
+                className="page-header header-filter carouelImgHover"
               >
                 <div
-                  onClick={() => openMediaGallery(index)}
-                  className="page-header header-filter carouelImgHover"
-                >
-                  <div
-                    className="page-header-image"
-                    style={{
-                      backgroundImage: item.src
-                    }}
-                  ></div>
+                  className="page-header-image"
+                  style={{
+                    backgroundImage: 'url(' + item + ')'
+                  }}
+                ></div>
 
-                </div>
-              </CarouselItem>
-            );
-          }
+              </div>
+            </CarouselItem>
+
+          )) :
+          props.ImagesArr.map((item, index) => (
+            <CarouselItem
+              onExiting={onExiting}
+              onExited={onExited}
+              key={item.src}
+            >
+              <div
+                onClick={() => openMediaGallery(index)}
+                className="page-header header-filter carouelImgHover"
+              >
+                <div
+                  className="page-header-image"
+                  style={{
+                    backgroundImage: item.src
+                  }}
+                ></div>
+
+              </div>
+            </CarouselItem>
+          )
           )}
 
 
@@ -211,8 +209,10 @@ const mapDispatchToProps = (dispatch) => ({
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
   setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
   setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
+  setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
+  setImageLocation: (location) => dispatch(actions.setImageLocation(location)),
   setBhTitle: (x) => dispatch(actions.setBhTitle(x)),
   setChangeImgInCurrentLocation: (e) => dispatch(actions.setChangeImgInCurrentLocation(e)),
-  setfunctionToSetImage: (e) => dispatch(actions.setfunctionToSetImage(e))
+
 })
 export default connect(mapStateToProps, mapDispatchToProps)(EcommerceHeader);
