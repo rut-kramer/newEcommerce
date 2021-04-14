@@ -16,7 +16,7 @@ function UploadImages(props) {
             reader.readAsDataURL(event)
             // props.uploadImageNameAction({ func: props.functionSetImage, img: reader.result })
 
-            props.uploadImage({ file: event, func: props.functionSetImage, img: event });
+            props.uploadImage({ file: event, func: props.functionSetImage });
         }
     }
 
