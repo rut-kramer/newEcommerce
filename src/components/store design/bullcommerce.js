@@ -37,7 +37,7 @@ function Bullcommerce(props) {
     //     setQuickLookProduct(item)
     // }
     useEffect(() => {
-
+        props.changeCurrentComponent("HomeConfigurator");
         document.body.classList.add("ecommerce-page");
         document.body.classList.add("sidebar-collapse");
         document.documentElement.classList.remove("nav-open");
@@ -167,7 +167,8 @@ export default connect(
     (dispatch) => {
         return {
             setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
-            addToCart: (product) => { dispatch(actions.addToCart(product)) }
+            addToCart: (product) => { dispatch(actions.addToCart(product)) },
+            changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
 
         }
     }

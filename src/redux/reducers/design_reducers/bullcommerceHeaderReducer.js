@@ -1,15 +1,16 @@
 import produce from 'immer';
 import createReducer from '../reducerUtils';
 import interior from "../../../assets/img/xd/interior-with-white-sofa@2x.png";
-import img3 from "../../../assets/img/xd/ia_300000045.png";
-
+import room from "../../../assets/img/xd/room.jpg";
 const initialState = {
         bullcommerceHeaderDesign: {},
         ImagesArr: [{
-                src: "url(" + interior + ")",
+                src: "url(" + room + ")",
+
         },
         {
-                src: "url(" + img3 + ")",
+                src: "url(" + interior + ")",
+
         }
         ],
         ifDisplaySlider: true,
@@ -21,16 +22,13 @@ const bullcommerceHeader = {
 
         //BHD=bullcommerceHeaderDesign
         setBHD(state, action) {
-                debugger
                 state.bullcommerceHeaderDesign = action.payload;
         },
         setImagesArr(state, action) {
-                debugger
                 state.bullcommerceHeaderDesign.sliderImages.push(action.payload);
                 // if (state.changeImgInCurrentLocation == -1) {
                 //         if (state.ImagesArr[0].src == "url(" + interior + ")")
                 //                 state.ImagesArr = []
-
                 //         state.ImagesArr.push({
                 //                 src: "url(" + action.payload + ")",
                 //         })
@@ -41,7 +39,6 @@ const bullcommerceHeader = {
                 // }
         },
         setBhTitle(state, action) {
-                debugger
                 state.bullcommerceHeaderDesign.title.textContent = action.payload
         },
         setifDisplaySlider(state, action) {

@@ -1,12 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { connect } from "react-redux";
 import { actions } from '../../redux/action';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    // Table,
-    //  Container,
-    //   Row,
-    //    Col, 
     Button
 } from 'reactstrap';
 import './quickLook.css'
@@ -16,9 +12,6 @@ import './quickLook.css'
 import ia006 from "../../assets/img/xd/ia_300000006.png";
 
 function QuickLook(props) {
-
-
-    // const [orderAmount, setOrderAmount] = useState(1)
     return (
 
         <div>
@@ -26,12 +19,10 @@ function QuickLook(props) {
                 onClick={props.w3_close}
                 className="">&times;
                     </button>
-
             <img alt="...." className="imageProductQLook"
                 src={ia006}>
             </img>
             <div className="detailsProduct mt-2">
-
                 <div>{props.currentProduct.name}</div>
                 <div>{props.currentProduct.price}</div>
                 <div>
@@ -48,7 +39,6 @@ function QuickLook(props) {
 
                             <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                         </Button>{' '}
-                        {/* 1 */}
                         {props.orderAmount}{' '}
                         <Button size="sm"
                             onClick={(e) => {
@@ -87,7 +77,5 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => ({
     addToCart: (product) => { dispatch(actions.addToCart(product)) }
-
-
 })
 export default connect(mapStateToProps, mapDispatchToProps)(QuickLook);

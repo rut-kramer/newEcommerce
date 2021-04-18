@@ -15,7 +15,6 @@ function TopFrame(props) {
         value: "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop",
         copied: false,
     })
-
     function funcReset(item) {
         props.setCurrentStore(item);
         props.getOrdersByStore(item._id)
@@ -115,6 +114,8 @@ function TopFrame(props) {
                 }
                 {copyUrl.copied ? <span style={{ color: 'red', border: '1px solid red', borderRadius: '25%' }}>Copied.</span> : null}
 
+
+                {copyUrl.copied ? <span style={{ color: 'red', border: '1px solid red', borderRadius: '25%' }}>Copied.</span> : null}
                 <div className="ml-auto" style={{ marginRight: "3vw", fontSize: "24px" }}>
                     {props.user && props.user.username} &nbsp;
                 <Link to="/" style={{ fontSize: "34px", color: 'black' }}

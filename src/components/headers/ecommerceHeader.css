@@ -11,14 +11,30 @@ Carousel {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 1;
   }
   .bullcommerceTitleInput{
-    color: #FFFFFF !important;
     border: none;
     background-color: transparent !important;
     font-size: 49px;
     font-weight: bold;
+    z-index: 1;
   }
   .EH-carouselIndicators{
-    z-index: 1 !important;
+    z-index: 5 !important;
+    margin-bottom: 0.3rem !important;
+  }
+  .EH-aOfBtn{
+    z-index: 2 !important;
+
+  }
+  .btnToArrow{
+    /* color: "linear-gradient(94deg, #FC894D 0%, #FE5196 100%)" ; */
+    height: 4rem !important;
+width:4rem !important;
+  }
+  .EH-chevron{
+    font-size: 3rem !important;
+  text-shadow: 5px 5px 5px black;
+color:#FE5196
   }

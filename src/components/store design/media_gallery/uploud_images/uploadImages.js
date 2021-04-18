@@ -54,6 +54,7 @@ function UploadImages(props) {
             </div>
         </>
     )
+
 }
 const mapStateToProps = (state) => {
     return {

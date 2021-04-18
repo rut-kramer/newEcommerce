@@ -11,18 +11,15 @@ import {
     Button
 } from "reactstrap";
 
-// image
 import productInCart from "../../../assets/img/xd/631e3939-9988-41b6-a6fe-d60206ab0582@2x.png";
 import "./cart.css"
 import { Link } from 'react-router-dom';
 function CartPanel(props) {
-    // const [orderAmount, setOrderAmount] = useState(1)
 
     return (
-
         <Container>
-
-            <Row>
+            <Row onMouseLeave={() => props.cartPanal_close()}
+            >
                 <Col sm="12"
                     md={{ size: 10, offset: 1 }}
                     className="onlyProduct"
@@ -37,7 +34,7 @@ function CartPanel(props) {
                                     <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            props.changeAmount({ "index": index, "plusOrMinus": "plus" })
+                                            props.changeAmount({ index: index, amount: 1, plusOrMinus: "plus" })
                                         }}
                                     >
                                         <FontAwesomeIcon icon={['fas', 'plus']}>
@@ -48,7 +45,7 @@ function CartPanel(props) {
                                     <Button style={{ width: "1.5rem", height: "1.5rem", padding: 0 }}
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            props.changeAmount({ "index": index, "plusOrMinus": "minus" })
+                                            props.changeAmount({ "index": index, amount: 1, "plusOrMinus": "minus" })
                                         }}
                                     >
                                         <FontAwesomeIcon icon={['fas', 'minus']}>

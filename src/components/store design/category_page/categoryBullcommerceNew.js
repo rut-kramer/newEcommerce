@@ -347,7 +347,7 @@ function CategoryBullcommerce(props) {
             {category.categoryName}
           </label>
         </div>
-        <EcommerceHeader />
+        {/* <EcommerceHeader /> */}
         <div className="main">
 
           <div className="section">
@@ -430,13 +430,14 @@ function CategoryBullcommerce(props) {
                                 color="danger"
                                 data-placement="left"
                                 id="tooltip719224088"
-                                onClick={() => props.addToCart(
-                                  {
-                                    "product": item,
-                                    "amount": 1
-                                  }
-                                )}
-
+                                onClick={() => {
+                                  props.addToCart(
+                                    {
+                                      "product": item,
+                                      "amount": 1
+                                    }
+                                  ); props.cartPanal_open()
+                                }}
                               >
                                 {/* //אם רוצים להשתמש באיקון הזה צריך לקונות אותו */}
                                 {/* <FontAwesomeIcon icon={['far', 'shopping-cart']}></FontAwesomeIcon> */}

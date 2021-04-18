@@ -17,19 +17,26 @@ import { actions } from "../../../../redux/action";
 import { useHistory } from "react-router-dom";
 import "./homeConfigurator.css"
 import HeaderConfigurator from "./headerConfigurator"
+import CategoryMenu from "../category/categoryMenu"
 import SliderConfigurator from "./sliderConfigurator"
 function HomeConfigurator(props) {
     const [collapses, setCollapses] = React.useState([0]);
     useEffect(() => {
         changeCollapse(props.collapseOfRedux)
+        props.setCollapse("")
     }, [props.collapseOfRedux])
 
 
     const changeCollapse = (collapse) => {
-        if (collapses.includes(collapse)) {
-            setCollapses(collapses.filter((prop) => prop !== collapse));
-        } else {
-            setCollapses([...collapses, collapse]);
+        if (collapse != "") {
+
+            if (collapses.includes(collapse)) {
+                // setCollapses(collapses.filter((prop) => prop !== collapse));
+                setCollapses([])
+            } else {
+                setCollapses([collapse]);
+                // setCollapses([...collapses, collapse]);
+            }
         }
     };
 
@@ -55,29 +62,29 @@ function HomeConfigurator(props) {
                                 <CardHeader id="headingfour" role="tab">
                                     <h6 className="titleCollapse">
                                         <a
-                                            aria-expanded={collapses.includes("header")}
+                                            aria-expanded={collapses.includes("menu")}
                                             data-toggle="collapse"
                                             data-parent="#accordion"
                                             href="#pablo"
                                             onClick={(e) => {
                                                 e.preventDefault();
-                                                changeCollapse("header");
+                                                changeCollapse("menu");
                                             }}
                                         >
                                             <Row md="12">
                                                 <div className="lineTafritHome mr-1"></div>
-                                                < div>Header</div>
+                                                < div>Menu</div>
                                             </Row>
                                             {" "}
 
                                         </a>
                                     </h6>
                                 </CardHeader>
-                                <Collapse isOpen={collapses.includes("header")}>
+                                <Collapse isOpen={collapses.includes("menu")}>
                                     <CardBody className="Configurator-padding">
                                         <FormGroup check >
-                                            <HeaderConfigurator ></HeaderConfigurator>
-
+                                            {/* <HeaderConfigurator ></HeaderConfigurator> */}
+                                            <CategoryMenu></CategoryMenu>
                                         </FormGroup>
                                     </CardBody>
                                 </Collapse>

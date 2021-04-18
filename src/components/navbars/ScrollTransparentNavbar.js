@@ -27,17 +27,14 @@ import ModalExample from "../reactstrapComponents/modal";
 function ScrollTransparentNavbar(props) {
 
 
-
+  const location = useLocation()
   const history = useHistory();
   const [modal, setModal] = useState(false);
-
-
   const [, setBuyButtonColor] = useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
       ? "info"
       : "neutral"
   );
-  const location = useLocation();
   const [activeCategory, setActiveCategory] = useState("");
 
 
@@ -74,7 +71,6 @@ function ScrollTransparentNavbar(props) {
     };
 
   });
-
   function searchObj(obj, searchText) {
     for (let key in obj) {
       let value = obj[key];
@@ -126,20 +122,29 @@ function ScrollTransparentNavbar(props) {
 
   return (
     <>
-
       {/* מחקנו מבצע שההידר יהיה סטיקי */}
       {/* className={"fixed-top" + navbarColor} */}
-      <Navbar id="store_main_navbar" color="white" expand="lg" style={{ maxWidth: props.mainWidth }}>
+      <Navbar id="store_main_navbar" color="white" expand="lg" style={{
+        maxWidth: props.mainWidth, border: "1px solid red",
+        backgroundColor: props.backgroundMenu ? props.backgroundMenu + " !important" : "white"
+
+      }}
+        onClick={() => {
+          props.changeCurrentComponent("HomeConfigurator");
+
+          props.setCollapse("menu");
+        }}
+
+      >
         <Container className="d-flex justify-content-between">
           {/* <div className="navbar-translate"> */}
           <NavbarBrand to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName)} tag={Link} id="navbar-brand">
             <img alt="..."
               src={props.objectFields.logo} className="logoHeader"
-              onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("header") }}
+            // onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("menu"); }}
             >
             </img>
             {/* <Button
-
               >tt</Button> */}
           </NavbarBrand>
           <UncontrolledTooltip target="navbar-brand">
@@ -197,21 +202,15 @@ function ScrollTransparentNavbar(props) {
               */}
             <div className="d-flex justify-content-between">
               <div style={{ float: "left", cursor: "pointer" }} onClick={setModal}>
-                {/* <Link to="/" className="mr-2 ml-2" style={{ float: "left" }}> */}
                 <FontAwesomeIcon className="mt-2 mr-3" icon={['fas', 'search']} ></FontAwesomeIcon>
-                {/* </Link> */}
               </div>
               <div className="separatorStripe" style={{ float: "left" }}></div>
               <Link to={"/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/cart"} style={{ float: "left" }}>
                 <FontAwesomeIcon className="mt-2 ml-3" icon={['fas', 'shopping-cart']}
                   onMouseEnter={() => props.cartPanal_open()}
-                  onMouseLeave={() => props.cartPanal_close()}
-
                 >
 
                 </FontAwesomeIcon>
-
-
                 <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>{props.cartProducts.length}</span>
               </Link>
             </div>
@@ -242,6 +241,7 @@ const mapStateToProps = (state) => {
     products: state.productReducer.products,
     mainWidth: state.wrapReducer.mainWidth,
     collapseOfRedux: state.bullPageEditReducer.collapse,
+    backgroundMenu: state.bullPageEditReducer.backgroundMenu,
     categories: state.categoriesReducer.categoryListMenu,
     storeName: state.storeReducer.objectFields.urlRoute ?
       state.storeReducer.objectFields.urlRoute :
@@ -253,9 +253,12 @@ const mapStateToProps = (state) => {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
+  setChangeImgInCurrentLocation: (location) => dispatch(actions.setChangeImgInCurrentLocation(location)),
+  setfunctionToSetImage: (location) => dispatch(actions.setfunctionToSetImage(location)),
+  setImageLocation: (location) => dispatch(actions.setImageLocation(location)),
   setFilteredProducts: (p) => dispatch(actions.setFilteredItems(p)),
   changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
-  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) }
+  setCollapse: (collapseOfRedux) => { dispatch(actions.setCollapse(collapseOfRedux)) },
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(ScrollTransparentNavbar)

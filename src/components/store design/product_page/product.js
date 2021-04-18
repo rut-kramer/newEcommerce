@@ -166,7 +166,7 @@ function Product(props) {
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
                         <div className="wrapper">
                                 <div>
-                               
+
                                         <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
                                                 Home Page
 </Link>
@@ -256,11 +256,11 @@ function Product(props) {
                                                                                                         </FontAwesomeIcon>                                                                                </Button>
                                                                                         </a>
                                                                                 </Carousel> */}
-                                                                                                                <img
-                                                                                                                        src={props.currentProduct.image}
-                                                                                                                        // alt={item.altText}
-                                                                                                                        className="d-block img-raised"
-                                                                                                                />
+                                                                                <img
+                                                                                        src={props.currentProduct.image}
+                                                                                        // alt={item.altText}
+                                                                                        className="d-block img-raised"
+                                                                                />
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>
@@ -371,56 +371,56 @@ function Product(props) {
                                                         </div>
                                                         {props.isAdmin ?
                                                                 <Row id="titleAndContent" >
-<Col>
-                                                                        <div className="d productPrice">
+                                                                        <Col>
+                                                                                <div className="d productPrice">
                                                                                         <h4><b>amount:</b></h4>
                                                                                         <input className="field__input" type="number" placeholder="amount" name="amount" id="amount" onChange={update} value={props.currentProduct.amount} />
 
-                                                                        </div>
-                                                                        <div className="d productPrice">
-                                                                                       
-                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
-                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isStock} name="isStock"></input>isStock<br></br>
-                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.featured} name="featured"></input>featured<br></br>
-                                                                        </div>
-                                                                        <label className="field__input" for="video" >video</label>
-                                                                        <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video} />
-                                                                        <label className="field__input" for="photoGallery">photoGallery</label>
-                                                                        <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
-                                                                     
-                                                                        <select onChange={updateCategory} name="category" className="field__select" >
-                                                                        <option>בחר קטגוריה </option>
-                                                                        {props.categoryList.map((item, index) => (
-                                                                                <option>{item.categoryName}</option>
-                                                                        ))}
-
-                                                                </select>
-                                                                {(Array.isArray(props.currentProduct.attributes) &&
-                                                                        props.currentProduct.attributes.length) ?
-                                                                        props.currentProduct.attributes.map((item, index) => (
-
-                                                                                item.attribute && <div key={index} className=" productColors">
-                                                                                        <h4><b>{item.attribute.name}:</b></h4>
-                                                                                        <div>
-                                                                                                {item.attribute.name === "Color" ?
-                                                                                                        <>
-                                                                                                                {item.terms.map((term, index) => (
-                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
-                                                                                                                ))}
-                                                                                                        </> :
-                                                                                                        <>
-                                                                                                                {item.terms.map((term, index) => (
-                                                                                                                        <label key={index} >{index != 0 && ','} {term.name} </label>
-                                                                                                                ))}
-                                                                                                        </>
-                                                                                                }
-                                                                                        </div>
                                                                                 </div>
+                                                                                <div className="d productPrice">
 
-                                                                        ))
-                                                                        : <></>}
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isStock} name="isStock"></input>isStock<br></br>
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.featured} name="featured"></input>featured<br></br>
+                                                                                </div>
+                                                                                <label className="field__input" for="video" >video</label>
+                                                                                <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video} />
+                                                                                <label className="field__input" for="photoGallery">photoGallery</label>
+                                                                                <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
 
-</Col>
+                                                                                <select onChange={updateCategory} name="category" className="field__select" >
+                                                                                        <option>בחר קטגוריה </option>
+                                                                                        {props.categoryList.map((item, index) => (
+                                                                                                <option>{item.categoryName}</option>
+                                                                                        ))}
+
+                                                                                </select>
+                                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                                        props.currentProduct.attributes.length) ?
+                                                                                        props.currentProduct.attributes.map((item, index) => (
+
+                                                                                                item.attribute && <div key={index} className=" productColors">
+                                                                                                        <h4><b>{item.attribute.name}:</b></h4>
+                                                                                                        <div>
+                                                                                                                {item.attribute.name === "Color" ?
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
+                                                                                                                                ))}
+                                                                                                                        </> :
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <label key={index} >{index != 0 && ','} {term.name} </label>
+                                                                                                                                ))}
+                                                                                                                        </>
+                                                                                                                }
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                        ))
+                                                                                        : <></>}
+
+                                                                        </Col>
                                                                 </Row> : <>
                                                                         <div className="section" id="moreDetails">
                                                                                 <h3><b>DIMANTIONS</b></h3>

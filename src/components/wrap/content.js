@@ -11,33 +11,33 @@ import TopFooter from "../topFooter"
 import MediaGallery from '../store design/media_gallery/mediaGallery';
 
 function Content(props) {
-//    //   cookies = "str="+props.cart
-//      const [cookies, setCookie,removeCookies] = useCookies(["order"]);
-//      const [coo, setCoo] = useCookies(["ordejjr"]);
-//         function  save() {
-//             // const [coo, setCoo] = useCookies(["ordejjr"]);
-//                 setCookie(props.storeCurrent,props.cart, {
-//                         path: "/"
-//                       }); 
-//                       setCookie("123","456", {
-//                         path: "/"
-//                       }); 
+    //    //   cookies = "str="+props.cart
+    //      const [cookies, setCookie,removeCookies] = useCookies(["order"]);
+    //      const [coo, setCoo] = useCookies(["ordejjr"]);
+    //         function  save() {
+    //             // const [coo, setCoo] = useCookies(["ordejjr"]);
+    //                 setCookie(props.storeCurrent,props.cart, {
+    //                         path: "/"
+    //                       }); 
+    //                       setCookie("123","456", {
+    //                         path: "/"
+    //                       }); 
 
-//                       setCoo("aaaa","bbbbb", {
-//                         path: "/"
-//                       }); 
-                          
-//         }
-//         function  get() {  
-//             let x=cookies;
-//             let y=coo;
-//             let  str=props.storeCurrent;
-//             let t = cookies[str];
-//         }
+    //                       setCoo("aaaa","bbbbb", {
+    //                         path: "/"
+    //                       }); 
 
-//         function remove() {
-//             removeCookies("order")
-//         }
+    //         }
+    //         function  get() {  
+    //             let x=cookies;
+    //             let y=coo;
+    //             let  str=props.storeCurrent;
+    //             let t = cookies[str];
+    //         }
+
+    //         function remove() {
+    //             removeCookies("order")
+    //         }
 
     return (
         <div className="Content">
@@ -58,7 +58,7 @@ function Content(props) {
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
             </Switch>
-<TopFooter></TopFooter>
+            <TopFooter></TopFooter>
         </div>
     )
 }
