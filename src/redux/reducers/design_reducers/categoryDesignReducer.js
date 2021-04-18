@@ -2,7 +2,6 @@ import produce from 'immer';
 import createReducer from '../reducerUtils';
 const initialState = {
         categories: [],
-
 }
 const categoryDesignFunc = {
         setCategoryDesign(state, action) {
