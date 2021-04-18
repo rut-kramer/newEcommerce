@@ -45,7 +45,7 @@ let flag = 1;
 function Cart(props) {
 
         // const [cookies, setCookie] = useCookies(["order"]);
-         let history = useHistory();
+        //  let history = useHistory();
         // useEffect(() => {
         //         // props.setUser(props.user._id);
         //         // props.setStore(props.currentStore)
@@ -111,11 +111,11 @@ function Cart(props) {
                                         <br></br>
                                         <br></br>
                                         <br></br>
-                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}className="Breadcrumbs">
                                                 Home Page
 </Link>
                                         <label>/</label>
-                                        <label color="inherit" >
+                                        <label  className="BreadcrumbsActiv" >
                                                 My Cart
 </label>
                                 </div>

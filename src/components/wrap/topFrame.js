@@ -40,7 +40,7 @@ function TopFrame(props) {
 
 
             <div className="row">
-                <button onClick={()=>{props.replaceAdmin();props.setFlagCon()}}>Replace Admin</button>  
+                <button onClick={()=>{props.replaceAdmin();props.setFlagCon()}}> AdminOrClient</button>  
 
      {props.isAdmin&& 
      <>
@@ -109,7 +109,7 @@ function TopFrame(props) {
                         </Link>
           
           </div>
-          <label>admin</label>
+  
 </>
 }
  {copyUrl.copied ? <span style={{color: 'red',border:'1px solid red',borderRadius:'25%' }}>Copied.</span> : null}

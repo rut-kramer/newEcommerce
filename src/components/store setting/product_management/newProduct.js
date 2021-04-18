@@ -12,6 +12,7 @@ import Select from "react-select"
 import '../../store design/product_page/product.css'
 import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 // reactstrap components
 import {
@@ -55,6 +56,7 @@ const items = [
 ];
 
 function NewProduct(props) {
+        const history = useHistory();
 
         const [product, setProduct] = useState({
                 name:'',
@@ -98,7 +100,11 @@ const Submit = async () => {
   let r = props.productsList.filter(p => p.SKU == product.SKU)
   if (r.length == 0) {
     if (product.category != "")
-      props.createNewProduct(product);
+    {
+               props.createNewProduct(product);   
+               history.push("/" + props.objectFields.urlRoute);
+    }
+
     else
       alert("לא בחרת קטגוריה הוסף קטוגריה");
   }
@@ -363,6 +369,7 @@ export default connect(
                         categoryList: state.categoriesReducer.categories,
                         attributesList: state.attributeReducer.attributes,
                         productsList: state.productReducer.products,
+                        objectFields: state.storeReducer.objectFields,
 
                 }
         },

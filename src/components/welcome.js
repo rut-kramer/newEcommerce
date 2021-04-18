@@ -101,7 +101,7 @@ function Welcome(props) {
                                 <Col md="10" className="mt-4 welcomeCOl">
                                     <div>
                                         <input className="welcomeInputName"
-                                            placeholder="הכנס שם חנות"
+                                            placeholder="Enter shop name"
                                             required
                                             type="text"
                                             name="storeName"
@@ -122,7 +122,7 @@ function Welcome(props) {
                         <div id="addDetails" style={{ display: "none" }}>
                             <input className="welcomeAllInput"
                                 required
-                                placeholder="הכנס תאור לחנות"
+                                placeholder="Describe your shop"
                                 name="storeDescription"
                                 onChange={changeStoreDetails}
                             ></input>
@@ -132,34 +132,34 @@ function Welcome(props) {
 
                             <input className="welcomeAllInput"
                                 required
-                                placeholder="הכנס כתובת החנות"
+                                placeholder="Enter shop address"
                                 name="address"
                                 onChange={changeStoreDetails}
                             ></input><br></br>
                             <input className="welcomeAllInput"
                                 required
                                 type={"tel"}
-                                placeholder="הכנס טלפון"
+                                placeholder="Enter mobile phone"
                                 name="tel"
                                 onChange={changeStoreDetails}
                             ></input><br></br>
                             <input className="welcomeAllInput"
                                 type={"email"}
-                                placeholder="הכנס אימיל"
+                                placeholder=" Enter email address "
                                 required
                                 name="email"
                                 onChange={changeStoreDetails}
                             ></input><br></br>
                             <input className="welcomeAllInput"
                                 required
-                                placeholder="הכנס מדיניות"
+                                placeholder="Enter authorities "
                                 name="policy"
                                 onChange={changeStoreDetails}
                             ></input><br></br>
-                            <label>בחר צבע ראשי לחנות</label><br></br>
+                            <label>Enter shop main color </label><br></br>
                             <input className="welcomeAllInput"
                                 type={"color"}
-                                placeholder="  בחר צבע ראשי לחנות   "
+                                placeholder="  Enter shop main color "
                                 name="colorDominates"
                                 onChange={changeStoreDetails}
                             ></input><br></br>

@@ -3,7 +3,7 @@ import createReducer from "../reducerUtils";
 
 const initialState = {
         products: [],
-        featuredProducts: [],
+        // featuredProducts: [],
         pic: "",
         viewListOrGrid: "list",
         currentProduct: {},
@@ -20,7 +20,7 @@ const product = {
        },
         setProducts(state, action) {
                 state.products = action.payload;
-                state.featuredProducts = state.products.filter(x => x.featured === true)
+                // state.featuredProducts = state.products.filter(x => x.featured === true)
         },
         setProductImage(state, action) {
 
@@ -40,8 +40,8 @@ const product = {
 
         addNewProduct(state, action) {
                 state.products.push(action.payload);
-                if(action.payload.featured===true)
-                state.featuredProducts.push(action.payload)
+                // if(action.payload.featured===true)
+                // state.featuredProducts.push(action.payload)
 
         },
         deleteOldProduct(state, action) {

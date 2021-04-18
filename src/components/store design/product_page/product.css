@@ -87,7 +87,19 @@
 .similarImg img{
         align-items: center;
 }
+.Breadcrumbs{
+        color: #000000 ;
+    }
 
+.editInput{
+        background-color:white;
+        border: none;
+        color: #000000;
+        font-size: 18px ;
+}
+.BreadcrumbsActiv{
+        color:rgb(252, 137, 77) 
+}
 /* .product_page{
         
 } */
