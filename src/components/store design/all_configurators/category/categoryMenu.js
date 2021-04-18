@@ -30,7 +30,7 @@ function CategoryMenu(props) {
                         <Row md="12" className="mt-3 p-0 mb-3">Choose Categories For Menu </Row>
 
 
-                        {props.Categories.map((item) => (
+                        {props.Categories.map((item, index) => (
                             <Row md="12">
 
                                 <Col md="8">
@@ -38,7 +38,7 @@ function CategoryMenu(props) {
                                 </Col>
                                 <Col md="3">
                                     <>
-
+                                        <input onChange={(e) => props.setStatusShowCategory({ value: e.target.value, index: index })}></input>
                                         <input type="checkbox" style={{ outline: " 2px solid red" }}></input>
                                         {/* <input style={{ border: "1px solid red" }} type="checkbox" id="vehicle1" name="vehicle1"></input> */}
                                         {/* <input id="myCheck"
@@ -75,8 +75,8 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setBackgroundMenu: (color) => dispatch(actions.setBackgroundMenu(color))
-
+    setBackgroundMenu: (color) => dispatch(actions.setBackgroundMenu(color)),
+    setStatusShowCategory: (e) => dispatch(actions.setStatusShowCategory(e))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryMenu);
 

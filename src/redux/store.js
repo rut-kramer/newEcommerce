@@ -20,6 +20,7 @@ import viewOrEditReducer from "./reducers/edit_reducer/viewOrEditReducer";
 import storeReducer from "./reducers/storeReducer";
 import userReducer from "./reducers/userReducer";
 import coinsReducer from "./reducers/coinsReducer";
+import categoryDesignReducer from "./reducers/design_reducers/categoryDesignReducer"
 import filterReducer from "./reducers/filterReducer";
 import wrapReducer from "./reducers/wrapReducer";
 import bullPageEditReducer from "./reducers/edit_reducer/bullPageEditReducer";
@@ -40,9 +41,9 @@ const reducers =
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,uploadImageReducer,BHD
-        
-        
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer, uploadImageReducer, BHD,
+        categoryDesignReducer
+
     })
 
 const rootReducer = (state, action) => {

@@ -248,7 +248,7 @@ const mapStateToProps = (state) => {
       state.storeReducer.objectFields.storeName,
 
     // isAdmin: state.viewOrEditReducer.isAdmin
-
+    categoryDesign: state.categoryDesignReducer.categoryDesign
 
   }
 }

@@ -36,7 +36,6 @@ function QuickLook(props) {
                                 props.setOrderAmount(props.orderAmount + 1)
                             }}
                         >
-
                             <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                         </Button>{' '}
                         {props.orderAmount}{' '}
