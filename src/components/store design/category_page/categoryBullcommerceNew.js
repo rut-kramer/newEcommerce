@@ -48,6 +48,7 @@ import cart from "../../../assets/img/xd/cart.svg";
 import { Alert } from 'reactstrap';
 import "../../alerts/alert.css";
 import "../../reactstrapComponents/alert.css";
+import CategoryHeader from "../../headers/categoryHeader";
 
 function CategoryBullcommerce(props) {
   // const item = {
@@ -351,7 +352,8 @@ function CategoryBullcommerce(props) {
             {category.categoryName}
           </label>
         </div>
-        <EcommerceHeader />
+        
+        <CategoryHeader category={category} />
         <div className="main">
 
           <div className="section">
