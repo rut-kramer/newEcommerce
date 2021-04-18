@@ -15,16 +15,16 @@ function TopFrame(props) {
         value: "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop",
         copied: false,
     })
-
     function funcReset(item) {
         props.setCurrentStore(item);
         props.getOrdersByStore(item._id)
         props.getCategoriesByStore(item._id)
         props.getAllPaper(item._id)
-        props.getAllAttributes(item._id)
-        
-         props.history.push(`/` + item.urlRoute)
-       setCopyUrl({value:"https://"+item.urlRoute+".bullcommerce.shop", copied: false})
+        props.getAllAttributes(item._id);
+        props.getBhdByStoreId(item._id)
+
+        props.history.push(`/` + item.urlRoute)
+        setCopyUrl({ value: "https://" + item.urlRoute + ".bullcommerce.shop", copied: false })
     }
 
 
@@ -32,7 +32,7 @@ function TopFrame(props) {
         props.getStoreByUser(props.user._id);
     }, [])
 
-    return (  
+    return (
         <div
             position="fixed"
             className="MuiAppBar-root MuiPaper-elevation4"
@@ -97,7 +97,7 @@ function TopFrame(props) {
                                 target="_blank"
 
                                 // to={`${window.location.pathname.replace("/admin", "")}`}>
-                                to={"http://localhost:3000/"+props.storeCurrent.urlRoute}><FontAwesomeIcon style={{ fontSize: "28px" ,height: "2em", marginRight: "8px"}} icon={['fas', 'eye']} >   </FontAwesomeIcon>
+                                to={"http://localhost:3000/" + props.storeCurrent.urlRoute}><FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['fas', 'eye']} >   </FontAwesomeIcon>
                                 {/* {
                                     localStorage.setItem('viewMagazine', JSON.stringify(ObjMagazine))}
                                 {
@@ -142,7 +142,7 @@ export default connect(
             stores: state.userReducer.storesOfUser,
             storeCurrent: state.storeReducer.objectFields,
             cart: state.cartReducer.cart,
-            isAdmin:state.viewOrEditReducer.isAdmin
+            isAdmin: state.viewOrEditReducer.isAdmin
         }
     },
     (dispatch) => {

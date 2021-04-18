@@ -272,11 +272,11 @@ function Product(props) {
                                                                                                         </FontAwesomeIcon>                                                                                </Button>
                                                                                         </a>
                                                                                 </Carousel> */}
-                                                                                                                <img
-                                                                                                                        src={props.currentProduct.image}
-                                                                                                                        // alt={item.altText}
-                                                                                                                        className="d-block img-raised"
-                                                                                                                />
+                                                                                <img
+                                                                                        src={props.currentProduct.image}
+                                                                                        // alt={item.altText}
+                                                                                        className="d-block img-raised"
+                                                                                />
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>
@@ -401,12 +401,12 @@ function Product(props) {
                                                         </div>
                                                         {props.isAdmin ?
                                                                 <Row id="titleAndContent" >
-<Col>
-                                                                        <div className="d productPrice">
+                                                                        <Col>
+                                                                                <div className="d productPrice">
                                                                                         <h4><b>amount:</b></h4>
                                                                                         <input  onFocus={handleFocus} className="field__input" type="number" placeholder="amount" name="amount" id="amount" onChange={update} value={props.currentProduct.amount} />
 
-                                                                        </div>
+</div>
                                                                         <div className="d productPrice">
                                                                                        
                                                                         <input  type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
@@ -451,12 +451,12 @@ function Product(props) {
                                                                                                         </>
                                                                                                 }
                                                                                         </div>
-                                                                                </div>
+                                                                                                </div>
 
-                                                                        ))
-                                                                        : <></>}
+                                                                                        ))
+                                                                                        : <></>}
 
-</Col>
+                                                                        </Col>
                                                                 </Row> : <>
                                                                         <div className="section" id="moreDetails">
                                                                                 <h3><b>DIMANTIONS</b></h3>

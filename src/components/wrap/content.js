@@ -12,7 +12,7 @@ import MediaGallery from '../store design/media_gallery/mediaGallery';
 import { actions } from '../../redux/action';
 // import { connect } from 'react-redux';
 function Content(props) {
-   //   cookies = "str="+props.cart
+
      const [cookies, setCookie,removeCookies] = useCookies(["order"]);
        
         useEffect(()=>{
@@ -36,9 +36,7 @@ function Content(props) {
             });
     });
 
-//         function remove() {
-//             removeCookies("order")
-//         }
+
 
     return (
         <div className="Content">

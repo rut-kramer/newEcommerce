@@ -46,7 +46,8 @@ margin-bottom: 8vh;
     background-color:#fff;
     display: flex;
     position:fixed;
-    z-index:4;overflow:auto;
+    z-index:10;
+    overflow:auto;
   }
   .w3-bar-block .w3-bar-item{
     display:block;

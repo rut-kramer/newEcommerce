@@ -3,8 +3,7 @@ import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 // import cartReducer from '../redux/reducers/cartReducer';
 import { useCookies } from "react-cookie";
-import { Link } from 'react-router-dom';
-// import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 // import { Table, Container, Row, Col, Button,  Card, } from 'reactstrap';
 import background from "../../../assets/img/login.jpg";
 import ScrollTransparentNavbar from "../../navbars/ScrollTransparentNavbar.js";
@@ -45,7 +44,7 @@ let flag = 1;
 function Cart(props) {
 
         // const [cookies, setCookie] = useCookies(["order"]);
-        //  let history = useHistory();
+        let history = useHistory();
         // useEffect(() => {
         //         // props.setUser(props.user._id);
         //         // props.setStore(props.currentStore)
@@ -91,7 +90,7 @@ function Cart(props) {
 
 
         const onSubmit = () => {
-                let path =   `/${props.objectFields.urlRoute}/checkOut`;     
+                let path = `/${props.objectFields.urlRoute}/checkOut`;
                 history.push(path);
         }
 
@@ -148,12 +147,12 @@ function Cart(props) {
                                                                                                                 </td>
                                                                                                                 <td>{item.product.price}</td>
                                                                                                                 <td className="calcAmount">
-                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "plus" }) }}>
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ index: index, amount: 1, plusOrMinus: "plus" }) }}>
                                                                                                                                 <FontAwesomeIcon icon={['fas', 'plus']}>
                                                                                                                                 </FontAwesomeIcon>
                                                                                                                         </Button>{' '}
                                                                                                                         {item.amount}{' '}
-                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ "index": index, "plusOrMinus": "minus" }) }}>
+                                                                                                                        <Button size="sm" onClick={async () => { await props.changeAmount({ index: index, amount: 1, plusOrMinus: "minus" }) }}>
                                                                                                                                 <FontAwesomeIcon icon={['fas', 'minus']}>
                                                                                                                                 </FontAwesomeIcon>
                                                                                                                         </Button>
@@ -281,7 +280,6 @@ export default connect(
         },
         (dispatch) => {
                 return {
-                        pluseAmount: (i) => { dispatch(actions.pluseAmount(i)) },
                         clear: () => { dispatch(actions.clear()) },
                         minuseAmount: (i) => { ; dispatch(actions.minuseAmount(i)) },
                         remove: (i) => { ; dispatch(actions.remove(i)) },

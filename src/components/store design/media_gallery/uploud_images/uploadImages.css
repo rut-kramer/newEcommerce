@@ -3,13 +3,17 @@
     width: 90%;
     height: 85%;
     margin: 5%;
-    padding: 15% 37%;
+    padding: 15% 37%;    
 }
 .upload-image-word{
    padding-left:5%; 
 }
 .uploud-image-choose-file{
     color:white;
+    size: 14px;
+}
+element.style {
+    /* display: table-caption; */
 }
 .uploud-image-choose-file-div{
     background: var(--unnamed-color-fd5195) 0% 0% no-repeat padding-box;
@@ -17,11 +21,17 @@
     border-radius: 5px;
     width: 8rem;
     height: 2rem;
-    padding: 4% 14%;
+    /* padding: 4% 14%; */
     margin-left: 0.4rem;
 }
-.uploud-image-choose-file-div:hover{
+/* .uploud-image-choose-file-div:hover{
     width: 8.8rem;
     height: 2.2rem;
     padding: 5% 17%;
+} */
+.div-upload-img{
+    background:#F0F0F0 0% 0% no-repeat padding-box;
+    width: 65%;
+    border-radius: 5px;
+    margin-left: 5%;
 }

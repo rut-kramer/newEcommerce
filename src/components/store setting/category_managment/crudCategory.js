@@ -5,7 +5,7 @@ import { actions } from '../../../redux/action'
 import createAttribute from '../attribute_management/createAttribute';
 import '../product_management/crudProducts'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import CategoryMenu from "../../store design/all_configurators/category/categoryMenu"
 
 function CrudCategory(props) {
         function categoryNameFromId(categoryId) {
@@ -153,6 +153,7 @@ function CrudCategory(props) {
                                         </div>
                                 </div>
                         </div>
+                        <CategoryMenu></CategoryMenu>
                 </>
         )
 }

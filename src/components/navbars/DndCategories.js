@@ -143,10 +143,13 @@ function Dnd(props) {
                                                 </Draggable> */}
 
                                                         {props.categories.filter(item => {
+                                                     
                                                                 if (!item.masterCategory && item.masterCategory === null)
                                                                         return item
                                                         }).map((item, index) => (
+                                                               
                                                                 <Draggable
+                                                                        onChange={props.setCategoryTitle(item.categoryName)}
                                                                         key={index} draggableId={`${index}`} index={index}>
                                                                         {(provided, snapshot) => (
                                                                                 <div
@@ -158,7 +161,6 @@ function Dnd(props) {
                                                                                         style={getItemStyle(
                                                                                                 snapshot.isDragging,
                                                                                                 provided.draggableProps.style,
-
                                                                                         )}
                                                                                 >
                                                                                         {/* arrows-alt */}
@@ -196,6 +198,8 @@ export default connect(
         (dispatch) => {
                 return {
                         setListMenu: (listMenu) => { dispatch(actions.setCategoryListMenu(listMenu)) },
+                        setCategoryTitle: (title) => { dispatch(actions.setCategoryTitle(title)) },
+
                         // setFilterPosts: (value) => { dispatch(setFilterPosts(value)) },
       setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
 
