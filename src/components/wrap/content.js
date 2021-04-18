@@ -23,12 +23,11 @@ function Content(props) {
         function  get()
          {  
             let t = cookies.order;
-            if(t==undefined)
-               props.setCart(t)
-            else
-                props.setCart( {  products: [],totalPrice: 0})
-        }
-
+            if(t!=undefined)
+           props.setCart(t)
+            else          
+          props.setCart( {  products: [],totalPrice: 0})
+ }
         window.addEventListener("beforeunload", (ev) => {
             ev.preventDefault();
             setCookie("order", props.cart, {
@@ -40,8 +39,8 @@ function Content(props) {
 
     return (
         <div className="Content">
-            {/* <button onClick={save}>save</button> */}
-            {/* <button onClick={get}>get</button> */}
+            {/* <button onClick={save}>save</button>  */}
+          <button onClick={get}>get</button>
             {/* <button onClick={remove}>remove</button> */}
             <Switch>
                 <Route path="/dnd" component={Dnd} />
