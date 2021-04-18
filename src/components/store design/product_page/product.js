@@ -70,10 +70,8 @@ const items = [
 
 function Product(props) {
 
-        const { product } = props.location.state;
-        console.log("pprr", product);
-        console.log("add", props.addToCart);
-        // carousel states and functions
+        // const { product } = props.location.state;
+        const category = { categoryName: "hello" }
         const [activeIndex, setActiveIndex] = useState(0);
         const [animating, setAnimating] = useState(false);
 
@@ -113,7 +111,6 @@ function Product(props) {
                 if (animating) return;
                 setActiveIndex(newIndex);
         };
-        // collapse states and functions
         const [collapses, setCollapses] = useState([1]);
         const changeCollapse = (collapse) => {
                 if (collapses.includes(collapse)) {
@@ -122,7 +119,7 @@ function Product(props) {
                         setCollapses([...collapses, collapse]);
                 }
         };
-        // select states and functions
+
         const [colorSelect, setColorSelect] = useState(null);
         const [sizeSelect, setSizeSelect] = useState(null);
         useEffect(() => {
@@ -136,29 +133,52 @@ function Product(props) {
                         document.body.classList.remove("sidebar-collapse");
                 };
         }, []);
+
+        const update = (event) => {
+                alert("GG")
+                var u;
+                if (event.target.name === "featured" || event.target.name === "isStock" || event.target.name === "isDraft")
+
+                        u = event.target.checked;
+                else
+                        u = event.target.value
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        [event.target.id]: u
+                });
+        }
+
+        const updateCategory = (event) => {
+                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+                props.setCurrentProduct({
+                        ...props.currentProduct,
+                        category: k[0]._id
+                });
+        }
+
+        const Submit = () => {
+                props.editproduct(props.currentProduct);
+        }
         return (
                 <>
                         {/* <Container className="p-0">
                                 <Row>
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
                         <div className="wrapper">
-                        <div>
-                        <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <Link to={{ pathname: "/" + props.objectFields.urlRoute}}>
- Home Page
+                                <div>
+
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                                                Home Page
 </Link>
-<label>/</label>
-<Link to={{ pathname: "/" + props.objectFields.urlRoute+"/category"}}>
-    Category  
-</Link>
-<label>/</label>
-<label color="inherit" >
-{product.name}  
-</label>
-</div>
+                                        <label>/</label>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category" }}>
+                                                {props.currentProduct.categoryName}
+                                        </Link>
+                                        <label>/</label>
+                                        <label color="inherit" >
+                                                {props.currentProduct.name}
+                                        </label>
+                                </div>
                                 <div className="main">
                                         <Row>
                                                 <Col sm="12" md={{ size: 10, offset: 1 }}>
@@ -236,29 +256,26 @@ function Product(props) {
                                                                                                         </FontAwesomeIcon>                                                                                </Button>
                                                                                         </a>
                                                                                 </Carousel> */}
-                                                                                                                <img
-                                                                                                                        src={product.image}
-                                                                                                                        // alt={item.altText}
-                                                                                                                        className="d-block img-raised"
-                                                                                                                />
+                                                                                <img
+                                                                                        src={props.currentProduct.image}
+                                                                                        // alt={item.altText}
+                                                                                        className="d-block img-raised"
+                                                                                />
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>
-                                                                                        <b>
-                                                                                                {product.name}
-                                                                                                {/* A two-seater sofa in a modern design upholstered
-                                                                                in a velvec fubric on the Quito-mustard model */}
+                                                                                        <b contentEditable={props.isAdmin} data onKeyUp={update} >
+                                                                                                {props.currentProduct.name}
+
                                                                                         </b>
                                                                                 </h4>
-                                                                                <p style={{ fontSize: "18px" }}>
-                                                                                        {product.description}
-                                                                                        {/* Lorem Ipsum dolor sit amet, consectetur sadipscing elit, sed
-                                                                        diam nonumy eirmod tempor invidunt ut labore et dolore
-                                                                        magna aliquy erat, sed diam nonumy eirmod, At vero eos et. */}
+                                                                                <p contentEditable={props.isAdmin} style={{ fontSize: "18px" }} onKeyUp={update}>
+                                                                                        {props.currentProduct.description}
+
                                                                                 </p>
-                                                                                {(Array.isArray(product.attributes) &&
-                                                                                        product.attributes.length) ?
-                                                                                        product.attributes.map((item, index) => (
+                                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                                        props.currentProduct.attributes.length) ?
+                                                                                        props.currentProduct.attributes.map((item, index) => (
 
                                                                                                 <div key={index} className="d productColors">
                                                                                                         <h4><b>{item.attribute.name}:</b></h4>
@@ -300,196 +317,261 @@ function Product(props) {
                                                                                         : <></>}
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>Price:</b></h4>
-                                                                                        <span><del>290$</del></span>
-                                                                                        <span>$ {product.price}</span>
+                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}><del>$ {props.currentProduct.salePrice}</del></p>
+                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}>$ {props.currentProduct.price}</p>
                                                                                 </div>
-                                                                                <div className="d">
-                                                                                        <h4><b>Quantity:</b></h4>
-                                                                                        <div>
-                                                                                                <Button size="sm" onClick={() => { setOrderAmount(orderAmount + 1) }}>
-                                                                                                        <FontAwesomeIcon icon={['fas', 'plus']}>
-                                                                                                        </FontAwesomeIcon>
-                                                                                                </Button>{' '}
-                                                                                                {orderAmount}{' '}
-                                                                                                <Button size="sm" onClick={() => {
-                                                                                                        if (orderAmount > 1)
-                                                                                                                setOrderAmount(orderAmount - 1);
-                                                                                                        else
-                                                                                                                setOrderAmount(orderAmount)
-                                                                                                }}>
-                                                                                                        <FontAwesomeIcon icon={['fas', 'minus']}>
-                                                                                                        </FontAwesomeIcon>
-                                                                                                </Button>
-                                                                                                <Button className="addToCart" outline size="sm"
-                                                                                                        onClick={() => {
-                                                                                                                props.addToCart({
-                                                                                                                        "product": product,
-                                                                                                                        "amount": orderAmount
-                                                                                                                })
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>weight:</b></h4>
+                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}>{props.currentProduct.weight}</p>
+                                                                                </div>
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>SKU:</b></h4>
+                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}> {props.currentProduct.SKU}</p>
+                                                                                </div>
+
+                                                                                {props.isAdmin ?
+                                                                                        <Button className="addToCart" outline size="sm" onClick={Submit}>
+                                                                                                <FontAwesomeIcon icon={['fas', 'edit']}>
+                                                                                                </FontAwesomeIcon>
+                                                                                Edit the product
+                                                                        </Button> :
+                                                                                        <div className="d">
+                                                                                                <h4><b>Quantity:</b></h4>
+                                                                                                <div>
+                                                                                                        <Button size="sm" onClick={() => { setOrderAmount(orderAmount + 1) }}>
+                                                                                                                <FontAwesomeIcon icon={['fas', 'plus']}>
+                                                                                                                </FontAwesomeIcon>
+                                                                                                        </Button>{' '}
+                                                                                                        {orderAmount}{' '}
+                                                                                                        <Button size="sm" onClick={() => {
+                                                                                                                if (orderAmount > 1)
+                                                                                                                        setOrderAmount(orderAmount - 1);
+                                                                                                                else
+                                                                                                                        setOrderAmount(orderAmount)
                                                                                                         }}>
-                                                                                                        <FontAwesomeIcon icon={['fas', 'shopping-cart']}>
-                                                                                                        </FontAwesomeIcon>
+                                                                                                                <FontAwesomeIcon icon={['fas', 'minus']}>
+                                                                                                                </FontAwesomeIcon>
+                                                                                                        </Button>
+                                                                                                        <Button className="addToCart" outline size="sm"
+                                                                                                                onClick={() => {
+                                                                                                                        props.addToCart({
+                                                                                                                                "product": props.currentProduct,
+                                                                                                                                "amount": orderAmount
+                                                                                                                        })
+                                                                                                                }}>
+                                                                                                                <FontAwesomeIcon icon={['fas', 'shopping-cart']}>
+                                                                                                                </FontAwesomeIcon>
                         Add to cart
                         </Button>{' '}
-                                                                                        </div>
-                                                                                </div>
-                                                                                <div className="d">
-                                                                                        <b>
-                                                                                                Dimantions
-                                                                        </b>
-                                                                                </div>
-                                                                        </Col>
-                                                                </Row>
-                                                        </div>
-                                                        <div className="section" id="moreDetails">
-                                                                <h3><b>DIMANTIONS</b></h3>
-                                                                <Row>
-                                                                        <Col md={5}>
-                                                                                <Table borderless>
-                                                                                        <tr>
-                                                                                                <th>Height(cm)</th>
-                                                                                                <td>80</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Widht(cm)</th>
-                                                                                                <td>198</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Depth(cm)</th>
-                                                                                                <td>96</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Height(cm)</th>
-                                                                                                <td>80</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Widht(cm)</th>
-                                                                                                <td>198</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Depth(cm)</th>
-                                                                                                <td>96</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                                <th>Height(cm)</th>
-                                                                                                <td>80</td>
-                                                                                        </tr>
-                                                                                </Table>
-                                                                        </Col>
-                                                                        <Col md={7}>
-                                                                                <img src={sofaD} alt="sofaD" />
-                                                                        </Col>
-                                                                </Row>
-                                                        </div>
-                                                        <div className="section">
-                                                                <div id="titleSimilar">
-                                                                        <h3><b>Similar Products</b></h3>
-                                                                        <h4>Lorem ipsum dolor sit amet, consectetur sadipscing</h4>
-                                                                        <div className="arrows">
-                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-left']}>
-                                                                                </FontAwesomeIcon>{" "}|{" "}
-                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-right']}>
-                                                                                </FontAwesomeIcon>
-                                                                        </div>
-                                                                        <Row>
-                                                                                <Col lg={3} md={2} sm={12} >
-                                                                                        <Card className="card-product card-plain">
-                                                                                                <div className="card-image" className="similarImg">
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <img
-                                                                                                                        alt="..."
-                                                                                                                        src={sofa1}
-                                                                                                                ></img>
-                                                                                                        </a>
                                                                                                 </div>
-                                                                                                <CardBody>
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                                        </a>
-                                                                                                        <CardFooter>
-                                                                                                                <div className="price-container">
-                                                                                                                        <span className="price">$ 150</span>
-                                                                                                                </div>
-                                                                                                        </CardFooter>
-                                                                                                </CardBody>
-                                                                                        </Card>
+                                                                                        </div>
+                                                                                }
+                                                                        </Col>
+                                                                </Row>
+                                                        </div>
+                                                        {props.isAdmin ?
+                                                                <Row id="titleAndContent" >
+                                                                        <Col>
+                                                                                <div className="d productPrice">
+                                                                                        <h4><b>amount:</b></h4>
+                                                                                        <input className="field__input" type="number" placeholder="amount" name="amount" id="amount" onChange={update} value={props.currentProduct.amount} />
 
-                                                                                        {/* <div className="similarImg">
+                                                                                </div>
+                                                                                <div className="d productPrice">
+
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isStock} name="isStock"></input>isStock<br></br>
+                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.featured} name="featured"></input>featured<br></br>
+                                                                                </div>
+                                                                                <label className="field__input" for="video" >video</label>
+                                                                                <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video} />
+                                                                                <label className="field__input" for="photoGallery">photoGallery</label>
+                                                                                <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
+
+                                                                                <select onChange={updateCategory} name="category" className="field__select" >
+                                                                                        <option>בחר קטגוריה </option>
+                                                                                        {props.categoryList.map((item, index) => (
+                                                                                                <option>{item.categoryName}</option>
+                                                                                        ))}
+
+                                                                                </select>
+                                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                                        props.currentProduct.attributes.length) ?
+                                                                                        props.currentProduct.attributes.map((item, index) => (
+
+                                                                                                item.attribute && <div key={index} className=" productColors">
+                                                                                                        <h4><b>{item.attribute.name}:</b></h4>
+                                                                                                        <div>
+                                                                                                                {item.attribute.name === "Color" ?
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
+                                                                                                                                ))}
+                                                                                                                        </> :
+                                                                                                                        <>
+                                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                                        <label key={index} >{index != 0 && ','} {term.name} </label>
+                                                                                                                                ))}
+                                                                                                                        </>
+                                                                                                                }
+                                                                                                        </div>
+                                                                                                </div>
+
+                                                                                        ))
+                                                                                        : <></>}
+
+                                                                        </Col>
+                                                                </Row> : <>
+                                                                        <div className="section" id="moreDetails">
+                                                                                <h3><b>DIMANTIONS</b></h3>
+                                                                                <Row>
+                                                                                        <Col md={5}>
+                                                                                                <Table borderless>
+                                                                                                        <tr>
+                                                                                                                <th>Height(cm)</th>
+                                                                                                                <td>80</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Widht(cm)</th>
+                                                                                                                <td>198</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Depth(cm)</th>
+                                                                                                                <td>96</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Height(cm)</th>
+                                                                                                                <td>80</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Widht(cm)</th>
+                                                                                                                <td>198</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Depth(cm)</th>
+                                                                                                                <td>96</td>
+                                                                                                        </tr>
+                                                                                                        <tr>
+                                                                                                                <th>Height(cm)</th>
+                                                                                                                <td>80</td>
+                                                                                                        </tr>
+                                                                                                </Table>
+                                                                                        </Col>
+                                                                                        <Col md={7}>
+                                                                                                <img src={sofaD} alt="sofaD" />
+                                                                                        </Col>
+                                                                                </Row>
+                                                                        </div>
+                                                                        <div className="section">
+                                                                                <div id="titleSimilar">
+                                                                                        <h3><b>Similar Products</b></h3>
+                                                                                        <h4>Lorem ipsum dolor sit amet, consectetur sadipscing</h4>
+                                                                                        <div className="arrows">
+                                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-left']}>
+                                                                                                </FontAwesomeIcon>{" "}|{" "}
+                                                                                                <FontAwesomeIcon icon={['fas', 'long-arrow-alt-right']}>
+                                                                                                </FontAwesomeIcon>
+                                                                                        </div>
+                                                                                        <Row>
+                                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                                        <Card className="card-product card-plain">
+                                                                                                                <div className="card-image" className="similarImg">
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <img
+                                                                                                                                        alt="..."
+                                                                                                                                        src={sofa1}
+                                                                                                                                ></img>
+                                                                                                                        </a>
+                                                                                                                </div>
+                                                                                                                <CardBody>
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                                        </a>
+                                                                                                                        <CardFooter>
+                                                                                                                                <div className="price-container">
+                                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                                </div>
+                                                                                                                        </CardFooter>
+                                                                                                                </CardBody>
+                                                                                                        </Card>
+
+                                                                                                        {/* <div className="similarImg">
                                                                                 <img src={sofa1} alt="sofa1" />
                                                                         </div> */}
-                                                                                </Col>
-                                                                                <Col lg={3} md={2} sm={12} >
-                                                                                        <Card className="card-product card-plain">
-                                                                                                <div className="card-image" className="similarImg">
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <img
-                                                                                                                        alt="..."
-                                                                                                                        src={sofa2}
-                                                                                                                ></img>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                                <CardBody>
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                                        </a>
-                                                                                                        <CardFooter>
-                                                                                                                <div className="price-container">
-                                                                                                                        <span className="price">$ 150</span>
+                                                                                                </Col>
+                                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                                        <Card className="card-product card-plain">
+                                                                                                                <div className="card-image" className="similarImg">
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <img
+                                                                                                                                        alt="..."
+                                                                                                                                        src={sofa2}
+                                                                                                                                ></img>
+                                                                                                                        </a>
                                                                                                                 </div>
-                                                                                                        </CardFooter>
-                                                                                                </CardBody>
-                                                                                        </Card>
+                                                                                                                <CardBody>
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                                        </a>
+                                                                                                                        <CardFooter>
+                                                                                                                                <div className="price-container">
+                                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                                </div>
+                                                                                                                        </CardFooter>
+                                                                                                                </CardBody>
+                                                                                                        </Card>
 
-                                                                                </Col>
-                                                                                <Col lg={3} md={2} sm={12} >
-                                                                                        <Card className="card-product card-plain">
-                                                                                                <div className="card-image" className="similarImg">
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <img
-                                                                                                                        alt="..."
-                                                                                                                        src={sofa3}
-                                                                                                                ></img>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                                <CardBody>
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                                        </a>
-                                                                                                        <CardFooter>
-                                                                                                                <div className="price-container">
-                                                                                                                        <span className="price">$ 150</span>
+                                                                                                </Col>
+                                                                                                <Col lg={3} md={2} sm={12} >
+                                                                                                        <Card className="card-product card-plain">
+                                                                                                                <div className="card-image" className="similarImg">
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <img
+                                                                                                                                        alt="..."
+                                                                                                                                        src={sofa3}
+                                                                                                                                ></img>
+                                                                                                                        </a>
                                                                                                                 </div>
-                                                                                                        </CardFooter>
-                                                                                                </CardBody>
-                                                                                        </Card>
+                                                                                                                <CardBody>
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                                        </a>
+                                                                                                                        <CardFooter>
+                                                                                                                                <div className="price-container">
+                                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                                </div>
+                                                                                                                        </CardFooter>
+                                                                                                                </CardBody>
+                                                                                                        </Card>
 
-                                                                                </Col>
-                                                                                <Col lg={3} md={2} sm={12}>
-                                                                                        <Card className="card-product card-plain">
-                                                                                                <div className="card-image" className="similarImg">
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <img
-                                                                                                                        alt="..."
-                                                                                                                        src={sofa4}
-                                                                                                                ></img>
-                                                                                                        </a>
-                                                                                                </div>
-                                                                                                <CardBody>
-                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
-                                                                                                        </a>
-                                                                                                        <CardFooter>
-                                                                                                                <div className="price-container">
-                                                                                                                        <span className="price">$ 150</span>
+                                                                                                </Col>
+                                                                                                <Col lg={3} md={2} sm={12}>
+                                                                                                        <Card className="card-product card-plain">
+                                                                                                                <div className="card-image" className="similarImg">
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <img
+                                                                                                                                        alt="..."
+                                                                                                                                        src={sofa4}
+                                                                                                                                ></img>
+                                                                                                                        </a>
                                                                                                                 </div>
-                                                                                                        </CardFooter>
-                                                                                                </CardBody>
-                                                                                        </Card>
+                                                                                                                <CardBody>
+                                                                                                                        <a href="#pablo" onClick={(e) => e.preventDefault()}>
+                                                                                                                                <CardTitle tag="h5">Patio arm chair</CardTitle>
+                                                                                                                        </a>
+                                                                                                                        <CardFooter>
+                                                                                                                                <div className="price-container">
+                                                                                                                                        <span className="price">$ 150</span>
+                                                                                                                                </div>
+                                                                                                                        </CardFooter>
+                                                                                                                </CardBody>
+                                                                                                        </Card>
 
-                                                                                </Col>
-                                                                        </Row>
-                                                                </div>
-                                                        </div>
+                                                                                                </Col>
+                                                                                        </Row>
+                                                                                </div>
+                                                                        </div>
+                                                                </>}
                                                 </Col>
                                         </Row>
                                 </div>
@@ -507,14 +589,17 @@ export default connect(
         (state) => {
                 return {
                         products: state.productReducer.products,
-                        objectFields: state.storeReducer.objectFields
-
+                        objectFields: state.storeReducer.objectFields,
+                        isAdmin: state.viewOrEditReducer.isAdmin,
+                        currentProduct: state.productReducer.currentProduct,
+                        categoryList: state.categoriesReducer.categories,
 
                 }
         },
         (dispatch) => {
                 return {
-
+                        editproduct: (v) => dispatch(actions.editProduct(v)),
+                        setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e)),
                         addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
                         addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
                 }

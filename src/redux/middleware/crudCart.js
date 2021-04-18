@@ -1,5 +1,6 @@
 // import axios from 'axios';
 // import $ from 'jquery';
+import product from '../../components/store design/product_page/product';
 import { actions } from '../action';
 
 
@@ -10,7 +11,7 @@ export const addToCart = ({ dispatch, getState }) => next => action => {
                 getState().cartReducer.cart.products.forEach((product, index) => {
                         if (product.product.SKU.toString() === action.payload.product.SKU.toString()) {
                                 flag = true;
-                                dispatch(actions.pluseAmount(index));
+                                dispatch(actions.changeAmount({ index: index, amount: 1, plusOrMinus: "plus" }));
                         }
                 })
 
@@ -22,11 +23,11 @@ export const addToCart = ({ dispatch, getState }) => next => action => {
 
 export const changeProductAmount = ({ dispatch, getState }) => next => action => {
         if (action.type === 'CHANGE_AMOUNT') {
-
+                console.log("ppppp", action.payload);
                 switch (action.payload.plusOrMinus) {
                         //action.payload={index:Number,plusOrMinus:"plus/minus"}
                         case "plus":
-                                dispatch(actions.pluseAmount(action.payload.index))
+                                dispatch(actions.pluseAmount({ index: action.payload.index, amount: action.payload.amount }))
                                 break;
                         case "minus":
                                 dispatch(actions.minuseAmount(action.payload.index))

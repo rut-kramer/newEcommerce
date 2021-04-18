@@ -64,16 +64,21 @@ function MainStore(props) {
                 style={{
                     display:
                         cartPanelOpen ? "block" : "none"
+
                 }}>
-                <CartPanel></CartPanel>
+                <CartPanel cartPanal_close={cartPanal_close}></CartPanel>
 
             </div>
 
 
 
 
-            <HeaderNavbar cartPanal_open={cartPanal_open} cartPanal_close={cartPanal_close}></HeaderNavbar>
-            <div style={{ width: "100%", height: "60px" }}></div>
+            <HeaderNavbar cartPanal_open={cartPanal_open} cartPanal_close={cartPanal_close}
+                onClick={() => { props.changeCurrentComponent("HomeConfigurator"); props.setCollapse("menu"); }}
+                style={{ backgroundColor: props.backgroundMenu, border: "1px solid red" }}
+            ></HeaderNavbar>
+            <div style={{ width: "100%", height: "60px" }}
+            ></div>
             <Switch>
                 <Route path="/:storeName/checkout" component={CheckOut}></Route>
                 {/* <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route> */}
@@ -95,11 +100,11 @@ function MainStore(props) {
 const mapStateToProps = (state) => {
     return {
         cart: state.cartReducer.cart,
-
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    changeAmount: (e) => { dispatch(actions.changeAmount(e)) }
+    changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
+    setCollapse: (collapseOfRedux) => dispatch(actions.setCollapse(collapseOfRedux)),
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)(MainStore);

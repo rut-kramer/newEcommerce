@@ -14,7 +14,7 @@
 } */
 #store_main_navbar{
     position: fixed;
-    z-index: 3;
+    z-index: 6;
     padding:0;
     width:100%;
 }

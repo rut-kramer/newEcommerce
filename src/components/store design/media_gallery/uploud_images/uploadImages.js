@@ -6,7 +6,6 @@ import uploadImg from '../../../../assets/uploadImg.svg'
 import { Link } from "react-router-dom";
 // import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 function UploadImages(props) {
-    const [fileToUpload, setFileToUpload] = useState(null);
     const [myImage, setMyImage] = useState(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
     const [errorMessage, setErrorMessage] = useState('');
@@ -43,12 +42,12 @@ function UploadImages(props) {
         if (event) {
             let reader = new FileReader();
             reader.onloadend = () => {
-                props.uploadImageNameAction({ func: props.functionSetImage, img: reader.result })
                 setMyImage(reader.result)
             }
             reader.readAsDataURL(event)
-            setFileToUpload(event);
-            props.uploadImage(event);
+            // props.uploadImageNameAction({ func: props.functionSetImage, img: reader.result })
+
+            props.uploadImage({ file: event, func: props.functionSetImage });
         }
     }
 
@@ -104,6 +103,7 @@ function UploadImages(props) {
             </div>
         </>
     )
+
 }
 const mapStateToProps = (state) => {
     return {

@@ -13,14 +13,12 @@ function HeaderConfigurator(props) {
     return (
         <>
             <Container fluid >
-
                 <Row>
                     <Col sm="12"
                         className="tafritHomeConfig"
                     >
                         <Row md="12" className="mt-3">Logo</Row>
                         <Row md="12" className="mt-3"><input type="file" className="inputLogo"></input></Row>
-
                         <Row md="12" className="mt-3"><Col md="10" className="HC-HomeConfigurator">Navigation Title</Col>
                             <Col md="2"><FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                             </Col>

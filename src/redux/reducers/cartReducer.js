@@ -61,7 +61,7 @@ const cartReducer = {
 
   },
   pluseAmount(state, action) {
-    state.cart.products[action.payload].amount++;
+    state.cart.products[action.payload.index].amount = state.cart.products[action.payload.index].amount + action.payload.amount;
     // state.cart.totalPrice+=state.cart.product[action.payload].product.price
   },
   minuseAmount(state, action) {
