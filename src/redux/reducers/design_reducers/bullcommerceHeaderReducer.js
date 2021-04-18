@@ -4,6 +4,7 @@ import interior from "../../../assets/img/xd/interior-with-white-sofa@2x.png";
 import img3 from "../../../assets/img/xd/ia_300000045.png";
 
 const initialState = {
+        //צריך לוודא במידה והחנות חדשה או עודכנה עכשיו שכל הפרטים מגיעים עם פופולייט אחרת אולי לא יעבוד
         bullcommerceHeaderDesign: {},
         ImagesArr: [{
                 src: "url(" + interior + ")",

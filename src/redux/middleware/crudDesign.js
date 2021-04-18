@@ -35,7 +35,7 @@ export const editBullcommerceHeader = ({ dispatch, getState }) => next => action
                         contentType: "application/json",
                         data: raw,
                         success: function (data) {
-                                alert('Updated');
+                                alert('Updated', data);
                                 dispatch(actions.setBHD(data))
                         },
                         error: function (XMLHttpRequest, textStatus, errorThrown) {
