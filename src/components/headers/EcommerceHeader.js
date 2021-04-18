@@ -6,8 +6,8 @@ import {
   CarouselItem,
   CarouselIndicators,
 } from "reactstrap";
-import { useHistory } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { actions } from "../../redux/action";
 import "./ecommerceHeader.css"
@@ -19,8 +19,9 @@ function EcommerceHeader(props) {
   const history = useHistory();
   const location = useLocation();
 
+
   function openMediaGallery(index) {
-    props.setChangeImgInCurrentLocation(index)
+    props.setChangeImgInCurrentLocation(index);
     props.setfunctionToSetImage("setImagesArr")
     props.setImageLocation(location.pathname)
     history.push("/" + props.objectFields.urlRoute + "/mediaGallery/uploudImage");
@@ -83,8 +84,8 @@ function EcommerceHeader(props) {
       {props.ifDisplayTitle ?
         <div className="bullcommerceTitle">
           <input className="bullcommerceTitleInput"
-            // value={(props.bhd.title !== undefined) ? props.bhd.title.textContent : props.objectFields.storeName}
-            value={props.objectFields.storeName}
+
+            value={(props.bhd.title && (props.bhd.title !== undefined || props.bhd.title !== null)) ? props.bhd.title.textContent : props.objectFields.storeName}
             onChange={(e) => props.setBhTitle(e.target.value)}
             onClick={(e) => {
               props.changeCurrentComponent("HomeConfigurator");
@@ -153,7 +154,7 @@ function EcommerceHeader(props) {
               <CarouselItem
                 onExiting={onExiting}
                 onExited={onExited}
-                key={"url(" + item.src + ")"}
+                key={item.src}
 
               >
                 <div
@@ -163,7 +164,7 @@ function EcommerceHeader(props) {
                   <div
                     className="page-header-image"
                     style={{
-                      backgroundImage: "url(" + item.src + ")"
+                      backgroundImage: item.src
                     }}
                   ></div>
 
@@ -175,7 +176,8 @@ function EcommerceHeader(props) {
 
 
         {/* מכאן זה האיקונים של החיצים לשמאל ולימין */}
-        {props.ImagesArr.length != 1 &&
+        {
+          props.ImagesArr.length != 1 &&
           <>
             <a
               className="left carousel-control carousel-control-prev"
@@ -221,7 +223,7 @@ function EcommerceHeader(props) {
             </a>
           </>
         }
-      </Carousel>
+      </Carousel >
 
 
 
