@@ -7,39 +7,27 @@
 
 // const initialState = {
 //     ImagesArr: [{
-//         // src: "url(" + interior + ")",
-//         src: interior,
+//         src: "url(" + interior + ")",
 //     },
 //     {
-//         src: img3
-//         // src: "url(" + img3 + ")",
+//         src: "url(" + img3 + ")",
 //     }
 //     ],
 //     ifDisplaySlider: true,
 //     changeImgInCurrentLocation: -1
 // }
-// const carouselImages =
-// {
+// const carouselImages = {
 //     setImagesArr(state, action) {
-//         // if (state.changeImgInCurrentLocation == -1) {
-//         //     if (state.ImagesArr[0].src == "url(" + interior + ")")
-//         //         state.ImagesArr = []
-//         //     state.ImagesArr.push({
-//         //         src: "url(" + action.payload + ")",
-//         //     })
-//         // }
-//         // else {
-//         //     state.ImagesArr[state.changeImgInCurrentLocation].src = "url(" + action.payload + ")"
-//         // }
 //         if (state.changeImgInCurrentLocation == -1) {
-//             if (state.ImagesArr[0].src == interior)
+//             if (state.ImagesArr[0].src == "url(" + interior + ")")
 //                 state.ImagesArr = []
 //             state.ImagesArr.push({
-//                 src: action.payload
+//                 src: "url(" + action.payload + ")",
 //             })
 //         }
 //         else {
-//             state.ImagesArr[state.changeImgInCurrentLocation].src = action.payload
+//             state.ImagesArr[state.changeImgInCurrentLocation].src = "url(" + action.payload + ")"
+
 //         }
 //     },
 //     setifDisplaySlider(state, action) {

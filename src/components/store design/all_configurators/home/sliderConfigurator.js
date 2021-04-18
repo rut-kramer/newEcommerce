@@ -96,7 +96,7 @@ function SliderConfigurator(props) {
                             </Col>
                             <Row md="12" className="SC-titleName">
                                 <input className="SC-input"
-                                    value={props.title ? props.title : props.objectFields.storeName}
+                                    value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
                                     onChange={(e) => props.setTitle(e.target.value)}
                                 ></input>
                             </Row>
@@ -152,21 +152,22 @@ const mapStateToProps = (state) => {
         title: state.bullPageEditReducer.title,
         objectFields: state.storeReducer.objectFields,
         ifDisplaySlider: state.BHD.ifDisplaySlider,
+        bhd: state.BHD.bullcommerceHeaderDesign,
         ImagesArr: state.BHD.ImagesArr,
         currentIndexFromCarousl: state.bullPageEditReducer.currentIndexFromCarousl,
-        bhd: state.BHD.bullcommerceHeaderDesign
 
     }
 }
 const mapDispatchToProps = (dispatch) => ({
-    setTitle: (e) => dispatch(actions.setTitle(e)),
-    setSize: (size) => dispatch(actions.setSize(size)),
-    setColor: (color) => dispatch(actions.setColor(color)),
+    setTitle: (e) => dispatch(actions.setBhTitle(e)),
     setAlignment: (side) => dispatch(actions.setAlignment(side)),
     setImagesArr: (img) => dispatch(actions.setImagesArr(img)),
     setifDisplaySlider: () => dispatch(actions.setifDisplaySlider()),
     setIfDisplayTitle: () => dispatch(actions.setIfDisplayTitle()),
-    setChangeImgInCurrentLocation: (place) => dispatch(actions.setChangeImgInCurrentLocation(place))
+    setChangeImgInCurrentLocation: (place) => dispatch(actions.setChangeImgInCurrentLocation(place)),
+    setTitle: (e) => dispatch(actions.setTitle(e)),
+    setSize: (size) => dispatch(actions.setSize(size)),
+    setColor: (color) => dispatch(actions.setColor(color)),
 
 
 

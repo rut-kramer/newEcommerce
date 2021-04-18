@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./scrollNavbar.css";
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DndNavbar from "./DndCategories";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 
 // reactstrap components
@@ -30,12 +30,24 @@ function ScrollTransparentNavbar(props) {
   const location = useLocation()
   const history = useHistory();
   const [modal, setModal] = useState(false);
-
   const [, setBuyButtonColor] = useState(
     (document.documentElement.scrollTop > 499 || document.body.scrollTop) > 499
       ? "info"
       : "neutral"
   );
+  const [activeCategory, setActiveCategory] = useState("");
+
+
+  useEffect(() => {
+
+    let splitedPathname = location.pathname.split("/");
+    if (splitedPathname[2] === "category")
+      setActiveCategory(splitedPathname[3]);
+    else
+      setActiveCategory("");
+
+  })
+
   useEffect(() => {
 
     const updateNavbarColor = () => {
@@ -143,7 +155,17 @@ function ScrollTransparentNavbar(props) {
             className="d-flex justify-content-between"
             // isOpen={collapseOpen}
             navbar>
-            <DndNavbar></DndNavbar>
+            {1 !== 1
+              // props.isAdmin
+              ? props.categories.filter(item => {
+                if (!item.masterCategory && item.masterCategory === null)
+                  return item
+              }).map((item, index) => (
+                <Link key={index} to={{ pathname: `/${props.storeName}/category/${item.categoryName}`, state: { category: item } }} style={{ color: (activeCategory === item.categoryName && '#F29544') }}>
+                  {item.categoryName}
+                </Link>
+              )) :
+              <DndNavbar></DndNavbar>}
             {/* <Nav className="mx-auto" id="ceva" navbar>
             {props.categories.filter(item => {
               if (!item.masterCategory && item.masterCategory === null)
@@ -219,7 +241,13 @@ const mapStateToProps = (state) => {
     products: state.productReducer.products,
     mainWidth: state.wrapReducer.mainWidth,
     collapseOfRedux: state.bullPageEditReducer.collapse,
-    backgroundMenu: state.bullPageEditReducer.backgroundMenu
+    backgroundMenu: state.bullPageEditReducer.backgroundMenu,
+    categories: state.categoriesReducer.categoryListMenu,
+    storeName: state.storeReducer.objectFields.urlRoute ?
+      state.storeReducer.objectFields.urlRoute :
+      state.storeReducer.objectFields.storeName,
+
+    // isAdmin: state.viewOrEditReducer.isAdmin
 
 
   }

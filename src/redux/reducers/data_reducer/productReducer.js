@@ -7,17 +7,17 @@ const initialState = {
         pic: "",
         viewListOrGrid: "list",
         currentProduct: {},
-        treeProduct:new Array(4)
+        treeProduct: new Array(4)
 };
 
 const product = {
 
-  addToTreeProduct(state, action) {
-          state.treeProduct[0]= state.treeProduct[1];
-          state.treeProduct[1]= state.treeProduct[2];
-          state.treeProduct[2]= state.treeProduct[3]
-         state.treeProduct[3]= action.payload; 
-       },
+        addToTreeProduct(state, action) {
+                state.treeProduct[0] = state.treeProduct[1];
+                state.treeProduct[1] = state.treeProduct[2];
+                state.treeProduct[2] = state.treeProduct[3]
+                state.treeProduct[3] = action.payload;
+        },
         setProducts(state, action) {
                 state.products = action.payload;
                 state.featuredProducts = state.products.filter(x => x.featured === true)
@@ -40,8 +40,8 @@ const product = {
 
         addNewProduct(state, action) {
                 state.products.push(action.payload);
-                if(action.payload.featured===true)
-                state.featuredProducts.push(action.payload)
+                if (action.payload.featured === true)
+                        state.featuredProducts.push(action.payload)
 
         },
         deleteOldProduct(state, action) {

@@ -5,10 +5,12 @@ import room from "../../../assets/img/xd/room.jpg";
 const initialState = {
         bullcommerceHeaderDesign: {},
         ImagesArr: [{
-                src: room
+                src: "url(" + room + ")",
+
         },
         {
-                src: interior
+                src: "url(" + interior + ")",
+
         }
         ],
         ifDisplaySlider: true,

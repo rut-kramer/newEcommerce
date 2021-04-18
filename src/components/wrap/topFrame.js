@@ -8,8 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCookies } from "react-cookie";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-
-
 // public/apple-touch-icon'
 function TopFrame(props) {
 
@@ -17,25 +15,16 @@ function TopFrame(props) {
         value: "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop",
         copied: false,
     })
-    const [cookies, setCookie] = useCookies(["order"]);
-    let flag = 1;
     function funcReset(item) {
         props.setCurrentStore(item);
         props.getOrdersByStore(item._id)
         props.getCategoriesByStore(item._id)
         props.getAllPaper(item._id)
-        props.getAllAttributes(item._id)
+        props.getAllAttributes(item._id);
         props.getBhdByStoreId(item._id)
-        let str = props.storeCurrent;
-        let t = cookies[str];
-        if ((flag === 1) && (t)) {
-            props.setCart(t)
-            flag = 2
-        }
+
         props.history.push(`/` + item.urlRoute)
         setCopyUrl({ value: "https://" + item.urlRoute + ".bullcommerce.shop", copied: false })
-
-
     }
 
 
@@ -43,54 +32,6 @@ function TopFrame(props) {
         props.getStoreByUser(props.user._id);
     }, [])
 
-
-    window.addEventListener("beforeunload", (ev) => {
-        ev.preventDefault();
-        // let listOrder=cookies.listOrder
-        // let cart= listFromCookies.find(c=>c.store==props.cart.store)
-        // if(cart)
-        // {
-
-        // }
-        // else
-        // {
-        //         listOrder.push(props.cart)
-        //         setCookie("listOrder",listOrder, {
-        //                  path: "/"
-        //         });     
-        // }
-        setCookie(props.storeCurrent._id, props.cart, {
-            path: "/"
-        });
-
-    });
-    // function save() {
-
-    //     // console.log(          JSON.stringify({
-    //     //     "store": "data._id",
-    //     //     "categoryName": "Default66Category1",
-    //     //     "color": "red", "masterCategory": null
-    //     //  }) )
-    //     setCookie(props.storeCurrent._id, props.cart, {
-    //         path: "/"
-    //     });
-    // }
-    // function get() {
-    //     let str = props.storeCurrent._id;
-    //     let t = cookies[str];
-    //     props.setCart(t)
-    // }
-
-
-    //       useEffect(()=>{
-    // props.stores
-    // {storeName}
-
-    // //       })
-    // pp()
-    // {
-    //     alert("jj")
-    // }
     return (
         <div
             position="fixed"
@@ -99,61 +40,79 @@ function TopFrame(props) {
 
 
             <div className="row">
+                <button onClick={() => { props.replaceAdmin(); props.setFlagCon() }}>Replace Admin</button>
+
+                {props.isAdmin &&
+                    <>
+
+                        <button
+                            // color="inherit"
+                            aria-label="open drawer"
+                            onClick={props.setFlagCon}
+                            //edge="end"
+                            style={{
+                                width: "64px",
+                                height: "50px",
+                                opacity: 1,
+                                backgroundColor: "#ffffff",
+                                border: "none",
+                                padding: "5px",
+                                marginLeft: "1%"
+                            }}>
+                            <FontAwesomeIcon style={{ fontSize: "25px" }} icon={['fas', 'bars']}></FontAwesomeIcon>
+                        </button>
+
+                        <Link to="/home">
+                            <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
+                        </Link>
+
+                        <div id="linkToAdmin" style={{ display: "inline-flex" }} >
+
+                            <CopyToClipboard text={copyUrl.value} onCopy={() => {
+                                setCopyUrl({ copied: true })
+                                setTimeout(() => {
+                                    setCopyUrl({ copied: false })
+                                }, 500);
+                            }}>
+                                <FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['far', 'copy']} ></FontAwesomeIcon>
+                            </CopyToClipboard>
+
+                            <select onChange={(e) => {
+                                funcReset(JSON.parse(e.target.value))
+                            }}
+                                className="field__select" >
+                                {props.stores.map((item, index) => (
+
+                                    <option value={JSON.stringify(item)} selected={item._id == props.storeCurrent._id ? "selected" : ""}>
+                                        {item._id == props.storeCurrent._id ? "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop" : item.storeName}</option>
+
+                                    // <option value={JSON.stringify(item)} >{item.storeName}</option>
+                                ))}
+                                {/* <option>בחר חנות</option> */}
+                            </select>
 
 
-                <button
-                    // color="inherit"
-                    aria-label="open drawer"
-                    onClick={props.setFlagCon}
-                    //edge="end"
-                    style={{
-                        width: "64px",
-                        height: "50px",
-                        opacity: 1,
-                        backgroundColor: "#ffffff",
-                        border: "none",
-                        padding: "5px",
-                        marginLeft: "1%"
-                    }}>
-                    <FontAwesomeIcon style={{ fontSize: "25px" }} icon={['fas', 'bars']}></FontAwesomeIcon>
-                </button>
+                            <Link
+                                //   className=" d-flex justify-content-center align-items-center"
+                                target="_blank"
 
+                                // to={`${window.location.pathname.replace("/admin", "")}`}>
+                                to={"http://localhost:3000/" + props.storeCurrent.urlRoute}><FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['fas', 'eye']} >   </FontAwesomeIcon>
+                                {/* {
+                                    localStorage.setItem('viewMagazine', JSON.stringify(ObjMagazine))}
+                                {
+                                    localStorage.setItem('ViewState', true)}
+                                {
+                                    localStorage.setItem('listCategoriesMenu', JSON.stringify(listCategoriesMenu))}
+                               */}
+                                {/* <p>{"yy"}</p> */}
+                            </Link>
 
-                <Link to="/home">
-                    <img alt="logo" src={appleIcon} style={{ maxWidth: "28%", paddingLeft: "2%" }}></img>
-                </Link>
-
-                <CopyToClipboard text={copyUrl.value} onCopy={() => {
-                    setCopyUrl({ copied: true })
-                    setTimeout(() => {
-                        setCopyUrl({ copied: false })
-                    }, 500);
-                }}>
-                    <FontAwesomeIcon style={{ fontSize: "28px", height: "2em", marginRight: "8px" }} icon={['far', 'copy']} ></FontAwesomeIcon>
-
-                </CopyToClipboard>
-
-
-                <div>
-                    <select onChange={(e) => {
-                        funcReset(JSON.parse(e.target.value))
-                    }}
-                        className="field__select" >
-                        {props.stores.map((item, index) => (
-
-                            <option value={JSON.stringify(item)} selected={item._id == props.storeCurrent._id ? "selected" : ""}>
-                                {item._id == props.storeCurrent._id ? "https://" + props.storeCurrent.urlRoute + ".bullcommerce.shop" : item.storeName}</option>
-
-                            // <option value={JSON.stringify(item)} >{item.storeName}</option>
-                        ))}
-                        {/* <option>בחר חנות</option> */}
-                    </select>
-
-                    {/* 
-                    <label>{props.objectFields.urlRoute}</label>
-                    <button onClick={save}>save</button>
-                    <button onClick={get}>get</button> */}
-                </div>
+                        </div>
+                        <label>admin</label>
+                    </>
+                }
+                {copyUrl.copied ? <span style={{ color: 'red', border: '1px solid red', borderRadius: '25%' }}>Copied.</span> : null}
 
 
                 {copyUrl.copied ? <span style={{ color: 'red', border: '1px solid red', borderRadius: '25%' }}>Copied.</span> : null}
@@ -185,7 +144,7 @@ export default connect(
             stores: state.userReducer.storesOfUser,
             storeCurrent: state.storeReducer.objectFields,
             cart: state.cartReducer.cart,
-
+            isAdmin: state.viewOrEditReducer.isAdmin
         }
     },
     (dispatch) => {
@@ -199,6 +158,7 @@ export default connect(
             getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
             setCurrentStore: (i) => { dispatch(actions.setSaveAllStoreDetails(i)) },
             setCart: (e) => { dispatch(actions.setOrder(e)) },
+            replaceAdmin: () => { dispatch(actions.replaceAdmin()) },
             getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))
 
         }
