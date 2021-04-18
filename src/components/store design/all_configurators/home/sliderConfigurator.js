@@ -96,7 +96,7 @@ function SliderConfigurator(props) {
                             </Col>
                             <Row md="12" className="SC-titleName">
                                 <input className="SC-input"
-                                    value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
+                                    // value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
                                     onChange={(e) => props.setTitle(e.target.value)}
                                 ></input>
                             </Row>
