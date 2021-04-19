@@ -10,10 +10,13 @@ import CheckOut from "../check_out/checkOut";
 import QuickLook from '../quickLook'
 import MediaGallery from "../media_gallery/mediaGallery"
 import CartPanel from "../cart_page/cart_panel"
+import AddProduct from "../../store setting/product_management/newProduct";
 import '../quickLook.css'
 import { actions } from "../../../redux/action"
 import { connect } from 'react-redux';
 import Editproduct from "../../store setting/product_management/productEdit";
+import AddCategory from "../../store setting/category_managment/addCategory";
+
 function MainStore(props) {
     const [sideBarOpen, setSideBarOpen] = useState(false)
     const [quickLookProduct, setQuickLookProduct] = useState()
@@ -85,7 +88,12 @@ function MainStore(props) {
                 <Route path="/:storeName/cart" component={Cart}></Route>
                 <Route path="/:storeName/category/:categoryName"><CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce></Route>
                 <Route path="/:storeName/product/:productSKU" component={Product}></Route>
-                <Route path="/:storeName/Editproduct/:productSKU" component={Editproduct}></Route>
+                <Route path="/:storeName/addProduct" component={AddProduct}></Route>
+                {/* <Route path="/:storeName/addCategory" component={AddCategory}></Route> */}
+                <Route path="/:storeName/category/New">
+                    <CategoryBullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}></CategoryBullcommerce>
+                    </Route>
+
                 <Route path="/:storeName"><Bullcommerce w3_open={w3_open} cartPanal_open={cartPanal_open}
                 ></Bullcommerce></Route>
                 <Route path="/:storeName/mediaGallery" component={MediaGallery}></Route>

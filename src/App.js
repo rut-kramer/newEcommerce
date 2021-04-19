@@ -65,6 +65,7 @@ function App() {
               <MediaGallery />
             </Route>
 
+          
             <Route exact path="/showPaper">
               <ShowPaper></ShowPaper>
             </Route>

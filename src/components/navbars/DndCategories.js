@@ -148,7 +148,9 @@ function Dnd(props) {
                                                                 )
                                                                         return item
                                                         }).map((item, index) => (
+
                                                                 <Draggable
+                                                                        onChange={props.setCategoryTitle(item.categoryName)}
                                                                         key={index} draggableId={`${index}`} index={index}>
                                                                         {(provided, snapshot) => (
                                                                                 <div
@@ -160,7 +162,6 @@ function Dnd(props) {
                                                                                         style={getItemStyle(
                                                                                                 snapshot.isDragging,
                                                                                                 provided.draggableProps.style,
-
                                                                                         )}
                                                                                 >
                                                                                         {/* arrows-alt */}
@@ -171,6 +172,11 @@ function Dnd(props) {
                                                                 </Draggable>
                                                         ))}
                                                         {provided.placeholder}
+
+                                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category/New", state: { category: "New" } }}
+                                                                onClick={() => { props.setcomponnet("AddCategory") }}>
+                                                                <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>+</span>
+                                                        </Link>
                                                 </div>
                                         )}
                                 </Droppable>
@@ -185,14 +191,19 @@ export default connect(
                         categories: state.categoriesReducer.categoryListMenu,
                         storeName: state.storeReducer.objectFields.urlRoute ?
                                 state.storeReducer.objectFields.urlRoute :
-                                state.storeReducer.objectFields.storeName
+                                state.storeReducer.objectFields.storeName,
+                        objectFields: state.storeReducer.objectFields,
                         // postData: state.createPostReducer.postData
                 }
         },
         (dispatch) => {
                 return {
                         setListMenu: (listMenu) => { dispatch(actions.setCategoryListMenu(listMenu)) },
+                        setCategoryTitle: (title) => { dispatch(actions.setCategoryTitle(title)) },
+
                         // setFilterPosts: (value) => { dispatch(setFilterPosts(value)) },
+                        setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
+
                 }
         }
 )(Dnd)

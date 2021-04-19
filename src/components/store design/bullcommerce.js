@@ -64,11 +64,11 @@ function Bullcommerce(props) {
                     <div className="section">
                         <Container>
                             <Row className="heightRow">
-                                {props.featuredProducts[0] ? props.featuredProducts.map((item, index) => (
-                                    <Col md="3" key={index}>
+                                {props.products[0] ? props.products.map((item, index) => (
+                                   item.featured &&   <Col md="3" key={index}>
+                                  
                                         <Card className="card-product card-plain">
-                                            <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }}>
-
+                                            <Link to={{ pathname: "/" + (props.objectFields.urlRoute ? props.objectFields.urlRoute : props.objectFields.storeName) + "/product/" + item.SKU, state: { product: item } }} onClick={(e) => { props.setcomponnet("EditProduct"); props.setCurrentProduct(item)}}>
                                                 <div className="card-image Aheight d-flex align-items-center">
                                                     <img
                                                         className=""
@@ -136,7 +136,7 @@ function Bullcommerce(props) {
                                         </Card>
                                     </Col>
 
-
+                                             
                                 )
                                 ) : <h1>אין מוצרים מקודמים</h1>}
 
@@ -158,7 +158,7 @@ export default connect(
         return {
             products: state.productReducer.products,
             categories: state.categoriesReducer.categories,
-            featuredProducts: state.productReducer.featuredProducts,
+            products: state.productReducer.products,
             objectFields: state.storeReducer.objectFields,
             ifDisplaySlider: state.BHD.ifDisplaySlider
 
@@ -168,6 +168,8 @@ export default connect(
         return {
             setFilteredItems: (x) => { dispatch(actions.setFilteredItems(x)) },
             addToCart: (product) => { dispatch(actions.addToCart(product)) },
+            setCurrentProduct: (p) => dispatch(actions.setCurrentProduct(p)),
+            setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
             changeCurrentComponent: (e) => dispatch(actions.setCurrentComponent(e)),
 
         }

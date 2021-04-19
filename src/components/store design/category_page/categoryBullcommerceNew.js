@@ -32,7 +32,7 @@ import { withRouter } from 'react-router-dom';
 // core components
 import EcommerceHeader from "../../headers/EcommerceHeader.js";
 import FilteredProducts from "../filteredProducts";
-
+import AddCategory from "../../store setting/category_managment/addCategory";
 import { actions } from '../../../redux/action';
 import { connect } from 'react-redux';
 import "./categoryBullcommerce.css"
@@ -48,6 +48,7 @@ import cart from "../../../assets/img/xd/cart.svg";
 import { Alert } from 'reactstrap';
 import "../../alerts/alert.css";
 import "../../reactstrapComponents/alert.css";
+import CategoryHeader from "../../headers/categoryHeader";
 
 function CategoryBullcommerce(props) {
   // const item = {
@@ -85,8 +86,18 @@ function CategoryBullcommerce(props) {
     setAlerts(a);
 
   };
+  const [flagNew, setflagNew] = useState();
 
   useEffect(() => {
+    if(category==="New")
+    {setflagNew(false); return;}
+    setflagNew(true)
+    let productsCategory = props.storeProducts.filter(pc => {
+      if (pc.category === category._id)
+        return pc;
+    })
+    console.log("pc", productsCategory);
+    props.setFilteredProducts(productsCategory);
 
     console.log("ssttrree", props.objectFields);
     document.body.classList.add("ecommerce-page");
@@ -98,17 +109,11 @@ function CategoryBullcommerce(props) {
       document.body.classList.remove("ecommerce-page");
       document.body.classList.remove("sidebar-collapse");
     };
-
   }, []);
 
   useEffect(() => {
     callPager();
-    let productsCategory = props.storeProducts.filter(pc => {
-      if (pc.category === category._id)
-        return pc;
-    })
-    console.log("pc", productsCategory);
-    props.setFilteredProducts(productsCategory);
+    
   }, [props.filterProducts])
   const numOfPage = 6
   const numPaper = Math.ceil(props.filterProducts.length / numOfPage)
@@ -339,20 +344,22 @@ function CategoryBullcommerce(props) {
 
       <div className="wrapper">
         <div>
-          <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+      
+          <Link to={{ pathname: "/" + props.objectFields.urlRoute }} className="Breadcrumbs" >
             Home Page
 </Link>
           <label>/</label>
-          <label color="inherit" >
-            {category.categoryName}
+          <label className="BreadcrumbsActiv">
+            {category.categoryName?category.categoryName:category}
           </label>
         </div>
-        {/* <EcommerceHeader /> */}
+        
+        <CategoryHeader category={category} />
         <div className="main">
 
           <div className="section">
 
-
+{flagNew?
             <Container>
               <Row className="mx-5 px-5">
                 <Col md="12" className="d-flex justify-content-between titleCategory">
@@ -475,6 +482,23 @@ function CategoryBullcommerce(props) {
                       </Col>
                     ))
                     }
+{props.isAdmin&&
+<Col lg="4" md="6" sm="12">
+
+<Card className="card-product card-plain d-flex"> 
+  <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/addProduct" }}  
+  onClick={(e) => {props.setcomponnet("AddProduct")}}>
+    <>
+  <div style={{backgroundColor:"white", border:"5px solid",borderRadius:"25px"}} className="card-image frameToProductView d-flex justify-content-center align-items-center" >
+      <FontAwesomeIcon style={{ fontSize: "100px" ,height: "2em", marginRight: "8px"}} icon={['fas', 'plus']}></FontAwesomeIcon>
+  </div>  </></Link>
+  <CardBody>
+    <CardTitle className="card-title" tag="h4">    add product</CardTitle>
+
+  </CardBody>
+</Card>
+</Col>
+}
                     < Col md="12">
                       <Row className="pagerCategory">
                         <Col md="6"><div className="pt-3">{pa1}-{arrPager[degelBtn] && (pa1 + arrPager[degelBtn].list.length - 1)} of {props.filterProducts.length} Results</div>
@@ -542,7 +566,10 @@ function CategoryBullcommerce(props) {
                 </Col>
               </Row>
             </Container>
-          </div>
+       :
+      <AddCategory></AddCategory>
+       }
+                            </div>
         </div>
       </div >
     </>
@@ -557,7 +584,8 @@ export default connect(
       storeProducts: state.productReducer.products,
       categories: state.categoriesReducer.categories,
       filterProducts: state.filterReducer.filteredItems,
-      objectFields: state.storeReducer.objectFields
+      objectFields: state.storeReducer.objectFields,
+      isAdmin: state.viewOrEditReducer.isAdmin,
     }
   },
   (dispatch) => {

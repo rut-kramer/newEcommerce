@@ -34,13 +34,14 @@ import uploadImageReducer from './reducers/uploadImageReducer'
 import { newUploadImage } from './middleware/crudUploadImg';
 
 import BHD from './reducers/design_reducers/bullcommerceHeaderReducer';
+import categoryHeaderReducer from './reducers/design_reducers/categoryHeaderReducer';
 const reducers =
     combineReducers({
         //לכאן צריך להביא את כל הרדיוסרים לאחר שנייבא אותם באימפורט openStoreReducer,
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer, uploadImageReducer, BHD,
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer, uploadImageReducer, BHD, categoryHeaderReducer
 
 
     })

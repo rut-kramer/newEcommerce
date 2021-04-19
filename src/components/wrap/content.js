@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route, Link } from "react-router-dom";
 import './wrap-component.css'
 import AdminCurd from '../store setting/admin'
@@ -9,41 +9,39 @@ import { connect } from 'react-redux';
 import MainStoreRoutes from "../store design/store_page/mainStore"
 import TopFooter from "../topFooter"
 import MediaGallery from '../store design/media_gallery/mediaGallery';
-
+import { actions } from '../../redux/action';
+// import { connect } from 'react-redux';
 function Content(props) {
-    //    //   cookies = "str="+props.cart
-    //      const [cookies, setCookie,removeCookies] = useCookies(["order"]);
-    //      const [coo, setCoo] = useCookies(["ordejjr"]);
-    //         function  save() {
-    //             // const [coo, setCoo] = useCookies(["ordejjr"]);
-    //                 setCookie(props.storeCurrent,props.cart, {
-    //                         path: "/"
-    //                       }); 
-    //                       setCookie("123","456", {
-    //                         path: "/"
-    //                       }); 
 
-    //                       setCoo("aaaa","bbbbb", {
-    //                         path: "/"
-    //                       }); 
+     const [cookies, setCookie,removeCookies] = useCookies(["order"]);
+       
+        useEffect(()=>{
+            get();
 
-    //         }
-    //         function  get() {  
-    //             let x=cookies;
-    //             let y=coo;
-    //             let  str=props.storeCurrent;
-    //             let t = cookies[str];
-    //         }
+        },[])
 
-    //         function remove() {
-    //             removeCookies("order")
-    //         }
+        function  get()
+         {  
+            let t = cookies.order;
+            if(t!=undefined)
+           props.setCart(t)
+            else          
+          props.setCart( {  products: [],totalPrice: 0})
+ }
+        window.addEventListener("beforeunload", (ev) => {
+            ev.preventDefault();
+            setCookie("order", props.cart, {
+                    path: "/"
+            });
+    });
+
+
 
     return (
         <div className="Content">
-            {/* <button onClick={save}>save</button>
-            <button onClick={get}>get</button>
-            <button onClick={remove}>remove</button> */}
+            {/* <button onClick={save}>save</button>  */}
+          {/* <button onClick={get}>get</button> */}
+            {/* <button onClick={remove}>remove</button> */}
             <Switch>
                 <Route path="/dnd" component={Dnd} />
 
@@ -58,7 +56,7 @@ function Content(props) {
                 <Route path="/:storeName/admin" component={AdminCurd} />
                 <MainStoreRoutes></MainStoreRoutes>
             </Switch>
-            <TopFooter></TopFooter>
+{/* <TopFooter></TopFooter> */}
         </div>
     )
 }
@@ -71,6 +69,7 @@ const mapStateToProps = (state) => {
     }
 }
 const mapDispatchToProps = (dispatch) => ({
+    setCart: (e) => { dispatch(actions.setOrder(e)) },
 
 })
 export default connect(mapStateToProps, mapDispatchToProps)

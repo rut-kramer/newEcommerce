@@ -110,11 +110,11 @@ function Cart(props) {
                                         <br></br>
                                         <br></br>
                                         <br></br>
-                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}className="Breadcrumbs">
                                                 Home Page
 </Link>
                                         <label>/</label>
-                                        <label color="inherit" >
+                                        <label  className="BreadcrumbsActiv" >
                                                 My Cart
 </label>
                                 </div>
