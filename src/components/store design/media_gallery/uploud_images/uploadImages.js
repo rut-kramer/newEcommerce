@@ -82,9 +82,7 @@ function UploadImages(props) {
                         </label>
                                 <input id="files" style={{ visibility: "hidden" }} type="file" onChange={(e) => handlerLogo(e.target.files[0])} />
                             </div>
-                            <Link to={props.imageLocation}>
-                                <button>insert</button>
-                            </Link>
+
                         </div>
                     </div>
                 {/* </Droppable>
@@ -99,7 +97,10 @@ function UploadImages(props) {
                         <p>Choose Files</p>
                     </label>
                     <input id="files" style={{ visibility: "hidden" }} type="file" onChange={(e) => handlerLogo(e.target.files[0])} />
-                </div>
+                    <Link to={props.imageLocation}>
+                                <button>insert</button>
+                            </Link>
+</div>
             </div>
         </>
     )
