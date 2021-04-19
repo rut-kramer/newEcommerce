@@ -72,7 +72,7 @@ function EcommerceHeader(props) {
 
   useEffect(function () {
     return function exit() {
-      alert("exit")
+      // alert("exit")
       //     if (window.confirm("אם אתה בטוח שברצונך למחוק את החנותן"))
 
       //     else

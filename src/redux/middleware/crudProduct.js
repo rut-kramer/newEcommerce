@@ -39,9 +39,11 @@ export const newProduct = ({ dispatch, getState }) => next => action => {
                 //     dispatch(actions.setFilteredItems(list));
                 // })
                   
-                  
-                    dispatch(actions.addNewProduct(data));
-                    dispatch(actions.setFilteredItems(getState().productReducer.products));
+                let options = Object.assign({}, data, { "color": data.category.color,"categoryName":data.category.categoryName});
+                  //להוסיף את השינוי גם לרידקס הקטגוריות
+                    dispatch(actions.addNewProduct(options));
+                    dispatch(actions.addProductFiltered(getState().productReducer.products));
+                    dispatch(actions.addProductFiltered(data));
                     resolve(data)
                 },
                 error: function (err) {
@@ -92,7 +94,10 @@ export const editproduct = ({ dispatch, getState }) => next => action => {
             contentType: "application/json",
             data: raw,
             success: function (data) {
-                dispatch(actions.editOldProduct(data))
+                let options = Object.assign({}, data, { "color": data.category.color,"categoryName":data.category.categoryName});
+                  //להוסיף את השינוי גם לרידקס הקטגוריות
+// צריך שינוי גם בנווד
+                dispatch(actions.editOldProduct(options))
                 dispatch(actions.setFilteredItems(getState().productReducer.products));
                 alert("המוצר התעדכן בהצלחה")
 

@@ -13,6 +13,10 @@ const filter = {
                 state.filteredItems = action.payload;
 
         },
+        addProductFiltered(state, action) {
+                state.filteredItems.push( action.payload);
+
+        },
         setMaxPrice(state, action) {
                 state.maxPrice = action.payload;
         },

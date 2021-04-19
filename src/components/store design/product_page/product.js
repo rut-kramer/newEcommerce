@@ -10,7 +10,7 @@ import sofa4 from "../../../assets/img/e08c0b39-248f-4021-9c8d-1adc2b1bf887@2x.p
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Select from "react-select"
 
-
+import { useHistory } from "react-router-dom";
 
 import './product.css'
 
@@ -69,6 +69,7 @@ const items = [
 ];
 
 function Product(props) {
+        const history = useHistory();
 
         // const { product } = props.location.state;
         const category = { categoryName: "hello" }
@@ -133,9 +134,16 @@ function Product(props) {
                         document.body.classList.remove("sidebar-collapse");
                 };
         }, []);
-
+        
+        function askDeleteProduct(i) {
+                if (window.confirm("אם אתה בטוח שברצונך למחוק את המוצר"))
+                {
+                          props.delete(i);
+                          history.push("/" + props.objectFields.urlRoute);
+                }
+                      
+        }
         const update = (event) => {
-                alert("GG")
                 var u;
                 if (event.target.name === "featured" || event.target.name === "isStock" || event.target.name === "isDraft")
 
@@ -144,20 +152,28 @@ function Product(props) {
                         u = event.target.value
                 props.setCurrentProduct({
                         ...props.currentProduct,
-                        [event.target.id]: u
+                        [event.target.name]: u
                 });
+               
+
         }
 
-        const updateCategory = (event) => {
-                let k = props.categoryList.filter(p => p.categoryName == event.target.value)
+        const updateCategory = (item) => {            
                 props.setCurrentProduct({
                         ...props.currentProduct,
-                        category: k[0]._id
+                        category:item._id,
+                        categoryName:item.categoryName
                 });
         }
-
+        
+      const  handleFocus = (event) =>
+      {
+              event.target.select()
+        } 
         const Submit = () => {
                 props.editproduct(props.currentProduct);
+                history.push("/" + props.objectFields.urlRoute);
+
         }
         return (
                 <>
@@ -166,16 +182,16 @@ function Product(props) {
                                         <Col sm="12" md={{ size: 10, offset: 1 }}> */}
                         <div className="wrapper">
                                 <div>
-
-                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }}>
+                               
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute }} className="Breadcrumbs">
                                                 Home Page
 </Link>
                                         <label>/</label>
-                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category" }}>
+                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category" }} className="Breadcrumbs">
                                                 {props.currentProduct.categoryName}
                                         </Link>
                                         <label>/</label>
-                                        <label color="inherit" >
+                                        <label className="BreadcrumbsActiv">
                                                 {props.currentProduct.name}
                                         </label>
                                 </div>
@@ -264,15 +280,14 @@ function Product(props) {
                                                                         </Col>
                                                                         <Col md="6" sm="12" id="titleAndContent" >
                                                                                 <h4>
-                                                                                        <b contentEditable={props.isAdmin} data onKeyUp={update} >
-                                                                                                {props.currentProduct.name}
+                                                                                <input className="editInput" type="text" name="name" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.name} ></input>
 
-                                                                                        </b>
                                                                                 </h4>
-                                                                                <p contentEditable={props.isAdmin} style={{ fontSize: "18px" }} onKeyUp={update}>
-                                                                                        {props.currentProduct.description}
-
-                                                                                </p>
+                                                                                
+                                                                                <textarea rows="5" cols="20" className="editInput" type="text" name="description" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.description} ></textarea >
+                                                                                       
+{/*  */}
+                                                                                
                                                                                 {(Array.isArray(props.currentProduct.attributes) &&
                                                                                         props.currentProduct.attributes.length) ?
                                                                                         props.currentProduct.attributes.map((item, index) => (
@@ -317,24 +332,39 @@ function Product(props) {
                                                                                         : <></>}
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>Price:</b></h4>
-                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}><del>$ {props.currentProduct.salePrice}</del></p>
-                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}>$ {props.currentProduct.price}</p>
+                                                                                        {/* <p contentEditable={props.isAdmin} onKeyUp={update}><del>$ {props.currentProduct.salePrice}</del></p> */}
+                                                                                    {/* ??? */}
+                                                                                     <del>  <input className="editInput" type="text" name="salePrice" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.salePrice} ></input>
+                                                                              </del>
+                                                                                <input className="editInput" type="text" name="price" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.price} ></input>
+
                                                                                 </div>
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>weight:</b></h4>
-                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}>{props.currentProduct.weight}</p>
+                                                                                        {/* <p onFocus={handleFocus} contentEditable={props.isAdmin} onKeyUp={update}>{props.currentProduct.weight}</p> */}
+                                                                                        <input className="editInput" type="text" name="weight" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.weight} ></input>
+                                                                                
                                                                                 </div>
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>SKU:</b></h4>
-                                                                                        <p contentEditable={props.isAdmin} onKeyUp={update}> {props.currentProduct.SKU}</p>
+                                                                                        {/* <p contentEditable={props.isAdmin} onKeyUp={update}> {props.currentProduct.SKU}</p> */}
+                                                                                        <input className="editInput" type="text" name="SKU" onChange={update}  onFocus={handleFocus} disabled={!props.isAdmin} value={props.currentProduct.SKU} ></input>
+                                                                                
                                                                                 </div>
 
                                                                                 {props.isAdmin ?
-                                                                                        <Button className="addToCart" outline size="sm" onClick={Submit}>
-                                                                                                <FontAwesomeIcon icon={['fas', 'edit']}>
-                                                                                                </FontAwesomeIcon>
-                                                                                Edit the product
-                                                                        </Button> :
+                                                                                <>
+                                                                                        <Button className="addToCart" outline size="sm" onClick={()=>{ askDeleteProduct(props.currentProduct._id)}} >
+                                                                                        <i className="fa fa-trash" style={{ color: "#c3c4ca", fontSize: "1rem" }}>
+                                                </i>delete the product
+                                                                              
+                                                                        </Button>
+                                                                                         <Button className="addToCart" outline size="sm" onClick={Submit}>
+                                                                                         <FontAwesomeIcon icon={['fas', 'edit']}>
+                                                                                         </FontAwesomeIcon>
+                                                                         Edit the product
+                                                                 </Button></>
+                                                                        :
                                                                                         <div className="d">
                                                                                                 <h4><b>Quantity:</b></h4>
                                                                                                 <div>
@@ -374,47 +404,53 @@ function Product(props) {
                                                                         <Col>
                                                                                 <div className="d productPrice">
                                                                                         <h4><b>amount:</b></h4>
-                                                                                        <input className="field__input" type="number" placeholder="amount" name="amount" id="amount" onChange={update} value={props.currentProduct.amount} />
+                                                                                        <input  onFocus={handleFocus} className="field__input" type="number" placeholder="amount" name="amount" id="amount" onChange={update} value={props.currentProduct.amount} />
 
-                                                                                </div>
-                                                                                <div className="d productPrice">
+</div>
+                                                                        <div className="d productPrice">
+                                                                                       
+                                                                        <input  type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
+                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isStock} name="isStock"></input>isStock<br></br>
+                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.featured} name="featured"></input>featured<br></br>
+                                                                        </div>
+                                                                        <label className="field__input" for="video" >video</label>
+                                                                        <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video} />
+                                                                        <label className="field__input" for="photoGallery">photoGallery</label>
+                                                                        <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
+                                                                     
+                                                                        <select onChange={(e)=>{updateCategory(JSON.parse(e.target.value))}} name="category" className="field__select" >
+                                                                     
+                                                                        <option>בחר קטגוריה </option>
+                                                                        {props.categoryList.map((item, index) => (
+                                                                       
+                                                                             <option value={JSON.stringify(item)} selected={item._id == props.currentProduct.category._id||item.categoryName == props.currentProduct.categoryName ? "selected" : ""}>
+                                                                            {item.categoryName}</option>
+                                             
 
-                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isDraft} name="isDraft"></input>isDraft<br></br>
-                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.isStock} name="isStock"></input>isStock<br></br>
-                                                                                        <input type="checkbox" onClick={update} checked={props.currentProduct.featured} name="featured"></input>featured<br></br>
-                                                                                </div>
-                                                                                <label className="field__input" for="video" >video</label>
-                                                                                <input id="video" className="field__input" type="file" onClick={update} name="video" value={props.currentProduct.video} />
-                                                                                <label className="field__input" for="photoGallery">photoGallery</label>
-                                                                                <input id="photoGallery" type="file" onClick={update} name="photoGallery" value={props.currentProduct.photoGallery} />
 
-                                                                                <select onChange={updateCategory} name="category" className="field__select" >
-                                                                                        <option>בחר קטגוריה </option>
-                                                                                        {props.categoryList.map((item, index) => (
-                                                                                                <option>{item.categoryName}</option>
-                                                                                        ))}
+                                                                        ))}
 
-                                                                                </select>
-                                                                                {(Array.isArray(props.currentProduct.attributes) &&
-                                                                                        props.currentProduct.attributes.length) ?
-                                                                                        props.currentProduct.attributes.map((item, index) => (
+                                                                           </select>
+                                                                {(Array.isArray(props.currentProduct.attributes) &&
+                                                                        props.currentProduct.attributes.length) ?
+                                                                        props.currentProduct.attributes.map((item, index) => (
 
-                                                                                                item.attribute && <div key={index} className=" productColors">
-                                                                                                        <h4><b>{item.attribute.name}:</b></h4>
-                                                                                                        <div>
-                                                                                                                {item.attribute.name === "Color" ?
-                                                                                                                        <>
-                                                                                                                                {item.terms.map((term, index) => (
-                                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
-                                                                                                                                ))}
-                                                                                                                        </> :
-                                                                                                                        <>
-                                                                                                                                {item.terms.map((term, index) => (
-                                                                                                                                        <label key={index} >{index != 0 && ','} {term.name} </label>
-                                                                                                                                ))}
-                                                                                                                        </>
-                                                                                                                }
-                                                                                                        </div>
+                                                                                item.attribute && <div key={index} className=" productColors">
+                                                                                        <h4><b>{item.attribute.name}:</b></h4>
+                                                                                        <div>
+                                                                                                {item.attribute.name === "Color" ?
+                                                                                                        <>
+                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                        <div key={index} className="color" style={{ backgroundColor: term.name }}></div>
+                                                                                                                ))}
+                                                                                                        </> :
+                                                                                                        <>
+                                                                                                                {item.terms.map((term, index) => (
+                                                                                                                        <label key={index} >{index != 0 && ','} {term.name} </label>
+                                                                                                                ))}
+                                                                                                        </>
+                                                                                                }
+                                                                                        </div>
                                                                                                 </div>
 
                                                                                         ))
@@ -601,7 +637,9 @@ export default connect(
                         editproduct: (v) => dispatch(actions.editProduct(v)),
                         setCurrentProduct: (e) => dispatch(actions.setCurrentProduct(e)),
                         addToTreeProduct: (p) => { dispatch(actions.addToTreeProduct(p)) },
-                        addToCart: (product1) => { dispatch(actions.addToCart(product1)) }
+                        addToCart: (product1) => { dispatch(actions.addToCart(product1)) },
+                        delete: (i) => { dispatch(actions.deleteProduct(i)) },
+
                 }
         },
 )(Product);
