@@ -30,6 +30,10 @@ function LoginHome(props) {
             props.getAllPaper(item._id)
             props.getAllAttributes(item._id)
             props.getBhdByStoreId(item._id)
+            props.setTitle("")
+            props.setAlignment("")
+            props.setColor("")
+            props.setSize("")
         }
         useEffect(() => {
             props.lastUpdatedUserStore[0] && funcReset(props.lastUpdatedUserStore[0])
@@ -77,7 +81,10 @@ export default connect(
             getCategoriesByStore: (i) => { dispatch(actions.getCategoriesByStore(i)) },
             getAllPaper: (i) => { dispatch(actions.getAllPaper(i)) },
             getAllAttributes: (i) => { dispatch(actions.getAllAttributes(i)) },
-
+            setTitle: (e) => dispatch(actions.setTitle(e)),
+            setAlignment: (e) => dispatch(actions.setAlignment(e)),
+            setColor: (e) => dispatch(actions.setColor(e)),
+            setSize: (e) => dispatch(actions.setSize(e)),
             setUsername: (e) => dispatch(actions.setUsername(e)),
             getLastUpdatedStore: (e) => dispatch(actions.lastUpdatedStore(e)),
             getBhdByStoreId: (e) => dispatch(actions.getBhdByStoreId(e))

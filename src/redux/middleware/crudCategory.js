@@ -33,6 +33,7 @@ export const createNewCategory = ({ dispatch, getState }) => next => action => {
                     alert("הוספת הקטגוריה נכשלה")
                 }
             });
+
         }
         return next(action);
     })
@@ -76,13 +77,13 @@ export const getCategoriesByStore = ({ dispatch, getState }) => next => action =
         axios.get('https://bullcommerce.shop/api/stores/storeCategories/' + action.payload)
             .then(res => {
                 dispatch(actions.setCategories(res.data))
-                let options = Object.assign({}, res.data[0].products[0], { "color":  res.data[0].color});
+                let options = Object.assign({}, res.data[0].products[0], { "color": res.data[0].color });
                 let list = [];
                 res.data.forEach(c => {
-                    c.products.forEach(p=>{
-                   let options = Object.assign({}, p, { "color": c.color,"categoryName":c.categoryName});
-                    list.push(options);
-                       })
+                    c.products.forEach(p => {
+                        let options = Object.assign({}, p, { "color": c.color, "categoryName": c.categoryName });
+                        list.push(options);
+                    })
                 });
                 dispatch(actions.setProducts(list))
                 dispatch(actions.setFilteredItems(list));

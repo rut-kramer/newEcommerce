@@ -41,9 +41,9 @@ const reducers =
         ordersReducer, cartReducer, categoriesReducer, productReducer,
         userReducer, logoReducer, viewOrEditReducer, storeHomeReducer,
         coinsReducer, storeReducer, wrapReducer, filterReducer, quillReducer,
-        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer,uploadImageReducer,BHD,categoryHeaderReducer
-        
-        
+        attributeReducer, bullPageEditReducer, carouselImgReducer, mediaGalleryReducer, uploadImageReducer, BHD, categoryHeaderReducer
+
+
     })
 
 const rootReducer = (state, action) => {

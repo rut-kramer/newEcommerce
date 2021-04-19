@@ -28,7 +28,9 @@ function QuickLook(props) {
                 <div>
                     <div className="qu mt-4">Quantity:</div>
                     {/* אולי כדאי להחליף לדיו את תגית טידי */}
-                    <td className="calcAmount">
+                    {/* <td className="calcAmount"> */}
+                    <div className="calcAmount">
+
                         <Button size="sm"
 
                             onClick={(e) => {
@@ -36,7 +38,6 @@ function QuickLook(props) {
                                 props.setOrderAmount(props.orderAmount + 1)
                             }}
                         >
-
                             <FontAwesomeIcon icon={['fas', 'plus']}></FontAwesomeIcon>
                         </Button>{' '}
                         {props.orderAmount}{' '}
@@ -51,7 +52,8 @@ function QuickLook(props) {
                         >
                             <FontAwesomeIcon icon={['fas', 'minus']}></FontAwesomeIcon>
                         </Button>
-                    </td>
+                    </div>
+                    {/* </td> */}
                 </div>
                 <button className="btnCart"
                     onClick={() => {

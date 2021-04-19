@@ -9,7 +9,7 @@ const initialState = {
     color: "white",//סלידר
     size: "",//סלידר
     currentIndexFromCarousl: 0,//סלידר
-    backgroundMenu: "red"//הידר תפריט ניווט
+    backgroundMenu: "red",//הידר תפריט ניווט
 }
 
 const bullPageEdit = {
@@ -25,9 +25,6 @@ const bullPageEdit = {
     setSize(state, action) {
         state.size = action.payload
     },
-    setBackgroundMenu(state, action) {//הידר תפריט ניווט
-        state.backgroundMenu = action.payload
-    },
     setCollapse(state, action) {
         state.collapse = action.payload
     },
@@ -36,7 +33,10 @@ const bullPageEdit = {
     },
     setCurrentIndexFromCarousl(state, action) {
         state.currentIndexFromCarousl = action.payload
-    }
+    },
+    setBackgroundMenu(state, action) {//הידר תפריט ניווט
+        state.backgroundMenu = action.payload
+    },
 
 }
 

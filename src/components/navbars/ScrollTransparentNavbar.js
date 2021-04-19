@@ -252,7 +252,6 @@ const mapStateToProps = (state) => {
 
     // isAdmin: state.viewOrEditReducer.isAdmin
 
-
   }
 }
 const mapDispatchToProps = (dispatch) => ({

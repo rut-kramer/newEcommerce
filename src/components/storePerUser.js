@@ -7,7 +7,7 @@
 // function StorePerUser(props) {
 
 //     function funcReset(item) {
-//         props.setCategories(item.categories);
+//         props.setCategories(item.categories ) ;
 //         // props.setCategoryListMenu(item.categories)
 //         props.setAllOrders(item.orders);
 //         props.setCurrentStore(item);

@@ -143,11 +143,12 @@ function Dnd(props) {
                                                 </Draggable> */}
 
                                                         {props.categories.filter(item => {
-                                                     
-                                                                if (!item.masterCategory && item.masterCategory === null)
+                                                                if (!item.masterCategory && item.masterCategory === null
+                                                                        // && item.categoryDesign.statusShow
+                                                                )
                                                                         return item
                                                         }).map((item, index) => (
-                                                               
+
                                                                 <Draggable
                                                                         onChange={props.setCategoryTitle(item.categoryName)}
                                                                         key={index} draggableId={`${index}`} index={index}>
@@ -172,9 +173,9 @@ function Dnd(props) {
                                                         ))}
                                                         {provided.placeholder}
 
-                                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category/New" ,state: { category: "New" } } }
-                                                         onClick={() => { props.setcomponnet("AddCategory") }}>
-                                                        <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>+</span>
+                                                        <Link to={{ pathname: "/" + props.objectFields.urlRoute + "/category/New", state: { category: "New" } }}
+                                                                onClick={() => { props.setcomponnet("AddCategory") }}>
+                                                                <span className="badge rounded-pill badge-notification" style={{ backgroundColor: "#FC894D" }}>+</span>
                                                         </Link>
                                                 </div>
                                         )}
@@ -191,7 +192,7 @@ export default connect(
                         storeName: state.storeReducer.objectFields.urlRoute ?
                                 state.storeReducer.objectFields.urlRoute :
                                 state.storeReducer.objectFields.storeName,
-                                objectFields: state.storeReducer.objectFields,
+                        objectFields: state.storeReducer.objectFields,
                         // postData: state.createPostReducer.postData
                 }
         },
@@ -201,7 +202,7 @@ export default connect(
                         setCategoryTitle: (title) => { dispatch(actions.setCategoryTitle(title)) },
 
                         // setFilterPosts: (value) => { dispatch(setFilterPosts(value)) },
-      setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
+                        setcomponnet: (r) => dispatch(actions.setCurrentComponent(r)),
 
                 }
         }
