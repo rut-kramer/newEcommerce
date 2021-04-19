@@ -96,7 +96,7 @@ function SliderConfigurator(props) {
                             </Col>
                             <Row md="12" className="SC-titleName">
                                 <input className="SC-input"
-                                    value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
+                                    // value={(props.bhd.title.textContent !== undefined && props.bhd.title.textContent) ? props.bhd.title.textContent : props.objectFields.storeName}
                                     onChange={(e) => props.setTitle(e.target.value)}
                                 ></input>
                             </Row>
@@ -122,7 +122,7 @@ function SliderConfigurator(props) {
                         </Row>
 
                         <Row md="12" className="mt-3">
-                            <Col md="6" className="p-0"><label for="favcolor">Title Fill</label></Col>
+                            <Col md="6" className="p-0"><label HtmlFor="favcolor">Title Fill</label></Col>
                             <Col md="6" className="pr-0">
                                 <input type="color" id="favcolor" name="favcolor" onChange={(e) => { props.setColor(e.target.value) }} />
                             </Col>

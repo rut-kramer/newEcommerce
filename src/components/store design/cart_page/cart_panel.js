@@ -27,7 +27,7 @@ function CartPanel(props) {
 
                     {props.cart.products.map((item, index) => (
                         <>
-                            <Row md="12 borderToProduct mt-4 ">
+                            <Row md="12 borderToProduct mt-4 " key={index}>
                                 <Col md="3" style={{ width: "18px" }}><img src={productInCart}></img></Col>
                                 <Col md="3">{item.product.name}</Col>
                                 <Col md="3">

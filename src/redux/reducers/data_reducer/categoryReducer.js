@@ -28,6 +28,9 @@ const category = {
         },
         setCategoryListMenu(state, action) {
                 state.categoryListMenu = action.payload;
+        },
+        setStatusShowCategory(state, action) {
+                state.categories[action.payload.index].categoryDesign.statusShow = action.payload.value;
         }
 }
 export default produce((state, action) => createReducer(state, action, category), initialState);

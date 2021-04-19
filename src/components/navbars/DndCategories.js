@@ -143,7 +143,9 @@ function Dnd(props) {
                                                 </Draggable> */}
 
                                                         {props.categories.filter(item => {
-                                                                if (!item.masterCategory && item.masterCategory === null)
+                                                                if (!item.masterCategory && item.masterCategory === null
+                                                                        // && item.categoryDesign.statusShow
+                                                                )
                                                                         return item
                                                         }).map((item, index) => (
                                                                 <Draggable

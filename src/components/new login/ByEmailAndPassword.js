@@ -89,11 +89,11 @@ const ByEmailAndPassword = (props) => {
                 {/* <Link id="forgotPasswordLink" onClick={resetUserPassword} style={{ fontSize: "15px" }}>Forgot password?</Link> */}
             </div>
             {/* <AlertForgotPassword show={showAlertForgotPassword} setShow={setShowAlertForgotPassword} /> */}
-            <div className="mt-4 signUpSignIn">
-                <Link onClick={signInWithEmailAndPassword} style={{ fontSize: "18px" }} className="signInLink">Sign in</Link>
+            {/* <div className="mt-4 signUpSignIn"> */}
+            {/* <Link onClick={signInWithEmailAndPassword} style={{ fontSize: "18px" }} className="signInLink">Sign in</Link>
 
-                <Link onClick={createUserWithEmailAndPassword} style={{ fontSize: "18px" }} className="signUpLink">Sign up</Link>
-            </div>
+                <Link onClick={createUserWithEmailAndPassword} style={{ fontSize: "18px" }} className="signUpLink">Sign up</Link> */}
+            {/* </div> */}
             {/* {messageText !== '' ? <AlertMessage message={messageText} /> : ""} */}
         </div>
     );

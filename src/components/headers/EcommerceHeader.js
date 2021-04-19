@@ -70,15 +70,16 @@ function EcommerceHeader(props) {
 
   };
 
-  useEffect(function () {
-    return function exit() {
-      alert("exit")
-      //     if (window.confirm("אם אתה בטוח שברצונך למחוק את החנותן"))
+  // useEffect(function () {
+  //   return function exit() {
+  //     alert("exit")
+  //     //     if (window.confirm("אם אתה בטוח שברצונך למחוק את החנותן"))
 
-      //     else
-      //       alert('מזל שהתחרטת...')
-    }
-  }, []);
+  //     //     else
+  //     //       alert('מזל שהתחרטת...')
+  //   }
+  // }, []);
+
   return (
     <div>
       {props.ifDisplayTitle ?
