@@ -103,13 +103,23 @@ function CategoryBullcommerce(props) {
 
   useEffect(() => {
     callPager();
+    // let productsCategory = props.storeProducts.filter(pc => {
+    //   if (pc.category === category._id)
+    //     return pc;
+    // })
+    // console.log("pc", productsCategory);
+    // props.setFilteredProducts(productsCategory);
+  }, [props.filterProducts])
+
+  useEffect(() => {
+    // callPager();
     let productsCategory = props.storeProducts.filter(pc => {
       if (pc.category === category._id)
         return pc;
     })
     console.log("pc", productsCategory);
     props.setFilteredProducts(productsCategory);
-  }, [props.filterProducts])
+  }, [props.location.state])
   const numOfPage = 6
   const numPaper = Math.ceil(props.filterProducts.length / numOfPage)
   const [arrPager, setArrPager] = useState([])
@@ -396,6 +406,7 @@ function CategoryBullcommerce(props) {
                 <Col md="9" className="pr-0">
                   <Row>
                     {arrPager[degelBtn] && arrPager[degelBtn].list.map((item, index) => (
+                      // .filter(x => { if (x.category._id === category._id) return x })
 
                       // {console.log("condition", (Array.isArray(props.filteredProducts) &&
                       //   props.filteredProducts.length > 0))}
